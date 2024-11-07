@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace QAirlines.DataAccess.Configuration
 {
-    internal class FlightEntityTypeConfiguration : IEntityTypeConfiguration<Flight>
+    public class FlightEntityTypeConfiguration : IEntityTypeConfiguration<Flight>
     {
         public void Configure (EntityTypeBuilder<Flight> builder) 
         {
@@ -31,10 +31,10 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("char(36)")
                 .HasColumnName("departure_id");
 
-            builder.Property(e => e.DestinationId)
+            builder.Property(e => e.ArrivalId)
                 .IsRequired()
                 .HasColumnType("char(36)")
-                .HasColumnName("destination_id");
+                .HasColumnName("arrival_id");
 
             builder.Property(e => e.BoardingTime)
                 .IsRequired()
@@ -67,17 +67,17 @@ namespace QAirlines.DataAccess.Configuration
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(e => e.Departure)
-                .WithMany(d => d.Flights)
-                .HasForeignKey(e => e.DepartureId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+            //builder.HasOne(e => e.Departure)
+            //    .WithMany(a => a.DepartureFlights)
+            //    .HasForeignKey(e => e.DepartureId)
+            //    .IsRequired()
+            //    .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(e => e.Destination)
-                .WithMany(d => d.Flights)
-                .HasForeignKey(e => e.DestinationId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+            //builder.HasOne(e => e.Arrival)
+            //    .WithMany(a => a.ArrivalFlights)
+            //    .HasForeignKey(e => e.ArrivalId)
+            //    .IsRequired()
+            //    .OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("flights");
         }

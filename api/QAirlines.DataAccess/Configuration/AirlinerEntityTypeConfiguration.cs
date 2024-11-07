@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace QAirlines.DataAccess.Model_Configuration
 {
-    internal class AirlinerEntityTypeConfiguration : IEntityTypeConfiguration<Airliner>
+    public class AirlinerEntityTypeConfiguration : IEntityTypeConfiguration<Airliner>
     {
         public void Configure (EntityTypeBuilder<Airliner> builder)
         {

@@ -1,26 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
+	  <BaseOutputPath>..\QAirlines.API\bin\</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
-      <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\QAirlines.DataAccess\QAirlines.DataAccess.csproj" />
-		<ProjectReference Include="..\QAirlines.Migrations\QAirlines.Migrations.csproj">
-			<!-- Not working. See dotnet/sdk#952 -->
-			<PrivateAssets>all</PrivateAssets>
-			<ExcludeAssets>compile</ExcludeAssets>
-		</ProjectReference>
 	</ItemGroup>
 
 </Project>
