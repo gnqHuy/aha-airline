@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QAirlines.DataAccess.Mapping
+namespace QAirlines.DataAccess.Configuration
 {
-    public class AirportEntityTypeConfiguration : IEntityTypeConfiguration<Airport>
+    public class CityEntityTypeConfiguration : IEntityTypeConfiguration<City>
     {
-        public void Configure(EntityTypeBuilder<Airport> builder)
+        public void Configure (EntityTypeBuilder<City> builder)
         {
             builder.HasKey(x => x.Id).HasName("PRIMARY");
 
@@ -21,22 +21,22 @@ namespace QAirlines.DataAccess.Mapping
                 .HasColumnType("char(36)")
                 .HasColumnName("id");
 
+            builder.Property(e => e.CountryId)
+                .IsRequired()
+                .HasColumnType("char(36)")
+                .HasColumnName("country_id");
+
             builder.Property(e => e.Name)
                 .IsRequired()
-                .HasColumnType("char(255)")
+                .HasColumnType("varchar(255)")
                 .HasColumnName("name");
 
-            builder.Property(e => e.AirportCode)
-                .IsRequired()
-                .HasColumnType("char(255)")
-                .HasColumnName("airport_code");
-
-            builder.HasOne(e => e.City)
-                .WithMany(c => c.Airports)
-                .HasForeignKey(c => c.CityId)
+            builder.HasOne(e => e.Country)
+                .WithMany(c => c.Cities)
+                .HasForeignKey(e => e.CountryId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.ToTable("airports");
+            builder.ToTable("cities");
         }
     }
 }

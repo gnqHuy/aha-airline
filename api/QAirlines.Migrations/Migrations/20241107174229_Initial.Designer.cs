@@ -12,7 +12,7 @@ using QAirlines.DataAccess.DbContext;
 namespace QAirlines.Migrations.Migrations
 {
     [DbContext(typeof(QAirlineDbContext))]
-    [Migration("20241107114736_Initial")]
+    [Migration("20241107174229_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -169,11 +169,16 @@ namespace QAirlines.Migrations.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<Guid>("CityId")
+                        .HasColumnType("char(36)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.ToTable("Airports");
                 });
@@ -199,6 +204,41 @@ namespace QAirlines.Migrations.Migrations
                         .IsUnique();
 
                     b.ToTable("Cancellation");
+                });
+
+            modelBuilder.Entity("QAirlines.Models.City", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("CountryId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("City");
+                });
+
+            modelBuilder.Entity("QAirlines.Models.Country", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Country");
                 });
 
             modelBuilder.Entity("QAirlines.Models.Flight", b =>
@@ -235,6 +275,10 @@ namespace QAirlines.Migrations.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AirlinerId");
+
+                    b.HasIndex("ArrivalId");
+
+                    b.HasIndex("DepartureId");
 
                     b.ToTable("Flights");
                 });
@@ -525,6 +569,17 @@ namespace QAirlines.Migrations.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("QAirlines.Models.Airport", b =>
+                {
+                    b.HasOne("QAirlines.Models.City", "City")
+                        .WithMany("Airports")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("QAirlines.Models.Cancellation", b =>
                 {
                     b.HasOne("QAirlines.Models.Ticket", "Ticket")
@@ -536,6 +591,17 @@ namespace QAirlines.Migrations.Migrations
                     b.Navigation("Ticket");
                 });
 
+            modelBuilder.Entity("QAirlines.Models.City", b =>
+                {
+                    b.HasOne("QAirlines.Models.Country", "Country")
+                        .WithMany("Cities")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
             modelBuilder.Entity("QAirlines.Models.Flight", b =>
                 {
                     b.HasOne("QAirlines.Models.Airliner", "Airliner")
@@ -544,7 +610,23 @@ namespace QAirlines.Migrations.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("QAirlines.Models.Airport", "Arrival")
+                        .WithMany("ArrivalFlights")
+                        .HasForeignKey("ArrivalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QAirlines.Models.Airport", "Departure")
+                        .WithMany("DepartureFlights")
+                        .HasForeignKey("DepartureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Airliner");
+
+                    b.Navigation("Arrival");
+
+                    b.Navigation("Departure");
                 });
 
             modelBuilder.Entity("QAirlines.Models.Passenger", b =>
@@ -624,6 +706,23 @@ namespace QAirlines.Migrations.Migrations
                     b.Navigation("Flights");
 
                     b.Navigation("Seats");
+                });
+
+            modelBuilder.Entity("QAirlines.Models.Airport", b =>
+                {
+                    b.Navigation("ArrivalFlights");
+
+                    b.Navigation("DepartureFlights");
+                });
+
+            modelBuilder.Entity("QAirlines.Models.City", b =>
+                {
+                    b.Navigation("Airports");
+                });
+
+            modelBuilder.Entity("QAirlines.Models.Country", b =>
+                {
+                    b.Navigation("Cities");
                 });
 
             modelBuilder.Entity("QAirlines.Models.Flight", b =>
