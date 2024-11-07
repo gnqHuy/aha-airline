@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace QAirlines.DataAccess.Configuration
 {
-    internal class PromotionEntityTypeConfiguration : IEntityTypeConfiguration<Promotion>
+    public class PromotionEntityTypeConfiguration : IEntityTypeConfiguration<Promotion>
     {
         public void Configure(EntityTypeBuilder<Promotion> builder)
         {

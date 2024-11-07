@@ -15,6 +15,7 @@ namespace QAirlines.DataAccess.DbContext
         public QAirlineDbContext(DbContextOptions<QAirlineDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(IEntityTypeConfiguration<>).Assembly);
         }
 

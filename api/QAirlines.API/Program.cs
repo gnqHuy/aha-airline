@@ -1,52 +1,16 @@
-var builder = WebApplication.CreateBuilder(args);
-string[] origins = builder.Configuration.GetSection("AllowedOrigins").Value.Split(",");
-string CORS_policy = "_CORS_policy";
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-// Add services to the container.
+namespace QAirlines.API;
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
-builder.Services.AddCors(options =>
+public class Program
 {
-    options.AddPolicy(
-        name: CORS_policy,
-        policy =>
-        {
-            if (origins.Contains("*"))
-            {
-                policy
-                    .AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
-            } else
-            {
-                policy
-                    .WithOrigins(origins)
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
-            }
-        });
-});
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
 }
-
-app.UseCors(CORS_policy);
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
