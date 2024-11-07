@@ -67,17 +67,17 @@ namespace QAirlines.DataAccess.Configuration
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 
-            //builder.HasOne(e => e.Departure)
-            //    .WithMany(a => a.DepartureFlights)
-            //    .HasForeignKey(e => e.DepartureId)
-            //    .IsRequired()
-            //    .OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(e => e.Departure)
+                .WithMany(a => a.DepartureFlights)
+                .HasForeignKey(e => e.DepartureId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
 
-            //builder.HasOne(e => e.Arrival)
-            //    .WithMany(a => a.ArrivalFlights)
-            //    .HasForeignKey(e => e.ArrivalId)
-            //    .IsRequired()
-            //    .OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(e => e.Arrival)
+                .WithMany(a => a.ArrivalFlights)
+                .HasForeignKey(e => e.ArrivalId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("flights");
         }

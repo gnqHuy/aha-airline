@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QAirlines.DataAccess.Mapping
+namespace QAirlines.DataAccess.Configuration
 {
-    public class AirportEntityTypeConfiguration : IEntityTypeConfiguration<Airport>
+    public class CountryEntityTypeConfiguration : IEntityTypeConfiguration<Country>
     {
-        public void Configure(EntityTypeBuilder<Airport> builder)
+        public void Configure (EntityTypeBuilder<Country> builder)
         {
             builder.HasKey(x => x.Id).HasName("PRIMARY");
 
@@ -23,20 +23,10 @@ namespace QAirlines.DataAccess.Mapping
 
             builder.Property(e => e.Name)
                 .IsRequired()
-                .HasColumnType("char(255)")
+                .HasColumnType("varchar(255)")
                 .HasColumnName("name");
 
-            builder.Property(e => e.AirportCode)
-                .IsRequired()
-                .HasColumnType("char(255)")
-                .HasColumnName("airport_code");
-
-            builder.HasOne(e => e.City)
-                .WithMany(c => c.Airports)
-                .HasForeignKey(c => c.CityId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.ToTable("airports");
+            builder.ToTable("countries");
         }
     }
 }
