@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace QAirlines.DataAccess.Mapping
 {
-    internal class AirportEntityTypeConfiguration : IEntityTypeConfiguration<Airport>
+    public class AirportEntityTypeConfiguration : IEntityTypeConfiguration<Airport>
     {
         public void Configure(EntityTypeBuilder<Airport> builder)
         {

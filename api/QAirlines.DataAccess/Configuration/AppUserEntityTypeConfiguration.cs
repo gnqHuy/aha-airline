@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace QAirlines.DataAccess.Configuration
 {
-    internal class AppUserEntityTypeConfiguration : IEntityTypeConfiguration<ApplicationUser>
+    public class AppUserEntityTypeConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
         public void Configure (EntityTypeBuilder<ApplicationUser> builder)
         {
