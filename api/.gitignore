@@ -1,5 +1,6 @@
 .vs
+bin
+obj
 
 QAirlines.*/bin
 QAirlines.*/obj
-QAirlines.*/.vs

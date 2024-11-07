@@ -12,6 +12,7 @@ namespace QAirlines.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string AirportCode {  get; set; }
-        public virtual ICollection<Flight> Flights { get; set; }
+        //public virtual ICollection<Flight> DepartureFlights { get; set; }
+        //public virtual ICollection<Flight> ArrivalFlights { get; set; }
     }
 }
