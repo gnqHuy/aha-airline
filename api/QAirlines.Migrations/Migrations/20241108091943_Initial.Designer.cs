@@ -12,7 +12,7 @@ using QAirlines.DataAccess.DbContext;
 namespace QAirlines.Migrations.Migrations
 {
     [DbContext(typeof(QAirlineDbContext))]
-    [Migration("20241107174229_Initial")]
+    [Migration("20241108091943_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
