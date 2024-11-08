@@ -25,3 +25,5 @@ coverage/
 # Logs
 *.log
 *.log.*
+
+appsettings.*.json
