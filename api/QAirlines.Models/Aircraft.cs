@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QAirlines.Models
 {
-    public class Airliner : IEntity<Guid>
+    public class Aircraft : IEntity<Guid>
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

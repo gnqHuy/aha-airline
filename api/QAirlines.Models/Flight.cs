@@ -11,7 +11,7 @@ namespace QAirlines.Models
     public class Flight : IEntity<Guid>
     {
         public Guid Id { get; set; }
-        public Guid AirlinerId { get; set; }
+        public Guid AircraftId { get; set; }
 
         [ForeignKey(nameof(Departure))]
         public Guid DepartureId { get; set; }
@@ -24,7 +24,7 @@ namespace QAirlines.Models
         public DateTime ArrivalTime { get; set; }
         public int NoOfSeats { get; set; }
         public string Status { get; set; }
-        public virtual Airliner? Airliner { get; set; }
+        public virtual Aircraft? Aircraft { get; set; }
         public virtual Airport? Departure { get; set; }
         public virtual Airport? Arrival { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

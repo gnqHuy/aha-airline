@@ -134,7 +134,7 @@ namespace QAirlines.Migrations.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("QAirlines.Models.Airliner", b =>
+            modelBuilder.Entity("QAirlines.Models.Aircraft", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -153,7 +153,7 @@ namespace QAirlines.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Airliners");
+                    b.ToTable("Aircrafts");
                 });
 
             modelBuilder.Entity("QAirlines.Models.Airport", b =>
@@ -244,7 +244,7 @@ namespace QAirlines.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("AirlinerId")
+                    b.Property<Guid>("AircraftId")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("ArrivalId")
@@ -271,7 +271,7 @@ namespace QAirlines.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AirlinerId");
+                    b.HasIndex("AircraftId");
 
                     b.HasIndex("ArrivalId");
 
@@ -343,7 +343,7 @@ namespace QAirlines.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("AirlinerId")
+                    b.Property<Guid>("AircraftId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Class")
@@ -358,7 +358,7 @@ namespace QAirlines.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AirlinerId");
+                    b.HasIndex("AircraftId");
 
                     b.ToTable("Seats");
                 });
@@ -601,9 +601,9 @@ namespace QAirlines.Migrations.Migrations
 
             modelBuilder.Entity("QAirlines.Models.Flight", b =>
                 {
-                    b.HasOne("QAirlines.Models.Airliner", "Airliner")
+                    b.HasOne("QAirlines.Models.Aircraft", "Aircraft")
                         .WithMany("Flights")
-                        .HasForeignKey("AirlinerId")
+                        .HasForeignKey("AircraftId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -619,7 +619,7 @@ namespace QAirlines.Migrations.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Airliner");
+                    b.Navigation("Aircraft");
 
                     b.Navigation("Arrival");
 
@@ -639,13 +639,13 @@ namespace QAirlines.Migrations.Migrations
 
             modelBuilder.Entity("QAirlines.Models.Seat", b =>
                 {
-                    b.HasOne("QAirlines.Models.Airliner", "Airliner")
+                    b.HasOne("QAirlines.Models.Aircraft", "Aircraft")
                         .WithMany("Seats")
-                        .HasForeignKey("AirlinerId")
+                        .HasForeignKey("AircraftId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Airliner");
+                    b.Navigation("Aircraft");
                 });
 
             modelBuilder.Entity("QAirlines.Models.Ticket", b =>
@@ -698,7 +698,7 @@ namespace QAirlines.Migrations.Migrations
                     b.Navigation("UserRole");
                 });
 
-            modelBuilder.Entity("QAirlines.Models.Airliner", b =>
+            modelBuilder.Entity("QAirlines.Models.Aircraft", b =>
                 {
                     b.Navigation("Flights");
 
