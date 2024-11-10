@@ -21,10 +21,10 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("char(36)")
                 .HasColumnName("id");
 
-            builder.Property(e => e.AirlinerId)
+            builder.Property(e => e.AircraftId)
                 .IsRequired()
                 .HasColumnType("char(36)")
-                .HasColumnName("airliner_id");
+                .HasColumnName("aircraft_id");
 
             builder.Property(e => e.Number)
                 .IsRequired()
@@ -41,9 +41,9 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("tinyint")
                 .HasColumnName("is_available");
 
-            builder.HasOne(e => e.Airliner)
+            builder.HasOne(e => e.Aircraft)
                 .WithMany(a => a.Seats)
-                .HasForeignKey(e => e.AirlinerId)
+                .HasForeignKey(e => e.AircraftId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 

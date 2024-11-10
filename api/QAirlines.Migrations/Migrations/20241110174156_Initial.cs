@@ -16,7 +16,7 @@ namespace QAirlines.Migrations.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Airliners",
+                name: "Aircrafts",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -28,7 +28,7 @@ namespace QAirlines.Migrations.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Airliners", x => x.Id);
+                    table.PrimaryKey("PK_Aircrafts", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -121,7 +121,7 @@ namespace QAirlines.Migrations.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    AirlinerId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    AircraftId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     Number = table.Column<int>(type: "int", nullable: false),
                     Class = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -131,9 +131,9 @@ namespace QAirlines.Migrations.Migrations
                 {
                     table.PrimaryKey("PK_Seats", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Seats_Airliners_AirlinerId",
-                        column: x => x.AirlinerId,
-                        principalTable: "Airliners",
+                        name: "FK_Seats_Aircrafts_AircraftId",
+                        column: x => x.AircraftId,
+                        principalTable: "Aircrafts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -359,7 +359,7 @@ namespace QAirlines.Migrations.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    AirlinerId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    AircraftId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     DepartureId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     ArrivalId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     BoardingTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -373,9 +373,9 @@ namespace QAirlines.Migrations.Migrations
                 {
                     table.PrimaryKey("PK_Flights", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Flights_Airliners_AirlinerId",
-                        column: x => x.AirlinerId,
-                        principalTable: "Airliners",
+                        name: "FK_Flights_Aircrafts_AircraftId",
+                        column: x => x.AircraftId,
+                        principalTable: "Aircrafts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -520,9 +520,9 @@ namespace QAirlines.Migrations.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Flights_AirlinerId",
+                name: "IX_Flights_AircraftId",
                 table: "Flights",
-                column: "AirlinerId");
+                column: "AircraftId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Flights_ArrivalId",
@@ -540,9 +540,9 @@ namespace QAirlines.Migrations.Migrations
                 column: "BookerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Seats_AirlinerId",
+                name: "IX_Seats_AircraftId",
                 table: "Seats",
-                column: "AirlinerId");
+                column: "AircraftId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_FlightId",
@@ -607,7 +607,7 @@ namespace QAirlines.Migrations.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Airliners");
+                name: "Aircrafts");
 
             migrationBuilder.DropTable(
                 name: "City");

@@ -21,6 +21,8 @@
 			<PrivateAssets>all</PrivateAssets>
 			<ExcludeAssets>compile</ExcludeAssets>
 		</ProjectReference>
+		<ProjectReference Include="..\QAirlines.Repositories\QAirlines.Repositories.csproj"/>
+		<ProjectReference Include="..\QAirlines.UnitOfWorks\QAirlines.UnitOfWorks.csproj"/>
 	</ItemGroup>
 
 </Project>

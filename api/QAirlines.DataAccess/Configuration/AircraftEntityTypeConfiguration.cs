@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace QAirlines.DataAccess.Model_Configuration
 {
-    public class AirlinerEntityTypeConfiguration : IEntityTypeConfiguration<Airliner>
+    public class AircraftEntityTypeConfiguration : IEntityTypeConfiguration<Aircraft>
     {
-        public void Configure (EntityTypeBuilder<Airliner> builder)
+        public void Configure (EntityTypeBuilder<Aircraft> builder)
         {
             builder.HasKey(x => x.Id).HasName("PRIMARY");
 
@@ -35,7 +35,7 @@ namespace QAirlines.DataAccess.Model_Configuration
                 .HasColumnType("int")
                 .HasColumnName("no_of_seats");
 
-            builder.ToTable("airliners");
+            builder.ToTable("aircrafts");
         }
     }
 }
