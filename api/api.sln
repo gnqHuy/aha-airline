@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAirlines.API", "QAirlines.API\QAirlines.API.csproj", "{00AF01B3-4020-4F4B-BFEB-77F9CB25780D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QAirlines.API", "QAirlines.API\QAirlines.API.csproj", "{00AF01B3-4020-4F4B-BFEB-77F9CB25780D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAirlines.DataAccess", "QAirlines.DataAccess\QAirlines.DataAccess.csproj", "{BF0B1435-4C8A-4EC5-BB68-5670FF8F70FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QAirlines.DataAccess", "QAirlines.DataAccess\QAirlines.DataAccess.csproj", "{BF0B1435-4C8A-4EC5-BB68-5670FF8F70FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAirlines.Models", "QAirlines.Models\QAirlines.Models.csproj", "{565EA06E-1525-4FDF-9BCA-DF6FEE70E5A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QAirlines.Models", "QAirlines.Models\QAirlines.Models.csproj", "{565EA06E-1525-4FDF-9BCA-DF6FEE70E5A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAirlines.Migrations", "QAirlines.Migrations\QAirlines.Migrations.csproj", "{21F09E02-4865-4681-8997-873F4A6FCFF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QAirlines.Migrations", "QAirlines.Migrations\QAirlines.Migrations.csproj", "{21F09E02-4865-4681-8997-873F4A6FCFF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAirlines.Repositories", "QAirlines.Repositories\QAirlines.Repositories.csproj", "{469007DE-6D69-462A-91A7-A117B4D7D539}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QAirlines.UnitOfWorks", "QAirlines.UnitOfWorks\QAirlines.UnitOfWorks.csproj", "{344550CA-7908-4DEB-B38C-8A7630CDE7E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{21F09E02-4865-4681-8997-873F4A6FCFF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21F09E02-4865-4681-8997-873F4A6FCFF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21F09E02-4865-4681-8997-873F4A6FCFF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{469007DE-6D69-462A-91A7-A117B4D7D539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{469007DE-6D69-462A-91A7-A117B4D7D539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{469007DE-6D69-462A-91A7-A117B4D7D539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{469007DE-6D69-462A-91A7-A117B4D7D539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{344550CA-7908-4DEB-B38C-8A7630CDE7E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{344550CA-7908-4DEB-B38C-8A7630CDE7E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{344550CA-7908-4DEB-B38C-8A7630CDE7E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{344550CA-7908-4DEB-B38C-8A7630CDE7E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

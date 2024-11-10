@@ -23,7 +23,7 @@ namespace QAirlines.DataAccess.DbContext
 
         #region DbSets
 
-        public DbSet<Airliner> Airliners { get; set; }
+        public DbSet<Aircraft> Aircrafts { get; set; }
         public DbSet<Airport> Airports { get; set; }
         public DbSet<Cancellation> Cancellation { get; set; }
         public DbSet<Flight> Flights { get; set; }
