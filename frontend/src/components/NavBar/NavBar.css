@@ -1,0 +1,32 @@
+nav {
+    padding: 15px;
+    padding-left: 35px;
+    padding-right: 35px;
+    display: flex; 
+    color: black;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+#logo {
+    display: block;
+    text-align: center;
+}
+
+nav div {
+    display: flex;
+    gap: 15px; 
+}
+nav a {
+    color: black;   
+    text-decoration: none; 
+    font-weight: bold; 
+}
+
+#nav a {
+    margin-left: 20px;
+}
+  
+#nav a:hover {
+    color: #6d8dc2; 
+}
