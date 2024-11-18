@@ -1,0 +1,85 @@
+.flight-card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 240px));
+    justify-content: center;
+    gap: 30px;
+}
+  
+.flight-preview-container {
+    max-width: 100%;
+    width: 60%;
+    margin: auto;
+    text-align: center;
+    padding: 15px;
+    border-top: 1.5px solid #d4a422;
+    border-bottom: 1.5px solid #d4a422;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    margin-bottom: 20px;
+    font-size: large;
+    position: relative;
+}
+
+.departure-city {
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    position: relative;
+}
+
+.departure-city:hover {
+    color: #0056b3; 
+}
+
+.departureList {
+    font-size: medium;
+    position: absolute;
+    padding: 10px;
+    top: calc(100% + 5px); 
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px; 
+    width: 90%; 
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+}
+
+.departureList-item {
+    padding: 10px;
+    cursor: pointer;
+}
+.departureList-item:hover {
+    background-color: #f1f1f1;
+}
+
+.all-location {
+    padding: 10px;
+    font-size: medium;
+    display: flex;      
+    align-items: center; 
+    gap: 5px; 
+}
+
+.view-more {
+    margin: 20px;
+    cursor: pointer;
+    padding: 12px 24px;
+    font-size: medium;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #42a5f5, #478ed1);
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}
+
+.view-more:hover {
+    color: #0056b3; 
+}

@@ -3,9 +3,9 @@ import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import "./NewsSection.css";
 
-import image1 from '../../asserts-test/1.png';
-import image2 from '../../asserts-test/2.jpg';
-import image3 from '../../asserts-test/3.jpg';
+import image1 from '../../assets-test/demo.png';
+import image2 from '../../assets-test/seoul.jpg';
+import image3 from '../../assets-test/tokyo.jpg';
 
 const Example = () => {
     const images = [image1, image2, image3];
