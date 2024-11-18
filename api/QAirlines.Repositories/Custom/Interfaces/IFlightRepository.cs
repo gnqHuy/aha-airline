@@ -10,9 +10,9 @@ namespace QAirlines.Repositories.Custom.Interfaces
 {
     public interface IFlightRepository : IGenericRepository<Flight, Guid>
     {
-        Task<IEnumerable<Flight>> GetFlightsFromDepartureCity(Guid cityId);
-        Task<IEnumerable<Flight>> GetFlightsToArrivalCity(Guid cityId);
-        Task<IEnumerable<Flight>> GetFlightsFromTerminalInfo(Guid departureId, Guid arrivalId);
-        Task<Flight> GetFlightByTicket(Guid ticketId);
+        //Task<IEnumerable<Flight>> GetFlightsFromDepartureCity(Guid cityId);
+        //Task<IEnumerable<Flight>> GetFlightsToArrivalCity(Guid cityId);
+        //Task<IEnumerable<Flight>> GetFlightsFromTerminalInfo(Guid departureId, Guid arrivalId);
+        //Task<Flight> GetFlightByTicket(Guid ticketId);
     }
 }

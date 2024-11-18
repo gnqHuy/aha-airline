@@ -11,6 +11,7 @@ namespace QAirlines.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string ISOcode { get; set; }
         public virtual ICollection<City> Cities { get; set; } = new List<City>();
     }
 }

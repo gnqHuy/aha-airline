@@ -15,9 +15,10 @@ namespace QAirlines.UnitOfWorks
         public IAircraftRepository Aircrafts {  get; private set; }
         public IAirportRepository Airports { get; private set; }
         public ICancellationRepository Cancellations { get; private set; }
-        public ICityRepository Citys { get; private set; }
-        public ICountryRepository Countrys { get; private set; }
+        public ICityRepository Cities { get; private set; }
+        public ICountryRepository Countries { get; private set; }
         public IFlightRepository Flights { get; private set; }
+        public IFlightRouteRepository FlightRoutes { get; private set; }
 
         public UnitOfWork(QAirlineDbContext context)
         {
@@ -25,9 +26,10 @@ namespace QAirlines.UnitOfWorks
             Aircrafts = new AircraftRepository(context);
             Airports = new AirportRepository(context);
             Cancellations = new CancellationRepository(context);
-            Citys = new CityRepository(context);
-            Countrys = new CountryRepository(context);
+            Cities = new CityRepository(context);
+            Countries = new CountryRepository(context);
             Flights = new FlightRepository(context);
+            FlightRoutes = new FlightRouteRepository(context);
         }
 
         public int Commit()

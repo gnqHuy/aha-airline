@@ -46,11 +46,26 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("char(255)")
                 .HasColumnName("email");
 
+            builder.Property(e => e.Class)
+                .IsRequired()
+                .HasColumnType("char(255)")
+                .HasColumnName("class");
+
+            builder.Property(e => e.Class)
+                .IsRequired()
+                .HasColumnType("char(255)")
+                .HasColumnName("class");
+
+            builder.Property(e => e.CreditPoint)
+                .IsRequired()
+                .HasColumnType("int")
+                .HasColumnName("credit_point");
+
             builder.HasOne(e => e.Booker)
                 .WithMany(b => b.Passengers)
                 .HasForeignKey(e => e.BookerId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("passengers");
         }

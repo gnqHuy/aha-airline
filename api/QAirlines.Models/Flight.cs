@@ -12,12 +12,13 @@ namespace QAirlines.Models
     {
         public Guid Id { get; set; }
         public Guid AircraftId { get; set; }
+        public Guid FlightRouteId { get; set; }
 
         [ForeignKey(nameof(Departure))]
-        public Guid DepartureId { get; set; }
+        public string DepartureIATA { get; set; }
 
         [ForeignKey(nameof(Arrival))]
-        public Guid ArrivalId { get; set; }
+        public string ArrivalIATA { get; set; }
 
         public DateTime BoardingTime { get; set; }
         public DateTime DepartureTime { get; set; }
@@ -25,6 +26,7 @@ namespace QAirlines.Models
         public int NoOfSeats { get; set; }
         public string Status { get; set; }
         public virtual Aircraft? Aircraft { get; set; }
+        public virtual FlightRoute? FlightRoute { get; set; }
         public virtual Airport? Departure { get; set; }
         public virtual Airport? Arrival { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

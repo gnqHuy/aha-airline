@@ -12,9 +12,10 @@ namespace QAirlines.UnitOfWorks
         public IAircraftRepository Aircrafts { get; }
         public IAirportRepository Airports { get; }
         public ICancellationRepository Cancellations { get; }
-        public ICityRepository Citys { get; }
-        public ICountryRepository Countrys { get; }
+        public ICityRepository Cities { get; }
+        public ICountryRepository Countries { get; }
         public IFlightRepository Flights { get; }
+        public IFlightRouteRepository FlightRoutes { get; }
         public int Commit();
     }
 }

@@ -15,42 +15,42 @@ namespace QAirlines.Repositories.Custom.Repositories
     {
         public FlightRepository(QAirlineDbContext context) : base(context) { }
 
-        public async Task<IEnumerable<Flight>> GetFlightsFromDepartureCity(Guid cityId)
-        {
-            var flights = await _context.Flights
-                .Where(flight => flight.Departure.CityId == cityId)
-                .ToListAsync();
+        //public async Task<IEnumerable<Flight>> GetFlightsFromDepartureCity(Guid cityId)
+        //{
+        //    var flights = await _context.Flights
+        //        .Where(flight => flight.Departure.CityId == cityId)
+        //        .ToListAsync();
 
-            return flights;
-        }
+        //    return flights;
+        //}
 
-        public async Task<IEnumerable<Flight>> GetFlightsToArrivalCity(Guid cityId)
-        {
-            var flights = await _context.Flights
-                .Where(flight => flight.Arrival.CityId == cityId)
-                .ToListAsync();
+        //public async Task<IEnumerable<Flight>> GetFlightsToArrivalCity(Guid cityId)
+        //{
+        //    var flights = await _context.Flights
+        //        .Where(flight => flight.Arrival.CityId == cityId)
+        //        .ToListAsync();
 
-            return flights;
-        }
+        //    return flights;
+        //}
 
-        public async Task<IEnumerable<Flight>> GetFlightsFromTerminalInfo(Guid departureId, Guid arrivalId)
-        {
-            var flights = await _context.Flights
-                .Include(flight => flight.Departure) // eager loading
-                .Include(flight => flight.Arrival)
-                .Where(flight => flight.Departure.CityId == departureId 
-                    && flight.Arrival.CityId == arrivalId)
-                .ToListAsync();
+        //public async Task<IEnumerable<Flight>> GetFlightsFromTerminalInfo(Guid departureId, Guid arrivalId)
+        //{
+        //    var flights = await _context.Flights
+        //        .Include(flight => flight.Departure) // eager loading
+        //        .Include(flight => flight.Arrival)
+        //        .Where(flight => flight.Departure.CityId == departureId 
+        //            && flight.Arrival.CityId == arrivalId)
+        //        .ToListAsync();
 
-            return flights;
-        }
+        //    return flights;
+        //}
 
-        public async Task<Flight> GetFlightByTicket(Guid ticketId)
-        {
-            var flight = await _context.Flights
-                .Include(flight => flight.Tickets)
-                .FirstOrDefaultAsync(flight => flight.Tickets.Any(ticket => ticket.Id == ticketId));
-            return flight;
-        }
+        //public async Task<Flight> GetFlightByTicket(Guid ticketId)
+        //{
+        //    var flight = await _context.Flights
+        //        .Include(flight => flight.Tickets)
+        //        .FirstOrDefaultAsync(flight => flight.Tickets.Any(ticket => ticket.Id == ticketId));
+        //    return flight;
+        //}
     }
 }
