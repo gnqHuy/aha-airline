@@ -1,0 +1,124 @@
+.bookingSection_book_container {
+    width: 60rem;
+    height: 4rem;
+    background-color: #FCF9F2;
+    position: absolute;
+    left: 20%;
+    top: 36.5rem;
+    box-shadow: 0.2rem 0.2rem 0.4rem #82817d;
+    display: flex;
+}
+
+.bookingSection_book_fromInput {
+    width: 15rem;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    top: 0rem;
+}
+
+#bookingSection_book_fromText {
+    font-family: "Space Grotesk";
+    font-size: 13px;
+    position: relative;
+    left: 2rem;
+    top: 0.8rem;
+}
+
+.bookingSection_book_fromDestination {
+    width: 20rem;
+    height: 1.5rem;
+    position: relative;
+    right: 0.4rem;
+    top: 1.8rem;
+    border-bottom: 1px solid black;
+}
+
+.bookingSection_book_fromDestination p {
+    font-family: "Space Grotesk";
+    position: relative;
+    bottom: 1rem;
+    left: 0.3rem;
+}
+
+.bookingSection_book_transform {
+    width: 3rem;
+    /* background-color: green; */
+    position: relative;
+    left: 0.5rem;
+}
+
+.bookingSection_book_toInput {
+    display: flex;
+    width: 15rem;
+    /* background-color: red; */
+    position: relative;
+    left: 1rem;
+}
+
+#bookingSection_book_text {
+    font-family: "Space Grotesk";
+    font-size: 15px;
+}
+
+.booingSection_book_toDestination {
+    width: 12rem;
+    height: 1.5rem;
+    position: relative;
+    left: 0.7rem;
+    top: 1.8rem;
+    border-bottom: 1px solid black;
+}
+
+.booingSection_book_toDestination p {
+    font-family: "Space Grotesk";
+    position: relative;
+    bottom: 1.5rem;
+    left: 0.3rem;
+}
+
+.bookingSection_book_depart {
+    display: flex;
+    width: 15rem;
+    /* background-color: red; */
+    position: relative;
+    left: 0rem;
+}
+
+.bookingSection_book_departInput {
+    width: 12rem;
+    height: 1.5rem;
+    position: relative;
+    left: 0.7rem;
+    top: 1.8rem;
+    border-bottom: 1px solid black;
+}
+
+.bookingSection_book_departInput p {
+    font-family: "Space Grotesk";
+    position: relative;
+    bottom: 1.5rem;
+    left: 0.3rem;
+}
+
+.bookingSection_book_returnDepart {
+    display: flex;
+    width: 15rem;
+    position: relative;
+}
+
+.bookingSection_book_returnInput {
+    width: 12rem;
+    height: 1.5rem;
+    position: relative;
+    left: 0.7rem;
+    top: 1.8rem;
+    border-bottom: 1px solid black;
+}
+
+.bookingSection_book_returnInput p {
+    font-family: "Space Grotesk";
+    position: relative;
+    bottom: 1.5rem;
+    left: 0.3rem;
+}
