@@ -1,0 +1,9 @@
+.slide > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;  
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 500px;
+}
