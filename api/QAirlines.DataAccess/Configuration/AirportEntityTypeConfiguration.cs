@@ -13,7 +13,16 @@ namespace QAirlines.DataAccess.Mapping
     {
         public void Configure(EntityTypeBuilder<Airport> builder)
         {
-            builder.HasKey(x => x.Id).HasName("PRIMARY");
+            builder.HasKey(x => x.IATA).HasName("PRIMARY");
+
+            builder.Property(e => e.IATA)
+                .IsRequired()
+                .HasColumnType("char(255)")
+                .HasColumnName("IATA");
+
+            builder.HasIndex(e => e.IATA)
+                .IsUnique()
+                .HasDatabaseName("IX_IATA");
 
             builder.Property(e => e.Id)
                 .ValueGeneratedOnAdd()
@@ -26,14 +35,9 @@ namespace QAirlines.DataAccess.Mapping
                 .HasColumnType("char(255)")
                 .HasColumnName("name");
 
-            builder.Property(e => e.AirportCode)
-                .IsRequired()
-                .HasColumnType("char(255)")
-                .HasColumnName("airport_code");
-
             builder.HasOne(e => e.City)
                 .WithMany(c => c.Airports)
-                .HasForeignKey(c => c.CityId)
+                .HasForeignKey(e => e.CityId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.ToTable("airports");
