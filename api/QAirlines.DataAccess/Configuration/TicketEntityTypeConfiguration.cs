@@ -50,13 +50,13 @@ namespace QAirlines.DataAccess.Configuration
                 .WithMany(f => f.Tickets)
                 .HasForeignKey(e => e.FlightId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(e => e.Passenger)
                 .WithMany(p => p.Tickets)
                 .HasForeignKey(e => e.PassengerId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("tickets");
         }

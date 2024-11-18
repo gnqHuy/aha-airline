@@ -38,55 +38,58 @@ namespace QAirlines.API.Controllers
             return flight;
         }
 
-        [HttpGet("DepartureId={Id}")]
-        public async Task<IActionResult> GetFlightsFromDeparture(Guid Id)
-        {
-            var flights = await _unitOfWork.Flights.GetFlightsFromDepartureCity(Id);
-            if (flights != null)
-            {
-                return Ok(flights);
-            }
-            return NotFound();
-        }
+        //[HttpGet("DepartureId={Id}")]
+        //public async Task<IActionResult> GetFlightsFromDeparture(Guid Id)
+        //{
+        //    var flights = await _unitOfWork.Flights.GetFlightsFromDepartureCity(Id);
+        //    if (flights != null)
+        //    {
+        //        return Ok(flights);
+        //    }
+        //    return NotFound();
+        //}
 
-        [HttpGet("ArrivalId={Id}")]
-        public async Task<IActionResult> GetFlightsToArrival(Guid Id)
-        {
-            var flights = await _unitOfWork.Flights.GetFlightsToArrivalCity(Id);
-            if (flights != null)
-            {
-                return Ok(flights);
-            }
-            return NotFound();
-        }
+        //[HttpGet("ArrivalId={Id}")]
+        //public async Task<IActionResult> GetFlightsToArrival(Guid Id)
+        //{
+        //    var flights = await _unitOfWork.Flights.GetFlightsToArrivalCity(Id);
+        //    if (flights != null)
+        //    {
+        //        return Ok(flights);
+        //    }
+        //    return NotFound();
+        //}
 
-        [HttpGet("DepartureId={departureId}/ArrivalId={arrivalId}")]
-        public async Task<IActionResult> GetFlightsFromTerminalInfo(Guid departureId, Guid arrivalId)
-        {
-            var flights = await _unitOfWork.Flights.GetFlightsFromTerminalInfo(departureId, arrivalId);
-            if (flights != null)
-            {
-                return Ok(flights);
-            }
-            return NotFound();
-        }
+        //[HttpGet("DepartureId={departureId}/ArrivalId={arrivalId}")]
+        //public async Task<IActionResult> GetFlightsFromTerminalInfo(Guid departureId, Guid arrivalId)
+        //{
+        //    var flights = await _unitOfWork.Flights.GetFlightsFromTerminalInfo(departureId, arrivalId);
+        //    if (flights != null)
+        //    {
+        //        return Ok(flights);
+        //    }
+        //    return NotFound();
+        //}
 
-        [HttpPut]
+        [HttpPost]
         public async Task AddFlight([FromBody] Flight flight)
         {
             await _unitOfWork.Flights.AddAsync(flight);
+            _unitOfWork.Commit();
         }
 
-        [HttpPut("Range")]
+        [HttpPost("Range")]
         public async Task AddFlights([FromBody] IEnumerable<Flight> flights)
         {
             await _unitOfWork.Flights.AddRangeAsync(flights);
+            _unitOfWork.Commit();
         }
 
         [HttpDelete]
         public void RemoveFlight(Guid Id)
         {
             _unitOfWork.Flights.Remove(Id);
+            _unitOfWork.Commit();
         }
     }
 }
