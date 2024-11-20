@@ -48,6 +48,7 @@ namespace QAirlines.API
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IFlightRepository, FlightRepository>();
+            services.AddScoped<IFlightRouteRepository, FlightRouteRepository>();
 
             #endregion
 
