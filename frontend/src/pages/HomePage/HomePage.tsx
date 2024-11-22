@@ -5,6 +5,7 @@ import FlightCard from '../../components/FlightCard/FlightCard'
 import FlightPreview from '../../components/FlightPreview/FlightPreview'
 import BookingSection from '../../components/BookingSection/BookingSection'
 import './HomePage.css';
+import Footer from '../../components/Footer/Footer'
 
 
 type Props = {}
@@ -16,6 +17,7 @@ const HomePage = (props: Props) => {
       <NewsSection />
       <BookingSection />
       <FlightPreview />
+      <Footer />
     </div>
   )
 }
