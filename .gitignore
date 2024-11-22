@@ -1,0 +1,33 @@
+# Node.js dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+build/
+bin/
+obj/
+*.dll
+*.exe
+
+# User-specific files
+.DS_Store
+*.env
+.env.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.vs/
+
+# Coverage reports
+coverage/
+
+# Logs
+*.log
+*.log.*
+
+# Migration and Model snapshot files
+QAirlines.Migrations/
+
+# appsettings
+appsettings.*.json

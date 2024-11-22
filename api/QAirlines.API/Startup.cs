@@ -6,6 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using QAirlines.DataAccess.DbContext;
+using QAirlines.Repositories.Generic;
+using QAirlines.Repositories.Custom.Interfaces;
+using QAirlines.Repositories.Custom.Repositories;
+using QAirlines.Models;
+using System;
+using QAirlines.UnitOfWorks;
 
 
 namespace QAirlines.API
@@ -31,6 +37,24 @@ namespace QAirlines.API
                         builder => builder.MigrationsAssembly("QAirlines.Migrations")
                     )
             );
+
+            #endregion
+
+            #region Repositories
+
+            services.AddScoped<IAircraftRepository, AircraftRepository>();
+            services.AddScoped<IAirportRepository, AirportRepository>();
+            services.AddScoped<ICancellationRepository, CancellationRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
+            services.AddScoped<IFlightRepository, FlightRepository>();
+            services.AddScoped<IFlightRouteRepository, FlightRouteRepository>();
+
+            #endregion
+
+            #region Unit Of Work
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             #endregion
 

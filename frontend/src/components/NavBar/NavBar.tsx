@@ -1,10 +1,11 @@
-import React from 'react';
+import React from 'react'
 import { Link } from 'react-router-dom';
-import './NavBar.css';
+import "./NavBar.css"
 
 type Props = {};
 
 const NavBar: React.FC<Props> = () => {
+  const isLoggedIn = true;
   return (
     <nav>
       <div id="logo">
@@ -20,8 +21,18 @@ const NavBar: React.FC<Props> = () => {
         <Link to="/experience">Experience</Link>
       </div>
       <div id="account">
-        <Link to="/login">Login</Link>
-        <Link to="/sign-up">Sign Up</Link>
+        {isLoggedIn ? (
+          <div>
+            <Link to="/profile">Account</Link>
+            <Link to="/logout">Logout</Link>
+          </div>
+        ) : (
+          <div>
+            <Link to="/login">Login</Link>
+            <Link to="/sign-up">Sign Up</Link>
+          </div>
+        )}
+        
       </div>
     </nav>
   );

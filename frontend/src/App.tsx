@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { testAPI } from './api/test';
 import NavBar from './components/NavBar/NavBar';
+import NewsSection from './components/NewsSection/NewsSection';
+import FlightCard from './components/FlightCard/FlightCard';
 
 
 function App() {
@@ -13,10 +15,8 @@ function App() {
   // }, [])
 
 
-  return (
-    <div className="container">
-      <NavBar />
-    </div>
+  return(
+    <></>
   );
 }
 export default App;

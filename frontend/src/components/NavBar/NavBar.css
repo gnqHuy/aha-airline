@@ -1,32 +1,36 @@
 nav {
-    padding: 15px;
-    padding-left: 35px;
-    padding-right: 35px;
-    display: flex; 
+    margin: 0 auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: grid;
+    grid-template-columns: 2fr 4fr 1fr; 
+    align-items: center;
     color: black;
-    justify-content: space-between; 
-    align-items: center; 
 }
 
 #logo {
-    display: block;
     text-align: center;
 }
 
-nav div {
+#nav {
     display: flex;
-    gap: 15px; 
-}
-nav a {
-    color: black;   
-    text-decoration: none; 
-    font-weight: bold; 
+    justify-content: center;
+    gap: 20px;
 }
 
-#nav a {
-    margin-left: 20px;
+#account div{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
-  
-#nav a:hover {
-    color: #6d8dc2; 
+
+nav a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#nav a:hover, #account a:hover {
+    color: #6d8dc2;
 }

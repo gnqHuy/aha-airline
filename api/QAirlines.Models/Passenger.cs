@@ -16,6 +16,8 @@ namespace QAirlines.Models
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public string Class {  get; set; }
+        public int CreditPoint {  get; set; }
         public virtual ApplicationUser? Booker { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
     }
