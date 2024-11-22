@@ -25,25 +25,18 @@
     padding: 5px;
     width: 20rem;
     background-color: transparent;
-    position: relative;
-    top: -1rem;
-    right: 0rem;
+    position: absolute;
 }
 
 .input-box-ticketNumber label {
     font-family: "Space Grotesk";
-    font-size: 15px;
 }
 
 .input-box-lastName {
-    position: relative;
-    top: 2rem;
-    right: 5rem;
 }
 
 .input-box-lastName label {
     font-family: "Space Grotesk";
-    font-size: 15px;
 }
 
 .detail-input-lastName {
@@ -53,14 +46,11 @@
     padding: 5px;
     width: 20rem;
     background-color: transparent;
-    position: relative;
-    top: -1rem;
+    position: absolute;
 }
 
 .bookingSection_manageBooking_buttonSearch { 
-    position: relative;
-    top: 2rem;
-    right: 2.5rem;
+    position: absolute;
 }
 
 .bookingSection_manageBooking_buttonSearch button {
@@ -104,8 +94,6 @@
 
 .manageBooking_closeTab_section {
     position: relative;
-    top: 11.1rem;
-    left: 26.5rem;
 }
 
 .manageBooking_closeTab_section button {
