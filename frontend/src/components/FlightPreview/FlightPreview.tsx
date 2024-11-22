@@ -72,6 +72,7 @@ const FlightPreview = (props: Props) => {
   const [isDepartureListOpen, setIsDepartureListOpen] = useState(false);
   const departureListRef = useRef<HTMLDivElement>(null);
   const [visibleCount, setVisibleCount] = useState(6);
+  const titleRef = useRef<HTMLDivElement>(null)
   
   const departureListState = () => {
     setIsDepartureListOpen((prev) => !prev);
@@ -102,42 +103,51 @@ const FlightPreview = (props: Props) => {
   } 
 
   const handleHide = () => {
+    titleRef.current?.scrollIntoView({
+      behavior: 'smooth', 
+      block: 'center',    
+    });
+
     setVisibleCount((prev) => prev - 6);
   } 
   return (
     <div className="flight-preview-container">
-      <div className="title">
+      {/* Section title */}
+      <div className="title" ref={titleRef}>
         Popular flights from{' '}
         <span className="departure-city" onClick={departureListState}>
           {departureCity}
         </span>
         {isDepartureListOpen && (
           <div className="departureList" ref={departureListRef}>
-            <div className="all-location"><GiWorld /> All locations</div>
-            <div style={{borderTop: "1.5px solid #d4a422"}}>       
+            <div className="all-location">
+              <GiWorld /> All locations
+            </div>
+            <div style={{ borderTop: '1.5px solid #d4a422' }}>
               {cities.map((city) => (
                 <div
-                  key={city.id} 
+                  key={city.id}
                   className="departureList-item"
                   onClick={() => handleSelectedCity(city.name)}
                 >
                   <b>{city.name}, </b>
                   {city.country}
-                  <br/>
-                  <span style={{fontSize: "small"}}>{city.airport}</span>
+                  <br />
+                  <span style={{ fontSize: 'small' }}>{city.airport}</span>
                 </div>
               ))}
-            </div>   
+            </div>
           </div>
         )}
       </div>
 
+      {/* Flight cards */}
       <div className="flight-card-list">
         {flights.length > 0 ? (
           flights.slice(0, visibleCount).map((flight) => (
             <FlightCard
               key={flight.id}
-              country=''
+              country=""
               departure={flight.departure}
               destination={flight.destination}
               price={flight.price}
@@ -149,6 +159,7 @@ const FlightPreview = (props: Props) => {
         )}
       </div>
 
+      {/* View More / Hide Button */}
       {flights.length > visibleCount ? (
         <button className="view-more" onClick={handleViewMore}>
           View More
