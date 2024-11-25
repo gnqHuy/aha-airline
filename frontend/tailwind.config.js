@@ -1,6 +1,6 @@
 module.exports = {
   content: [
-    './src/**/Footer.tsx',
+    './src/**/*.tsx',
   ],
   theme: {
     extend: {

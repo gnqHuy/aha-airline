@@ -1,25 +1,17 @@
-import React from 'react'
-import NavBar from '../../components/NavBar/NavBar'
-import NewsSection from '../../components/NewsSection/NewsSection'
-import FlightCard from '../../components/FlightCard/FlightCard'
-import FlightPreview from '../../components/FlightPreview/FlightPreview'
-import BookingSection from '../../components/BookingSection/BookingSection'
-import './HomePage.css';
-import Footer from '../../components/Footer/Footer'
+import React from "react";
+import NewsSection from "../../components/NewsSection/NewsSection";
+import FlightPreview from "../../components/FlightPreview/FlightPreview";
+import BookingSection from "../../components/BookingSection/BookingSection";
+import Layout from "../../components/Layout/Layout";
 
-
-type Props = {}
-
-const HomePage = (props: Props) => {
+const HomePage: React.FC = () => {
   return (
-    <div className="container">
-      <NavBar />
+    <Layout>
       <NewsSection />
       <BookingSection />
       <FlightPreview />
-      <Footer />
-    </div>
-  )
-}
+    </Layout>
+  );
+};
 
-export default HomePage
+export default HomePage;
