@@ -1,13 +1,13 @@
 module.exports = {
   content: [
-    './src/**/Footer.tsx',
-    './src/**/BookingSectionManageBooking.tsx'
+    './src/**/*.tsx',
   ],
   theme: {
     extend: {
       colors: {
         'golden': '#D4A422',
-        'Green':'#1A4532'
+        'Green':'#1A4532',
+        'bgGreen': 'rgba(26, 69, 50, 0.666)',
       },
       transitionProperty: {
         'fontSize': ''
@@ -16,10 +16,6 @@ module.exports = {
     fontFamily: {
       'space-grotesk': ['Space Grotesk']
     }, 
-    fontSize: {
-      'label': ['16px'],
-      'focus': ['11px'],
-    }
   },
   plugins: [],
   corePlugins: {
