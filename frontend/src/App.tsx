@@ -8,15 +8,15 @@ import FlightCard from './components/FlightCard/FlightCard';
 
 
 function App() {
-  useEffect(() => {
-    testAPI().then((res) => {
-      console.log(res);
-    })
-  }, [])
+  // useEffect(() => {
+  //   testAPI().then((res) => {
+  //     console.log(res);
+  //   })
+  // }, [])
+
 
   return(
     <></>
   );
 }
-
 export default App;
