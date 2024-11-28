@@ -1,7 +1,16 @@
 module.exports = {
   content: [
     './src/**/Footer.tsx',
-    './src/**/BookingSectionManageBooking.tsx'
+    './src/**/BookingSectionManageBooking.tsx',
+    './src/**/BookingContent.tsx',
+    './src/**/BookingSection.tsx', 
+    './src/**/BookingSectionBook.tsx', 
+    './src/**/BookingFlightSuggestion.tsx', 
+    './src/**/BookingFlightSuggestionSideBar.tsx', 
+    './src/**/BookingContentOneWay.tsx', 
+    './src/**/BookingContentRoundTrip.tsx', 
+    './src/**/CalendarDepart.tsx', 
+    './src/**/PassengerInfo.tsx'
   ],
   theme: {
     extend: {
