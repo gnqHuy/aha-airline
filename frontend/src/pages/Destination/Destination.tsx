@@ -17,10 +17,10 @@ const HomePage: React.FC = () => {
           <p className="text-3xl text-golden font-bold">Asia</p>
         </div>
         <div className="flex flex-col items-center mt-4">
-          <GenericCard image={image1} title={"Hanoi"} link={"/explore/destination/vietnam"} width={"1016px"} />
+          <GenericCard image={image1} title={"Hanoi"} link={"vietnam"} width={"1016px"} />
           <div className="flex justify-center items-center mt-4 gap-4">
-            <GenericCard image={image7} title={"Singapore"} link={"/explore/destination/singapore"} width="600px" />
-            <GenericCard image={image6} title={"Seoul"} link={"/explore/destination/seoul"} width="400px" />
+            <GenericCard image={image7} title={"Singapore"} link={"singapore"} width="600px" />
+            <GenericCard image={image6} title={"Seoul"} link={"seoul"} width="400px" />
           </div>
         </div>
       </div>
@@ -32,10 +32,10 @@ const HomePage: React.FC = () => {
         </div>
         <div className="flex flex-col items-center mt-4">
           <div className="flex justify-center items-center mb-4 gap-4">
-            <GenericCard image={image7} title={"Paris"} link={"/explore/destination/paris"} width="400px" />
-            <GenericCard image={image6} title={"Rome"} link={"/explore/destination/rome"} width="600px" />
+            <GenericCard image={image7} title={"Paris"} link={"paris"} width="400px" />
+            <GenericCard image={image6} title={"Rome"} link={"rome"} width="600px" />
           </div>
-          <GenericCard image={image1} title={"London"} link={"/explore/destination/london"} width={"1016px"} />
+          <GenericCard image={image1} title={"London"} link={"london"} width={"1016px"} />
         </div>
       </div>
 
@@ -46,8 +46,8 @@ const HomePage: React.FC = () => {
         </div>
         <div className="flex flex-col items-center mt-4">
           <div className="flex justify-center items-center gap-4">
-            <GenericCard image={image7} title={"Cairo"} link={"/explore/destination/cairo"} width="600px" />
-            <GenericCard image={image6} title={"Marrakech"} link={"/explore/destination/marrakech"} width="400px" />
+            <GenericCard image={image7} title={"Cairo"} link={"cairo"} width="600px" />
+            <GenericCard image={image6} title={"Marrakech"} link={"marrakech"} width="400px" />
           </div>
         </div>
       </div>
@@ -58,10 +58,10 @@ const HomePage: React.FC = () => {
           <p className="text-3xl text-golden font-bold">North America</p>
         </div>
         <div className="flex flex-col items-center mt-4">
-          <GenericCard image={image2} title={"New York"} link={"/explore/destination/new-york"} width={"1016px"} />
+          <GenericCard image={image2} title={"New York"} link={"new-york"} width={"1016px"} />
           <div className="flex justify-center items-center mt-4 gap-4">
-            <GenericCard image={image7} title={"Toronto"} link={"/explore/destination/toronto"} width="600px" />
-            <GenericCard image={image6} title={"Mexico City"} link={"/explore/destination/mexico-city"} width="400px" />
+            <GenericCard image={image7} title={"Toronto"} link={"toronto"} width="600px" />
+            <GenericCard image={image6} title={"Mexico City"} link={"mexico-city"} width="400px" />
           </div>
         </div>
       </div>
@@ -73,8 +73,8 @@ const HomePage: React.FC = () => {
         </div>
         <div className="flex flex-col items-center mt-4">
           <div className="flex justify-center items-center gap-4">
-            <GenericCard image={image7} title={"Sydney"} link={"/explore/destination/sydney"} width="400px" />
-            <GenericCard image={image6} title={"Melbourne"} link={"/explore/destination/melbourne"} width="600px" />
+            <GenericCard image={image7} title={"Sydney"} link={"sydney"} width="400px" />
+            <GenericCard image={image6} title={"Melbourne"} link={"melbourne"} width="600px" />
           </div>
         </div>
       </div>
