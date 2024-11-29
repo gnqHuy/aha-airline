@@ -7,16 +7,17 @@ import { FaCalendarAlt } from "react-icons/fa";
 interface Props {
   sectionTab: string;
   handleChangeTab: (tabName: string) => void;
+  prevTab: string;
 }
 
-const BookingSectionBook: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
+const BookingSectionBook: React.FC<Props> = ({sectionTab, handleChangeTab, prevTab}) => {
   return (
     <div>
       <div className = {sectionTab === "book" ? "overlay" : ""} onClick = {() => handleChangeTab("default")}></div>
-      <div className = {sectionTab === "book" ? "bookingSection_book_container fadeIn focusedDiv": "bookingSection_book_container fadeIn"}>
+      <div className = {sectionTab === "book" ? (prevTab === "default" ? "bookingSection_book_container fadeIn focusedDiv" : "bookingSection_book_container focusedDiv"): "bookingSection_book_container fadeIn"}>
           <div className = "bookingSection_book_fromInput">
             <span id = "bookingSection_book_fromText">From</span>
-            <div className = "bookingSection_book_fromDestination">
+            <div className = "bookingSection_book_fromDestination cursor-pointer" onClick = {() => handleChangeTab("bookingContent")}>
               <p>Hanoi (HAN), Vietnam</p>
               <span id = "expand_icon"><RiExpandUpDownFill style = {{width: "1.2rem", height: "2.4rem", position: "absolute", bottom: "-0.3rem", left: "10.6rem", color: "gray"}}/></span>
             </div>
