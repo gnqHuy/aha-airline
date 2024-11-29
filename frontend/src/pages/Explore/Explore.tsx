@@ -16,10 +16,10 @@ const HomePage: React.FC = () => {
     <Layout>
       <div className="w-[1016px] mx-auto mt-14"> <p className="text-3xl text-golden font-bold">Explore</p></div>
       <div className="flex flex-col items-center my-4">
-        <GenericCard image={image2} title={"Destination"} link={"/explore/destination"} width={"1016px"} />
+        <GenericCard image={image2} title={"Destination"} link={"destination"} width={"1016px"} />
         <div className="flex justify-center items-center my-4 gap-4">
-          <GenericCard image={image6} title={"Experience"} link={"/explore/experience"} />
-          <GenericCard image={image7} title={"Offer"} link={"/explore/offer"} />
+          <GenericCard image={image6} title={"Experience"} link={"experience"} />
+          <GenericCard image={image7} title={"Offer"} link={"offer"} />
         </div>
       </div>
     </Layout>
