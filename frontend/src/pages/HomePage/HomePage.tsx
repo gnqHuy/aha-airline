@@ -3,14 +3,12 @@ import NewsSection from "../../components/NewsSection/NewsSection";
 import FlightPreview from "../../components/FlightPreview/FlightPreview";
 import BookingSection from "../../components/BookingSection/BookingSection";
 import Layout from "../../components/Layout/Layout";
+import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
 
 const HomePage: React.FC = () => {
   return (
-    <Layout>
-      <NewsSection />
-      <BookingSection />
-      <FlightPreview />
-    </Layout>
+    <><NavBar /><NewsSection /><BookingSection /><FlightPreview /><Footer/></>
   );
 };
 
