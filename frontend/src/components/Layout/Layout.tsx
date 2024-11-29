@@ -1,15 +1,52 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
+import { FaHome } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { IoIosArrowForward } from "react-icons/io";
+import image3 from "../../assets-test/plane1.jpg";
 
 type LayoutProps = {
   children: React.ReactNode;
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const currentPath = window.location.pathname;
+  const pathSegments = currentPath.split('/').filter(Boolean);
+
+  const breadcrumbs = pathSegments.map((segment, index) => {
+    const segmentPath = `/${pathSegments.slice(0, index + 1).join("/")}`;
+    const isLast = index === pathSegments.length - 1;
+
+    return (
+      <React.Fragment key={segment}>
+        {!isLast ? (
+          <Link to={segmentPath} className="text-golden no-underline capitalize">
+            {segment}
+          </Link>
+        ) : (
+          <span className="text-black capitalize">{segment}</span> 
+        )}
+        {!isLast && <IoIosArrowForward className="mx-2" />} 
+      </React.Fragment>
+    );
+  });
+
   return (
     <>
       <NavBar />
+      <div className="bg-white">
+        <img src={image3} alt="" className="w-full h-[300px] object-cover" />
+
+        <div className="flex items-center w-[1100px] mx-auto p-3 text-lg">
+          <Link to="/" className="flex items-center text-golden no-underline">
+            <FaHome className="mr-2" />
+          </Link>
+          <IoIosArrowForward className="mr-2" />
+          {breadcrumbs}
+        </div>
+      </div>
+
       <main className="min-h-screen">{children}</main>
       <Footer />
     </>

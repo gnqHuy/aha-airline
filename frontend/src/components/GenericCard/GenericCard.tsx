@@ -10,7 +10,7 @@ type CardProps = {
   width?: string; 
 };
 
-const CardComponent: React.FC<CardProps> = ({ image, title, link, width = "480px" }) => {
+const CardComponent: React.FC<CardProps> = ({ image, title, link, width = "500px" }) => {
   const navigate = useNavigate();
   const handleCardClick = () => {
     navigate(link); 
@@ -28,11 +28,9 @@ const CardComponent: React.FC<CardProps> = ({ image, title, link, width = "480px
         className="w-full h-full object-cover top-0 left-0 absolute transition-transform duration-300 group-hover:scale-105" 
       />
 
-      <div className="absolute text-[25px] bottom-0 left-0 right-0 bg-bgGreen bg-opacity-50 text-white font-bold px-4 pt-4 pb-5 flex justify-between items-center">
+      <div className="absolute text-lg bottom-0 left-0 right-0 bg-bgGreen bg-opacity-50 text-white font-bold px-4 pt-4 pb-4 flex justify-between items-center">
         <span>{title}</span>
         <IoIosArrowForward />
-
-        
       </div>
     </div>
   );
