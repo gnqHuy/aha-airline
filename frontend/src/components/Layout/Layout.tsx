@@ -8,9 +8,10 @@ import image3 from "../../assets-test/plane1.jpg";
 
 type LayoutProps = {
   children: React.ReactNode;
+  headerImage?: string;
 };
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => { 
   const currentPath = window.location.pathname;
   const pathSegments = currentPath.split('/').filter(Boolean);
 
@@ -36,7 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <>
       <NavBar />
       <div className="bg-white">
-        <img src={image3} alt="" className="w-full h-[300px] object-cover" />
+        <img src={headerImage} alt="Header" className="w-full h-[300px] object-cover" />
 
         <div className="flex items-center w-[1100px] mx-auto p-3 text-lg">
           <Link to="/" className="flex items-center text-golden no-underline">
