@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar/NavBar';
 import Explore from '../pages/Explore/Explore';
 import Booking from '../pages/Booking/Booking';
 import TravelInfo from '../pages/TravelInfo/TravelInfo';
+import Destination from '../pages/Destination/Destination';
 
 export const router = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
     {
         path: "/explore", 
         element: <Explore />
+    },
+    {
+        path: "/explore/destination", 
+        element: <Destination />
     },
     {
         path: "/booking", 
