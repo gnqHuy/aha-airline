@@ -11,15 +11,16 @@ import { IoIosArrowUp } from "react-icons/io";
 interface Props {
     sectionTab: string;
     handleChangeTab: (tabName: string) => void;
+    prevTab: string;
 }
 
-const BookingSectionManageBooking: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
+const BookingSectionManageBooking: React.FC<Props> = ({sectionTab, handleChangeTab, prevTab}) => {
     const [isFocusReservation, setIsFocusReservation] = useState<Boolean>(false);
     const [isFocusLastname, setIsFocusLastname] = useState<Boolean>(false);
   return (
     <div>
         <div className = {sectionTab === "manageBooking" ? "overlay" : ""} onClick = {() => handleChangeTab("default")}></div>
-        <div className = {sectionTab === "manageBooking" ? "bookingSection_manageBooking_container fadeIn focusedDiv" : "bookingSection_manageBooking_container fadeIn"} >
+        <div className = {sectionTab === "manageBooking" ? (prevTab === "default" ? "bookingSection_manageBooking_container fadeIn focusedDiv" : "bookingSection_manageBooking_container focusedDiv") : "bookingSection_manageBooking_container fadeIn"} >
             <div className = "form-search-booking">
                 <div className = "absolute top-[3.1rem] left-[2rem] input-box-ticketNumber">
                     <label className = {isFocusReservation === false ? "text-label transition-all duration-300 ease-in-out" : "text-focus relative bottom-4 transition-all duration-300"}>Reservation Code/Ticket Number</label>

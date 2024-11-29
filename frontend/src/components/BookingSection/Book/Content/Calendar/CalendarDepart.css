@@ -1,0 +1,31 @@
+.react-calendar {
+    font-family: "Space Grotesk";
+    text-align: center;
+    width: 27rem;
+    height: 18rem; 
+}
+
+.react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    background-color: #094c5b;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.react-calendar__navigation__label {
+    font-family: "Space Grotesk";
+    color: #ebc94e;
+}
+
+.react-calendar__navigation__label:hover {
+}
+
+.react-calendar__navigation__arrow {
+    color: white;
+}
+
+.react-calendar__tile {
+    font-weight: bold;
+    height: 2.45rem;
+}
