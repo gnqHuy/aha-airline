@@ -95,7 +95,7 @@ const NavBar: React.FC<Props> = () => {
           onMouseLeave={() => handleMouseLeave("TravelInfo")}
         >
           <Link
-            to="/travelInformation"
+            to="/travelinfo"
             className={`block font-bold no-underline ${
               dropdownState.TravelInfo ? "text-golden" : "text-black hover:text-golden"
             }`}

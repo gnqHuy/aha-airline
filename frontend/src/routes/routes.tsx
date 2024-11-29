@@ -3,6 +3,7 @@ import HomePage from '../pages/HomePage/HomePage';
 import NavBar from '../components/NavBar/NavBar';
 import Explore from '../pages/Explore/Explore';
 import Booking from '../pages/Booking/Booking';
+import TravelInfo from '../pages/TravelInfo/TravelInfo';
 
 export const router = createBrowserRouter([
     {
@@ -16,5 +17,9 @@ export const router = createBrowserRouter([
     {
         path: "/booking", 
         element: <Booking />
+    },
+    {
+        path: "/travelinfo", 
+        element: <TravelInfo />
     }
 ])
