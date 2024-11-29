@@ -1,23 +1,24 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom"; // Thay <a> bằng Link
 
 type Props = {};
 
-const Explore = (props: Props) => {
+const Explore: React.FC<Props> = () => {
   return (
     <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 sm:gap-x-16 md:grid-cols-3 pl-8">
       {/* Online Booking */}
       <div>
-        <h2 className="mb-5 text-sm font-semibold uppercase text-golden ">
+        <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
           Online Booking
         </h2>
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
-            <a
-              href="/vietnam"
+            <Link
+              to="/booking/vietnam"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Book now
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -29,28 +30,28 @@ const Explore = (props: Props) => {
         </h2>
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
-            <a
-              href="/offers/buy-one-get-one"
+            <Link
+              to="/booking/booking-info/fare-rules"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Fare Rules
-            </a>
+            </Link>
           </li>
           <li className="mb-4">
-            <a
-              href="/offers/buy-one-get-one"
+            <Link
+              to="/booking/booking-info/payment-options"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
-              Payments Option
-            </a>
+              Payment Options
+            </Link>
           </li>
           <li>
-            <a
-              href="/offers/discount-20"
+            <Link
+              to="/booking/booking-info/tax-fee-surcharge"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
-              Tax, Fee and Surcharge
-            </a>
+              Tax, Fee, and Surcharge
+            </Link>
           </li>
         </ul>
       </div>
@@ -62,28 +63,28 @@ const Explore = (props: Props) => {
         </h2>
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
-            <a
-              href="/privacy-policy"
+            <Link
+              to="/booking/additional-services/seat-selection"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Seat Selection
-            </a>
+            </Link>
           </li>
           <li className="mb-4">
-            <a
-              href="/terms-and-conditions"
+            <Link
+              to="/booking/additional-services/excess-baggage"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Excess Baggage
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="/terms-and-conditions"
+            <Link
+              to="/booking/additional-services/business-lounge"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Business Lounge
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

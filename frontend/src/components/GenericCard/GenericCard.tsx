@@ -1,26 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 
 type CardProps = {
-
   image: string;
   title: string;
   link: string;
-  width?: string; 
+  width?: string; // Chiều rộng tùy chỉnh cho thẻ
 };
 
 const CardComponent: React.FC<CardProps> = ({ image, title, link, width = "500px" }) => {
-  const navigate = useNavigate();
-  const handleCardClick = () => {
-    navigate(link); 
-  };
-
   return (
-    <div
-      className="relative rounded-lg overflow-hidden shadow-lg h-[280px] cursor-pointer group" 
+    <Link
+      to={link} 
+      className="relative rounded-lg overflow-hidden shadow-lg h-[280px] group" 
       style={{ width }}
-      onClick={handleCardClick} 
     >
       <img
         src={image}
@@ -32,7 +26,7 @@ const CardComponent: React.FC<CardProps> = ({ image, title, link, width = "500px
         <span>{title}</span>
         <IoIosArrowForward />
       </div>
-    </div>
+    </Link>
   );
 };
 

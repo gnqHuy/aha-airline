@@ -10,22 +10,22 @@ const Explore = (props: Props) => {
             <h2 className="mb-5 text-sm font-semibold uppercase text-golden">Destination</h2>
             <ul className="font-medium text-sm list-none p-0 ">
             <li className="mb-4">
-                <a href="/vietnam" className="text-black no-underline hover:opacity-80 transition-opacity">
+                <a href="/explore/destination/vietnam" className="text-black no-underline hover:opacity-80 transition-opacity">
                 Viet Nam
                 </a>
             </li>
             <li className="mb-4">
-                <a href="/europe" className="text-black no-underline hover:opacity-80 transition-opacity">
+                <a href="/explore/destination/europe" className="text-black no-underline hover:opacity-80 transition-opacity">
                 Europe
                 </a>
             </li>
             <li className="mb-4">
-                <a href="/asia" className="text-black no-underline hover:opacity-80 transition-opacity">
+                <a href="/explore/destination/asia" className="text-black no-underline hover:opacity-80 transition-opacity">
                 Asia
                 </a>
             </li>
             <li className="mb-4">
-                <a href="/india" className="text-black no-underline hover:opacity-80 transition-opacity">
+                <a href="/explore/destination/india" className="text-black no-underline hover:opacity-80 transition-opacity">
                 India
                 </a>
             </li>
@@ -37,12 +37,12 @@ const Explore = (props: Props) => {
             <h2 className="mb-5 text-sm font-semibold uppercase text-golden">Offers</h2>
             <ul className="font-medium text-sm list-none p-0">
             <li className="mb-4">
-                <a href="/offers/buy-one-get-one" className="text-black no-underline hover:opacity-80 transition-opacity">
+                <a href="/explore/offers/buy-one-get-one" className="text-black no-underline hover:opacity-80 transition-opacity">
                 Buy One Get One
                 </a>
             </li>
             <li>
-                <a href="/offers/discount-20" className="text-black no-underline hover:opacity-80 transition-opacity">
+                <a href="/explore/offers/discount-20" className="text-black no-underline hover:opacity-80 transition-opacity">
                 Buy Two Receive 20% Discount
                 </a>
             </li>
@@ -54,12 +54,12 @@ const Explore = (props: Props) => {
             <h2 className="mb-5 text-sm font-semibold uppercase text-golden">Experience</h2>
             <ul className="font-medium text-sm list-none p-0">
             <li className="mb-4">
-                <a href="/privacy-policy" className="text-black no-underline hover:opacity-80 transition-opacity">
+                <a href="/explore/experience/privacy-policy" className="text-black no-underline hover:opacity-80 transition-opacity">
                 Privacy Policy
                 </a>
             </li>
             <li>
-                <a href="/terms-and-conditions" className="text-black no-underline hover:opacity-80 transition-opacity">
+                <a href="/explore/experience/terms-and-conditions" className="text-black no-underline hover:opacity-80 transition-opacity">
                 Terms &amp; Conditions
                 </a>
             </li>
