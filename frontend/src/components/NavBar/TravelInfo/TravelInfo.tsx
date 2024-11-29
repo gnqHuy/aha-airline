@@ -1,108 +1,111 @@
-    import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-    type Props = {};
-    
-    const Explore = (props: Props) => {
-      return (
-        <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 sm:gap-x-16 md:grid-cols-3 pl-8">
-          <div>
-            <h2 className="mb-5 text-sm font-semibold uppercase text-golden ">
-              Check-In
-            </h2>
-            <ul className="font-medium text-sm list-none p-0 leading-relaxed">
-              <li className="mb-4">
-                <a
-                  href="/vietnam"
-                  className="text-black no-underline hover:opacity-80 transition-opacity"
-                >
-                  Online Check-In
-                </a>
-              </li>
-              <li className="mb-4">
-                <a
-                  href="/vietnam"
-                  className="text-black no-underline hover:opacity-80 transition-opacity"
-                >
-                  Airport Check-In
-                </a>
-              </li>
-              <li className="mb-4">
-                <a
-                  href="/vietnam"
-                  className="text-black no-underline hover:opacity-80 transition-opacity"
-                >
-                  Cancel Check-In
-                </a>
-              </li>
-            </ul>
-          </div>
-    
-          <div>
-            <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
-              Baggage Info
-            </h2>
-            <ul className="font-medium text-sm list-none p-0 leading-relaxed">
-              <li className="mb-4">
-                <a
-                  href="/offers/buy-one-get-one"
-                  className="text-black no-underline hover:opacity-80 transition-opacity"
-                >
-                  Carry-On Baggage
-                </a>
-              </li>
-              <li className="mb-4">
-                <a
-                  href="/offers/buy-one-get-one"
-                  className="text-black no-underline hover:opacity-80 transition-opacity"
-                >
-                  Excess Baggage
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/offers/discount-20"
-                  className="text-black no-underline hover:opacity-80 transition-opacity"
-                >
-                  Special Baggage
-                </a>
-              </li>
-            </ul>
-          </div>
-    
-          <div>
-            <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
-                Travel Document
-            </h2>
-            <ul className="font-medium text-sm list-none p-0 leading-relaxed">
-                <li className="mb-4">
-                <a
-                    href="/privacy-policy"
-                    className="text-black no-underline hover:opacity-80 transition-opacity"
-                >
-                    Passport Requirements
-                </a>
-                </li>
-                <li className="mb-4">
-                <a
-                    href="/terms-and-conditions"
-                    className="text-black no-underline hover:opacity-80 transition-opacity"
-                >
-                    Visa Information
-                </a>
-                </li>
-                <li>
-                <a
-                    href="/terms-and-conditions"
-                    className="text-black no-underline hover:opacity-80 transition-opacity"
-                >
-                    Health & Vaccination
-                </a>
-                </li>
-            </ul>
-            </div>
-        </div>
-      );
-    };
-    
-    export default Explore;
-    
+type Props = {};
+
+const Explore: React.FC<Props> = () => {
+  return (
+    <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 sm:gap-x-16 md:grid-cols-3 pl-8">
+      {/* Check-In */}
+      <div>
+        <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
+          Check-In
+        </h2>
+        <ul className="font-medium text-sm list-none p-0 leading-relaxed">
+          <li className="mb-4">
+            <Link
+              to="/travel-info/check-in/online"
+              className="text-black no-underline hover:opacity-80 transition-opacity"
+            >
+              Online Check-In
+            </Link>
+          </li>
+          <li className="mb-4">
+            <Link
+              to="/travel-info/check-in/airport"
+              className="text-black no-underline hover:opacity-80 transition-opacity"
+            >
+              Airport Check-In
+            </Link>
+          </li>
+          <li className="mb-4">
+            <Link
+              to="/travel-info/check-in/cancel"
+              className="text-black no-underline hover:opacity-80 transition-opacity"
+            >
+              Cancel Check-In
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      {/* Baggage Info */}
+      <div>
+        <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
+          Baggage Info
+        </h2>
+        <ul className="font-medium text-sm list-none p-0 leading-relaxed">
+          <li className="mb-4">
+            <Link
+              to="/travel-info/baggage/carry-on"
+              className="text-black no-underline hover:opacity-80 transition-opacity"
+            >
+              Carry-On Baggage
+            </Link>
+          </li>
+          <li className="mb-4">
+            <Link
+              to="/travel-info/baggage/excess"
+              className="text-black no-underline hover:opacity-80 transition-opacity"
+            >
+              Excess Baggage
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/travel-info/baggage/special"
+              className="text-black no-underline hover:opacity-80 transition-opacity"
+            >
+              Special Baggage
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      {/* Travel Document */}
+      <div>
+        <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
+          Travel Document
+        </h2>
+        <ul className="font-medium text-sm list-none p-0 leading-relaxed">
+          <li className="mb-4">
+            <Link
+              to="/travel-info/documents/passport"
+              className="text-black no-underline hover:opacity-80 transition-opacity"
+            >
+              Passport Requirements
+            </Link>
+          </li>
+          <li className="mb-4">
+            <Link
+              to="/travel-info/documents/visa"
+              className="text-black no-underline hover:opacity-80 transition-opacity"
+            >
+              Visa Information
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/travel-info/documents/health-vaccination"
+              className="text-black no-underline hover:opacity-80 transition-opacity"
+            >
+              Health & Vaccination
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default Explore;

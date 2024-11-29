@@ -96,6 +96,22 @@
     position: relative;
 }
 
+.closeTab_section {
+    position: absolute;
+}
+
+.closeTab_section button {
+    width: 3.5rem;
+    height: 2.2rem;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 0;
+    background-color: #094c5b;
+    cursor: pointer;
+}
+
 .manageBooking_closeTab_section button {
     width: 3.5rem;
     height: 2.2rem;
