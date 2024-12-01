@@ -1,0 +1,213 @@
+[
+    {
+      "from": "Ho Chi Minh City (SGN)",
+      "to": "Hanoi (HAN)",
+      "day": "10/02/2025",
+      "ticketType": "One Way",
+      "price": "from VND 767,000*"
+    },
+    {
+      "from": "Da Nang (DAD)",
+      "to": "Hanoi (HAN)",
+      "day": "15/02/2025",
+      "ticketType": "Round Trip",
+      "price": "from VND 1,200,000*"
+    },
+    {
+      "from": "Nha Trang (CXR)",
+      "to": "Hanoi (HAN)",
+      "day": "20/03/2025",
+      "ticketType": "One Way",
+      "price": "from VND 950,000*"
+    },
+    {
+      "from": "Hai Phong (HPH)",
+      "to": "Hanoi (HAN)",
+      "day": "25/04/2025",
+      "ticketType": "One Way",
+      "price": "from VND 500,000*"
+    },
+    {
+      "from": "San Francisco",
+      "to": "Hanoi (HAN)",
+      "day": "05/05/2025",
+      "ticketType": "Round Trip",
+      "price": "from VND 1,300,000*"
+    },
+    {
+      "from": "Phu Quoc (PQC)",
+      "to": "Hanoi (HAN)",
+      "day": "12/06/2025",
+      "ticketType": "One Way",
+      "price": "from VND 1,100,000*"
+    },
+    {
+      "from": "Vinh (VII)",
+      "to": "Hanoi (HAN)",
+      "day": "15/07/2025",
+      "ticketType": "One Way",
+      "price": "from VND 600,000*"
+    },
+    {
+      "from": "Thanh Hoa (THD)",
+      "to": "Hanoi (HAN)",
+      "day": "22/08/2025",
+      "ticketType": "Round Trip",
+      "price": "from VND 800,000*"
+    },
+    {
+      "from": "Buon Ma Thuot (BMV)",
+      "to": "Hanoi (HAN)",
+      "day": "30/09/2025",
+      "ticketType": "One Way",
+      "price": "from $35"
+    },
+    {
+      "from": "Dong Hoi (VDH)",
+      "to": "Hanoi (HAN)",
+      "day": "15/10/2025",
+      "ticketType": "Round Trip",
+      "price": "from VND 850,000*"
+    },
+    {
+      "from": "Los Angeles (LAX)",
+      "to": "New York City (JFK)",
+      "day": "12/01/2025",
+      "ticketType": "One Way",
+      "price": "from $299"
+    },
+    {
+      "from": "Chicago (ORD)",
+      "to": "New York City (JFK)",
+      "day": "15/01/2025",
+      "ticketType": "Round Trip",
+      "price": "from $250"
+    },
+    {
+      "from": "Miami (MIA)",
+      "to": "New York City (JFK)",
+      "day": "20/01/2025",
+      "ticketType": "One Way",
+      "price": "from $200"
+    },
+    {
+      "from": "San Francisco (SFO)",
+      "to": "New York City (JFK)",
+      "day": "25/01/2025",
+      "ticketType": "Round Trip",
+      "price": "from $350"
+    },
+    {
+      "from": "Seattle (SEA)",
+      "to": "New York City (JFK)",
+      "day": "30/01/2025",
+      "ticketType": "One Way",
+      "price": "from $320"
+    },
+    {
+      "from": "Dallas (DFW)",
+      "to": "New York City (JFK)",
+      "day": "05/02/2025",
+      "ticketType": "Round Trip",
+      "price": "from $280"
+    },
+    {
+      "from": "Boston (BOS)",
+      "to": "New York City (JFK)",
+      "day": "10/02/2025",
+      "ticketType": "One Way",
+      "price": "from $150"
+    },
+    {
+      "from": "Atlanta (ATL)",
+      "to": "New York City (JFK)",
+      "day": "15/02/2025",
+      "ticketType": "Round Trip",
+      "price": "from $220"
+    },
+    {
+      "from": "Washington D.C. (DCA)",
+      "to": "New York City (JFK)",
+      "day": "20/02/2025",
+      "ticketType": "One Way",
+      "price": "from $180"
+    },
+    {
+      "from": "Philadelphia (PHL)",
+      "to": "New York City (JFK)",
+      "day": "25/02/2025",
+      "ticketType": "Round Trip",
+      "price": "from $160"
+    },
+    {
+      "from": "Ho Chi Minh City (SGN)",
+      "to": "Tokyo (NRT)",
+      "day": "12/03/2025",
+      "ticketType": "One Way",
+      "price": "from VND 2,500,000*"
+    },
+    {
+      "from": "Da Nang (DAD)",
+      "to": "Osaka (KIX)",
+      "day": "15/03/2025",
+      "ticketType": "Round Trip",
+      "price": "from VND 2,800,000*"
+    },
+    {
+      "from": "Hanoi (HAN)",
+      "to": "Tokyo (NRT)",
+      "day": "20/03/2025",
+      "ticketType": "One Way",
+      "price": "from VND 2,600,000*"
+    },
+    {
+      "from": "Phu Quoc (PQC)",
+      "to": "Tokyo (NRT)",
+      "day": "25/03/2025",
+      "ticketType": "Round Trip",
+      "price": "from VND 3,000,000*"
+    },
+    {
+      "from": "Nha Trang (CXR)",
+      "to": "Osaka (KIX)",
+      "day": "30/03/2025",
+      "ticketType": "One Way",
+      "price": "from VND 2,900,000*"
+    },
+    {
+      "from": "Hai Phong (HPH)",
+      "to": "Tokyo (NRT)",
+      "day": "05/04/2025",
+      "ticketType": "Round Trip",
+      "price": "from VND 2,700,000*"
+    },
+    {
+      "from": "Can Tho (VCA)",
+      "to": "Osaka (KIX)",
+      "day": "10/04/2025",
+      "ticketType": "One Way",
+      "price": "from VND 2,400,000*"
+    },
+    {
+      "from": "Vinh (VII)",
+      "to": "Tokyo (NRT)",
+      "day": "15/04/2025",
+      "ticketType": "Round Trip",
+      "price": "from VND 3,200,000*"
+    },
+    {
+      "from": "Thanh Hoa (THD)",
+      "to": "Osaka (KIX)",
+      "day": "20/04/2025",
+      "ticketType": "One Way",
+      "price": "from VND 2,500,000*"
+    },
+    {
+      "from": "Buon Ma Thuot (BMV)",
+      "to": "Tokyo (NRT)",
+      "day": "25/04/2025",
+      "ticketType": "Round Trip",
+      "price": "from VND 3,100,000*"
+    }
+  ]
+  
