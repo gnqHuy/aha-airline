@@ -5,10 +5,11 @@ import BookingSection from "../../components/BookingSection/BookingSection";
 import Layout from "../../components/Layout/Layout";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
+import FlightTable from "../../components/FlightTable/FlightTable";
 
 const HomePage: React.FC = () => {
   return (
-    <><NavBar /><NewsSection /><BookingSection /><FlightPreview /><Footer/></>
+    <><NavBar /><NewsSection /><BookingSection /><FlightPreview /><FlightTable nameCity="Ha Noi"/><Footer/></>
   );
 };
 
