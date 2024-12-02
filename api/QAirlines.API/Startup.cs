@@ -12,6 +12,7 @@ using QAirlines.Repositories.Custom.Repositories;
 using QAirlines.Models;
 using System;
 using QAirlines.UnitOfWorks;
+using QAirlines.API.Mapper;
 
 
 namespace QAirlines.API
@@ -52,6 +53,13 @@ namespace QAirlines.API
 
             #endregion
 
+            #region Mapper
+
+            services.AddAutoMapper(config => config.AddProfile<MappingProfile>(), typeof(Startup));
+            services.AddScoped<MappingFunctions>();
+
+            #endregion
+
             #region Unit Of Work
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -61,6 +69,10 @@ namespace QAirlines.API
             services.AddHttpContextAccessor();
             services.AddResponseCaching();
             services.AddControllers();
+            //    .AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+            //});
             services.AddSwaggerGen();
         }
 

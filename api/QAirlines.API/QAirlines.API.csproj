@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -21,8 +22,8 @@
 			<PrivateAssets>all</PrivateAssets>
 			<ExcludeAssets>compile</ExcludeAssets>
 		</ProjectReference>
-		<ProjectReference Include="..\QAirlines.Repositories\QAirlines.Repositories.csproj"/>
-		<ProjectReference Include="..\QAirlines.UnitOfWorks\QAirlines.UnitOfWorks.csproj"/>
+		<ProjectReference Include="..\QAirlines.Repositories\QAirlines.Repositories.csproj" />
+		<ProjectReference Include="..\QAirlines.UnitOfWorks\QAirlines.UnitOfWorks.csproj" />
 	</ItemGroup>
 
 </Project>
