@@ -9,7 +9,7 @@ import FlightTable from "../../components/FlightTable/FlightTable";
 
 const HomePage: React.FC = () => {
   return (
-    <><NavBar /><NewsSection /><BookingSection /><FlightPreview /><FlightTable nameCity="Ha Noi"/><Footer/></>
+    <><NavBar /><NewsSection /><BookingSection /><FlightPreview /><Footer/></>
   );
 };
 
