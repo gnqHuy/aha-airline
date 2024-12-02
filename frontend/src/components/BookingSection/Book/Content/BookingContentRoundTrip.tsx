@@ -5,81 +5,75 @@ import { RiExpandUpDownFill } from 'react-icons/ri'
 import CalendarDepart from './Calendar/CalendarDepart';
 
 interface Props {
-    handleSetupDisplaySuggestion: (suggest: boolean) => void;
-    handleSetupDisplaySuggestionTo: (suggest: boolean) => void;
-    handleSetupDisplayCalendarDepart: (display: boolean) => void;
-    handleSetupDisplayCalendarReturn: (display: boolean) => void;
+    handleSetupDisplaySuggestion: () => void;
+    handleSetupDisplaySuggestionTo: () => void;
+    handleSetupDisplayCalendarDepart: () => void;
+    handleSetupDisplayCalendarReturn: () => void;
     handleSetupDisplayPassengerInfo: () => void;
     adultPassengerQuantity: number;
     childrenPassengerQuantity: number;
     infantPassengerQuantity: number;
+    displaySuggestion: boolean;
+    displaySuggestionTo: boolean;
+    handleChangeSearchingAirport: (airport: string) => void;
+    handleChangeSearchingAirportTo: (airport: string) => void;
+    selectedAirport: string;
+    selectedAirportTo: string;
+    selectedDateDepart: string;
+    selectedDateReturn: string;
 }
 
-const BookingContentRoundTrip: React.FC<Props> = ({handleSetupDisplaySuggestion, handleSetupDisplaySuggestionTo, handleSetupDisplayCalendarDepart, handleSetupDisplayCalendarReturn, handleSetupDisplayPassengerInfo, adultPassengerQuantity, childrenPassengerQuantity, infantPassengerQuantity}) => {
+const BookingContentRoundTrip: React.FC<Props> = ({handleSetupDisplaySuggestion, handleSetupDisplaySuggestionTo, handleSetupDisplayCalendarDepart, handleSetupDisplayCalendarReturn, handleSetupDisplayPassengerInfo, adultPassengerQuantity, childrenPassengerQuantity, infantPassengerQuantity, displaySuggestion, displaySuggestionTo, handleChangeSearchingAirport, handleChangeSearchingAirportTo, selectedAirport, selectedAirportTo, selectedDateDepart, selectedDateReturn}) => {
   return (
     <div className = "flex">
-        <div className = "absolute top-[2.5rem] hover:cursor-pointer" onClick = {() => {
-            handleSetupDisplaySuggestion(true);
-            handleSetupDisplaySuggestionTo(false);
-            handleSetupDisplayCalendarDepart(false);
-            handleSetupDisplayCalendarReturn(false);
-        }}>
+        <div className = "absolute top-[2.5rem] hover:cursor-pointer" onClick = {handleSetupDisplaySuggestion}>
             <p className = "font-space-grotesk text-gray-500 absolute top-[1rem] left-[2.2rem]" style = {{fontSize: "12px"}}>From</p>
-            <div className = "w-[15rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex" style = {{borderBottom: "1px solid black"}}>
-                <span className = "font-space-grotesk absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "16px"}}>Hanoi (HAN), Vietnam</span>
-                <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[13.5rem] bottom-[0.3rem]" style = {{color: "gray"}}/></span>
-            </div>
+            {displaySuggestion === true ? 
+                <div className = "w-[15rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex" style = {{borderBottom: "1px solid black"}}>
+                    <input type = "text" className = "absolute top-[-0.3rem] left-[0rem] w-[14.55rem] bg-transparent border-none focus:border-none outline-none" autoFocus onChange = {(e) => handleChangeSearchingAirport(e.target.value)}/>
+                    <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[13.5rem] bottom-[0.3rem]" style = {{color: "gray"}}/></span>
+                </div> : 
+                <div className = "w-[15rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex" style = {{borderBottom: "1px solid black"}}>
+                    <span className = "font-space-grotesk absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "13px"}}>{selectedAirport}</span>
+                    <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[13.5rem] bottom-[0.3rem]" style = {{color: "gray"}}/></span>
+                </div>
+            } 
         </div>
 
         <div className = "relative top-[3.2rem]">
             <FaArrowRightArrowLeft className = "w-[1.5rem] h-[1.5rem] absolute left-[18rem]" style = {{color: "#094c5b"}}/>
         </div>
 
-        <div className = "absolute top-[2.5rem] left-[18.5rem] hover:cursor-pointer" onClick={() => {
-            handleSetupDisplaySuggestion(false);
-            handleSetupDisplaySuggestionTo(true);
-            handleSetupDisplayCalendarDepart(false);
-            handleSetupDisplayCalendarReturn(false);
-        }}>
-            <div className = "w-[15rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex" style = {{borderBottom: "1px solid black"}}>
-                <span className = "font-space-grotesk absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "16px"}}>To</span>
-                <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[13.5rem] bottom-[0.3rem]" style = {{color: "gray"}}/></span>
-            </div>
+        <div className = "absolute top-[2.5rem] left-[18.5rem] hover:cursor-pointer" onClick = {handleSetupDisplaySuggestionTo}>
+            {displaySuggestionTo === true ? 
+                <div className = "w-[15rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex" style = {{borderBottom: "1px solid black"}}>
+                    <input type = "text" className = "absolute top-[-0.3rem] left-[0rem] w-[14.55rem] bg-transparent border-none focus:border-none outline-none" autoFocus onChange = {(e) => handleChangeSearchingAirportTo(e.target.value)}/>
+                    <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[13.5rem] bottom-[0.3rem]" style = {{color: "gray"}}/></span>
+                </div> : 
+                <div className = "w-[15rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex" style = {{borderBottom: "1px solid black"}}>
+                    <span className = "font-space-grotesk absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "13px"}}>{selectedAirportTo}</span>
+                    <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[13.5rem] bottom-[0.3rem]" style = {{color: "gray"}}/></span>
+                </div>
+            }
         </div>
 
-        <div className = "absolute top-[2.5rem] left-[34.5rem] hover:cursor-pointer" onClick = {() => {
-            handleSetupDisplayCalendarDepart(true);
-            handleSetupDisplaySuggestion(false);
-            handleSetupDisplaySuggestionTo(false);
-            handleSetupDisplayCalendarReturn(false);
-        }}>
+        <div className = "absolute top-[2.5rem] left-[34.5rem] hover:cursor-pointer" onClick = {handleSetupDisplayCalendarDepart}>
             <div className = "w-[11rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex" style = {{borderBottom: "1px solid black"}}>
-                <span className = "font-space-grotesk absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "16px"}}>Depart</span>
+                <span className = "font-space-grotesk absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "16px"}}>{selectedDateDepart}</span>
                 <span><FaCalendarAlt className = "w-[1.3rem] h-[1.3rem] absolute left-[9.5rem] bottom-[0.3rem]" style = {{color: "gray"}}/></span>
                 <span className = "absolute text-gray-500 top-[1.2rem]" style = {{fontSize: "13px"}}>(DD/MM/YYYY)</span>
             </div>
         </div>
 
-        <div className = "absolute top-[2.5rem] left-[46.2rem] hover:cursor-pointer" onClick = {() => {
-            handleSetupDisplayCalendarDepart(false);
-            handleSetupDisplaySuggestion(false);
-            handleSetupDisplaySuggestionTo(false);
-            handleSetupDisplayCalendarReturn(true);
-        }}>
+        <div className = "absolute top-[2.5rem] left-[46.2rem] hover:cursor-pointer" onClick = {handleSetupDisplayCalendarReturn}>
             <div className = "w-[11rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex" style = {{borderBottom: "1px solid black"}}>
-                <span className = "font-space-grotesk absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "16px"}}>Return</span>
+                <span className = "font-space-grotesk absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "16px"}}>{selectedDateReturn}</span>
                 <span><FaCalendarAlt className = "w-[1.3rem] h-[1.3rem] absolute left-[9.5rem] bottom-[0.3rem]" style = {{color: "gray"}}/></span>
                 <span className = "absolute text-gray-500 top-[1.2rem]" style = {{fontSize: "13px"}}>(DD/MM/YYYY)</span>
             </div>
         </div>
 
-        <div className = "absolute top-[7rem] hover:cursor-pointer" onClick = {() => {
-            handleSetupDisplayCalendarDepart(false);
-            handleSetupDisplaySuggestion(false);
-            handleSetupDisplaySuggestionTo(false);
-            handleSetupDisplayCalendarReturn(false);
-            handleSetupDisplayPassengerInfo();
-        }}>
+        <div className = "absolute top-[7rem] hover:cursor-pointer" onClick = {handleSetupDisplayPassengerInfo}>
             <p className = "font-space-grotesk text-gray-500 absolute top-[1rem] left-[2.2rem]" style = {{fontSize: "12px"}}>Passenger</p>
             <div className = "w-[18rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex" style = {{borderBottom: "1px solid black"}}>
                 <span className = "font-space-grotesk absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "16px"}}>{`${adultPassengerQuantity + childrenPassengerQuantity + infantPassengerQuantity} Passenger(s)`}</span>
