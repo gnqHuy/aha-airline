@@ -7,7 +7,7 @@ interface Props {
 
 const BookingFlightSuggestionSideBar: React.FC<Props> = ({flightArea, handleSetupFlightArea}) => {
   return (
-    <div className = "h-[34.5rem] w-[12rem] overflow-y-hidden absolute top-[43.5rem]" style = {{zIndex: "60", left: "21rem"}}>
+    <div className = "h-[34.5rem] w-[12rem] overflow-y-hidden absolute top-[43.5rem]" style = {{zIndex: "60", left: "2rem"}}>
         <div className = {flightArea === "Vietnam" ? "bg-[white] w-[12rem] h-[3rem] relative text-left text-[#094c5b]" : "bg-[#094c5b] w-[12rem] h-[3rem] relative text-left text-[#ebc94e] hover:cursor-pointer"} onClick = {() => handleSetupFlightArea("Vietnam")}>
             <p className = "absolute font-space-grotesk left-[1rem] top-[0rem]">VIETNAM</p>
         </div>

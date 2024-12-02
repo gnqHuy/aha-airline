@@ -96,8 +96,8 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity }) => {
   };
 
   return (
-    <div className="flight-table-container w-full max-w-6xl mx-auto text-center p-4">
-      <h2 className="text-2xl font-semibold mb-6">Best Flight Tickets to {nameCity}</h2>
+    <div className="w-full max-w-6xl mx-auto text-center p-4">
+      <h2 className="text-2xl text-golden font-semibold mb-6">Best Flight Tickets to {nameCity}</h2>
       <div className="flex text-left justify-between gap-4">
         {/* FROM INPUT */}
         <div className="relative flex items-center shadow-sm bg-gray-100 w-2/3 pt-2 pl-4">
