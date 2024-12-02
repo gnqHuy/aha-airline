@@ -1,0 +1,83 @@
+[
+    {
+      "id": 1,
+      "title": "20% Off on All Flights",
+      "description": "Enjoy a 20% discount on any flight booking.",
+      "validUntil": "2024-12-31",
+      "code": "FLY20",
+      "conditions": "Applicable on flights above $200. Maximum discount $50."
+    },
+    {
+      "id": 2,
+      "title": "Upgrade to Business Class for Free",
+      "description": "Book an economy class ticket and get a free upgrade to business class.",
+      "validUntil": "2025-01-31",
+      "code": "UPGRADEFREE",
+      "conditions": "Only for international flights. Subject to availability."
+    },
+    {
+      "id": 3,
+      "title": "50% Off on Seat Upgrades",
+      "description": "Upgrade your seat to premium economy at half the price.",
+      "validUntil": "2024-12-25",
+      "code": "SEAT50",
+      "conditions": "Available on domestic flights only. Limited seats available."
+    },
+    {
+      "id": 4,
+      "title": "Fly Anywhere for $100",
+      "description": "Book selected flights for only $100.",
+      "validUntil": "2025-03-31",
+      "code": "FLY100",
+      "conditions": "Valid on flights under 4 hours. Taxes not included."
+    },
+    {
+      "id": 5,
+      "title": "15% Off on Round Trips",
+      "description": "Save 15% when you book a round trip.",
+      "validUntil": "2024-12-31",
+      "code": "ROUND15",
+      "conditions": "Applicable on round trips over $300."
+    },
+    {
+      "id": 6,
+      "title": "Kids Fly Free",
+      "description": "Book an adult ticket and get a free ticket for a child.",
+      "validUntil": "2025-06-30",
+      "code": "KIDSFREE",
+      "conditions": "Valid for children under 12. One child per adult."
+    },
+    {
+      "id": 7,
+      "title": "30% Off for Frequent Flyers",
+      "description": "Frequent flyers get 30% off their next booking.",
+      "validUntil": "2025-05-31",
+      "code": "FF30",
+      "conditions": "Applicable to loyalty members only."
+    },
+    {
+      "id": 8,
+      "title": "Companion Flies for Half Price",
+      "description": "Bring a companion along for half the price of their ticket.",
+      "validUntil": "2025-02-28",
+      "code": "COMPANION50",
+      "conditions": "Companion must travel on the same flight. Maximum one companion per booking."
+    },
+    {
+      "id": 9,
+      "title": "Exclusive $150 to Europe",
+      "description": "Fly to select European cities for just $150.",
+      "validUntil": "2025-01-31",
+      "code": "EURO150",
+      "conditions": "Valid on economy class only. Taxes included."
+    },
+    {
+      "id": 10,
+      "title": "20% Off on Early Bookings",
+      "description": "Book at least 60 days in advance to save 20%.",
+      "validUntil": "2025-04-30",
+      "code": "EARLY20",
+      "conditions": "Minimum booking amount $250."
+    }
+  ]
+  
