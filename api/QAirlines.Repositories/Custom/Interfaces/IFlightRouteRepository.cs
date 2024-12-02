@@ -1,4 +1,5 @@
 ﻿using QAirlines.Models;
+using QAirlines.Models.Request;
 using QAirlines.Repositories.Generic;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace QAirlines.Repositories.Custom.Interfaces
 {
     public interface IFlightRouteRepository : IGenericRepository<FlightRoute, Guid>
     {
+        IEnumerable<FlightRoute>FindRoutesFromRequest(FlightRouteRequest request);
     }
 }

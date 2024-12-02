@@ -10,5 +10,6 @@ namespace QAirlines.Repositories.Custom.Interfaces
 {
     public interface ICityRepository : IGenericRepository<City, Guid>
     {
+        Task<IEnumerable<City>>GetByCountryName(string countryName);
     }
 }
