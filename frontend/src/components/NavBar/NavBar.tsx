@@ -28,7 +28,6 @@ const NavBar: React.FC<Props> = () => {
 
   return (
     <nav className="grid grid-cols-[2fr_2fr_1fr] w-[80%] mx-auto items-center text-black">
-      {/* Logo */}
       <div className="text-center py-4">
         <Link to="/" className="block no-underline text-black font-bold">
           <span className="text-xl font-bold">AHA AIRLINE</span> <br />
@@ -36,9 +35,7 @@ const NavBar: React.FC<Props> = () => {
         </Link>
       </div>
 
-      {/* Navigation Links */}
       <div className="grid grid-cols-3 text-center">
-        {/* Explore Dropdown */}
         <div
           className="relative pb-[30px] mt-[30px] mx-6"
           onMouseEnter={() => handleMouseEnter("Explore")}
@@ -63,7 +60,6 @@ const NavBar: React.FC<Props> = () => {
           </div>
         </div>
 
-        {/* Booking Dropdown */}
         <div
           className="relative pb-[30px] mt-[30px] mx-6"
           onMouseEnter={() => handleMouseEnter("Booking")}
@@ -88,7 +84,6 @@ const NavBar: React.FC<Props> = () => {
           </div>
         </div>
 
-        {/* Travel Info */}
         <div
           className="relative pb-[30px] mt-[30px] mx-6"
           onMouseEnter={() => handleMouseEnter("TravelInfo")}
@@ -114,7 +109,6 @@ const NavBar: React.FC<Props> = () => {
         </div>
       </div>
 
-      {/* Account Links */}
       <div className="flex justify-center gap-6">
         {isLoggedIn ? (
           <>
