@@ -49,3 +49,6 @@ Update the database ( if you don't have one )
 ```cli
 dotnet ef database update
 ```
+
+### Import data
+https://drive.google.com/drive/folders/1GHnTIxnQtocz2tkVAXM8nj-DLQ_aEksk?usp=drive_link
