@@ -31,15 +31,11 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("varchar(255)")
                 .HasColumnName("to_city_iata");
 
-            builder.Property(e => e.FromCityName)
+            builder.Property(e => e.NoOfFlights)
+                .HasDefaultValue(0)
                 .IsRequired()
-                .HasColumnType("varchar(255)")
-                .HasColumnName("from_city_name");
-
-            builder.Property(e => e.ToCityName)
-                .IsRequired()
-                .HasColumnType("varchar(255)")
-                .HasColumnName("to_city_name");
+                .HasColumnType("int")
+                .HasColumnName("no_of_flights");
 
             builder.HasOne(e => e.FromAirport)
                 .WithMany(c => c.FromRoutes)
