@@ -17,7 +17,7 @@ const HomePage: React.FC = () => {
           <p className="text-3xl text-golden font-bold">Asia</p>
         </div>
         <div className="flex flex-col items-center mt-4">
-          <GenericCard image={image1} title={"Hanoi"} link={"vietnam"} width={"1016px"} />
+          <GenericCard image={image1} title={"Hanoi"} link={"hanoi"} width={"1016px"} />
           <div className="flex justify-center items-center mt-4 gap-4">
             <GenericCard image={image7} title={"Singapore"} link={"singapore"} width="600px" />
             <GenericCard image={image6} title={"Seoul"} link={"seoul"} width="400px" />
@@ -58,10 +58,10 @@ const HomePage: React.FC = () => {
           <p className="text-3xl text-golden font-bold">North America</p>
         </div>
         <div className="flex flex-col items-center mt-4">
-          <GenericCard image={image2} title={"New York"} link={"new-york"} width={"1016px"} />
+          <GenericCard image={image2} title={"New York"} link={"new york"} width={"1016px"} />
           <div className="flex justify-center items-center mt-4 gap-4">
             <GenericCard image={image7} title={"Toronto"} link={"toronto"} width="600px" />
-            <GenericCard image={image6} title={"Mexico City"} link={"mexico-city"} width="400px" />
+            <GenericCard image={image6} title={"Mexico City"} link={"mexico city"} width="400px" />
           </div>
         </div>
       </div>

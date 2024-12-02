@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
             {segment}
           </Link>
         ) : (
-          <span className="text-black capitalize">{segment}</span> 
+          <span className="text-black capitalize">{segment.replace(/%20/g, " ")}</span> 
         )}
         {!isLast && <IoIosArrowForward className="mx-2" />} 
       </React.Fragment>
@@ -49,6 +49,13 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
       </div>
 
       <main className="min-h-screen">{children}</main>
+      <div className="flex items-center w-[1100px] mx-auto p-3 text-lg">
+          <Link to="/" className="flex items-center text-golden no-underline">
+            <FaHome className="mr-2" />
+          </Link>
+          <IoIosArrowForward className="mr-2" />
+          {breadcrumbs}
+        </div>
       <Footer />
     </>
   );
