@@ -10,5 +10,8 @@ namespace QAirlines.Repositories.Custom.Interfaces
 {
     public interface IAirportRepository : IGenericRepository<Airport, Guid>
     {
+        Task<IEnumerable<Airport>>GetByCountryName(string countryName);
+        Airport GetByIATA(string iata);
+        Task<IEnumerable<Airport>> GetAirports();
     }
 }

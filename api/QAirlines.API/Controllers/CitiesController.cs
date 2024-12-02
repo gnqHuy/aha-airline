@@ -29,6 +29,13 @@ namespace QAirlines.API.Controllers
             return BadRequest();
         }
 
+        [HttpGet("country")]
+        public async Task<IEnumerable<City>> GetByCountryName([FromQuery] string countryName)
+        {
+            var cities = await _unitOfWork.Cities.GetByCountryName(countryName);
+            return cities;
+        }
+
         [HttpPost]
         public async Task AddCities([FromBody] IEnumerable<City> cities)
         {

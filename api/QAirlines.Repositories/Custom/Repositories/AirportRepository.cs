@@ -1,4 +1,5 @@
-﻿using QAirlines.DataAccess.DbContext;
+﻿using Microsoft.EntityFrameworkCore;
+using QAirlines.DataAccess.DbContext;
 using QAirlines.Models;
 using QAirlines.Repositories.Custom.Interfaces;
 using QAirlines.Repositories.Generic;
@@ -13,5 +14,30 @@ namespace QAirlines.Repositories.Custom.Repositories
     public class AirportRepository : GenericRepository<Airport, Guid>, IAirportRepository
     {
         public AirportRepository(QAirlineDbContext context) : base(context) { }
+
+        public async Task<IEnumerable<Airport>> GetByCountryName(string countryName)
+        {
+            var airports = await _context.Airports
+            .Join(_context.Cities,
+                  airport => airport.CityId,
+                  city => city.Id,
+                  (airport, city) => new { Airport = airport, City = city })
+            .Where(ac => ac.City.Country.Trim().ToLower().Equals(countryName.Trim().ToLower()))
+            .Select(ac => ac.Airport)
+            .ToListAsync();
+            return airports;
+        }
+
+        public Airport GetByIATA(string iata)
+        {
+            var airport = _context.Airports.FirstOrDefault(a => a.IATA.Trim().ToLower().Equals(iata.Trim().ToLower()));
+            return airport;
+        }
+
+        public async Task<IEnumerable<Airport>>GetAirports()
+        {
+            var airports = await _context.Airports.Include(airport => airport.City).ToListAsync();
+            return airports;
+        }
     }
 }
