@@ -14,7 +14,7 @@ const Explore: React.FC<Props> = () => {
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
             <Link
-              to="/booking/vietnam"
+              to="/"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Book now
@@ -31,7 +31,7 @@ const Explore: React.FC<Props> = () => {
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
             <Link
-              to="/booking/booking-info/fare-rules"
+              to="/booking/booking-info#fare-rules"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Fare Rules
@@ -39,7 +39,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li className="mb-4">
             <Link
-              to="/booking/booking-info/payment-options"
+              to="/booking/booking-info#payment-options"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Payment Options
@@ -47,7 +47,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li>
             <Link
-              to="/booking/booking-info/tax-fee-surcharge"
+              to="/booking/booking-info#tax-fee-surcharge"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Tax, Fee, and Surcharge
@@ -64,7 +64,7 @@ const Explore: React.FC<Props> = () => {
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
             <Link
-              to="/booking/additional-services/seat-selection"
+              to="/booking/additional-services#seat-selection"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Seat Selection
@@ -72,7 +72,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li className="mb-4">
             <Link
-              to="/booking/additional-services/excess-baggage"
+              to="/booking/additional-services#excess-baggage"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Excess Baggage
@@ -80,7 +80,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li>
             <Link
-              to="/booking/additional-services/business-lounge"
+              to="/booking/additional-services#business-lounge"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Business Lounge

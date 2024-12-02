@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import offersData from "../../assets-test/offers.json";
 
 const Offer: React.FC = () => {
   const firstColumnOffers = offersData.slice(0, 5);
   const secondColumnOffers = offersData.slice(5, 10);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const div = document.querySelector(hash); 
+      if (div) {
+        div.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+      }
+    }
+  }, []);
 
   return (
     <Layout>
@@ -15,7 +25,7 @@ const Offer: React.FC = () => {
           <div>
             <ul>
               {firstColumnOffers.map((offer) => (
-                <li key={offer.id} className="mb-6 list-none">
+                <li id={offer.code} key={offer.id} className="mb-6 list-none">
                   <h2 className="text-lg font-bold">{offer.title}</h2>
                   <p>{offer.description}</p>
                   <p>
@@ -29,7 +39,7 @@ const Offer: React.FC = () => {
           <div>
             <ul>
               {secondColumnOffers.map((offer) => (
-                <li key={offer.id} className="mb-6 list-none">
+                <li id={offer.code} key={offer.id} className="mb-6 list-none">
                   <h2 className="text-lg font-bold">{offer.title}</h2>
                   <p>{offer.description}</p>
                   <p>
