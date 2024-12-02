@@ -18,9 +18,7 @@ namespace QAirlines.Models
         [ForeignKey(nameof(ToAirport))]
         public string ToAirportIATA { get; set; }
 
-        public string FromCityName { get; set; }
-
-        public string ToCityName { get; set; }
+        public int NoOfFlights { get; set; }
 
         public virtual Airport? FromAirport { get; set; }
 
