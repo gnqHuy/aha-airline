@@ -7,6 +7,8 @@ import Destination from '../pages/Destination/Destination';
 import CityInfo from '../pages/CityInfo/CityInfo';
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop'; // Import ScrollToTop
 import Experience from '../pages/Experience/Experience';
+import Offer from '../pages/Offer/Offer';
+import AboutUs from '../pages/AboutUs/AboutUs';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +26,15 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <Explore />
+      </>
+    ),
+  },
+  {
+    path: "/explore/offer",
+    element: (
+      <>
+        <ScrollToTop />
+        <Offer />
       </>
     ),
   },
@@ -60,6 +71,15 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <Booking />
+      </>
+    ),
+  },
+  {
+    path: "/about us",
+    element: (
+      <>
+        <ScrollToTop />
+        <AboutUs />
       </>
     ),
   },
