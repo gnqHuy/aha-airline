@@ -7,6 +7,8 @@ import Destination from '../pages/Destination/Destination';
 import CityInfo from '../pages/CityInfo/CityInfo';
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop'; // Import ScrollToTop
 import Offer from '../pages/Offer/Offer';
+import BookingInformation from '../pages/Booking/BookingInformation/BookingInformation';
+import AdditionalService from '../pages/Booking/AdditionalService/AdditionalService';
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +71,24 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <TravelInfo />
+      </>
+    ),
+  },
+  {
+    path: "/booking/bookinginfo",
+    element: (
+      <>
+        <ScrollToTop />
+        <BookingInformation />
+      </>
+    ),
+  }, 
+  {
+    path: "booking/additionalservice",
+    element: (
+      <>
+        <ScrollToTop />
+        <AdditionalService />
       </>
     ),
   }
