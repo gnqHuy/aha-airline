@@ -36,11 +36,6 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("char(36)")
                 .HasColumnName("seat_id");
 
-            builder.Property(e => e.BoardingGate)
-                .IsRequired()
-                .HasColumnType("char(255)")
-                .HasColumnName("boarding_gate");
-
             builder.Property(e => e.Status)
                 .IsRequired()
                 .HasColumnType("char(255)")
