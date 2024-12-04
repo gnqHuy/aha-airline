@@ -9,14 +9,18 @@ import ScrollToTop from '../components/ScrollToTop/ScrollToTop'; // Import Scrol
 import Experience from '../pages/Experience/Experience';
 import Offer from '../pages/Offer/Offer';
 import AboutUs from '../pages/AboutUs/AboutUs';
+import Ticket from '../pages/Ticket/Ticket';
+import { SearchFlightStateProvider } from '../context/SearchFlightState/SearchFlightState';
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <>
+      <SearchFlightStateProvider>
         <ScrollToTop />
         <HomePage />
+      </SearchFlightStateProvider>
       </>
     ),
   },
@@ -60,8 +64,10 @@ export const router = createBrowserRouter([
     path: "/explore/destination/:nameCity",
     element: (
       <>
-        <ScrollToTop />
-        <CityInfo />
+        <SearchFlightStateProvider>
+          <ScrollToTop />
+          <CityInfo />
+        </SearchFlightStateProvider>
       </>
     ),
   },
@@ -71,6 +77,15 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <Booking />
+      </>
+    ),
+  },
+  {
+    path: "/ticket",
+    element: (
+      <>
+        <ScrollToTop />
+        <Ticket />
       </>
     ),
   },

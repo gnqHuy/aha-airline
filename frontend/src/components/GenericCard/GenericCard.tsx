@@ -6,7 +6,7 @@ type CardProps = {
   image: string;
   title: string;
   link: string;
-  width?: string; // Chiều rộng tùy chỉnh cho thẻ
+  width?: string; 
 };
 
 const CardComponent: React.FC<CardProps> = ({ image, title, link, width = "500px" }) => {
