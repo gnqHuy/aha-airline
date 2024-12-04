@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../../../components/Layout/Layout'
 import GenericCard from '../../../components/GenericCard/GenericCard'
 
@@ -11,21 +11,36 @@ import BookingTax from './BookingTax/BookingTax';
 type Props = {}
 
 const BookingInformation = (props: Props) => {
+    useEffect(() => {
+        const hash = window.location.hash;
+        if (hash) {
+          const section = document.querySelector(hash); 
+          if (section) {
+            section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }, []);
   return (
     <Layout>
-        <div className = "w-full h-[280rem] relative">
-            <div className = "absolute left-[15rem] top-[-3rem]">
+        <div className = "h-[280rem] relative overflow-x-clip">
+            <div className = "relative left-[15rem] top-[0rem]">
                 <p className="text-3xl text-golden font-bold">Booking information</p>
             </div>
             <div className = "relative left-[15rem] top-[5rem]">
-                <BookingFareRules />
+                <section id = "fare-rules">
+                    <BookingFareRules />
+                </section>
 
                 <div className = "relative top-[70rem]">
-                    <BookingPaymentOption />
+                    <section id = "payment-options">
+                        <BookingPaymentOption />
+                    </section>
                 </div>
 
                 <div className = "relative top-[82rem]">
-                    <BookingTax />
+                    <section id = "tax-fee-surcharge">
+                        <BookingTax />
+                    </section>
                 </div>
             </div>
         </div>
