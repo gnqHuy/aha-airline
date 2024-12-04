@@ -11,6 +11,9 @@ import Offer from '../pages/Offer/Offer';
 import BookingInformation from '../pages/Booking/BookingInformation/BookingInformation';
 import AdditionalService from '../pages/Booking/AdditionalService/AdditionalService';
 import AboutUs from '../pages/AboutUs/AboutUs';
+import TravelInfoCheckIn from '../pages/TravelInfo/CheckIn/TravelInfoCheckIn';
+import BaggageInfo from '../pages/TravelInfo/BaggageInfo/BaggageInfo';
+import TravelDocument from '../pages/TravelInfo/TravelDocument/TravelDocument';
 
 export const router = createBrowserRouter([
   {
@@ -86,7 +89,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/travelinfo",
+    path: "/travel-info",
     element: (
       <>
         <ScrollToTop />
@@ -95,7 +98,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/booking/bookinginfo",
+    path: "/booking/booking-info",
     element: (
       <>
         <ScrollToTop />
@@ -104,12 +107,39 @@ export const router = createBrowserRouter([
     ),
   }, 
   {
-    path: "booking/additionalservice",
+    path: "/booking/additional-services",
     element: (
       <>
         <ScrollToTop />
         <AdditionalService />
       </>
     ),
+  }, 
+  {
+    path: "/travel-info/check-in",
+    element: (
+      <>
+        <ScrollToTop />
+        <TravelInfoCheckIn />
+      </>
+    )
+  }, 
+  {
+    path: "/travel-info/baggageinfo",
+    element: (
+      <>
+        <ScrollToTop />
+        <BaggageInfo />
+      </>
+    )
+  }, 
+  {
+    path: "/travel-info/traveldocument",
+    element: (
+      <>
+        <ScrollToTop />
+        <TravelDocument />
+      </>
+    )
   }
 ]);
