@@ -14,14 +14,18 @@ import AboutUs from '../pages/AboutUs/AboutUs';
 import TravelInfoCheckIn from '../pages/TravelInfo/CheckIn/TravelInfoCheckIn';
 import BaggageInfo from '../pages/TravelInfo/BaggageInfo/BaggageInfo';
 import TravelDocument from '../pages/TravelInfo/TravelDocument/TravelDocument';
+import Ticket from '../pages/Ticket/Ticket';
+import { SearchFlightStateProvider } from '../context/SearchFlightState/SearchFlightState';
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <>
+      <SearchFlightStateProvider>
         <ScrollToTop />
         <HomePage />
+      </SearchFlightStateProvider>
       </>
     ),
   },
@@ -65,8 +69,10 @@ export const router = createBrowserRouter([
     path: "/explore/destination/:nameCity",
     element: (
       <>
-        <ScrollToTop />
-        <CityInfo />
+        <SearchFlightStateProvider>
+          <ScrollToTop />
+          <CityInfo />
+        </SearchFlightStateProvider>
       </>
     ),
   },
@@ -76,6 +82,15 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <Booking />
+      </>
+    ),
+  },
+  {
+    path: "/ticket",
+    element: (
+      <>
+        <ScrollToTop />
+        <Ticket />
       </>
     ),
   },

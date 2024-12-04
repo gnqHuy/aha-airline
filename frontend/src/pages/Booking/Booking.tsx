@@ -5,10 +5,10 @@ import BookingSection from "../../components/BookingSection/BookingSection";
 import Layout from "../../components/Layout/Layout";
 import GenericCard from "../../components/GenericCard/GenericCard";
 
-import image1 from '../../assets-test/plane3.webp';
-import image2 from '../../assets-test/beijing.jpg';
-import image6 from '../../assets-test/san-francisco.jpg';
-import image7 from '../../assets-test/istanbul.webp';
+import image1 from '../../assets-test/Images/plane3.webp';
+import image2 from '../../assets-test/Images/beijing.jpg';
+import image6 from '../../assets-test/Images/san-francisco.jpg';
+import image7 from '../../assets-test/Images/istanbul.webp';
 import { Link } from "react-router-dom";
 
 const HomePage: React.FC = () => {
