@@ -18,9 +18,9 @@ const HomePage: React.FC = () => {
       <div className="flex flex-col items-center my-4">
         <div className="flex justify-center items-center my-4 gap-4">
           <GenericCard image={image6} title={"Online Booking"} link={"onlinebooking"} />
-          <GenericCard image={image7} title={"Booking Information"} link={"bookinginfo"} />    
+          <GenericCard image={image7} title={"Booking Information"} link={"booking-info"} />    
         </div>
-        <GenericCard image={image2} title={"Additional Service"} link={"additionalservice"} width={"1016px"} />
+        <GenericCard image={image2} title={"Additional Service"} link={"additional-services"} width={"1016px"} />
       </div>
     </Layout>
   );
