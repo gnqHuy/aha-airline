@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
-import offersData from "../../assets-test/offers.json";
+import offersData from "../../assets-test/Json/offers.json";
 
 const Offer: React.FC = () => {
   const firstColumnOffers = offersData.slice(0, 5);

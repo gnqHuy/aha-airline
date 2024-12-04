@@ -1,22 +1,21 @@
 import React from 'react';
 import './FlightCard.css';
+import { Flight } from '../../object/flight/flight';
 
 type FlightCardProps = {
-  country: string;
-  departure: string;
-  destination: string;
-  price: number;
+  flight: Flight;
   image: string;
 };
 
-const FlightCard: React.FC<FlightCardProps> = ({country, departure, destination, price, image }) => {
+const FlightCard: React.FC<FlightCardProps> = ({flight, image}) => {
   return (
     <div className="flight-card-container">
-      <img src={image} alt={`Flight to ${destination}`} />
+      <img src={image} alt={`Flight to ${flight.from}`} />
       <div className="flight-info">
-        <p className="country-name">{country}Country</p>
-        <p className="city-name">From {departure} <br/> to {destination}</p>
-        <p className="price">from ${price.toLocaleString()}</p>
+        <p className="city-name">{flight.from} <br/> to {flight.to}</p>
+        <p className="depart">Depart: {flight.day}</p>
+        <p className="price">{flight.price.toLocaleString()}</p>
+        <p className="ticketType">{flight.ticketType}</p>
       </div>
     </div>
   );
