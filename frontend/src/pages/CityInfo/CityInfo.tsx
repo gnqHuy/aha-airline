@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
-import citiesData from "../../assets-test/cities.json";
-import image6 from '../../assets-test/paris.jpg';
-import image5 from '../../assets-test/hanoi.jpg';
-import image4 from '../../assets-test/beijing.jpg';
+import citiesData from "../../assets-test/Json/cities.json";
+import image6 from '../../assets-test/Images/paris.jpg';
+import image5 from '../../assets-test/Images/hanoi.jpg';
+import image4 from '../../assets-test/Images/beijing.jpg';
 import FlightTable from "../../components/FlightTable/FlightTable";
 import CurrencyExchange from "../../components/CurrencyExchange/CurrencyExchange";
 import GenericCard from "../../components/GenericCard/GenericCard";

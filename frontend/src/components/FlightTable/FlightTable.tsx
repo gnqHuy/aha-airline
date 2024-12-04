@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 import { FaPlane } from 'react-icons/fa';
-import flightsJson from '../../assets-test/flights.json';
+import flightsJson from '../../assets-test/Json/flights.json';
 import { GiWorld } from 'react-icons/gi';
+import { useFlight } from '../../context/FlightContext/FlightContext';
+import { useNavigate } from 'react-router-dom';
+import { useSearchFlightState } from '../../context/SearchFlightState/SearchFlightState';
+import SearchFlight from '../SearchFlight/SearchFlight';
 
 type Flight = {
   from: string;
@@ -40,6 +44,14 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity }) => {
   const [fromFocused, setFromFocused] = useState(false);
   const [budgetValue, setBudgetValue] = useState('');
   const [budgetFocused, setBudgetFocused] = useState(false);
+
+  const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
+  const {searchFlightState, setSearchFlightState} = useSearchFlightState();
+
+  const handleSelectedFlight = (flight: Flight) => {
+    setSelectedFlight(flight);
+    setSearchFlightState(true);
+  };
 
   const suggestionsRef = useRef<HTMLDivElement>(null);
 
@@ -99,7 +111,6 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity }) => {
     <div className="w-full max-w-6xl mx-auto text-center p-4">
       <h2 className="text-2xl text-golden font-semibold mb-6">Best Flight Tickets to {nameCity}</h2>
       <div className="flex text-left justify-between gap-4">
-        {/* FROM INPUT */}
         <div className="relative flex items-center shadow-sm bg-gray-100 w-2/3 pt-2 pl-4">
           <div className="relative flex flex-col w-full">
             <input
@@ -162,7 +173,6 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity }) => {
           </div>
         </div>
 
-        {/* BUDGET INPUT */}
         <div className="flex items-center border rounded-md shadow-sm bg-gray-100 w-1/3 pt-2 pl-4">
           <div className="relative flex flex-col w-full">
             <input
@@ -208,36 +218,45 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity }) => {
           </tr>
         </thead>
         <tbody>
-            {filteredFlights.length > 0 ? (
-                filteredFlights.map((flight, index) => (
-                <tr key={index} className="even:bg-gray-100 hover:bg-golden-hover">
-                    <td className="p-3">{flight.from}</td>
-                    <td className="p-3">{flight.to}</td>
-                    <td className="p-3">{flight.day}</td>
-                    <td className="p-3">{flight.ticketType}</td>
-                    <td className="flex items-center justify-between p-4">
-                    <span>{flight.price}</span>
-                    <IoIosArrowForward
-                        className="text-golden cursor-pointer transition-transform transform hover:scale-110"
-                        size={22}
-                        title="View details"
-                    />
-                    </td>
-                </tr>
-                ))
-            ) : (
-                <tr>
-                <td colSpan={5} className="text-center py-4 text-gray-500">
-                    No flights match your criteria.
-                </td>
-                </tr>
-            )}
-        </tbody>
+        {filteredFlights.length > 0 ? (
+          filteredFlights.map((flight, index) => (
+            <tr
+              key={index}
+              className="even:bg-gray-100 hover:bg-golden-hover cursor-pointer"
+              onClick={() => handleSelectedFlight(flight)}
+            >
+              <td className="p-3">{flight.from}</td>
+              <td className="p-3">{flight.to}</td>
+              <td className="p-3">{flight.day}</td>
+              <td className="p-3">{flight.ticketType}</td>
+              <td className="flex items-center justify-between p-4">
+                <span>{flight.price}</span>
+                <IoIosArrowForward
+                  className="text-golden cursor-pointer transition-transform transform hover:scale-110"
+                  size={22}
+                  title="View details"
+                />
+              </td>
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan={5} className="text-center py-4 text-gray-500">
+              No flights match your criteria.
+            </td>
+          </tr>
+        )}
+      </tbody>
 
       </table>
       <button className="mt-6 px-6 py-2 bg-Green text-golden cursor-pointer font-semibold rounded-md transition">
         View more
       </button>
+      {searchFlightState && selectedFlight && (
+          <div>
+            <SearchFlight flight={selectedFlight} />
+          </div>
+        )}
     </div>
   );
 };

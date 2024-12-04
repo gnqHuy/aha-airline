@@ -98,7 +98,7 @@
       "price": "from $350"
     },
     {
-      "from": "Seattle (SEA)",
+      "from": "Hanoi (HAN)",
       "to": "New York City (JFK)",
       "day": "30/01/2025",
       "ticketType": "One Way",
@@ -189,7 +189,7 @@
       "price": "from VND 2,400,000*"
     },
     {
-      "from": "Vinh (VII)",
+      "from": "London (VII)",
       "to": "Tokyo (NRT)",
       "day": "15/04/2025",
       "ticketType": "Round Trip",
