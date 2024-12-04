@@ -47,7 +47,7 @@ const Explore: React.FC<Props> = () => {
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
             <Link
-              to="/travel-info/baggage#carry-on"
+              to="/travel-info/baggageinfo#carry-on"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Carry-On Baggage
@@ -55,7 +55,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li className="mb-4">
             <Link
-              to="/travel-info/baggage#excess"
+              to="/travel-info/baggageinfo#excess"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Excess Baggage
@@ -63,7 +63,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li>
             <Link
-              to="/travel-info/baggage#special"
+              to="/travel-info/baggageinfo#special"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Special Baggage
