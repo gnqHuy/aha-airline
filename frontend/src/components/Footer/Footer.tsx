@@ -1,5 +1,10 @@
 import React from 'react';
 import '../../index.css';
+import { FaGithub, FaFacebook, FaInstagram, FaPhoneAlt  } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+
+
+
 import { Link } from 'react-router-dom';
 
 type Props = {};
@@ -7,80 +12,91 @@ type Props = {};
 const Footer = (props: Props) => {
   return (
     <footer className="footer-text bg-Green">
-        <div className="mx-auto w-full max-w-screen-xl p-10 py-6 lg:py-8">
-            <div className="md:flex md:justify-between">
-            <div className="mb-6 ml-10 md:mb-0">
-                <Link to="/booking" className="flex items-center no-underline text-golden hover:opacity-80">
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap">AHA AIRLINE</span>
-                </Link>
-            </div>
-            <div className="mr-5 grid grid-cols-2 gap-8 sm:gap-20 sm:grid-cols-3">
-                 <div>
-                    <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Resources</h2>
-                    <ul className="font-medium text-sm list-none p-0">
+        <div className="mx-auto w-full max-w-screen-xl lg:py-6">
+            <div className="md:flex md:justify-between mb-4">
+                <div className="mb-6 ml-10 md:mb-0">
+                    <Link to="/" className="flex items-center no-underline text-golden hover:opacity-80">
+                        <span className="self-center text-3xl font-semibold whitespace-nowrap">AHA AIRLINE</span>
+                    </Link>
+                    <ul className="font-medium text-sm list-none p-0 ml-6">
                         <li className="mb-4">
-                            <a href="/" className="text-white no-underline hover:opacity-80">Book Flight</a>
-                        </li>
-                        <li className="mb-4">
-                            <a href="/" className="text-white no-underline hover:opacity-80">Explore</a>
-                        </li>
-                        <li className="mb-4">
-                            <a href="/" className="text-white no-underline hover:opacity-80">Travel Information</a>
-                        </li>
-                        <li className="mb-4">
-                            <a href="/" className="text-white no-underline hover:opacity-80">Experience</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Follow us</h2>
-                    <ul className="font-medium text-sm list-none p-0">
-                        <li className="mb-4">
-                            <a href="https://github.com/dwcsnh/QAirline" className="text-white no-underline hover:opacity-80">Github</a>
+                            <a href="/about us" className="text-white no-underline hover:opacity-80">About Us</a>
                         </li>
                         <li>
-                            <a href="https://pornhub.com" className="text-white no-underline hover:opacity-80">PornHub</a>
+                            <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Contact And Feedback: </h2>
+                            <p className='flex items-center gap-1 ml-4 text-white'>
+                                <MdEmail /> Email: 22021145@vnu.edu.vn 
+                            </p>
+                            <p className='flex items-center gap-1 ml-4 text-white'>
+                                <FaPhoneAlt /> Phone number: 0941562004
+                            </p>
                         </li>
                     </ul>
                 </div>
-                <div>
-                    <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Legal</h2>
-                    <ul className="font-medium text-sm list-none p-0">
-                        <li className="mb-4">
-                            <a href="#" className="text-white no-underline hover:opacity-80">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="#" className="text-white no-underline hover:opacity-80">Terms &amp; Conditions</a>
-                        </li>
-                    </ul>
+                <div className="mr-5 grid grid-cols-2 gap-8 sm:gap-20 sm:grid-cols-3">
+                    <div>
+                        <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Resources</h2>
+                        <ul className="font-medium text-sm list-none p-0">
+                            <li className="mb-4">
+                                <a href="/explore" className="text-white no-underline hover:opacity-80">Explore</a>
+                            </li>
+                            <li className="mb-4">
+                                <a href="/booking" className="text-white no-underline hover:opacity-80">Booking</a>
+                            </li>
+                            <li className="mb-4">
+                                <a href="/travelinfo" className="text-white no-underline hover:opacity-80">Travel Info</a>
+                            </li>
+                            <li className="mb-4">
+                                <a href="/explore/experience" className="text-white no-underline hover:opacity-80">Experience</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Destination</h2>
+                        <ul className="font-medium text-sm list-none p-0">
+                            <li className="mb-4">
+                                <a href="/explore/destination/hanoi" className="text-white no-underline hover:opacity-80">Hanoi</a>
+                            </li>
+                            <li className="mb-4">
+                                <a href="/explore/destination/new york" className="text-white no-underline hover:opacity-80">New York</a>
+                            </li>
+                            <li className="mb-4">
+                                <a href="/explore/destination/seoul" className="text-white no-underline hover:opacity-80">Seoul</a>
+                            </li>
+                            <li className="mb-4">
+                                <a href="/explore/destination/paris" className="text-white no-underline hover:opacity-80">Paris</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Legal</h2>
+                        <ul className="font-medium text-sm list-none p-0">
+                            <li className="mb-4">
+                                <a href="/explore/experience#privacy-policy" className="text-white no-underline hover:opacity-80">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="/explore/experience#terms-and-conditions" className="text-white no-underline hover:opacity-80">Terms &amp; Conditions</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-        <div className="pl-4 pr-4 sm:flex sm:items-center sm:justify-between text-white">
-            <span className="text-sm sm:text-center">© 2024 <a href="/" className="hover:underline text-golden no-underline">AHA AIRLINE™</a>. All Rights Reserved.</span>
-            <div className="flex sm:justify-center sm:mt-0">
-                <a href="https://www.facebook.com/PhuongTuan1997" className="hover:text-[#D4A422] text-white">
-                    <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
-                            <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
-                        </svg>
-                    <span className="sr-only">Facebook page</span>
-                </a>
-                <a href="" className="hover:text-[#D4A422] ms-5 text-white">
-                    <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
-                            <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
-                        </svg>
-                    <span className="sr-only">Discord community</span>
-                </a>
-                <a href="#" className="hover:text-[#D4A422] ms-5 text-white">
-                    <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 17">
-                        <path fill-rule="evenodd" d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.134 8.134 0 0 0 20 1.892Z" clip-rule="evenodd"/>
-                    </svg>
-                    <span className="sr-only">Twitter page</span>
-                </a>
+            <hr className="border-gray-200 " />
+            <div className="pl-4 pr-4 sm:flex sm:items-center sm:justify-between text-white">
+                <span className="text-sm sm:text-center">© 2024 <a href="/" className="hover:underline text-golden no-underline">AHA AIRLINE™</a>. All Rights Reserved.</span>
+                <div className="flex items-center">
+                    <p className='mr-4 text-golden'>Follow Us:</p>
+                    <a href="https://www.facebook.com/nguyen.ducanh.180625" className="flex items-center hover:text-[#D4A422] text-white">
+                        <FaFacebook />
+                    </a>
+                    <a href="https://github.com/dwcsnh/QAirline" className="flex items-center hover:text-[#D4A422] ms-5 text-white">
+                        <FaGithub />
+                    </a>
+                    <a href="https://www.instagram.com/gnq_huy/" className="flex items-center hover:text-[#D4A422] ms-5 text-white">
+                        <FaInstagram />
+                    </a>
+                </div>
             </div>
-        </div>
         </div>
     </footer>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout/Layout";
 import GenericCard from "../../components/GenericCard/GenericCard";
 
@@ -8,11 +8,19 @@ import image6 from '../../assets-test/seoul.jpg';
 import image7 from '../../assets-test/paris.jpg';
 
 
-const HomePage: React.FC = () => {
+const Destination: React.FC = () => {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const div = document.querySelector(hash); 
+      if (div) {
+        div.scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+      }
+    }
+  }, []);
   return (
     <Layout>
-      {/* Asia */}
-      <div className="mt-14">
+      <div id="asia" className="mt-14">
         <div className="w-[1016px] mx-auto">
           <p className="text-3xl text-golden font-bold">Asia</p>
         </div>
@@ -25,8 +33,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Europe */}
-      <div className="mt-14">
+      <div id="europe" className="mt-14">
         <div className="w-[1016px] mx-auto">
           <p className="text-3xl text-golden font-bold">Europe</p>
         </div>
@@ -39,8 +46,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Africa */}
-      <div className="mt-14">
+      <div id="africa" className="mt-14">
         <div className="w-[1016px] mx-auto">
           <p className="text-3xl text-golden font-bold">Africa</p>
         </div>
@@ -52,8 +58,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* North America */}
-      <div className="mt-14">
+      <div id="north-america" className="mt-14">
         <div className="w-[1016px] mx-auto">
           <p className="text-3xl text-golden font-bold">North America</p>
         </div>
@@ -66,8 +71,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Oceania */}
-      <div className="mt-14 mb-14">
+      <div id="oceania" className="mt-14 mb-14">
         <div className="w-[1016px] mx-auto">
           <p className="text-3xl text-golden font-bold">Oceania</p>
         </div>
@@ -82,4 +86,6 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default Destination;
+
+
