@@ -16,7 +16,8 @@ interface Props {
 
 const PassengerInfo: React.FC<Props> = ({handleIncreaseAdultPassenger, handleDecreaseAdultPassenger, handleIncreaseChildrenPassenger, handleDecreaseChildrenPassenger, handleIncreaseInfantPassenger, handleDecreaseInfantPassenger, adultPassengerQuantity, childrenPassengerQuantity, infantPassengerQuantity}) => {
   return (
-    <div className = "w-[18rem] h-[12rem] bg-white">
+    <div className = "w-[18rem] h-[12rem] bg-white z-[100]">
+        {/* adult */}
         <div className = "absolute top-[0rem] w-[20rem] h-[4rem]" style = {{borderBottom: "1px solid #c9c9c7"}}>
             <p className = "font-space-grotesk absolute left-[0.8rem]" style = {{fontSize: "15px"}}>Adults</p>
             <p className = "font-space-grotesk absolute left-[0.8rem] top-[1.5rem] text-[#094c5b]" style = {{fontSize: "11px"}}>Adults (from 12 years)</p>
@@ -27,6 +28,7 @@ const PassengerInfo: React.FC<Props> = ({handleIncreaseAdultPassenger, handleDec
             <p className = "font-space-grotesk absolute left-[13.3rem] top-[-0.7rem]" style = {{fontSize: "27px"}}>{adultPassengerQuantity}</p>
         </div>
 
+        {/* children */}
         <div className = "absolute top-[4rem] w-[20rem] h-[4rem]" style = {{borderBottom: "1px solid #c9c9c7"}}>
             <p className = "font-space-grotesk absolute left-[0.8rem]" style = {{fontSize: "15px"}}>Children</p>
             <p className = "font-space-grotesk absolute left-[0.8rem] top-[1.5rem] text-[#094c5b]" style = {{fontSize: "11px"}}>Children (2-12 years)</p>
@@ -37,6 +39,7 @@ const PassengerInfo: React.FC<Props> = ({handleIncreaseAdultPassenger, handleDec
             <p className = "font-space-grotesk absolute left-[13.3rem] top-[-0.7rem]" style = {{fontSize: "27px"}}>{childrenPassengerQuantity}</p>
         </div>
 
+        {/* infant */}
         <div className = "absolute top-[8rem] w-[20rem] h-[4rem]" style = {{borderBottom: "1px solid #c9c9c7"}}>
             <p className = "font-space-grotesk absolute left-[0.8rem]" style = {{fontSize: "15px"}}>Infant</p>
             <p className = "font-space-grotesk absolute left-[0.8rem] top-[1.5rem] text-[#094c5b]" style = {{fontSize: "11px"}}>Infant (under 2 years)</p>

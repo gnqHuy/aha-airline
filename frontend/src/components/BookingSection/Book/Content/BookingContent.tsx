@@ -3,9 +3,6 @@ import { PiWarningCircle } from "react-icons/pi";
 import { IoIosArrowUp, IoMdClose } from "react-icons/io";
 import BookingFlightSuggestion from './FlightSuggestion/BookingFlightSuggestion';
 import './BookingContent.css';
-import BookingFlightSuggestionSideBar from './FlightSuggestion/BookingFlightSuggestionSideBar';
-import BookingContentOneWay from './BookingContentOneWay';
-import BookingContentRoundTrip from './BookingContentRoundTrip';
 import BookingFlightSuggestionTo from './FlightSuggestion/BookingFlightSuggestionTo';
 import CalendarDepart from './Calendar/CalendarDepart';
 import PassengerInfo from './PassengerInfo/PassengerInfo';
@@ -18,17 +15,28 @@ interface Props {
 }
 
 const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
-    // states to manage display suggestions
+    // states to manage display suggestions of flight from
     const [displaySuggestion, setDisplaySuggestion] = useState<boolean>(false);
-    const [flightArea, setFlightArea] = useState<string>("Vietnam");
+
+    // determine the flight type is round trip or one way
     const [flightOption, setFlightOption] = useState<string>("roundTrip");
+
+    // determine display information or not
     const [displayInformation, setDisplayInformation] = useState<boolean>(true);
+
+    // states to manage display suggestions of flight to
     const [displaySuggestionTo, setDisplaySuggestionTo] = useState<boolean>(false);
+
+    // states to manage display calendar depart
     const [displayCalendarDepart, setDisplayCalendarDepart] = useState<boolean>(false);
+
+    // states to manage display calendar return
     const [displayCalendarReturn, setDisplayCalendarReturn] = useState<boolean>(false);
+
+    // states to manage display passenger info
     const [displayPassengerInfo, setDisplayPassengerInfo] = useState<boolean>(false);
 
-    // passenger quantity
+    // passenger quantity base on each age
     const [adultPassengerQuantity, setAdultPassengerQuantity] = useState<number>(1);
     const [childrenPassengerQuantity, setChildrenPassengerQuantity] = useState<number>(0);
     const [infantPassengerQuantity, setInfantPassengerQuantity] = useState<number>(0);
@@ -64,72 +72,99 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
             .catch(err => console.error(err));
     }, [suggestAirports])
 
-    const handleSetupFlightArea = (area: string) => {
-        setFlightArea(area);
-    }
-
+    // change the suggestion of flight from
     const handleSetupDisplaySuggestion = () => {
         displaySuggestion === false ? setDisplaySuggestion(true) : setDisplaySuggestion(false);
+        setDisplaySuggestionTo(false);
+        setDisplayCalendarDepart(false);
+        setDisplayCalendarReturn(false);
+        setDisplayPassengerInfo(false);
         setSuggestAirports(airports);
         setSuggestAirportsTo(airports);
+        setSuggestAirports(airports.filter(airport => {
+            const tmpArr = selectedAirportTo.split(" ");
+            return airport.city.name !== tmpArr[0];
+        }));
     }
 
+    // change the suggestion of flight to
     const handleSetupDisplaySuggestionTo = () => {
         displaySuggestionTo === false ? setDisplaySuggestionTo(true) : setDisplaySuggestionTo(false);
+        setDisplaySuggestion(false);
+        setDisplayCalendarDepart(false);
+        setDisplayCalendarReturn(false);
+        setDisplayPassengerInfo(false);
         setSuggestAirports(airports);
-        setSuggestAirportsTo(airports);
+        setSuggestAirportsTo(airports.filter(airport => {
+            const tmpArr = selectedAirport.split(" ");
+            return airport.city.name !== tmpArr[0];
+        }));
     }
 
+    // change the display of calendar depart
     const handleSetupDisplayCalendarDepart = () => {
         displayCalendarDepart === false ? setDisplayCalendarDepart(true) : setDisplayCalendarDepart(false);
+        setDisplaySuggestionTo(false);
+        setDisplaySuggestion(false);
+        setDisplayCalendarReturn(false);
+        setDisplayPassengerInfo(false);
     }
 
+    // change the display of calendar return
     const handleSetupDisplayCalendarReturn = () => {
         displayCalendarReturn === false ? setDisplayCalendarReturn(true) : setDisplayCalendarReturn(false);
+        setDisplaySuggestionTo(false);
+        setDisplaySuggestion(false);
+        setDisplayCalendarDepart(false);
+        setDisplayPassengerInfo(false);
     } 
-
+    
+    // change the display of passenger info
     const handleSetupDisplayPassengerInfo = () => {
         displayPassengerInfo === true ? setDisplayPassengerInfo(false) : setDisplayPassengerInfo(true);
+        setDisplaySuggestionTo(false);
+        setDisplaySuggestion(false);
+        setDisplayCalendarDepart(false);
+        setDisplayCalendarReturn(false);
     }
 
+    // handle increase adult passenger when click plus button
     const handleIncreaseAdultPassenger = () => {
         setAdultPassengerQuantity(prev => prev + 1);
     }
 
+    // handle decrease adult passenger when click the minus button
     const handleDecreaseAdultPassenger = () => {
         if (adultPassengerQuantity > 1) {
             setAdultPassengerQuantity(prev => prev - 1);
         }
     }
 
+    // handle increase children passenger when click the plus button
     const handleIncreaseChildrenPassenger = () => {
         setChildrenPassengerQuantity(prev => prev + 1);
     }
 
+    // handle decrease children passenger when click the minus button
     const handleDecreaseChildrenPassenger = () => {
         if (childrenPassengerQuantity > 0) {
             setChildrenPassengerQuantity(prev => prev - 1);
         }
     }
 
+    // handle increase infant passenger when click the plus button
     const handleIncreaseInfantPassenger = () => {
         setInfantPassengerQuantity(prev => prev + 1);
     }
 
+    // handle decrease infant passenger when click the minus button
     const handleDecreaseInfantPassenger = () => {
         if (infantPassengerQuantity > 0) {
             setInfantPassengerQuantity(prev => prev - 1);
         }
     }
 
-    const resetAllSuggestion = () => {
-        setDisplaySuggestion(false);
-        setDisplaySuggestionTo(false);
-        setDisplayCalendarDepart(false);
-        setDisplayCalendarReturn(false);
-        setDisplayPassengerInfo(false);
-    }
-
+    // handle close suggestion when change to other tab or click outside
     const handleCloseSuggestion = () => {
         displaySuggestion === true && setDisplaySuggestion(false);
         displaySuggestionTo === true && setDisplaySuggestionTo(false);
@@ -138,51 +173,82 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
         displayPassengerInfo === true && setDisplayPassengerInfo(false);
     }
 
+    // change the flight option: round trip or one way
     const handleSetupFlightOption = (option: string) => {
         setFlightOption(option);
     }
 
+    // handle display suggestion when typing the input from
     const handleChangeSearchingAirport = (airport: string) => {
         setSearchingAirport(airport);
         const searchItem = airport.toLowerCase();
         if (searchingAirport === "") {
             setSuggestAirports(airports);
         }
-        setSuggestAirports(airports.filter(airport => airport.name.toLowerCase().includes(searchItem)));
+        setSuggestAirports(airports.filter(airport => {
+            const tmpArr = selectedAirportTo.split(" ");
+            return airport.city.name !== tmpArr[0] && airport.city.name.toLowerCase().includes(searchItem);
+        }));
     }
 
+    // handle display suggestion when typing the input to
     const handleChangeSearchingAirportTo = (airport: string) => {
         setSearchingAirportTo(airport);
         const searchItem = airport.toLowerCase();
         if (searchingAirportTo === "") {
             setSuggestAirportsTo(airports);
         }
-        setSuggestAirportsTo(airports.filter(airport => airport.name.toLowerCase().includes(searchItem)));
+        setSuggestAirportsTo(airports.filter(airport => {
+            const tmpArr = selectedAirport.split(" ");
+            return airport.city.name !== tmpArr[0] && airport.city.name.toLowerCase().includes(searchItem);
+        }));
     }
 
+    // handle display the selected airport
     const handleSetupSelectedAirport = (airport: string) => {
         setSelectedAirport(airport);
     }
 
+    // handle display the selected airport to
     const handleSetupSelectedAirportTo = (airport: string) => {
         setSelectedAirportTo(airport);
     }
 
+    // convert string to date
+    const convertToDate = (dateString: string) => {
+        const [day, month, year] = dateString.split("/").map(Number);
+        const date = new Date(year, month, day);
+        return date;
+      };
+
+    // handle display the selected date depart
     const handleSetupSelectedDateDepart = (date: string) => {
-        setSelectedDateDepart(date);
+        const today = convertToDate("05/12/2024");
+        const convertDateDepart = convertToDate(date);
+        const convertDateReturn = convertToDate(selectedDateReturn);
+        if ((convertDateDepart <= convertDateReturn || selectedDateReturn === "Return") && convertDateDepart >= today) {
+            setSelectedDateDepart(date);
+        }
     }
 
+    // handle display the selected date return
     const handleSetupSelectedDateReturn = (date: string) => {
-        setSelectedDateReturn(date);
+        const today = convertToDate("05/12/2024");
+        const convertDateDepart = convertToDate(selectedDateDepart);
+        const convertDateReturn = convertToDate(date);
+        if ((convertDateReturn >= convertDateDepart || selectedDateDepart === "Depart") && convertDateReturn >= today) {
+            setSelectedDateReturn(date);
+        }
     }
   return (
     <div>
         <div className = {sectionTab === "bookingContent" ? "overlay" : ""} onClick = {() => handleChangeTab("default")}></div>
-        <div className = {displayInformation === true ? "w-[60rem] h-[28rem] bg-[#FCF9F2] absolute left-[20%] top-[36.5rem] fadeIn focusedDiv" : "w-[60rem] h-[20rem] bg-[#FCF9F2] absolute left-[20%] top-[36.5rem] fadeIn focusedDiv"} onClick = {handleCloseSuggestion}>
+        <div className = {displayInformation === true ? "w-[60rem] h-[28rem] bg-[#FCF9F2] absolute left-[20%] top-[36.5rem] fadeIn focusedDiv" : "w-[60rem] h-[20rem] bg-[#FCF9F2] absolute left-[20%] top-[36.5rem] fadeIn focusedDiv"}>
+            {/* generic content */}
             <GenericContent 
                 flightOption = {flightOption}
                 handleSetupFlightOption={handleSetupFlightOption}
-                resetAllSuggestion = {resetAllSuggestion}
+                resetAllSuggestion = {handleCloseSuggestion}
                 handleSetupDisplaySuggestion = {handleSetupDisplaySuggestion}
                 handleSetupDisplaySuggestionTo = {handleSetupDisplaySuggestionTo}
                 handleSetupDisplayCalendarDepart = {handleSetupDisplayCalendarDepart}
@@ -199,8 +265,24 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
                 selectedAirportTo = {selectedAirportTo}
                 selectedDateDepart = {selectedDateDepart}
                 selectedDateReturn = {selectedDateReturn}
+                suggestAirports = {suggestAirports}
+                handleSetupSelectedAirport = {handleSetupSelectedAirport}
+                suggestAirportsTo = {suggestAirportsTo}
+                handleSetupSelectedAirportTo = {handleSetupSelectedAirportTo}
+                displayCalendarDepart = {displayCalendarDepart}
+                handleSetupSelectedDateDepart = {handleSetupSelectedDateDepart}
+                displayCalendarReturn = {displayCalendarReturn}
+                handleSetupSelectedDateReturn = {handleSetupSelectedDateReturn}
+                displayPassengerInfo = {displayPassengerInfo}
+                handleIncreaseAdultPassenger = {handleIncreaseAdultPassenger}
+                handleDecreaseAdultPassenger = {handleDecreaseAdultPassenger}
+                handleIncreaseChildrenPassenger = {handleIncreaseChildrenPassenger}
+                handleDecreaseChildrenPassenger = {handleDecreaseChildrenPassenger}
+                handleIncreaseInfantPassenger = {handleIncreaseInfantPassenger}
+                handleDecreaseInfantPassenger = {handleDecreaseInfantPassenger}
             />
 
+            {/* additional information */}
             {displayInformation === true && 
                 <div className = "bg-[#f1dea7] w-[56rem] h-[8rem] absolute top-[16rem] left-[2rem]">
                     <div className = "absolute top-[3rem] left-[0.5rem]">
@@ -218,55 +300,13 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
                 </div>
             }
 
+            {/* button to close tab */}
             <div className = {displayInformation === true ? "closeTab_section top-[23.8rem] left-[28rem]" : "closeTab_section top-[15.8rem] left-[28rem]"}>
                 <button onClick = {() => handleChangeTab("default")}>
                     <span><IoIosArrowUp style = {{width: "2rem", height: "2rem", color: "#ebc94e"}}/></span>
                 </button>
             </div>
         </div>
-        {displaySuggestion === true && 
-            <div className = "z-50 absolute top-[0.2rem]">
-                <BookingFlightSuggestion 
-                    suggestAirports = {suggestAirports}
-                    handleSetupSelectedAirport = {handleSetupSelectedAirport}
-                    handleSetupDisplaySuggestion={handleSetupDisplaySuggestion}
-                />
-            </div>
-        }
-
-        {displaySuggestionTo === true && 
-            <div className = "z-50 absolute top-[0.2rem] left-[18rem]">
-                <BookingFlightSuggestionTo 
-                    handleSetupDisplaySuggestionTo={handleSetupDisplaySuggestionTo}
-                    suggestAirportsTo = {suggestAirportsTo}
-                    handleSetupSelectedAirportTo={handleSetupSelectedAirportTo}
-                />
-            </div>
-        }
-
-        {displayCalendarDepart === true && 
-            <div className = "z-50 absolute left-[36rem] top-[43.5rem]">
-                <CalendarDepart
-                    handleSetupSelectedDateDepart={handleSetupSelectedDateDepart}
-                    handleSetupDisplayCalendarDepart = {handleSetupDisplayCalendarDepart}
-                />
-            </div>
-        }
-
-        {displayCalendarReturn === true && 
-            <div className = "z-50 absolute left-[48rem] top-[43.5rem]">
-                <CalendarReturn
-                    handleSetupSelectedDateReturn={handleSetupSelectedDateReturn}
-                    handleSetupDisplayCalendarReturn = {handleSetupDisplayCalendarReturn}
-                />
-            </div>
-        }
-
-        {displayPassengerInfo === true && 
-            <div className = "z-50 absolute left-[2rem] top-[48.1rem]">
-                <PassengerInfo handleIncreaseAdultPassenger = {handleIncreaseAdultPassenger} handleDecreaseAdultPassenger = {handleDecreaseAdultPassenger} handleIncreaseChildrenPassenger = {handleIncreaseChildrenPassenger} handleDecreaseChildrenPassenger = {handleDecreaseChildrenPassenger} handleIncreaseInfantPassenger = {handleIncreaseInfantPassenger} handleDecreaseInfantPassenger = {handleDecreaseInfantPassenger} adultPassengerQuantity = {adultPassengerQuantity} childrenPassengerQuantity = {childrenPassengerQuantity} infantPassengerQuantity = {infantPassengerQuantity}/>
-            </div>
-        }
     </div>
   )
 }
