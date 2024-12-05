@@ -1,5 +1,4 @@
 import './BookingFlightSuggestion.css';
-import { IoMdClose } from 'react-icons/io';
 import AirplaneIcon from './airplaneIcon.png';
 
 import React, { useEffect, useState } from 'react'
@@ -13,7 +12,7 @@ interface Props {
 const BookingFlightSuggestion: React.FC<Props> = ({suggestAirports, handleSetupSelectedAirport, handleSetupDisplaySuggestion}) => {
 
   return (
-    <div className = "z-50 absolute top-[43.5rem] bg-white h-[30.45rem] overflow-y-scroll setting-scrollbar overflow-x-hidden" style = {{left: "2rem", width: "28rem"}}>
+    <div className = "z-50 absolute top-[0rem] bg-white h-[30.45rem] overflow-y-scroll setting-scrollbar overflow-x-hidden" style = {{left: "2rem", width: "28rem"}}>
         <div className = "relative left-[0.5rem]">
             <div>
                 {suggestAirports.map((airport: any) => {
