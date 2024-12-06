@@ -1,21 +1,49 @@
-import React, { useEffect, useRef } from 'react';
-import { Flight } from '../../object/flight/flight';
-import { useFlight } from '../../context/FlightContext/FlightContext';
-import { useNavigate } from 'react-router-dom';
-import { useSearchFlightState } from '../../context/SearchFlightState/SearchFlightState';
+import React, { useState } from "react";
+import { Flight } from "../../object/flight/flight";
+import { useFlight } from "../../context/FlightContext/FlightContext";
+import { useNavigate } from "react-router-dom";
+import { useSearchFlightState } from "../../context/SearchFlightState/SearchFlightState";
 
 type Props = {
   flight: Flight | null;
 };
 
-const SearchFlight: React.FC<Props> = ({ flight }) => {
-  const { setSelectedFlight } = useFlight();
-  const {setSearchFlightState} = useSearchFlightState();
+const MAX_PASSENGERS = 9;
 
+const SearchFlight: React.FC<Props> = ({ flight }) => {
+  const { setSelectedFlight, setSelectedPassenger } = useFlight();
+  const { setSearchFlightState } = useSearchFlightState();
   const navigate = useNavigate();
 
-  const handleSelectFlight = (flight: Flight) => {
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [infants, setInfants] = useState(0);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const totalPassengers = adults + children + infants;
+
+  const handleIncrement = (type: "adult" | "child" | "infant") => {
+    if (totalPassengers >= MAX_PASSENGERS) {
+      setErrorMessage("You cannot have more than 9 passengers.");
+      return;
+    }
+    setErrorMessage("");
+
+    if (type === "adult") setAdults(adults + 1);
+    if (type === "child") setChildren(children + 1);
+    if (type === "infant") setInfants(infants + 1);
+  };
+
+  const handleDecrement = (type: "adult" | "child" | "infant") => {
+    if (type === "adult" && adults > 1) setAdults(adults - 1);
+    if (type === "child" && children > 0) setChildren(children - 1);
+    if (type === "infant" && infants > 0) setInfants(infants - 1);
+    setErrorMessage("");
+  };
+
+  const handleSearchFlight = (flight: Flight) => {
     setSelectedFlight(flight);
+    setSelectedPassenger({ adults, children, infants });  
     navigate("/ticket");
   };
 
@@ -42,8 +70,75 @@ const SearchFlight: React.FC<Props> = ({ flight }) => {
         <p className="text-gray-700">
           <strong>Price:</strong> {flight.price}
         </p>
+
+        <div className="mt-4">
+          <h3 className="text-lg font-semibold">Passengers</h3>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span>Adults (12+ years)</span>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => handleDecrement("adult")}
+                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
+                >
+                  -
+                </button>
+                <span>{adults}</span>
+                <button
+                  onClick={() => handleIncrement("adult")}
+                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center">
+              <span>Children (2-11 years)</span>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => handleDecrement("child")}
+                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
+                >
+                  -
+                </button>
+                <span>{children}</span>
+                <button
+                  onClick={() => handleIncrement("child")}
+                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center">
+              <span>Infants (under 2 years)</span>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => handleDecrement("infant")}
+                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
+                >
+                  -
+                </button>
+                <span>{infants}</span>
+                <button
+                  onClick={() => handleIncrement("infant")}
+                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {errorMessage && (
+          <p className="mt-2 text-sm text-red-500">{errorMessage}</p>
+        )}
+
         <button
-          onClick={() => handleSelectFlight(flight)}
+          onClick={() => handleSearchFlight(flight)}
           className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
         >
           Search
