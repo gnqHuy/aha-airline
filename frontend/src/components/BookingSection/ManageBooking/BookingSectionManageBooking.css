@@ -4,7 +4,7 @@
     background-color: #FCF9F2;
     position: absolute;
     left: 20%;
-    top: 36.5rem;
+    top: 36.7rem;
     box-shadow: 0.2rem 0.2rem 0.4rem #82817d;
 }
 
@@ -25,25 +25,17 @@
     padding: 5px;
     width: 20rem;
     background-color: transparent;
-    position: relative;
-    top: -1rem;
-    right: 0rem;
 }
 
 .input-box-ticketNumber label {
     font-family: "Space Grotesk";
-    font-size: 15px;
 }
 
 .input-box-lastName {
-    position: relative;
-    top: 2rem;
-    right: 5rem;
 }
 
 .input-box-lastName label {
     font-family: "Space Grotesk";
-    font-size: 15px;
 }
 
 .detail-input-lastName {
@@ -53,19 +45,14 @@
     padding: 5px;
     width: 20rem;
     background-color: transparent;
-    position: relative;
-    top: -1rem;
+    position: absolute;
 }
 
 .bookingSection_manageBooking_buttonSearch { 
-    position: relative;
-    top: 2rem;
-    right: 2.5rem;
+    position: absolute;
 }
 
 .bookingSection_manageBooking_buttonSearch button {
-    width: 8rem;
-    height: 3rem;
     border-radius: 8px;
     border: 0;
     font-family: "Space Grotesk";
@@ -103,9 +90,23 @@
 }
 
 .manageBooking_closeTab_section {
-    position: relative;
-    top: 11.1rem;
-    left: 26.5rem;
+    position: absolute;
+}
+
+.closeTab_section {
+    position: absolute;
+}
+
+.closeTab_section button {
+    width: 3.5rem;
+    height: 2.2rem;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 0;
+    background-color: #094c5b;
+    cursor: pointer;
 }
 
 .manageBooking_closeTab_section button {

@@ -6,14 +6,15 @@
 }
   
 .flight-preview-container {
-    max-width: 100%;
-    width: 60%;
+    /* max-width: 100%; */
+    width: 59vw;
     margin: auto;
     text-align: center;
     padding: 15px;
     border-top: 1.5px solid #d4a422;
     border-bottom: 1.5px solid #d4a422;
-    margin-top: 20px;
+    margin-top: 100px;
+    margin-bottom: 50px;
     font-family: Arial, sans-serif;
 }
 
@@ -31,7 +32,7 @@
 }
 
 .departure-city:hover {
-    color: #0056b3; 
+    color: #D4A422; 
 }
 
 .departureList {
@@ -48,7 +49,7 @@
     width: 90%; 
     max-width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    z-index: 1000;
+    z-index: 10;
 }
 
 .departureList-item {
@@ -74,12 +75,12 @@
     font-size: medium;
     font-weight: bold;
     color: #fff;
-    background: linear-gradient(135deg, #42a5f5, #478ed1);
+    background: #D4A422;
     border: none;
     border-radius: 8px;
     outline: none;
 }
 
 .view-more:hover {
-    color: #0056b3; 
+    color: #5b4300; 
 }
