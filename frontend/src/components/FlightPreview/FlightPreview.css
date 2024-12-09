@@ -6,8 +6,8 @@
 }
   
 .flight-preview-container {
-    max-width: 100%;
-    width: 60%;
+    /* max-width: 100%; */
+    width: 59vw;
     margin: auto;
     text-align: center;
     padding: 15px;

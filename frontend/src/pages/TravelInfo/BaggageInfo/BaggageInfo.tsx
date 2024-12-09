@@ -16,8 +16,8 @@ const BaggageInfo = (props: Props) => {
       }, []);
   return (
     <Layout>
-        <div className = "relative h-[170rem] overflow-x-clip font-space-grotesk">
-            <p className="text-3xl text-golden font-bold relative left-[15rem] top-[0rem]">Baggage Info</p>
+        <div className = "relative h-[170rem] overflow-x-clip font-space-grotesk bg-slate-50 bottom-[2rem]">
+            <p className="text-3xl text-golden font-bold relative left-[15rem] top-[1rem]">Baggage Info</p>
             {/* carry-on baggage */}
             <div className = "relative left-[15rem] w-[70rem]" id = "carry-on">
                 <p className = "text-3xl text-Green font-bold">Carry-on Baggage</p>

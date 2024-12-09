@@ -9,6 +9,7 @@
 .bookingSectionHeaderItem {
     display: flex;
     width: 20rem;
+    height: 3.5rem;
     background-color: rgba(9, 76, 91, 0.9);
     justify-content: center;
 }
