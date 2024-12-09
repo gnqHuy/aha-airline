@@ -42,7 +42,7 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
     const [infantPassengerQuantity, setInfantPassengerQuantity] = useState<number>(0);
 
     // searching airports
-    const [searchingAirport, setSearchingAirport] = useState<string>(""); 
+    const [searchingAirport, setSearchingAirport] = useState<string>("Accara (ACC), Ghana"); 
     const [searchingAirportTo, setSearchingAirportTo] = useState<string>("");
 
     // airports array
@@ -243,7 +243,7 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
   return (
     <div>
         <div className = {sectionTab === "bookingContent" ? "overlay" : ""} onClick = {() => handleChangeTab("default")}></div>
-        <div className = {displayInformation === true ? "w-[60rem] h-[28rem] bg-[#FCF9F2] absolute left-[20%] top-[36.5rem] fadeIn focusedDiv" : "w-[60rem] h-[20rem] bg-[#FCF9F2] absolute left-[20%] top-[36.5rem] fadeIn focusedDiv"}>
+        <div className = {displayInformation === true ? "w-[60rem] h-[28rem] bg-[#FCF9F2] absolute left-[20%] top-[36.5rem] fadeIn focusedDiv medium:relative medium:left-[1%] medium:top-[33.2rem] medium:w-[90vw] medium:h-[30rem] small:w-[90vw] small:h-[39rem] big:w-[78vw]" : "w-[60rem] h-[20rem] bg-[#FCF9F2] absolute left-[20%] top-[36.5rem] fadeIn focusedDiv medium:relative medium:left-[1%] medium:top-[33.2rem] medium:w-[90vw] medium:h-[30rem] small:h-[39rem] big:w-[78vw]"}>
             {/* generic content */}
             <GenericContent 
                 flightOption = {flightOption}
@@ -284,15 +284,15 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
 
             {/* additional information */}
             {displayInformation === true && 
-                <div className = "bg-[#f1dea7] w-[56rem] h-[8rem] absolute top-[16rem] left-[2rem]">
+                <div className = "bg-[#f1dea7] w-[56rem] h-[8rem] absolute top-[16rem] left-[2rem] medium:w-[84vw] medium:h-[11rem] small:top-[25rem] small:w-[80vw] small:h-[11rem]">
                     <div className = "absolute top-[3rem] left-[0.5rem]">
                         <PiWarningCircle className = "w-[2rem] h-[2rem]" style = {{color: "#ab861b"}}/>
                     </div>
                     <div className = "text-left absolute left-[3.5rem] top-[0.2rem]">
-                        <p className = "font-space-grotesk font-bold" style = {{fontSize: "18px"}}>IMPORTANT INFORMATION:</p>
-                        <p className = "font-space-grotesk absolute top-[1.5rem] w-[56rem]" style = {{fontSize: "16px"}}>Your country/region is <b>Vietnam</b> and payment will be charged in <b>Vietnamese Dong (VND).</b></p>
-                        <p className = "font-space-grotesk absolute top-[2.7rem] w-[56rem]" style = {{fontSize: "16px"}}>According to regulations of the Ministry of Finance, E-VAT invoices are only issued for payment in VND.</p>
-                        <p className = "font-space-grotesk absolute top-[3.9rem] w-[56rem]" style = {{fontSize: "16px"}}>In case of paying by other currency, you may change website country/region.</p>
+                        <p className = "font-space-grotesk font-bold medium:text-[1.5vw]">IMPORTANT INFORMATION:</p>
+                        <p className = "font-space-grotesk relative top-[-1rem] w-[56rem] medium:w-[75vw] small:w-[71vw]" style = {{fontSize: "16px"}}>Your country/region is <b>Vietnam</b> and payment will be charged in <b>Vietnamese Dong (VND).</b></p>
+                        <p className = "font-space-grotesk relative top-[-2rem] w-[56rem] medium:w-[75vw] small:w-[71vw]" style = {{fontSize: "16px"}}>According to regulations of the Ministry of Finance, E-VAT invoices are only issued for payment in VND.</p>
+                        <p className = "font-space-grotesk relative top-[-3rem] w-[56rem] medium:w-[75vw] small:w-[71vw]" style = {{fontSize: "16px"}}>In case of paying by other currency, you may change website country/region.</p>
                     </div>
                     <div className = "absolute right-[0rem]">
                         <IoMdClose className = "w-[1.5rem] h-[1.5rem] hover:cursor-pointer" style = {{color: "gray"}} onClick = {() => setDisplayInformation(false)}/>
@@ -301,7 +301,7 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
             }
 
             {/* button to close tab */}
-            <div className = {displayInformation === true ? "closeTab_section top-[23.8rem] left-[28rem]" : "closeTab_section top-[15.8rem] left-[28rem]"}>
+            <div className = {displayInformation === true ? "closeTab_section top-[23.8rem] left-[28rem] medium:top-[25.8rem] medium:left-[43vw] small:top-[34.8rem] small:left-[43vw]" : "closeTab_section top-[15.8rem] left-[28rem] medium:top-[25.8rem] medium:left-[43vw] small:top-[34.8rem] small:left-[43vw]"}>
                 <button onClick = {() => handleChangeTab("default")}>
                     <span><IoIosArrowUp style = {{width: "2rem", height: "2rem", color: "#ebc94e"}}/></span>
                 </button>

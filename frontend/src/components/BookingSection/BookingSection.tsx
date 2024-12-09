@@ -18,7 +18,7 @@ const  BookingSection= (props: Props) => {
       setSectionTab(tabName);
     }
   return (
-    <div className = "absolute top-[0rem] left-[17.5rem]">
+    <div className = "absolute top-[0rem] left-[17.5rem] medium:left-[2rem] small:left-[1rem] big:left-[8vw]">
         <BookingSectionHeader handleChangeTab = {handleChangeTab} sectionTab={sectionTab}/>
         {(sectionTab === "book" || sectionTab === "default") && <BookingSectionBook sectionTab = {sectionTab} handleChangeTab={handleChangeTab} prevTab = {prevTab}/>}
         {(sectionTab === "bookingContent") && <BookingContent sectionTab={sectionTab} handleChangeTab={handleChangeTab}/>}

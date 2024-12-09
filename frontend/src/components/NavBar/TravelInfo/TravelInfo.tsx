@@ -5,53 +5,53 @@ type Props = {};
 
 const Explore: React.FC<Props> = () => {
   return (
-    <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 sm:gap-x-16 md:grid-cols-3 pl-8">
+    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[20vw] medium:grid-cols-3 bg-white">
       {/* Check-In */}
-      <div>
+      <div className = "medium:relative medium:left-[17vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
           Check-In
         </h2>
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
-            <Link
-              to="/travel-info/check-in#online"
+            <a
+              href="/travel-info/check-in#online"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Online Check-In
-            </Link>
+            </a>
           </li>
           <li className="mb-4">
-            <Link
-              to="/travel-info/check-in#airport"
+            <a
+              href="/travel-info/check-in#airport"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Airport Check-In
-            </Link>
+            </a>
           </li>
           <li className="mb-4">
-            <Link
-              to="/travel-info/check-in#cancel"
+            <a
+              href="/travel-info/check-in#cancel"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Cancel Check-In
-            </Link>
+            </a>
           </li>
         </ul>
       </div>
 
       {/* Baggage Info */}
-      <div>
+      <div className = "medium:relative medium:left-[13vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
           Baggage Info
         </h2>
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
-            <Link
-              to="/travel-info/baggageinfo#carry-on"
+            <a
+              href="/travel-info/baggageinfo#carry-on"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Carry-On Baggage
-            </Link>
+            </a>
           </li>
           <li className="mb-4">
             <Link
@@ -73,7 +73,7 @@ const Explore: React.FC<Props> = () => {
       </div>
 
       {/* Travel Document */}
-      <div>
+      <div className = "medium:relative medium:left-[10vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
           Travel Document
         </h2>

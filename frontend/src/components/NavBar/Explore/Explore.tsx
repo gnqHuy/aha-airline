@@ -6,8 +6,8 @@ const Explore: React.FC = () => {
     const offers = offersData.slice(0, 5);
 
   return (
-    <div className="grid grid-cols-2 sm:gap-20 sm:grid-cols-3 pl-8">
-      <div>
+    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[20vw] medium:grid-cols-3">
+      <div className = "medium:left-[5vw] medium:relative">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/explore/destination"
@@ -60,7 +60,7 @@ const Explore: React.FC = () => {
         </ul>
       </div>
 
-      <div>
+      <div className = "">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/explore/offer"

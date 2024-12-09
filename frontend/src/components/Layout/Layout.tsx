@@ -48,7 +48,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
         </div>
       </div>
 
-      <main className="min-h-screen">{children}</main>
+      <main className="min-h-screen bg-slate-50">{children}</main>
       <div className="flex items-center w-[1100px] mx-auto p-3 text-lg">
           <Link to="/" className="flex items-center text-golden no-underline">
             <FaHome className="mr-2" />
