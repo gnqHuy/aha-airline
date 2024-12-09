@@ -13,11 +13,24 @@ module.exports = {
       },
       transitionProperty: {
         'fontSize': ''
+      }, 
+      screens: {
+        'medium': {min: '775px', max: '1219px'},
+        'big': {min: '1219px', max: '1534px'},
+        'small': {min: '20px', max: '775px'}, 
+        'aboveSmall': '300px',
+      }, 
+      fontSize: {
+        'tiny': '10px', 
+        'super-tiny': '8px', 
+        'normal': '16px',
+        'bit-lg': '15px', 
+        'change': '1.4vw'
       }
     }, 
     fontFamily: {
       'space-grotesk': ['Space Grotesk']
-    }, 
+    },
   },
   plugins: [],
   corePlugins: {

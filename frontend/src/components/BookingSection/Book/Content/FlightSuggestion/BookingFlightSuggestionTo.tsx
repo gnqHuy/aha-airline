@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { IoMdClose } from 'react-icons/io';
 import AirplaneIcon from './airplaneIcon.png';
 
 interface Props {
@@ -11,7 +10,7 @@ interface Props {
 const BookingFlightSuggestionTo: React.FC<Props> = ({handleSetupDisplaySuggestionTo, suggestAirportsTo, handleSetupSelectedAirportTo}) => {
 
   return (
-    <div className = "z-50 absolute top-[43.5rem] bg-white h-[30.45rem] overflow-y-scroll setting-scrollbar overflow-x-hidden" style = {{left: "2.5rem", width: "28rem"}}>
+    <div className = "z-50 absolute bg-white h-[30.45rem] overflow-y-scroll setting-scrollbar overflow-x-hidden" style = {{left: "2.5rem", width: "28rem"}}>
         <div className = "relative left-[0.5rem]">
             <div>
                 {suggestAirportsTo.map((airport: any) => {

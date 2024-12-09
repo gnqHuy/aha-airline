@@ -4,7 +4,7 @@
     background-color: #FCF9F2;
     position: absolute;
     left: 20%;
-    top: 36.5rem;
+    top: 36.7rem;
     box-shadow: 0.2rem 0.2rem 0.4rem #82817d;
     display: block;
 }
@@ -58,12 +58,10 @@
 .options_input_reservationCode span {
     position: relative;
     top: 4rem;
-    left: 2rem;
 }
 
 .options_input_reservationCode label {
     font-family: "Space Grotesk";
-    font-size: 15px;
 }
 
 .options_input_reservationCode input {
@@ -73,18 +71,14 @@
     border-bottom: 1px solid black;
     position: relative;
     top: 0.8rem;
-    right: 8rem;
-    width: 18rem;
 }
 
 #options_label_familyName {
     position: relative;
-    right: 6rem;
 }
 
 #options_label_reservationCode {
     position: relative;
-    left: 0.5rem;
 }
 
 #options_input_familyName {
@@ -95,7 +89,6 @@
 .options_input_reservationCode button {
     position: relative;
     top: 8rem;
-    right: 4rem;
     width: 9rem;
     height: 3rem;
     font-family: "Space Grotesk";

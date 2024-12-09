@@ -22,8 +22,8 @@ const BookingInformation = (props: Props) => {
       }, []);
   return (
     <Layout>
-        <div className = "h-[280rem] relative overflow-x-clip">
-            <div className = "relative left-[15rem] top-[0rem]">
+        <div className = "h-[280rem] relative overflow-x-clip bottom-[2rem] bg-slate-50">
+            <div className = "relative left-[15rem] top-[1rem]">
                 <p className="text-3xl text-golden font-bold">Booking information</p>
             </div>
             <div className = "relative left-[15rem] top-[5rem]">

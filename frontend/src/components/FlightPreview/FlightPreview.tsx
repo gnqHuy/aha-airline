@@ -70,7 +70,7 @@ const FlightPreview = (props: Props) => {
             <div className="all-location">
               <GiWorld /> All locations
             </div>
-            <div style={{ borderTop: '1.5px solid #d4a422' }}>
+            <div style={{ borderTop: '1.5px solid #d4a422',}}>
               {cities.map((city) => (
                 <div
                   className="departureList-item"
