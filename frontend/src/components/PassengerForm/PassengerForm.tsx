@@ -166,6 +166,10 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
           {errorMessage && <p className="mt-2 text-sm text-red-500">{errorMessage}</p>}
         </div>
 
+        <h2 className="text-xl font-semibold text-golden text-center mb-8">
+          Contact
+        </h2>
+
         <div className="flex flex-col space-y-2 mr-4">
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">
             Email<span className="text-red-500">*</span>

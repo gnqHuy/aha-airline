@@ -6,6 +6,7 @@ import { useBookedTicket } from "../../context/BookedTicket/BookedTicket";
 import { BookedTicket } from "../../object/ticket/ticket";
 import Layout1 from "../../components/Layout/Layout1";
 import { useNavigate } from "react-router-dom";
+import Layout from "../../components/Layout/Layout";
 
 type Props = {};
 
@@ -28,11 +29,13 @@ const PassengerInfor: React.FC<Props> = () => {
   );
 
   if (!selectedTicket) {
-    return (
-      <div className="text-center text-red-500">
-        No ticket selected or flight data is incomplete.
-      </div>
-    );
+    return <div>
+            <Layout>
+                <div className="text-center text-red-500 text-2xl pt-4">
+                    No flight has been selected, or the flight details are incomplete. <br/> Please return to select your flight.
+                </div>
+            </Layout>
+        </div>;
   }
 
   const handlePassengerChange = (index: number, passenger: any) => {
