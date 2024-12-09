@@ -4,7 +4,7 @@
     background-color: #FCF9F2;
     position: absolute;
     left: 20%;
-    top: 36.5rem;
+    top: 36.7rem;
     box-shadow: 0.2rem 0.2rem 0.4rem #82817d;
 }
 
@@ -25,7 +25,6 @@
     padding: 5px;
     width: 20rem;
     background-color: transparent;
-    position: absolute;
 }
 
 .input-box-ticketNumber label {
@@ -54,8 +53,6 @@
 }
 
 .bookingSection_manageBooking_buttonSearch button {
-    width: 8rem;
-    height: 3rem;
     border-radius: 8px;
     border: 0;
     font-family: "Space Grotesk";
@@ -93,7 +90,7 @@
 }
 
 .manageBooking_closeTab_section {
-    position: relative;
+    position: absolute;
 }
 
 .closeTab_section {

@@ -6,8 +6,8 @@ type Props = {}
 const TravelDocument = (props: Props) => {
   return (
     <Layout>
-        <div className = "relative h-[210rem] overflow-x-clip font-space-grotesk">
-            <p className="text-3xl text-golden font-bold relative left-[15rem] top-[0rem]">Travel Document</p>
+        <div className = "relative h-[211rem] overflow-x-clip font-space-grotesk bg-slate-200 bottom-[2rem]">
+            <p className="text-3xl text-golden font-bold relative left-[15rem] top-[1rem]">Travel Document</p>
             {/* identification documents */}
             <div className = "relative left-[15rem] top-[0rem] w-[70rem]">
                 <p className = "text-3xl text-Green font-bold">Identification Documents and Visa</p>
