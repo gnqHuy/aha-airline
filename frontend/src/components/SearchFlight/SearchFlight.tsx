@@ -3,6 +3,7 @@ import { Flight } from "../../object/flight/flight";
 import { useFlight } from "../../context/FlightContext/FlightContext";
 import { useNavigate } from "react-router-dom";
 import { useSearchFlightState } from "../../context/SearchFlightState/SearchFlightState";
+import { AiOutlineClose } from "react-icons/ai";
 
 type Props = {
   flight: Flight | null;
@@ -43,112 +44,89 @@ const SearchFlight: React.FC<Props> = ({ flight }) => {
 
   const handleSearchFlight = (flight: Flight) => {
     setSelectedFlight(flight);
-    setSelectedPassenger({ adults, children, infants });  
+    setSelectedPassenger({ adults, children, infants });
     navigate("/ticket");
   };
 
   if (!flight) {
-    return <div>No flight selected</div>;
+    return <div className="text-center text-red-500">No flight selected</div>;
   }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-80">
-        <h2 className="text-xl font-bold mb-4">Search Flight</h2>
-        <p className="text-gray-700">
-          <strong>From:</strong> {flight.from}
-        </p>
-        <p className="text-gray-700">
-          <strong>To:</strong> {flight.to}
-        </p>
-        <p className="text-gray-700">
-          <strong>Day:</strong> {flight.day}
-        </p>
-        <p className="text-gray-700">
-          <strong>Ticket Type:</strong> {flight.ticketType}
-        </p>
-        <p className="text-gray-700">
-          <strong>Price:</strong> {flight.price}
-        </p>
+      <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-xl">
+        <h2 className="text-2xl font-bold mb-6 text-center text-golden">
+          Search Flight
+        </h2>
 
-        <div className="mt-4">
-          <h3 className="text-lg font-semibold">Passengers</h3>
-          <div className="space-y-2">
-            <div className="flex justify-between items-center">
-              <span>Adults (12+ years)</span>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => handleDecrement("adult")}
-                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
-                >
-                  -
-                </button>
-                <span>{adults}</span>
-                <button
-                  onClick={() => handleIncrement("adult")}
-                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
-                >
-                  +
-                </button>
-              </div>
+        <div className="flex flex-col lg:flex-row text-left px-6">
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Flight Details</h3>
+            <div className="">
+              <p className="text-gray-700">
+                <strong>From:</strong> {flight.from}
+              </p>
+              <p className="text-gray-700">
+                <strong>To:</strong> {flight.to}
+              </p>
+              <p className="text-gray-700">
+                <strong>Day:</strong> {flight.day}
+              </p>
+              <p className="text-gray-700">
+                <strong>Ticket Type:</strong> {flight.ticketType}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">Passengers</h3>
+            <div className="space-y-4">
+              {[
+                { label: "Adults (12+ years)", type: "adult", count: adults },
+                { label: "Children (2-11 years)", type: "child", count: children },
+                { label: "Infants (under 2 years)", type: "infant", count: infants },
+              ].map(({ label, type, count }) => (
+                <div key={type} className="flex justify-between items-center">
+                  <span className="text-gray-700">{label}</span>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => handleDecrement(type as "adult" | "child" | "infant")}
+                      className="px-3 py-1 rounded hover:bg-golden-hover transition"
+                    >
+                      -
+                    </button>
+                    <span className="font-semibold">{count}</span>
+                    <button
+                      onClick={() => handleIncrement(type as "adult" | "child" | "infant")}
+                      className="px-3 py-1 rounded hover:bg-golden-hover transition"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <div className="flex justify-between items-center">
-              <span>Children (2-11 years)</span>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => handleDecrement("child")}
-                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
-                >
-                  -
-                </button>
-                <span>{children}</span>
-                <button
-                  onClick={() => handleIncrement("child")}
-                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            <div className="flex justify-between items-center">
-              <span>Infants (under 2 years)</span>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => handleDecrement("infant")}
-                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
-                >
-                  -
-                </button>
-                <span>{infants}</span>
-                <button
-                  onClick={() => handleIncrement("infant")}
-                  className="px-2 py-1 bg-gray-200 text-gray-700 rounded"
-                >
-                  +
-                </button>
-              </div>
-            </div>
+            {errorMessage && (
+              <p className="mt-2 text-sm text-red-500 text-center">{errorMessage}</p>
+            )}
           </div>
         </div>
 
-        {errorMessage && (
-          <p className="mt-2 text-sm text-red-500">{errorMessage}</p>
-        )}
-
-        <button
-          onClick={() => handleSearchFlight(flight)}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-        >
-          Search
-        </button>
-        <button
-          onClick={() => setSearchFlightState(false)}
-          className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-        >
-          Close
-        </button>
+        <div className="mt-6 flex justify-center space-x-4">
+          <button
+            onClick={() => handleSearchFlight(flight)}
+            className="px-4 w-40 py-2 rounded hover:bg-golden-hover transition"
+          >
+            Search
+          </button>
+          <button
+            onClick={() => setSearchFlightState(false)}
+            className="px-4 w-40 py-2 rounded hover:bg-golden-hover transition"
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );

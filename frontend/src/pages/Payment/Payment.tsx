@@ -6,12 +6,22 @@ import { useBookedTicket } from '../../context/BookedTicket/BookedTicket';
 import ElectronicTicket from '../../components/ElectronicTicket/ElectronicTicket';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
+import Layout from '../../components/Layout/Layout';
 
 type Props = {};
 
 const Payment: React.FC<Props> = () => {
   const { bookedTickets } = useBookedTicket();
   const navigate = useNavigate();
+  if (!bookedTickets) {
+    return <div>
+            <Layout>
+                <div className="text-center text-red-500 text-2xl pt-4">
+                    No flight has been selected, or the flight details are incomplete. <br/> Please return to select your flight.
+                </div>
+            </Layout>
+        </div>;
+  }
 
   const generatePDFs = () => {
     bookedTickets.forEach((bookedTicket, index) => {
@@ -49,7 +59,7 @@ const Payment: React.FC<Props> = () => {
 
   return (
     <Layout1>
-      <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+      <h1 className="text-2xl font-bold text-center text-gray-800 mb-6 mt-0 pt-4">
         Check Your Ticket's Information
       </h1>
       {bookedTickets.map((bookedTicket, index) => (

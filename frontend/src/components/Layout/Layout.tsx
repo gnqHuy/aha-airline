@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
-import image3 from "../../assets-test/Images/sunrise5.jpg";
+import image3 from "../../assets-test/Images/sunset4.jpg";
 
 type LayoutProps = {
   children: React.ReactNode;

@@ -4,6 +4,7 @@ import TicketPreview from '../../components/TicketPreview/TicketPreview';
 import headerImage from "../../assets-test/Images/sunset4.jpg";
 import { useFlight } from '../../context/FlightContext/FlightContext';
 import Layout1 from '../../components/Layout/Layout1';
+import Layout from '../../components/Layout/Layout';
 
 type Props = {};
 
@@ -11,7 +12,13 @@ const TicketPage: React.FC<Props> = () => {
     const { selectedFlight} = useFlight();
 
     if (!selectedFlight || !selectedFlight.from || !selectedFlight.to) {
-        return <div className="text-center text-red-500">No flight selected or flight data is incomplete.</div>;
+        return <div>
+            <Layout>
+                <div className="text-center text-red-500 text-2xl pt-4">
+                    No flight has been selected, or the flight details are incomplete. <br/> Please return to select your flight.
+                </div>
+            </Layout>
+        </div>;
     }
 
     const convertedTicketData = TicketData.map(ticket => ({
