@@ -125,7 +125,7 @@ const GenericContent: React.FC<Props> = ({
         }
 
         {displaySuggestionTo === true && 
-            <div className = "z-[60] absolute top-[7.2rem] left-[18rem]">
+            <div className = "z-[60] absolute top-[7.2rem] left-[18rem] medium:left-[26vw] small:left-[25vw]">
                 <BookingFlightSuggestionTo 
                     handleSetupDisplaySuggestionTo={handleSetupDisplaySuggestionTo}
                     suggestAirportsTo = {suggestAirportsTo}
@@ -135,7 +135,7 @@ const GenericContent: React.FC<Props> = ({
         }
 
         {displayCalendarDepart === true && 
-            <div className = "z-[60] absolute left-[36.5rem] top-[7rem]">
+            <div className = "z-[60] absolute left-[36.5rem] top-[7rem] medium:left-[32vw] small:top-[11.5rem] small:left-[0rem]">
                 <CalendarDepart
                     handleSetupSelectedDateDepart={handleSetupSelectedDateDepart}
                     handleSetupDisplayCalendarDepart = {handleSetupDisplayCalendarDepart}
@@ -144,7 +144,7 @@ const GenericContent: React.FC<Props> = ({
         }
 
         {displayCalendarReturn === true && 
-            <div className = "z-[60] absolute left-[48rem] top-[7rem]">
+            <div className = "z-[60] absolute left-[48rem] top-[7rem] medium:left-[42vw] small:top-[11.5rem] small:left-[15rem]">
                 <CalendarReturn
                     handleSetupSelectedDateReturn={handleSetupSelectedDateReturn}
                     handleSetupDisplayCalendarReturn = {handleSetupDisplayCalendarReturn}
@@ -153,7 +153,7 @@ const GenericContent: React.FC<Props> = ({
         }
 
         {displayPassengerInfo === true && 
-            <div className = "z-[100] absolute left-[2rem] top-[11.5rem]">
+            <div className = "z-[100] absolute left-[2rem] top-[11.5rem] small:top-[17.5rem]">
                 <PassengerInfo handleIncreaseAdultPassenger = {handleIncreaseAdultPassenger} handleDecreaseAdultPassenger = {handleDecreaseAdultPassenger} handleIncreaseChildrenPassenger = {handleIncreaseChildrenPassenger} handleDecreaseChildrenPassenger = {handleDecreaseChildrenPassenger} handleIncreaseInfantPassenger = {handleIncreaseInfantPassenger} handleDecreaseInfantPassenger = {handleDecreaseInfantPassenger} adultPassengerQuantity = {adultPassengerQuantity} childrenPassengerQuantity = {childrenPassengerQuantity} infantPassengerQuantity = {infantPassengerQuantity}/>
             </div>
         }
