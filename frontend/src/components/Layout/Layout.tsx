@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
-import image3 from "../../assets-test/Images/plane1.jpg";
+import image3 from "../../assets-test/Images/sunset4.jpg";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -37,7 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
     <>
       <NavBar />
       <div className="bg-white">
-        <img src={headerImage} alt="Header" className="w-full h-[300px] object-cover" />
+        <img src={headerImage} alt="Header" className="w-full h-[300px] object-cover object-center" />
 
         <div className="flex items-center w-[1100px] mx-auto p-3 text-lg">
           <Link to="/" className="flex items-center text-golden no-underline">
@@ -48,7 +48,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
         </div>
       </div>
 
-      <main className="min-h-screen">{children}</main>
+      <main className="min-h-screen bg-slate-50">{children}</main>
       <div className="flex items-center w-[1100px] mx-auto p-3 text-lg">
           <Link to="/" className="flex items-center text-golden no-underline">
             <FaHome className="mr-2" />
