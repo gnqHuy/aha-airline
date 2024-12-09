@@ -3,16 +3,19 @@ import { Ticket } from "../../object/ticket/ticket";
 
 type TicketContextType = {
   selectedTicket: Ticket | null;
-  setSelectedTicket: (Ticket: Ticket) => void;
+  selectedClass: string; 
+  setSelectedTicket: (ticket: Ticket) => void;
+  setSelectedClass: (classType: string) => void;
 };
 
 const TicketContext = createContext<TicketContextType | undefined>(undefined);
 
 export const TicketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
+  const [selectedClass, setSelectedClass] = useState<string>("none");
 
   return (
-    <TicketContext.Provider value={{ selectedTicket, setSelectedTicket }}>
+    <TicketContext.Provider value={{ selectedTicket, selectedClass, setSelectedTicket, setSelectedClass }}>
       {children}
     </TicketContext.Provider>
   );

@@ -80,7 +80,7 @@ const Explore: React.FC<Props> = () => {
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
             <Link
-              to="/travel-info/documents#passport"
+              to="/travel-info/traveldocument#passport"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Passport Requirements
@@ -88,7 +88,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li className="mb-4">
             <Link
-              to="/travel-info/documents#visa"
+              to="/travel-info/traveldocument#visa"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Visa Information
@@ -96,7 +96,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li>
             <Link
-              to="/travel-info/documents#health-vaccination"
+              to="/travel-info/traveldocument#health-vaccination"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Health & Vaccination
