@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace QAirlines.Models.Enums
 {
-    public enum FlightStatus
+    public enum PassengerTitle
     {
-        Upcomming,
-        Boarding,
-        Departed,
-        Delayed,
-        Cancelled
+        Mr,
+        Ms,
+        Mrs
     }
 }

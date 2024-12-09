@@ -1,4 +1,5 @@
 ﻿using QAirlines.Models.Base;
+using QAirlines.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,7 +17,7 @@ namespace QAirlines.Models
         public DateTime BoardingTime { get; set; }
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
-        public string Status { get; set; }
+        public FlightStatus Status { get; set; }
         public string BoardingGate { get; set; }
         public int EconomyPrice { get; set; }
         public int BusinessPrice { get; set; }

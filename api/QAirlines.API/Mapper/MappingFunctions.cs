@@ -22,7 +22,9 @@ namespace QAirlines.API.Mapper
             {
                 IATA = airport.IATA,
                 Name = airport.Name,
-                City = _mapper.Map<CityDTO>(city)
+                City = _mapper.Map<CityDTO>(city),
+                Latitude = airport.Latitude,
+                Longitude = airport.Longitude
             };
         }
 
@@ -39,7 +41,9 @@ namespace QAirlines.API.Mapper
                 FromAirportIATA = flightRoute.FromAirportIATA,
                 ToAirportIATA = flightRoute.ToAirportIATA,
                 FromAirport = fromAirportDTO,
-                ToAirport = toAirportDTO
+                ToAirport = toAirportDTO,
+                NoOfFlights = flightRoute.NoOfFlights,
+                Distance = flightRoute.Distance,
             };
         }
     }

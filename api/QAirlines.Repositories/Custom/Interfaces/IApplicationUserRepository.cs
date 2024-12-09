@@ -1,4 +1,4 @@
-﻿using QAirlines.Models;
+﻿using QAirlines.Models.User;
 using QAirlines.Repositories.Generic;
 using System;
 using System.Collections.Generic;
@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 
 namespace QAirlines.Repositories.Custom.Interfaces
 {
-    public interface IAircraftRepository : IGenericRepository<Aircraft, Guid>
+    public interface IApplicationUserRepository : IGenericRepository<ApplicationUser, Guid>
     {
-        IEnumerable<Aircraft> GetLargestAircrafts(int count);
-        Task ResetAvailableTime();
     }
 }

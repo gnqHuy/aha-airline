@@ -19,6 +19,8 @@ namespace QAirlines.UnitOfWorks
         public ICountryRepository Countries { get; private set; }
         public IFlightRepository Flights { get; private set; }
         public IFlightRouteRepository FlightRoutes { get; private set; }
+        public IRefreshTokenRepository RefreshTokens { get; private set; }
+        public IApplicationUserRepository ApplicationUsers { get; private set; }
 
         public UnitOfWork(QAirlineDbContext context)
         {
@@ -30,6 +32,8 @@ namespace QAirlines.UnitOfWorks
             Countries = new CountryRepository(context);
             Flights = new FlightRepository(context);
             FlightRoutes = new FlightRouteRepository(context);
+            RefreshTokens = new RefreshTokenRepository(context);
+            ApplicationUsers = new ApplicationUserRepository(context);
         }
 
         public int Commit()

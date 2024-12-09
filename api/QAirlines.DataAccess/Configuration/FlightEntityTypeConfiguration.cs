@@ -48,7 +48,7 @@ namespace QAirlines.DataAccess.Configuration
 
             builder.Property(e => e.Status)
                 .IsRequired()
-                .HasColumnType("varchar(255)")
+                .HasColumnType("int")
                 .HasColumnName("status");
 
             builder.Property(e => e.BoardingGate)

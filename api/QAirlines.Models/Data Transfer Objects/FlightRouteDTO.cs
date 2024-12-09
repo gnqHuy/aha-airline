@@ -14,5 +14,6 @@ namespace QAirlines.Models.Data_Transfer_Objects
         public AirportDTO FromAirport { get; set; }
         public AirportDTO ToAirport { get; set; }
         public int NoOfFlights { get; set; }
+        public double? Distance {  get; set; } 
     }
 }
