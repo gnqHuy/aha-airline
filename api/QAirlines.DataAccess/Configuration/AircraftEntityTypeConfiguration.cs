@@ -16,7 +16,7 @@ namespace QAirlines.DataAccess.Model_Configuration
             builder.HasKey(x => x.Id).HasName("PRIMARY");
 
             builder.Property(e => e.Id)
-                .HasColumnType("char(36)")
+                .HasColumnType("int")
                 .HasColumnName("id")
                 .ValueGeneratedOnAdd();
 
@@ -34,6 +34,21 @@ namespace QAirlines.DataAccess.Model_Configuration
                 .IsRequired()
                 .HasColumnType("int")
                 .HasColumnName("no_of_seats");
+
+            builder.Property(e => e.Status)
+                .IsRequired()
+                .HasColumnType("int")
+                .HasColumnName("status");
+
+            builder.Property(e => e.Terminal)
+                .IsRequired()
+                .HasColumnType("varchar(255)")
+                .HasColumnName("terminal");
+
+            builder.Property(e => e.AvailableAt)
+                .IsRequired()
+                .HasColumnType("datetime(6)")
+                .HasColumnName("datetime");
 
             builder.ToTable("aircrafts");
         }

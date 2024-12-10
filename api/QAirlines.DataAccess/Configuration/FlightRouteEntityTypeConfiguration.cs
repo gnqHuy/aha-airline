@@ -37,6 +37,10 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("int")
                 .HasColumnName("no_of_flights");
 
+            builder.Property(e => e.Distance)
+                .HasColumnType("double")
+                .HasColumnName("distance");
+
             builder.HasOne(e => e.FromAirport)
                 .WithMany(c => c.FromRoutes)
                 .HasForeignKey(e => e.FromAirportIATA)

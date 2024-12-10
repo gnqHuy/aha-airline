@@ -11,5 +11,7 @@ namespace QAirlines.Models.Data_Transfer_Objects
         public string IATA {  get; set; }
         public string Name { get; set; }
         public CityDTO City { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
     }
 }

@@ -20,6 +20,8 @@ namespace QAirlines.Models
 
         public int NoOfFlights { get; set; }
 
+        public double? Distance { get; set; }
+
         public virtual Airport? FromAirport { get; set; }
 
         public virtual Airport? ToAirport { get; set; }

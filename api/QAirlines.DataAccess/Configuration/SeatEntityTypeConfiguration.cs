@@ -31,9 +31,14 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("int")
                 .HasColumnName("number");
 
-            builder.Property(e => e.Class)
+            builder.Property(e => e.Position)
                 .IsRequired()
                 .HasColumnType("varchar(255)")
+                .HasColumnName("position");
+
+            builder.Property(e => e.Class)
+                .IsRequired()
+                .HasColumnType("int")
                 .HasColumnName("class");
 
             builder.Property(e => e.IsAvaiable)

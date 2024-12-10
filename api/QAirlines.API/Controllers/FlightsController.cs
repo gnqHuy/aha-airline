@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QAirlines.API.Services;
 using QAirlines.Models;
 using QAirlines.UnitOfWorks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace QAirlines.API.Controllers
@@ -14,14 +16,16 @@ namespace QAirlines.API.Controllers
     public class FlightsController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly FlightService _flightService;
 
-        public FlightsController(IUnitOfWork unitOfWork)
+        public FlightsController(IUnitOfWork unitOfWork, FlightService flightService)
         {
             _unitOfWork = unitOfWork;
+            _flightService = flightService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllFlights() 
+        public async Task<IActionResult> GetAll() 
         {
             var flights = await _unitOfWork.Flights.GetAllAsync();
             if (flights != null)
@@ -38,39 +42,6 @@ namespace QAirlines.API.Controllers
             return flight;
         }
 
-        //[HttpGet("DepartureId={Id}")]
-        //public async Task<IActionResult> GetFlightsFromDeparture(Guid Id)
-        //{
-        //    var flights = await _unitOfWork.Flights.GetFlightsFromDepartureCity(Id);
-        //    if (flights != null)
-        //    {
-        //        return Ok(flights);
-        //    }
-        //    return NotFound();
-        //}
-
-        //[HttpGet("ArrivalId={Id}")]
-        //public async Task<IActionResult> GetFlightsToArrival(Guid Id)
-        //{
-        //    var flights = await _unitOfWork.Flights.GetFlightsToArrivalCity(Id);
-        //    if (flights != null)
-        //    {
-        //        return Ok(flights);
-        //    }
-        //    return NotFound();
-        //}
-
-        //[HttpGet("DepartureId={departureId}/ArrivalId={arrivalId}")]
-        //public async Task<IActionResult> GetFlightsFromTerminalInfo(Guid departureId, Guid arrivalId)
-        //{
-        //    var flights = await _unitOfWork.Flights.GetFlightsFromTerminalInfo(departureId, arrivalId);
-        //    if (flights != null)
-        //    {
-        //        return Ok(flights);
-        //    }
-        //    return NotFound();
-        //}
-
         [HttpPost]
         public async Task AddFlight([FromBody] Flight flight)
         {
@@ -83,6 +54,24 @@ namespace QAirlines.API.Controllers
         {
             await _unitOfWork.Flights.AddRangeAsync(flights);
             _unitOfWork.Commit();
+        }
+
+        [HttpPost("AutoGenerate")]
+        public async Task<IActionResult> GenerateContinuousRandomFlights([FromQuery]int days)
+        {
+            DateTime current = DateTime.Now;
+            current = current.AddDays(days);
+            var flights = _flightService.GenerateContinuousRandomFlight(current);
+
+            if (flights != null)
+            {
+                _unitOfWork.Flights.AddRangeAsync(flights);
+                _unitOfWork.Commit();
+
+                int count = flights.Count();
+                return Ok($"Generated and added {count} flights");
+            }
+            return BadRequest();
         }
 
         [HttpDelete]

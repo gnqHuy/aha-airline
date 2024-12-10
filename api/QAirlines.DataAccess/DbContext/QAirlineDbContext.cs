@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using QAirlines.Models.User;
 using Microsoft.EntityFrameworkCore;
 using QAirlines.Models;
+using QAirlines.Models.Token;
+using QAirlines.Models.Domain_Objects;
 
 namespace QAirlines.DataAccess.DbContext
 {
@@ -29,10 +31,11 @@ namespace QAirlines.DataAccess.DbContext
         public DbSet<City> Cities { get; set; }
         public DbSet<FlightRoute> FlightRoutes { get; set; }
         public DbSet<Flight> Flights { get; set; }
-        public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         #endregion
     }
