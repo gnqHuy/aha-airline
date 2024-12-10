@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Flight } from "../../object/flight/flight";
-import { useFlight } from "../../context/FlightContext/FlightContext";
+import { useFlightContext } from "../../context/FlightContext/FlightContext";
 import { useNavigate } from "react-router-dom";
 import { useSearchFlightState } from "../../context/SearchFlightState/SearchFlightState";
 import { AiOutlineClose } from "react-icons/ai";
@@ -12,7 +12,7 @@ type Props = {
 const MAX_PASSENGERS = 9;
 
 const SearchFlight: React.FC<Props> = ({ flight }) => {
-  const { setSelectedFlight, setSelectedPassenger } = useFlight();
+  const { setSelectedFlight, setSelectedPassenger } = useFlightContext();
   const { setSearchFlightState } = useSearchFlightState();
   const navigate = useNavigate();
 

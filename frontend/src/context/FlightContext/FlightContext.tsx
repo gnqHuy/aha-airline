@@ -33,7 +33,7 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   );
 };
 
-export const useFlight = () => {
+export const useFlightContext = () => {
   const context = useContext(FlightContext);
   if (!context) {
     throw new Error("useFlight must be used within a FlightProvider");
