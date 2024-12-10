@@ -30,7 +30,36 @@ namespace QAirlines.Repositories.Custom.Repositories
                 flightRoutes = flightRoutes.Where(fr => fr.ToAirportIATA.Trim().ToLower().Equals(request.ToAirportIATA.Trim().ToLower()));
             }
 
-            return flightRoutes.ToList();
+            return flightRoutes;
+        }
+
+        public IEnumerable<FlightRoute> FindPagedRoutesFromRequest(FlightRouteRequest request, int pageSize, int pageNumber)
+        {
+            var flightRoutes = _context.FlightRoutes.AsQueryable();
+
+            if (!string.IsNullOrEmpty(request.FromAirportIATA))
+            {
+                flightRoutes = flightRoutes.Where(fr => fr.FromAirportIATA.Trim().ToLower().Equals(request.FromAirportIATA.Trim().ToLower()));
+            }
+
+            if (!string.IsNullOrEmpty(request.ToAirportIATA))
+            {
+                flightRoutes = flightRoutes.Where(fr => fr.ToAirportIATA.Trim().ToLower().Equals(request.ToAirportIATA.Trim().ToLower()));
+            }
+
+            flightRoutes = flightRoutes.Skip(pageSize * pageNumber).Take(pageSize);
+
+            return flightRoutes;
+        }
+
+        public IEnumerable<FlightRoute> FindMostPopularRoutes(int pageSize, int pageNumber)
+        {
+            var flightRoutes = _context.FlightRoutes
+                .OrderBy(fr => fr.NoOfFlights)
+                .Skip(pageSize * pageNumber)
+                .Take(pageSize);
+
+            return flightRoutes;
         }
 
         public async Task<FlightRoute> UpdateNoOfFlights(FlightRouteRequest request, int amount)

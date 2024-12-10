@@ -8,7 +8,7 @@ namespace QAirlines.Models.Request
 {
     public class FlightRequest
     { 
-        public Guid FlightRouteId { get; set; }
+        public Guid RouteId { get; set; }
         public DateTime DepartTime { get; set; }
     }
 }
