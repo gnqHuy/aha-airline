@@ -35,6 +35,14 @@ namespace QAirlines.DataAccess.Mapping
                 .HasColumnType("char(255)")
                 .HasColumnName("name");
 
+            builder.Property(e => e.Latitude)
+                .HasColumnType("double")
+                .HasColumnName("latitude");
+
+            builder.Property(e => e.Longitude)
+                .HasColumnType("double")
+                .HasColumnName("longtitude");
+
             builder.HasOne(e => e.City)
                 .WithMany(c => c.Airports)
                 .HasForeignKey(e => e.CityId)

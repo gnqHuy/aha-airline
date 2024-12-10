@@ -11,5 +11,6 @@ namespace QAirlines.Repositories.Custom.Interfaces
     public interface IAircraftRepository : IGenericRepository<Aircraft, Guid>
     {
         IEnumerable<Aircraft> GetLargestAircrafts(int count);
+        Task ResetAvailableTime();
     }
 }

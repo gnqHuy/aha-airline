@@ -1,4 +1,5 @@
 ﻿using QAirlines.Models.Base;
+using QAirlines.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,22 +14,15 @@ namespace QAirlines.Models
         public Guid Id { get; set; }
         public Guid AircraftId { get; set; }
         public Guid FlightRouteId { get; set; }
-
-        [ForeignKey(nameof(Departure))]
-        public string DepartureIATA { get; set; }
-
-        [ForeignKey(nameof(Arrival))]
-        public string ArrivalIATA { get; set; }
-
         public DateTime BoardingTime { get; set; }
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
-        public int NoOfSeats { get; set; }
-        public string Status { get; set; }
+        public FlightStatus Status { get; set; }
+        public string BoardingGate { get; set; }
+        public int EconomyPrice { get; set; }
+        public int BusinessPrice { get; set; }
         public virtual Aircraft? Aircraft { get; set; }
         public virtual FlightRoute? FlightRoute { get; set; }
-        public virtual Airport? Departure { get; set; }
-        public virtual Airport? Arrival { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 
     }
