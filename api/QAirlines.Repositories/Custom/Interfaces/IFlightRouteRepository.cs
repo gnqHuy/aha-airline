@@ -11,7 +11,9 @@ namespace QAirlines.Repositories.Custom.Interfaces
 {
     public interface IFlightRouteRepository : IGenericRepository<FlightRoute, Guid>
     {
-        IEnumerable<FlightRoute>FindRoutesFromRequest(FlightRouteRequest request);
+        IEnumerable<FlightRoute> FindRoutesFromRequest(FlightRouteRequest request);
+        IEnumerable<FlightRoute> FindPagedRoutesFromRequest(FlightRouteRequest request, int pageSize, int pageNumber);
+        IEnumerable<FlightRoute> FindMostPopularRoutes(int pageSize, int pageNumber);
         Task<FlightRoute> UpdateNoOfFlights(FlightRouteRequest request, int amount);
     }
 }
