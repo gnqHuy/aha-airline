@@ -23,8 +23,6 @@ namespace QAirlines.API.Mapper
                 IATA = airport.IATA,
                 Name = airport.Name,
                 City = _mapper.Map<CityDTO>(city),
-                Latitude = airport.Latitude,
-                Longitude = airport.Longitude
             };
         }
 
@@ -44,6 +42,28 @@ namespace QAirlines.API.Mapper
                 ToAirport = toAirportDTO,
                 NoOfFlights = flightRoute.NoOfFlights,
                 Distance = flightRoute.Distance,
+            };
+        }
+
+        public FlightDTO FlightMapper(Flight flight)
+        {
+            var aircraft = _unitOfWork.Aircrafts.GetById(flight.AircraftId);
+            var aircraftDTO = _mapper.Map<AircraftDTO>(aircraft);
+            var flightRoute = _unitOfWork.FlightRoutes.GetById(flight.FlightRouteId);
+            var flightRouteDTO = FlightRouteMapper(flightRoute);
+
+            return new FlightDTO
+            {
+                Id = flightRoute.Id,
+                Aircraft = aircraftDTO,
+                FlightRoute = flightRouteDTO,
+                BoardingTime = flight.BoardingTime,
+                DepartureTime = flight.DepartureTime,
+                ArrivalTime = flight.ArrivalTime,
+                BoardingGate = flight.BoardingGate,
+                EconomyPrice = flight.EconomyPrice,
+                BusinessPrice = flight.BusinessPrice,
+                Status = flight.Status
             };
         }
     }
