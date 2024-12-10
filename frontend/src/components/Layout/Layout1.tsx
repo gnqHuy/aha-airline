@@ -3,7 +3,7 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { FaHome, FaPlaneDeparture } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
-import { useFlight } from "../../context/FlightContext/FlightContext";
+import { useFlightContext } from "../../context/FlightContext/FlightContext";
 import image3 from "../../assets-test/Images/sunset4.jpg";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
@@ -14,7 +14,7 @@ type LayoutProps = {
 };
 
 const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
-  const { selectedFlight, selectedPassenger } = useFlight();
+  const { selectedFlight, selectedPassenger } = useFlightContext();
   const currentPath = window.location.pathname;
   const pathSegments = currentPath.split('/').filter(Boolean);
 

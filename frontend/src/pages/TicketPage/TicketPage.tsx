@@ -2,14 +2,14 @@ import React from 'react';
 import TicketData from "../../assets-test/Json/ticket.json";
 import TicketPreview from '../../components/TicketPreview/TicketPreview';
 import headerImage from "../../assets-test/Images/sunset4.jpg";
-import { useFlight } from '../../context/FlightContext/FlightContext';
+import { useFlightContext } from '../../context/FlightContext/FlightContext';
 import Layout1 from '../../components/Layout/Layout1';
 import Layout from '../../components/Layout/Layout';
 
 type Props = {};
 
 const TicketPage: React.FC<Props> = () => {
-    const { selectedFlight} = useFlight();
+    const { selectedFlight} = useFlightContext();
 
     if (!selectedFlight || !selectedFlight.from || !selectedFlight.to) {
         return <div>

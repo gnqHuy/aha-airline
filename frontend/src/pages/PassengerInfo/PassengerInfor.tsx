@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFlight } from "../../context/FlightContext/FlightContext";
+import { useFlightContext } from "../../context/FlightContext/FlightContext";
 import { useTicket } from "../../context/TicketContext/TicketContext";
 import PassengerForm from "../../components/PassengerForm/PassengerForm";
 import { useBookedTicket } from "../../context/BookedTicket/BookedTicket";
@@ -11,7 +11,7 @@ import Layout from "../../components/Layout/Layout";
 type Props = {};
 
 const PassengerInfor: React.FC<Props> = () => {
-  const { selectedPassenger } = useFlight();
+  const { selectedPassenger } = useFlightContext();
   const { adults, children, infants } = selectedPassenger;
   const { selectedClass, selectedTicket } = useTicket();
   const { addBookedTicket } = useBookedTicket();

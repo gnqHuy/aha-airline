@@ -3,7 +3,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 import { FaPlane } from 'react-icons/fa';
 import flightsJson from '../../assets-test/Json/flights.json';
 import { GiWorld } from 'react-icons/gi';
-import { useFlight } from '../../context/FlightContext/FlightContext';
+import { useFlightContext } from '../../context/FlightContext/FlightContext';
 import { useNavigate } from 'react-router-dom';
 import { useSearchFlightState } from '../../context/SearchFlightState/SearchFlightState';
 import SearchFlight from '../SearchFlight/SearchFlight';
