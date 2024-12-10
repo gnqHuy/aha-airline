@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QAirlines.API.Mapper;
 using QAirlines.API.Services;
 using QAirlines.Models;
+using QAirlines.Models.Data_Transfer_Objects;
+using QAirlines.Models.Request;
+using QAirlines.Models.Response;
 using QAirlines.UnitOfWorks;
 using System;
 using System.Collections;
@@ -17,11 +21,13 @@ namespace QAirlines.API.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly FlightService _flightService;
+        private readonly MappingFunctions _mappingFunctions;
 
-        public FlightsController(IUnitOfWork unitOfWork, FlightService flightService)
+        public FlightsController(IUnitOfWork unitOfWork, FlightService flightService, MappingFunctions mappingFunctions)
         {
             _unitOfWork = unitOfWork;
             _flightService = flightService;
+            _mappingFunctions = mappingFunctions;
         }
 
         [HttpGet]
@@ -40,6 +46,29 @@ namespace QAirlines.API.Controllers
         {
             var flight = await _unitOfWork.Flights.GetByIdAsync(Id);
             return flight;
+        }
+
+        [HttpGet("Preview")]
+        public async Task<IEnumerable<FlightPreview>> GetFlightPreviews([FromQuery]FlightPreviewRequest request)
+        {
+            var flightPreviews = await _flightService.GetFlightPreviews(request);
+
+            return flightPreviews.ToList();
+        }
+
+        [HttpGet("FromRequest")]
+        public async Task<IEnumerable<FlightDTO>> GetFromRequest([FromQuery]string fromIATA, string toIATA, DateTime dateTime)
+        {
+            var flights = await _flightService.GetFromRequest(fromIATA, toIATA, dateTime);
+            
+            var flightDTOs = new List<FlightDTO>();
+            foreach (var flight in flights) 
+            {
+                var flightDTO = _mappingFunctions.FlightMapper(flight);
+                flightDTOs.Add(flightDTO);
+            }
+
+            return flightDTOs;
         }
 
         [HttpPost]

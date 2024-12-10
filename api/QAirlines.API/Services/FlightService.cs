@@ -1,7 +1,9 @@
 ﻿using Microsoft.VisualBasic;
+using QAirlines.API.Mapper;
 using QAirlines.Models;
 using QAirlines.Models.Enums;
 using QAirlines.Models.Request;
+using QAirlines.Models.Response;
 using QAirlines.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -16,12 +18,15 @@ namespace QAirlines.API.Services
         private const double operationCost = 1.3;
         private const double businessClassCoefficent = 1.5;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly MappingFunctions _mappingFunctions;
 
-        public FlightService(IUnitOfWork unitOfWork)
+        public FlightService(IUnitOfWork unitOfWork, MappingFunctions mappingFunctions)
         {
             _unitOfWork = unitOfWork;
+            _mappingFunctions = mappingFunctions;
         }
 
+        #region DateTime Related Functions
         private DateTime RoundTime(DateTime dateTime)
         {
             int totalMinutes = (int)dateTime.TimeOfDay.TotalMinutes;
@@ -31,6 +36,53 @@ namespace QAirlines.API.Services
             return dateTime.Date.AddMinutes(roundedMinutes);
         }
 
+        private DateTime GetBoardingTime(DateTime dateTime)
+        {
+            return dateTime.AddMinutes(30);
+        }
+
+        private DateTime GetDepartureTime(DateTime dateTime)
+        {
+            return dateTime.AddHours(1);
+        }
+
+        private DateTime GetArrivalTime(DateTime departureTime, double distance)
+        {
+            const double averageSpeed = 800;
+            double travelTime = distance / averageSpeed;
+
+            return departureTime.AddHours(travelTime);
+        }
+        #endregion
+
+        #region Randomizing Functions
+        private FlightRoute RandomRoute(IEnumerable<FlightRoute> routes)
+        {
+            var routeList = routes.ToList();
+            int size = routeList.Count;
+
+            byte[] randomNumber = new byte[4];
+            RandomNumberGenerator.Fill(randomNumber);
+            int index = BitConverter.ToInt32(randomNumber, 0) & int.MaxValue;
+
+            return routeList[index % size];
+        }
+
+        private string RandomGate(int min, int max)
+        {
+            int range = max - min + 1;
+
+            byte[] randomNumber = new byte[4];
+            RandomNumberGenerator.Fill(randomNumber);
+            int randomValue = BitConverter.ToInt32(randomNumber, 0) & int.MaxValue;
+
+            int gateNumber = (randomValue % range) + min;
+
+            return $"{gateNumber}/T1";
+        }
+        #endregion
+
+        #region Price Calculation
         private double HourlyCoefficent(DateTime time)
         {
             int hour = time.Hour;
@@ -95,7 +147,9 @@ namespace QAirlines.API.Services
         {
             return (route.Distance ?? 0) * operationCost * HourlyCoefficent(dateTime) * MonthlyCoefficent(dateTime);
         }
+        #endregion
 
+        #region Check Aircraft Availability
         private bool IsAircraftAvailable(Aircraft aircraft, DateTime dateTime)
         {
             if (aircraft == null)
@@ -120,48 +174,61 @@ namespace QAirlines.API.Services
             }
             return true;
         }
-
-        private FlightRoute RandomRoute(IEnumerable<FlightRoute> routes) 
+        #endregion
+       
+        public async Task<IEnumerable<FlightPreview>> GetFlightPreviews(FlightPreviewRequest request)
         {
-            var routeList = routes.ToList();
-            int size = routeList.Count;
+            var flightPreviews = new List<FlightPreview>();
+            var flightRoutes = new List<FlightRoute>();
 
-            byte[] randomNumber = new byte[4];
-            RandomNumberGenerator.Fill(randomNumber);
-            int index = BitConverter.ToInt32(randomNumber, 0) & int.MaxValue;
+            if (request.RouteInfo == null)
+            {
+                flightRoutes = _unitOfWork.FlightRoutes.FindMostPopularRoutes(request.PageSize, request.PageNumber).ToList();
+            } 
+            else
+            {
+                flightRoutes = _unitOfWork.FlightRoutes.FindPagedRoutesFromRequest(request.RouteInfo, request.PageSize, request.PageNumber).ToList();
+            }
 
-            return routeList[index % size];
+            foreach (var flightRoute in flightRoutes)
+            {
+                var flight = await _unitOfWork.Flights.GetCheapestByRouteId(flightRoute.Id);
+                var fromAirport = _mappingFunctions.AirportMapper(_unitOfWork.Airports.GetByIATA(flightRoute.FromAirportIATA));
+                var toAirport = _mappingFunctions.AirportMapper(_unitOfWork.Airports.GetByIATA(flightRoute.ToAirportIATA));
+
+                var flightPreview = new FlightPreview
+                {
+                    FromAirport = fromAirport,
+                    ToAirport = toAirport,
+                    DepartureTime = flight.DepartureTime,
+                    MinimumPrice = flight.EconomyPrice,
+                };
+
+                flightPreviews.Add(flightPreview);
+            }
+
+            return flightPreviews;
         }
 
-        private string RandomGate(int min, int max)
+        public async Task<IEnumerable<Flight>> GetFromRequest(string fromAirportIATA,  string toAirportIATA, DateTime departTime)
         {
-            int range = max - min + 1;
+            var flightRouteRequest = new FlightRouteRequest
+            {
+                FromAirportIATA = fromAirportIATA,
+                ToAirportIATA = toAirportIATA
+            };
 
-            byte[] randomNumber = new byte[4];
-            RandomNumberGenerator.Fill(randomNumber);
-            int randomValue = BitConverter.ToInt32(randomNumber, 0) & int.MaxValue;
+            var route = _unitOfWork.FlightRoutes.FindRoutesFromRequest(flightRouteRequest);
 
-            int gateNumber = (randomValue % range) + min;
+            var flightRequest = new FlightRequest
+            {
+                RouteId = route.ElementAt(0).Id,
+                DepartTime = departTime,
+            };
 
-            return $"{gateNumber}/T1";
-        }
+            var flights = await _unitOfWork.Flights.GetFromRequest(flightRequest);
 
-        private DateTime GetBoardingTime(DateTime dateTime)
-        {
-            return dateTime.AddMinutes(30);
-        }
-
-        private DateTime GetDepartureTime(DateTime dateTime)
-        {
-            return dateTime.AddHours(1);
-        }
-
-        private DateTime GetArrivalTime(DateTime departureTime, double distance) 
-        {
-            const double averageSpeed = 800;
-            double travelTime = distance / averageSpeed;
-
-            return departureTime.AddHours(travelTime);
+            return flights;
         }
 
         public IEnumerable<Flight> GenerateContinuousRandomFlight(DateTime dateTime)
@@ -191,6 +258,7 @@ namespace QAirlines.API.Services
 
                     aircraft.Terminal = nextRoute.ToAirportIATA;
                     aircraft.AvailableAt = arrivalTime;
+                    nextRoute.NoOfFlights++;
 
                     var flight = new Flight
                     {
