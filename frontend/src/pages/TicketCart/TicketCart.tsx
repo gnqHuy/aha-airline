@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFlight } from '../../context/FlightContext/FlightContext';
+import { useFlightContext } from '../../context/FlightContext/FlightContext';
 import { useTicket } from '../../context/TicketContext/TicketContext';
 import TicketPreview from '../../components/TicketPreview/TicketPreview';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ import Layout from '../../components/Layout/Layout';
 type Props = {};
 
 const TicketCard: React.FC<Props> = () => {
-    const { selectedFlight, selectedPassenger } = useFlight();
+    const { selectedFlight, selectedPassenger } = useFlightContext();
     const { selectedClass, selectedTicket } = useTicket();
     const navigate = useNavigate();
 

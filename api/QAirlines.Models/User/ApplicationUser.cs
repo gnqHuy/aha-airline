@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using QAirlines.Models.Token;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace QAirlines.Models.User
 {
     public class ApplicationUser : IdentityUser<Guid>
     {
+        public virtual List<Ticket> Tickets { get; set; } = new List<Ticket>();
+        public virtual List<RefreshToken> RefreshTokens { get; set; } = new List<RefreshToken>();
         public virtual ICollection<ApplicationUserRole> UserRoles { get; set; } = new List<ApplicationUserRole>();
-        public virtual ICollection<Passenger> Passengers { get; set; } = new List<Passenger>();
     }
 }

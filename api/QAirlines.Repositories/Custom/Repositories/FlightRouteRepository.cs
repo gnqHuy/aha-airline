@@ -22,15 +22,31 @@ namespace QAirlines.Repositories.Custom.Repositories
 
             if (!string.IsNullOrEmpty(request.FromAirportIATA))
             {
-                flightRoutes = flightRoutes.Where(fr => fr.FromAirportIATA == request.FromAirportIATA);
+                flightRoutes = flightRoutes.Where(fr => fr.FromAirportIATA.Trim().ToLower().Equals(request.FromAirportIATA.Trim().ToLower()));
             }
 
             if (!string.IsNullOrEmpty(request.ToAirportIATA))
             {
-                flightRoutes = flightRoutes.Where(fr => fr.ToAirportIATA == request.ToAirportIATA);
+                flightRoutes = flightRoutes.Where(fr => fr.ToAirportIATA.Trim().ToLower().Equals(request.ToAirportIATA.Trim().ToLower()));
             }
 
             return flightRoutes.ToList();
+        }
+
+        public async Task<FlightRoute> UpdateNoOfFlights(FlightRouteRequest request, int amount)
+        {
+            var flightRoutes = _context.FlightRoutes.AsQueryable();
+
+            var flightroute = await flightRoutes.FirstOrDefaultAsync(
+                fr => fr.FromAirportIATA.Trim().ToLower().Equals(request.FromAirportIATA.Trim().ToLower())
+                && fr.ToAirportIATA.Trim().ToLower().Equals(request.ToAirportIATA.Trim().ToLower()));
+
+            if (flightroute != null) 
+            {
+                flightroute.NoOfFlights += amount;
+            }
+
+            return flightroute;
         }
     }
 }

@@ -35,5 +35,12 @@ namespace QAirlines.API.Controllers
             await _unitOfWork.Aircrafts.AddRangeAsync(aircrafts);
             _unitOfWork.Commit();
         }
+
+        [HttpPut("ResetAvailableTime")]
+        public async Task ResetAvailableTime()
+        {
+            await _unitOfWork.Aircrafts.ResetAvailableTime();
+            _unitOfWork.Commit();
+        }
     }
 }

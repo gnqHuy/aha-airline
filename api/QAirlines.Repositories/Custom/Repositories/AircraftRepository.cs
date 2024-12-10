@@ -1,4 +1,5 @@
-﻿using QAirlines.DataAccess.DbContext;
+﻿using Microsoft.EntityFrameworkCore;
+using QAirlines.DataAccess.DbContext;
 using QAirlines.Models;
 using QAirlines.Repositories.Custom.Interfaces;
 using QAirlines.Repositories.Generic;
@@ -17,6 +18,33 @@ namespace QAirlines.Repositories.Custom.Repositories
         public IEnumerable<Aircraft> GetLargestAircrafts(int count)
         {
             return _context.Aircrafts.OrderByDescending(a => a.NoOfSeats).Take(count).ToList();
+        }
+
+        public override void AddRange(IEnumerable<Aircraft> aircrafts)
+        {
+            foreach (Aircraft aircraft in aircrafts)
+            {
+                aircraft.AvailableAt = DateTime.Now;
+                _context.Aircrafts.Add(aircraft);
+            }
+        }
+
+        public override async Task AddRangeAsync(IEnumerable<Aircraft> aircrafts)
+        {
+            foreach (Aircraft aircraft in aircrafts)
+            {
+                aircraft.AvailableAt = DateTime.Now;
+                await _context.Aircrafts.AddAsync(aircraft);
+            }
+        }
+
+        public async Task ResetAvailableTime()
+        {
+            var aircrafts = await _context.Aircrafts.ToListAsync();
+            foreach (Aircraft aircraft in aircrafts)
+            {
+                aircraft.AvailableAt = DateTime.Now;
+            }
         }
     }
 }

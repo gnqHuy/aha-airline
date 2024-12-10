@@ -13,6 +13,8 @@ using QAirlines.Models;
 using System;
 using QAirlines.UnitOfWorks;
 using QAirlines.API.Mapper;
+using QAirlines.Models.User;
+using QAirlines.API.Services;
 
 
 namespace QAirlines.API
@@ -28,16 +30,25 @@ namespace QAirlines.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            #region Migration Assembly
+            #region DbContext
 
             services.AddDbContext<QAirlineDbContext>(
                 options =>
-                    options.UseMySql(
+                    options
+                    .UseMySql(
                         Configuration.GetConnectionString("Default"),
                         ServerVersion.AutoDetect(Configuration.GetConnectionString("Default")),
                         builder => builder.MigrationsAssembly("QAirlines.Migrations")
                     )
+                    .EnableSensitiveDataLogging()
             );
+
+            #endregion
+
+            #region Services
+
+            services.AddScoped<DistanceCalculation>();
+            services.AddScoped<FlightService>();
 
             #endregion
 
@@ -69,6 +80,15 @@ namespace QAirlines.API
             services.AddHttpContextAccessor();
             services.AddResponseCaching();
             services.AddControllers();
+            services.AddIdentity<ApplicationUser, ApplicationRole>(
+                options => 
+                {
+                    options.Password.RequireDigit = true;
+                    options.Password.RequiredLength = 12;
+                    options.Password.RequireUppercase = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireNonAlphanumeric = true;
+                }).AddEntityFrameworkStores<QAirlineDbContext>();
             //    .AddJsonOptions(options =>
             //{
             //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;

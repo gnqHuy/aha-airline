@@ -8,6 +8,8 @@ import CalendarDepart from './Calendar/CalendarDepart';
 import PassengerInfo from './PassengerInfo/PassengerInfo';
 import GenericContent from './GenericContent/GenericContent';
 import CalendarReturn from './Calendar/CalendarReturn';
+import { getAllAirport } from '../../../../api/airportAPI';
+import { useFlightContext } from '../../../../context/FlightContext/FlightContext';
 
 interface Props {
     sectionTab: string;
@@ -46,7 +48,7 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
     const [searchingAirportTo, setSearchingAirportTo] = useState<string>("");
 
     // airports array
-    const [airports, setAirports] = useState<any[]>([]);
+    const { airports, setAirports } = useFlightContext();
 
     // suggest airports array
     const [suggestAirports, setSuggestAirports] = useState<any[]>(airports);
@@ -59,18 +61,6 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
     // selected date
     const [selectedDateDepart, setSelectedDateDepart] = useState<string>("Depart");
     const [selectedDateReturn, setSelectedDateReturn] = useState<string>("Return");
-
-    useEffect(() => {
-        fetch('/airports.json')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Failed to fetch the JSON file!");
-                }
-                return response.json();
-            })
-            .then(data => setAirports(data))
-            .catch(err => console.error(err));
-    }, [suggestAirports])
 
     // change the suggestion of flight from
     const handleSetupDisplaySuggestion = () => {
@@ -223,9 +213,12 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
 
     // handle display the selected date depart
     const handleSetupSelectedDateDepart = (date: string) => {
-        const today = convertToDate("05/12/2024");
+        const today = new Date();
         const convertDateDepart = convertToDate(date);
         const convertDateReturn = convertToDate(selectedDateReturn);
+        console.log("Today: " + today);
+        console.log("Depart: " + convertDateDepart);
+        console.log("Return: " + convertDateReturn);
         if ((convertDateDepart <= convertDateReturn || selectedDateReturn === "Return") && convertDateDepart >= today) {
             setSelectedDateDepart(date);
         }
@@ -233,9 +226,12 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
 
     // handle display the selected date return
     const handleSetupSelectedDateReturn = (date: string) => {
-        const today = convertToDate("05/12/2024");
+        const today = new Date();
         const convertDateDepart = convertToDate(selectedDateDepart);
         const convertDateReturn = convertToDate(date);
+        console.log("Today: " + today);
+        console.log("Depart: " + convertDateDepart);
+        console.log("Return: " + convertDateReturn);
         if ((convertDateReturn >= convertDateDepart || selectedDateDepart === "Depart") && convertDateReturn >= today) {
             setSelectedDateReturn(date);
         }

@@ -1,3 +1,3 @@
 window.runtimeConfig = {
-    API_URL: 'https://localhost:7197',
+    API_URL: 'https://localhost:7155',
 }

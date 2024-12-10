@@ -21,11 +21,9 @@ namespace QAirlines.Models
 
         public string Name { get; set; }
 
-        [InverseProperty(nameof(Flight.Departure))]
-        public virtual ICollection<Flight> DepartureFlights { get; set; } = new List<Flight>();
+        public double? Latitude { get; set; }
 
-        [InverseProperty(nameof(Flight.Arrival))]
-        public virtual ICollection<Flight> ArrivalFlights { get; set; } = new List<Flight>();
+        public double? Longitude { get; set; }
 
         [InverseProperty(nameof(FlightRoute.FromAirport))]
         public virtual ICollection<FlightRoute> FromRoutes { get; set; } = new List<FlightRoute>();
