@@ -69,11 +69,32 @@ const Airports: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setNewAirport((prev) => ({
-      ...prev,
-      [name]: name === "iata" ? value.toUpperCase() : value,
-    }));
-  };
+  
+    setNewAirport((prev) => {
+      if (name === "cityName") {
+        return {
+          ...prev,
+          city: {
+            ...prev.city,
+            name: value,
+          },
+        };
+      } else if (name === "country") {
+        return {
+          ...prev,
+          city: {
+            ...prev.city,
+            country: value,
+          },
+        };
+      } else {
+        return {
+          ...prev,
+          [name]: name === "iata" ? value.toUpperCase() : value,
+        };
+      }
+    });
+  };  
 
   const handleAddAirport = async () => {
   };
@@ -189,34 +210,45 @@ const Airports: React.FC = () => {
                   className="w-full px-2 py-1 border rounded"
                 />
               </td>
-              <td className="px-2">
-                {editingAirport ? (
-                  <button onClick={handleSaveEdit} className="bg-green-600 hover:bg-green-400 border-none px-5 py-2 text-white rounded">Save</button>
-                ) : (
-                  <button onClick={handleAddAirport} className="bg-blue-600 hover:bg-blue-400 border-none px-6 py-2 text-white rounded">Add</button>
-                )}
+              <td className="border border-gray-300 px-2 py-2 text-sm">
+                <div className="flex justify-center items-center">
+                  {editingAirport ? (
+                    <button
+                      onClick={handleSaveEdit}
+                      className="bg-green-600 hover:bg-green-400 border-none px-5 py-2 text-white rounded"
+                    >
+                      Save
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleAddAirport}
+                      className="bg-blue-600 hover:bg-blue-400 border-none px-6 py-2 text-white rounded"
+                    >
+                      Add
+                    </button>
+                  )}
+                </div>
               </td>
             </tr>
-
           </thead>
           <tbody>
             {filteredAirports.map((airport, index) => (
               <tr key={index} className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}>
-                <td className="border border-gray-300 px-4 py-2 text-sm">{airport.iata}</td>
-                <td className="border border-gray-300 px-4 py-2 text-sm">{airport.name}</td>
-                <td className="border border-gray-300 px-4 py-2 text-sm">{airport.city.name}</td>
-                <td className="border border-gray-300 px-4 py-2 text-sm">{airport.city.country}</td>
-                <td className="border border-gray-300 px-2 py-2 text-sm">
-                  <div className="flex items-center space-x-2">
+                <td className="border border-gray-300 px-4 py-2 text-base">{airport.iata}</td>
+                <td className="border border-gray-300 px-4 py-2 text-base">{airport.name}</td>
+                <td className="border border-gray-300 px-4 py-2 text-base">{airport.city.name}</td>
+                <td className="border border-gray-300 px-4 py-2 text-base">{airport.city.country}</td>
+                <td className="border border-gray-300 px-2 py-2">
+                    <div className="flex justify-center items-center space-x-2">
                     <button
                       onClick={() => handleEditAirport(airport)}
-                      className="bg-green-600 border-none rounded px-2 pt-1 hover:bg-green-400 transition duration-200"
+                      className="bg-green-600 border-none text-sm rounded px-2 pt-1 hover:bg-green-400 transition duration-200"
                     >
                       <FaWrench color="white"/>
                     </button>
                     <button
                       onClick={() => handleDeleteAirport(airport)}
-                      className="bg-red-600 border-none rounded px-2 pt-1 hover:bg-red-400 transition duration-200"
+                      className="bg-red-600 border-none text-sm rounded px-2 pt-1 hover:bg-red-400 transition duration-200"
                     >
                       <FaDeleteLeft color="white"/>
                     </button>
