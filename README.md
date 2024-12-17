@@ -51,4 +51,4 @@ dotnet ef database update
 ```
 
 ### Import data
-https://drive.google.com/drive/folders/1GHnTIxnQtocz2tkVAXM8nj-DLQ_aEksk?usp=drive_link
+https://drive.google.com/drive/folders/1MVT-qAwLlEF9fFAnOh51N-VMzm5xMlQo?usp=sharing

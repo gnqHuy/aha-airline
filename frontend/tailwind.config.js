@@ -26,11 +26,17 @@ module.exports = {
         'normal': '16px',
         'bit-lg': '15px', 
         'change': '1.4vw'
+      }, 
+      backgroundImage: {
+        'login': "url('')"
       }
     }, 
     fontFamily: {
       'space-grotesk': ['Space Grotesk']
     },
+    boxShadow: {
+      'gray': '0.1rem 0.1rem 0.5rem gray'
+    }
   },
   plugins: [],
   corePlugins: {

@@ -18,10 +18,16 @@ import Ticket from '../pages/TicketPage/TicketPage';
 import { SearchFlightStateProvider } from '../context/SearchFlightState/SearchFlightState';
 import TicketCard from '../pages/TicketCart/TicketCart';
 import { TicketProvider } from '../context/TicketContext/TicketContext';
-import PassengerInfo from '../components/BookingSection/Book/Content/PassengerInfo/PassengerInfo';
 import PassengerInfor from '../pages/PassengerInfo/PassengerInfor';
 import { BookedTicketProvider } from '../context/BookedTicket/BookedTicket';
 import Payment from '../pages/Payment/Payment';
+import Admin from '../pages/Admin/Admin';
+import Aircrafts from '../pages/Admin/Aircrafts/Aircrafts';
+import Airports from '../pages/Admin/Airports/Airports';
+import Cities from '../pages/Admin/Cities/Cities';
+import FlightRoutes from '../pages/Admin/FlightRoutes/FlightRoutes';
+import Flights from '../pages/Admin/Flights/Flights';
+import LoginPage from '../pages/LoginPage/LoginPage';
 
 export const router = createBrowserRouter([
   {
@@ -203,6 +209,26 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <TravelDocument />
+      </>
+    )
+  },
+  {
+    path: `/admin`,
+    element: <Admin />, 
+    children: [
+      { path: `aircrafts`, element: <Aircrafts/>},
+      { path: `airports`, element: <Airports/> },
+      { path: `cities`, element: <Cities/>},
+      { path: `flight-routes`, element: <FlightRoutes/>},
+      { path: `flights`, element: <Flights/>},
+    ],
+  }, 
+  {
+    path: "/login", 
+    element: (
+      <>
+        <ScrollToTop />
+        <LoginPage />
       </>
     )
   }
