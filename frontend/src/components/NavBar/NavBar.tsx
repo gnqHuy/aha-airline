@@ -24,7 +24,7 @@ const NavBar: React.FC<Props> = () => {
     setDropdownState((prev) => ({ ...prev, [key]: false }));
   };
 
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <nav className="grid grid-cols-[2fr_2fr_1fr] w-[80%] mx-auto items-center text-black">
