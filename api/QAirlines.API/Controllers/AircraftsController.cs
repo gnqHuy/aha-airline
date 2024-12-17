@@ -23,7 +23,7 @@ namespace QAirlines.API.Controllers
         public async Task<IActionResult> GetAllAircrafts()
         {
             var aircrafts = await _unitOfWork.Aircrafts.GetAllAsync();
-            if (aircrafts != null) 
+            if (aircrafts != null)
             {
                 return Ok(aircrafts);
             }
