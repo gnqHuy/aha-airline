@@ -10,6 +10,7 @@ import GenericContent from './GenericContent/GenericContent';
 import CalendarReturn from './Calendar/CalendarReturn';
 import { getAllAirport } from '../../../../api/airportAPI';
 import { useFlightContext } from '../../../../context/FlightContext/FlightContext';
+import { getAllAircrafts } from '../../../../api/aircraftAPI';
 
 interface Props {
     sectionTab: string;
@@ -61,6 +62,12 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
     // selected date
     const [selectedDateDepart, setSelectedDateDepart] = useState<string>("Depart");
     const [selectedDateReturn, setSelectedDateReturn] = useState<string>("Return");
+
+    useEffect(() => {
+        getAllAircrafts().then((res) => {
+            console.log(res.data);
+        })
+    }, []);
 
     // change the suggestion of flight from
     const handleSetupDisplaySuggestion = () => {
