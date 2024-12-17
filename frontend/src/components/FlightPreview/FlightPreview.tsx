@@ -8,6 +8,7 @@ import SearchFlight from '../SearchFlight/SearchFlight';
 import { useSearchFlightState } from '../../context/SearchFlightState/SearchFlightState';
 import flights from "../../assets-test/Json/flights.json"
 import cities from "../../assets-test/Json/cities.json"
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 type Props = {};
 
@@ -59,26 +60,42 @@ const FlightPreview = (props: Props) => {
   };
 
   return (
-    <div className="flight-preview-container">
-      <div className="title">
-        Popular flights from{' '}
-        <span className="departure-city" onClick={toggleDepartureList}>
-          {departureCity}
-        </span>
+    <div className="w-[59vw] mx-auto text-center items-center p-4 mt-24 mb-12">
+      <div className="h-px w-full bg-golden mb-5"></div>
+      <div className="relative">
+        <div className="flex justify-center items-center gap-2 text-xl">
+          Popular flights from{' '}
+          <div
+            className="font-bold cursor-pointer underline flex items-center gap-1 hover:text-[#d4a422]"
+          >
+            {departureCity}
+            {isDepartureListOpen ? (
+              <IoIosArrowUp className="text-base" onClick={toggleDepartureList}/>
+            ) : (
+              <IoIosArrowDown className="text-base" onClick={toggleDepartureList}/>
+            )}
+          </div>
+        </div>
+        
         {isDepartureListOpen && (
-          <div className="departureList" ref={departureListRef}>
-            <div className="all-location">
+          <div
+            className="absolute left-1/2 -translate-x-1/2 mt-2 text-left bg-white border border-gray-300 rounded-lg w-[90%] max-w-[300px] max-h-80 overflow-y-auto shadow-md z-10 p-2"
+            ref={departureListRef}
+          >
+            <div className="flex items-center gap-2 p-2 text-base">
               <GiWorld /> All locations
             </div>
-            <div style={{ borderTop: '1.5px solid #d4a422',}}>
+            <div className="h-px w-full bg-golden"></div>
+            <div className="border-t-[1.5px] border-[#d4a422] mt-2">
               {cities.map((city) => (
                 <div
-                  className="departureList-item"
+                  key={city.name}
+                  className="p-2 cursor-pointer hover:bg-gray-100"
                   onClick={() => handleSelectedCity(city.name)}
                 >
                   <b>{city.name}, </b>{city.country}
                   <br />
-                  <span style={{ fontSize: 'small' }}>{city.airport}</span>
+                  <span className="text-sm">{city.airport}</span>
                 </div>
               ))}
             </div>
@@ -86,36 +103,44 @@ const FlightPreview = (props: Props) => {
         )}
       </div>
 
-      <div className="flight-card-list">
+      <div className="grid grid-cols-[repeat(auto-fit,_240px)] justify-center gap-7 mt-6">
         {filteredFlights.length > 0 ? (
           filteredFlights.slice(0, visibleCount).map((flight: Flight) => (
             <div onClick={() => handleSelectedFlight(flight)}>
-              <FlightCard
-                flight={flight}
-                image={image1}
-              />
+              <FlightCard flight={flight} image={image1} />
             </div>
           ))
         ) : (
-          <p>No destinations available for <b>{departureCity}</b>.</p>
+          <p>
+            No destinations available for <b>{departureCity}</b>.
+          </p>
         )}
       </div>
+
       {searchFlightState && selectedFlight && (
-          <div>
-            <SearchFlight flight={selectedFlight} />
-          </div>
-        )}
+        <div>
+          <SearchFlight flight={selectedFlight} />
+        </div>
+      )}
 
       {filteredFlights.length > visibleCount ? (
-        <button className="view-more" onClick={handleViewMore}>
+        <button
+          className="mt-5 px-6 py-3 font-bold text-white bg-[#d4a422] rounded-lg hover:text-[#5b4300]"
+          onClick={handleViewMore}
+        >
           View More
         </button>
       ) : (
-        <button className="view-more" onClick={handleHide}>
+        <button
+          className="mt-5 px-6 py-3 font-bold text-white bg-[#d4a422] rounded-lg hover:text-[#5b4300]"
+          onClick={handleHide}
+        >
           Hide
         </button>
       )}
+      <div className="h-px w-full bg-golden mt-5"></div>
     </div>
+
   );
 };
 
