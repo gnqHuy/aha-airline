@@ -22,6 +22,7 @@ import PassengerInfo from '../components/BookingSection/Book/Content/PassengerIn
 import PassengerInfor from '../pages/PassengerInfo/PassengerInfor';
 import { BookedTicketProvider } from '../context/BookedTicket/BookedTicket';
 import Payment from '../pages/Payment/Payment';
+import LoginPage from '../pages/LoginPage/LoginPage';
 
 export const router = createBrowserRouter([
   {
@@ -203,6 +204,15 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <TravelDocument />
+      </>
+    )
+  }, 
+  {
+    path: "/login", 
+    element: (
+      <>
+        <ScrollToTop />
+        <LoginPage />
       </>
     )
   }
