@@ -23,6 +23,7 @@ import PassengerInfor from '../pages/PassengerInfo/PassengerInfor';
 import { BookedTicketProvider } from '../context/BookedTicket/BookedTicket';
 import Payment from '../pages/Payment/Payment';
 import LoginPage from '../pages/LoginPage/LoginPage';
+import NewsPage from '../pages/NewsPage/NewsPage';
 
 export const router = createBrowserRouter([
   {
@@ -213,6 +214,15 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <LoginPage />
+      </>
+    )
+  }, 
+  {
+    path: "/news", 
+    element: (
+      <>
+        <ScrollToTop />
+        <NewsPage />
       </>
     )
   }
