@@ -24,7 +24,7 @@ const LoginPage = (props: Props) => {
             <div className = "h-[100%] w-[50%] relative">
                 <img src = "https://images.wallpaperscraft.com/image/single/airplane_wing_view_152515_3840x2160.jpg" alt = "" className = "w-full h-full rounded-tl-[12px] rounded-bl-[12px]"/>
                 <Link to = "/">
-                    <div className = "w-[10rem] h-[2rem] bg-gray-400 font-space-grotesk rounded-[15px] flex absolute top-[1rem] right-[1rem] hover:bg-Green hover:text-golden text-black">
+                    <div className = "w-[10rem] h-[2rem] bg-gray-400  rounded-[15px] flex absolute top-[1rem] right-[1rem] hover:bg-Green hover:text-golden text-black">
                         <p className = "relative bottom-[0.7rem] ml-[0.5rem]">Back to website</p>
                         <FaLongArrowAltRight className = "relative left-[0.2rem] top-[0.5rem]"/>
                     </div>

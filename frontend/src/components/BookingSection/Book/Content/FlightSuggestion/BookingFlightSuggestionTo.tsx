@@ -18,11 +18,11 @@ const BookingFlightSuggestionTo: React.FC<Props> = ({handleSetupDisplaySuggestio
                         handleSetupSelectedAirportTo(`${airport.city.name} (${airport.iata}), ${airport.city.country}`);
                         handleSetupDisplaySuggestionTo();
                     }}>
-                        <p className = "font-space-grotesk relative top-[-0.3rem] text-[#094c5b] font-bold" style = {{fontSize: "18px"}}>{`${airport.city.name}, ${airport.city.country}`}</p>
-                        <p className = "font-space-grotesk relative top-[-1.5rem] text-[gray] font-bold" style = {{fontSize: "13px"}}>{`${airport.name} Airport`}</p>
+                        <p className = " relative top-[-0.3rem] text-[#1A4532] font-bold" style = {{fontSize: "18px"}}>{`${airport.city.name}, ${airport.city.country}`}</p>
+                        <p className = " relative top-[-1.5rem] text-[gray] font-bold" style = {{fontSize: "13px"}}>{`${airport.name} Airport`}</p>
                         <img src = {AirplaneIcon} alt = "" className = "w-[2.5rem] h-[2.5rem] absolute right-[8.5rem] top-[-0.5rem]" />
-                        <div className = "absolute w-[3rem] h-[2rem] bg-[#094c5b] top-[-0.2rem] right-[4.5rem] text-center" style = {{borderRadius: "5px"}}>
-                            <p className = "font-space-grotesk absolute top-[-0.7rem] text-[#ebc94e] left-[0.5rem] font-bold" style = {{fontSize: "16px"}}>{airport.iata}</p>
+                        <div className = "absolute w-[3rem] h-[2rem] bg-[#1A4532] top-[-0.2rem] right-[4.5rem] text-center" style = {{borderRadius: "5px"}}>
+                            <p className = " absolute top-[-0.7rem] text-[#ebc94e] left-[0.5rem] font-bold" style = {{fontSize: "16px"}}>{airport.iata}</p>
                         </div>
                     </div>
                 })}
