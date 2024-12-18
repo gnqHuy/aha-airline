@@ -125,14 +125,14 @@ const FlightPreview = (props: Props) => {
 
       {filteredFlights.length > visibleCount ? (
         <button
-          className="mt-5 px-6 py-3 font-bold text-white bg-[#d4a422] rounded-lg hover:text-[#5b4300]"
+          className="mt-5 px-5 py-2 border-none text-base font-bold text-white bg-[#d4a422] rounded-lg hover:text-[#5b4300]"
           onClick={handleViewMore}
         >
           View More
         </button>
       ) : (
         <button
-          className="mt-5 px-6 py-3 font-bold text-white bg-[#d4a422] rounded-lg hover:text-[#5b4300]"
+          className="mt-5 px-5 py-2 border-none text-base font-bold text-white bg-[#d4a422] rounded-lg hover:text-[#5b4300]"
           onClick={handleHide}
         >
           Hide

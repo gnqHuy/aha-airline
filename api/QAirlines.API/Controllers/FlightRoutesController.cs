@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QAirlines.API.Mapper;
 using QAirlines.API.Services;
 using QAirlines.Models;
 using QAirlines.Models.Data_Transfer_Objects;
 using QAirlines.Models.Request;
+using QAirlines.Models.User;
 using QAirlines.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -51,6 +53,7 @@ namespace QAirlines.API.Controllers
         }
 
         [HttpGet("DTO")]
+        //[Authorize(Roles = Role.FlightAdmin)]
         public async Task<IActionResult> GetAllDTO()
         {
             var flightRoutes = await _unitOfWork.FlightRoutes.GetAllAsync();
@@ -68,7 +71,7 @@ namespace QAirlines.API.Controllers
         [HttpGet("FromRouteInfo")]
         public async Task<IEnumerable<FlightRouteDTO>> GetFromRequest([FromQuery] FlightRouteRequest request)
         {
-            var flightroutes = _unitOfWork.FlightRoutes.FindRoutesFromRequest(request);
+            var flightroutes = await _unitOfWork.FlightRoutes.FindRoutesFromRequest(request);
             var flightRouteDTOs = flightroutes
                 .Where(fr => fr != null)
                 .Select(flightRoute => _mappingFunctions.FlightRouteMapper(flightRoute)).ToList();
