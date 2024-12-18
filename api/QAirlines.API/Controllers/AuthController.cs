@@ -24,8 +24,7 @@ namespace QAirlines.API.Controllers
             _authService = authService;
         }
         
-        [HttpPost]
-        [Route("seedRoles")]
+        [HttpPost("seedRoles")]
         public async Task<IActionResult> SeedRoles()
         {
             var result = await _authService.SeedRoles();
@@ -38,8 +37,7 @@ namespace QAirlines.API.Controllers
             return Ok(result.Message);
         }
 
-        [HttpPost]
-        [Route("register")]
+        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             var result = await _authService.Register(request);
@@ -52,8 +50,7 @@ namespace QAirlines.API.Controllers
             return Ok(result.Message);
         }
 
-        [HttpPost]
-        [Route("login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var result = await _authService.Login(request);
@@ -64,6 +61,19 @@ namespace QAirlines.API.Controllers
             }
 
             return Ok(result);
+        }
+
+        [HttpPost("makeFlightAdmin")]
+        public async Task<IActionResult> MakeFlightAdmin([FromBody] string usernameOrEmail)
+        {
+            var result = await _authService.MakeFlightAdmin(usernameOrEmail);
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest(result.Message);
+            }
+
+            return Ok(result.Message);
         }
     }
 }
