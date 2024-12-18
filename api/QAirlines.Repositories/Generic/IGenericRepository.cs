@@ -13,6 +13,7 @@ namespace QAirlines.Repositories.Generic
         Task<T> GetByIdAsync(Key id);
         IEnumerable<T> GetAll();
         Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetPagedAsync(int pageSize, int pageNumber);
         IEnumerable<T> FindAll(Expression<Func<T, bool>> expression);
         Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> expression);
         void Add(T entity);

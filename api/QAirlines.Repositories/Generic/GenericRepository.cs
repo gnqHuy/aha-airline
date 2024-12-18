@@ -29,6 +29,21 @@ namespace QAirlines.Repositories.Generic
             return list;
         }
 
+        public async Task<IEnumerable<T>> GetPagedAsync(int pageSize, int pageNumber)
+        {
+            if (pageSize <= 0)
+            {
+                pageSize = 10;
+            }
+            if (pageNumber <= 0)
+            {
+                pageNumber = 0;
+            }
+
+            var list = await _context.Set<T>().Skip(pageSize * pageNumber).Take(pageSize).ToListAsync();
+            return list;
+        }
+
         public T GetById(Key id)
         {
             return _context.Set<T>().Find(id);
