@@ -44,7 +44,7 @@ const Footer = (props: Props) => {
                                 <a href="/booking" className="text-white no-underline hover:opacity-80">Booking</a>
                             </li>
                             <li className="mb-4">
-                                <a href="/travelinfo" className="text-white no-underline hover:opacity-80">Travel Info</a>
+                                <a href="/travel-info" className="text-white no-underline hover:opacity-80">Travel Info</a>
                             </li>
                             <li className="mb-4">
                                 <a href="/explore/experience" className="text-white no-underline hover:opacity-80">Experience</a>

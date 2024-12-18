@@ -16,10 +16,10 @@ const BaggageInfo = (props: Props) => {
       }, []);
   return (
     <Layout>
-        <div className = "relative h-[170rem] overflow-x-clip font-space-grotesk bg-slate-50 bottom-[2rem]">
+        <div className = "relative h-[170rem] overflow-x-clip  bg-slate-50 bottom-[2rem]">
             <p className="text-3xl text-golden font-bold relative left-[15rem] top-[1rem]">Baggage Info</p>
             {/* carry-on baggage */}
-            <div className = "relative left-[15rem] w-[70rem]" id = "carry-on">
+            <div className = "relative left-[15rem] top-[3rem] w-[70rem]" id = "carry-on">
                 <p className = "text-3xl text-Green font-bold">Carry-on Baggage</p>
                 <p className = "text-lg">Each passenger (except for infants under 2 years old) is allowed the following standard free carry-on baggage on BAV flights: </p>
                 <ul className = "relative bottom-[0.5rem]">
@@ -53,13 +53,13 @@ const BaggageInfo = (props: Props) => {
             </div>
 
             {/* excess baggage */}
-            <div className = "relative left-[15rem] top-[5rem]" id = "excess">
+            <div className = "relative left-[15rem] top-[7rem]" id = "excess">
                 <ExcessBaggage />
             </div>
 
             {/* special baggage */}
-            <div className = "w-[70rem] relative left-[15rem] top-[8rem]" id = "special">
-                <p className = "text-3xl font-bold text-[#094c5b]">Special Baggage</p>
+            <div className = "w-[70rem] relative left-[15rem] top-[9rem]" id = "special">
+                <p className = "text-3xl font-bold text-[#1A4532]">Special Baggage</p>
                 <p className = "text-lg relative bottom-[1rem]">AHA Airlines provides a service for transporting oversized luggage, bicycles and sports equipment such as skiing equipment, skateboards as checked baggage.</p>
                 <p className = "text-lg relative bottom-[1rem]"><b>Skiing Equipment/ Water Slideboarding:</b> 01 skiing/ surfing board, 01 pair of ski poles, 1 pair of skiing shoes. Any other equipment which is not listed here is not considered as part of skiing equipment/ surfing board.</p>
                 <p className = "text-lg relative bottom-[1rem]"><b>Surfing Board:</b> Sports equipment for skiing/surfing including 01 skateboard. </p>

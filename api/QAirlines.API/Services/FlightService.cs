@@ -181,13 +181,22 @@ namespace QAirlines.API.Services
             var flightPreviews = new List<FlightPreview>();
             var flightRoutes = new List<FlightRoute>();
 
-            if (request.RouteInfo == null)
+            if (string.IsNullOrEmpty(request.FromAirportIATA) && string.IsNullOrEmpty(request.ToAirportIATA))
             {
-                flightRoutes = _unitOfWork.FlightRoutes.FindMostPopularRoutes(request.PageSize, request.PageNumber).ToList();
+                flightRoutes = _unitOfWork.FlightRoutes.FindMostPopularRoutes().ToList();
             } 
             else
             {
-                flightRoutes = _unitOfWork.FlightRoutes.FindPagedRoutesFromRequest(request.RouteInfo, request.PageSize, request.PageNumber).ToList();
+                FlightRouteRequest frRequest = new FlightRouteRequest
+                {
+                    FromAirportIATA = request.FromAirportIATA,
+                    ToAirportIATA = request.ToAirportIATA
+                };
+                if (request.PageSize == 0)
+                {
+                    request.PageSize = 9;
+                }
+                flightRoutes = _unitOfWork.FlightRoutes.FindPagedRoutesFromRequest(frRequest, request.PageSize, request.PageNumber).ToList();
             }
 
             foreach (var flightRoute in flightRoutes)
@@ -210,7 +219,7 @@ namespace QAirlines.API.Services
             return flightPreviews;
         }
 
-        public async Task<IEnumerable<Flight>> GetFromRequest(string fromAirportIATA,  string toAirportIATA, DateTime departTime)
+        public async Task<IEnumerable<Flight>> GetFromRequest(string fromAirportIATA,  string toAirportIATA, DateTime? departTime)
         {
             var flightRouteRequest = new FlightRouteRequest
             {
@@ -218,12 +227,12 @@ namespace QAirlines.API.Services
                 ToAirportIATA = toAirportIATA
             };
 
-            var route = _unitOfWork.FlightRoutes.FindRoutesFromRequest(flightRouteRequest);
+            var route = await _unitOfWork.FlightRoutes.FindRoutesFromRequest(flightRouteRequest);
 
             var flightRequest = new FlightRequest
             {
                 RouteId = route.ElementAt(0).Id,
-                DepartTime = departTime,
+                DepartTime = departTime ?? DateTime.Now.AddDays(1),
             };
 
             var flights = await _unitOfWork.Flights.GetFromRequest(flightRequest);
@@ -231,7 +240,7 @@ namespace QAirlines.API.Services
             return flights;
         }
 
-        public IEnumerable<Flight> GenerateContinuousRandomFlight(DateTime dateTime)
+        public async Task<IEnumerable<Flight>> GenerateContinuousRandomFlight(DateTime dateTime)
         {
             var flightRoutes = _unitOfWork.FlightRoutes.GetAll();
             var aircrafts = _unitOfWork.Aircrafts.GetAll();
@@ -246,7 +255,7 @@ namespace QAirlines.API.Services
                         FromAirportIATA = aircraft.Terminal
                     };
 
-                    var filteredRoutes = _unitOfWork.FlightRoutes.FindRoutesFromRequest(request);
+                    var filteredRoutes = await _unitOfWork.FlightRoutes.FindRoutesFromRequest(request);
                     var nextRoute = RandomRoute(filteredRoutes);
 
                     DateTime boardingTime = RoundTime(GetBoardingTime(aircraft.AvailableAt));
@@ -270,7 +279,8 @@ namespace QAirlines.API.Services
                         Status = FlightStatus.Upcomming,
                         BoardingGate = RandomGate(1, 20),
                         EconomyPrice = economyPrice,
-                        BusinessPrice = businessPrice
+                        BusinessPrice = businessPrice,
+                        RemainingSeats = aircraft.NoOfSeats
                     };
                     flights.Add(flight);
                 }

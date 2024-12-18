@@ -82,12 +82,12 @@ const GenericContent: React.FC<Props> = ({
     <div>
         {/* one way and round trip button */}
         <div className = "flex relative left-[1rem] top-[1.5rem]" style = {{flexFlow: "row wrap"}}>
-            <button className = {flightOption === "roundTrip" ? "w-[7rem] h-[2rem] bg-[#094c5b] font-space-grotesk text-[#ebc94e] border-none relative" : "w-[7rem] h-[2rem] bg-[#e1e2e3] font-space-grotesk text-[black] border-none relative hover:bg-[#094c5b] hover:text-[#ebc94e] hover:cursor-pointer"} style = {{borderRadius: "18px", fontSize: "13px"}} onClick = {() => {
+            <button className = {flightOption === "roundTrip" ? "w-[7rem] h-[2rem] bg-[#1A4532]  text-[#ebc94e] border-none relative" : "w-[7rem] h-[2rem] bg-[#e1e2e3]  text-[black] border-none relative hover:bg-[#1A4532] hover:text-[#ebc94e] hover:cursor-pointer"} style = {{borderRadius: "18px", fontSize: "13px"}} onClick = {() => {
                 handleSetupFlightOption("roundTrip");
                 resetAllSuggestion();
             }}>Round trip</button>
 
-            <button className = {flightOption === "oneWay" ? "w-[7rem] h-[2rem] bg-[#094c5b] font-space-grotesk text-[#ebc94e] border-none relative left-[1rem]" : "w-[7rem] h-[2rem] bg-[#e1e2e3] font-space-grotesk text-[black] border-none relative left-[1rem] hover:bg-[#094c5b] hover:text-[#ebc94e] hover:cursor-pointer"} style = {{borderRadius: "18px", fontSize: "13px"}} onClick = {() => {
+            <button className = {flightOption === "oneWay" ? "w-[7rem] h-[2rem] bg-[#1A4532]  text-[#ebc94e] border-none relative left-[1rem]" : "w-[7rem] h-[2rem] bg-[#e1e2e3]  text-[black] border-none relative left-[1rem] hover:bg-[#1A4532] hover:text-[#ebc94e] hover:cursor-pointer"} style = {{borderRadius: "18px", fontSize: "13px"}} onClick = {() => {
                 handleSetupFlightOption("oneWay");
                 resetAllSuggestion();
             }}>One way</button>

@@ -37,7 +37,7 @@ const NavBar: React.FC<Props> = () => {
 
       <div className="grid grid-cols-3 text-center">
         <div
-          className="relative pb-[30px] mt-[30px] mx-6 small:mx-[0.5rem]"
+          className="relative pb-[10px] mt-[30px] mx-6 small:mx-[0.5rem]"
           onMouseEnter={() => handleMouseEnter("Explore")}
           onMouseLeave={() => handleMouseLeave("Explore")}
         >
@@ -45,7 +45,7 @@ const NavBar: React.FC<Props> = () => {
             to="/explore"
             className={`block font-bold no-underline ${
               dropdownState.Explore ? "text-golden" : "text-black hover:text-golden"
-            } text-lg medium:text-sm small:text-sm`}
+            } text-base medium:text-sm small:text-sm`}
           >
             Explore
           </Link>
@@ -61,7 +61,7 @@ const NavBar: React.FC<Props> = () => {
         </div>
 
         <div
-          className="relative pb-[30px] mt-[30px] mx-6"
+          className="relative pb-[10px] mt-[30px] mx-6"
           onMouseEnter={() => handleMouseEnter("Booking")}
           onMouseLeave={() => handleMouseLeave("Booking")}
         >
@@ -69,7 +69,7 @@ const NavBar: React.FC<Props> = () => {
             to="/booking"
             className={`block font-bold no-underline ${
               dropdownState.Booking ? "text-golden" : "text-black hover:text-golden"
-            } text-lg medium:text-sm small:text-sm`}
+            } text-base medium:text-sm small:text-sm`}
           >
             Booking
           </Link>
@@ -85,7 +85,7 @@ const NavBar: React.FC<Props> = () => {
         </div>
 
         <div
-          className="relative pb-[30px] mt-[30px] mx-6 medium:mx-1"
+          className="relative pb-[10px] mt-[30px] mx-6 medium:mx-1"
           onMouseEnter={() => handleMouseEnter("TravelInfo")}
           onMouseLeave={() => handleMouseLeave("TravelInfo")}
         >
@@ -93,7 +93,7 @@ const NavBar: React.FC<Props> = () => {
             to="/travel-info"
             className={`block font-bold no-underline ${
               dropdownState.TravelInfo ? "text-golden" : "text-black hover:text-golden"
-            } text-lg medium:text-sm medium:w-[6rem] w-[6rem] small:text-sm`}
+            } text-base medium:text-sm medium:w-[6rem] w-[6rem] small:text-sm`}
           >
             Travel Info
           </Link>
