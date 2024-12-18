@@ -18,7 +18,7 @@
 }
 
 #bookingSection_book_fromText {
-    font-family: "Space Grotesk";
+    
     font-size: 13px;
     position: relative;
     left: 2rem;
@@ -35,7 +35,7 @@
 }
 
 .bookingSection_book_fromDestination p {
-    font-family: "Space Grotesk";
+    
     position: absolute;
     bottom: -0.8rem;
     left: 0.3rem;
@@ -57,7 +57,7 @@
 }
 
 #bookingSection_book_text {
-    font-family: "Space Grotesk";
+    
     font-size: 15px;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .booingSection_book_toDestination p {
-    font-family: "Space Grotesk";
+    
     position: absolute;
     bottom: -0.5rem;
     left: 0.3rem;
@@ -95,7 +95,7 @@
 }
 
 .bookingSection_book_departInput p {
-    font-family: "Space Grotesk";
+    
     position: absolute;
     bottom: -0.5rem;
     left: 0.3rem;
@@ -118,7 +118,7 @@
 }
 
 .bookingSection_book_returnInput p {
-    font-family: "Space Grotesk";
+    
     position: absolute;
     bottom: -0.5rem;
     left: 0.3rem;
