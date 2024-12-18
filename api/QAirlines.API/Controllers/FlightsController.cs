@@ -71,6 +71,21 @@ namespace QAirlines.API.Controllers
             return flightDTOs;
         }
 
+        [HttpGet("Paged")]
+        public async Task<IEnumerable<FlightDTO>> GetPagedDTO([FromQuery]int pageSize, int pageNumber)
+        {
+            var flights = await _unitOfWork.Flights.GetPagedAsync(pageSize, pageNumber);
+
+            var flightDTOs = new List<FlightDTO>();
+            foreach (var flight in flights)
+            {
+                var flightDTO = _mappingFunctions.FlightMapper(flight);
+                flightDTOs.Add(flightDTO);
+            }
+
+            return flightDTOs;
+        }
+
         [HttpPost]
         public async Task AddFlight([FromBody] Flight flight)
         {
