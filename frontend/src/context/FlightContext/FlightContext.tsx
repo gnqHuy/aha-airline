@@ -24,7 +24,7 @@ type News = {
   content: string; 
 }
 
-const content1Sample = `<div class="max-w-4xl relative left-[6rem] p-6 bg-[] rounded-lg shadow-lg font-space-grotesk">
+const content1Sample = `<div class="max-w-4xl relative left-[6rem] p-6 bg-[] rounded-lg shadow-lg ">
       <div class="text-center mb-6">
         <h1 class="text-4xl font-semibold text-blue-600">
           AHA Airlines Announces Exclusive 20% Discount on International Flights!
@@ -67,7 +67,7 @@ const content1Sample = `<div class="max-w-4xl relative left-[6rem] p-6 bg-[] rou
       </div>
     </div>`
 
-  const content2Sample = `<div class="max-w-4xl p-6 rounded-lg shadow-lg relative left-[6rem] font-space-grotesk">
+  const content2Sample = `<div class="max-w-4xl p-6 rounded-lg shadow-lg relative left-[6rem] ">
       <div class="text-center mb-6">
         <h1 class="text-4xl font-semibold text-red-600">
           Big Sale! Get 50% Off on All Domestic Flights with AHA Airlines!

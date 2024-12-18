@@ -6,10 +6,10 @@ type Props = {}
 const TravelDocument = (props: Props) => {
   return (
     <Layout>
-        <div className = "relative h-[211rem] overflow-x-clip font-space-grotesk bg-slate-200 bottom-[2rem]">
-            <p className="text-3xl text-golden font-bold relative left-[15rem] top-[1rem]">Travel Document</p>
+        <div className = "relative h-[200rem] overflow-x-clip  bottom-[2rem]">
+            <p className="text-3xl text-golden font-bold relative left-[15rem] top-[3rem] my-0">Travel Document</p>
             {/* identification documents */}
-            <div className = "relative left-[15rem] top-[0rem] w-[70rem]">
+            <div className = "relative left-[15rem] top-[3rem] w-[70rem]">
                 <p className = "text-3xl text-Green font-bold">Identification Documents and Visa</p>
                 <p className = "text-lg relative bottom-[1rem]">Passengers are required to to present forms of identifications documents at check-in.</p>
                 <p className = "text-lg relative bottom-[2rem]">(Pursuant to Appendix VII - Personal information when traveling by air; Identification documents, tickets, boarding passes, issued together with Circular 42/2023/TT-BGTVT dated December 29, 2023 of the Minister of Transport).</p>
@@ -35,12 +35,12 @@ const TravelDocument = (props: Props) => {
                 <p className = "text-2xl font-bold text-Green relative bottom-[1rem]">3. Passengers under 14 years of age when checking in for domestic flights need one of the following identification types: </p>
                 <p className = "text-lg relative bottom-[1rem]">– Birth Certificate, civil status extract; birth certificate extract (birth information extract); civil status information confirmation document; Birth Certifying Form (for infants under 02 months old without a birth certificate); Level 2 electronic identification account of the passenger; passenger’s personal information in the Level 2 electronic identification account of the accompanying parent or guardian on the same flight. <br/>– Certifying form by a social organization for children under the patronage of that organization. This certifying form shall be valid within 6 months since the date of confirmation.  <br/>– Identity confirmation document certified by the police (the confirmation document must include the following information: certifying authority, certifying person; date of certification; full name, date of birth, gender, permanent residence of the certified person; reason for certification. The confirmation document is valid for 30 days from the date of certification). <br/>– Citizen’s identity card, identity card, passport (separate passport or included in the parent's passport). <br/>– In case a child does not have a separate passport: accept the passport of the legal representative (father, mother, adoptive father, adoptive mother or guardian) of that child containing the following information: child’s name, date of birth and photo. There is no need for a legal representative to accompany the child to check-in. </p>
 
-                <p className = "text-2xl font-bold text-Green relative top-[1rem]">4. Passengers who are criminals, suspects, being relocated, extradited or expelled at processing the flight procedures only need documents issued by the competent authority to prove as the escort; The escort passenger presents the documents specified in section 1 and 2.  </p>
+                <p className = "text-2xl font-bold text-Green relative top-[1rem] my-0">4. Passengers who are criminals, suspects, being relocated, extradited or expelled at processing the flight procedures only need documents issued by the competent authority to prove as the escort; The escort passenger presents the documents specified in section 1 and 2.  </p>
             </div>
 
             {/* health */}
-            <div className = "left-[15rem] w-[70rem] relative top-[8rem]">
-                <p className = "text-3xl text-Green font-bold">Health status confirmation requirements</p>
+            <div className = "left-[15rem] w-[70rem] relative top-[5rem]">
+                <p className = "text-3xl text-Green font-bold ">Health status confirmation requirements</p>
                 <div>
                     <div className = "flex bg-golden">
                         <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">

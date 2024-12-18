@@ -4,10 +4,10 @@ type Props = {}
 
 const BookingTax = (props: Props) => {
   return (
-    <div className = "font-space-grotesk">
-        <p className = "font-space-grotesk text-3xl text-[#094c5b] font-bold">Tax, Fee & Surcharge</p>
+    <div className = "">
+        <p className = " text-3xl text-[#1A4532] font-bold">Tax, Fee & Surcharge</p>
         <div className = "w-[70rem]">
-            <p className = "font-space-grotesk text-2xl text-[#094c5b] font-bold">What is an airline ticket?</p>
+            <p className = " text-2xl text-[#1A4532] font-bold">What is an airline ticket?</p>
             <p className = "text-lg">An airline ticket is a contract for transportation services between an airline and a passenger, represented in the form of an electronic ticket (All passenger and itinerary information is stored electronically).</p>
             <p className = "text-lg">Information displayed on the electronic ticket includes:</p>
             <ul>
@@ -21,13 +21,13 @@ const BookingTax = (props: Props) => {
         </div>
         <div className = "w-[70rem] h-[0.05rem] bg-[gray] relative top-[2rem]"></div>
         <div className = "w-[70rem]">
-            <p className = "font-space-grotesk text-2xl text-[#094c5b] font-bold relative top-[1.5rem]">What is a boarding pass?</p>
+            <p className = " text-2xl text-[#1A4532] font-bold relative top-[1.5rem]">What is a boarding pass?</p>
             <p className = "text-lg">A boarding pass consists of two parts, one of which is detached by the airline staff during the boarding process. The remaining part is retained by the passenger so that when boarding the aircraft, the flight attendants can guide passengers to their assigned seats as indicated on the pass.</p>
             <p className = "text-lg">Information on the boarding pass includes: Passenger name, flight number, departure and arrival points, seat number, seat class, date and time of the flight, and the departure gate.</p>
         </div>
         <div className = "w-[70rem] h-[0.05rem] bg-[gray] relative top-[1.5rem]"></div>
         <div className = "w-[70rem]">
-            <p className = "font-space-grotesk text-2xl text-[#094c5b] font-bold relative top-[1rem]">How is the airfare calculated?</p>
+            <p className = " text-2xl text-[#1A4532] font-bold relative top-[1rem]">How is the airfare calculated?</p>
             <p className = "text-lg">Bamboo Airways' airfare <b>(applicable only for domestic routes)</b> consists of the following components:</p>
             <div>
                 <p className = "text-xl font-bold">1.Base fare</p>
