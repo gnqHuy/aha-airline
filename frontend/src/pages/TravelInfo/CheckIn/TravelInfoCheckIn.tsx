@@ -19,7 +19,7 @@ const TravelInfoCheckIn = (props: Props) => {
     <Layout>
         <div className = "relative h-[150rem] overflow-x-clip bg-slate-50 bottom-[2rem]">
             {/* online check-in */}
-            <div className = "relative left-[15rem] top-[1rem] font-space-grotesk w-[70rem]">
+            <div className = "relative left-[15rem] top-[1rem]  w-[70rem]">
                 <p className="text-3xl text-golden font-bold">Check In</p>
                 <div className = "relative top-[2rem]" id = "online">
                     <p className = "text-2xl text-Green font-bold">Online Check-in</p>

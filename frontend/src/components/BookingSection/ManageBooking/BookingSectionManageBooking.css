@@ -1,155 +1,156 @@
 .bookingSection_manageBooking_container {
-    width: 60rem;
-    height: 22rem;
-    background-color: #FCF9F2;
-    position: absolute;
-    left: 20%;
-    top: 36.7rem;
-    box-shadow: 0.2rem 0.2rem 0.4rem #82817d;
+  width: 60rem;
+  height: 22rem;
+  background-color: #fcf9f2;
+  position: absolute;
+  left: 20%;
+  top: 36.7rem;
+  box-shadow: 0.2rem 0.2rem 0.4rem #82817d;
 }
 
 .form-search-booking {
-    display: flex;
+  display: flex;
 }
 
 .input-box-ticketNumber {
-    position: relative;
-    top: 2rem;
-    left: 1.5rem;
+  position: relative;
+  top: 2rem;
+  left: 1.5rem;
 }
 
 .detail-input-ticketNumber {
-    border: none;
-    border-bottom: 2px solid #000;
-    outline: none;
-    padding: 5px;
-    width: 20rem;
-    background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #000;
+  outline: none;
+  padding: 5px;
+  width: 20rem;
+  background-color: transparent;
 }
 
 .input-box-ticketNumber label {
-    font-family: "Space Grotesk";
+  
 }
 
 .input-box-lastName {
 }
 
 .input-box-lastName label {
-    font-family: "Space Grotesk";
+  
 }
 
 .detail-input-lastName {
-    border: none;
-    border-bottom: 2px solid #000;
-    outline: none;
-    padding: 5px;
-    width: 20rem;
-    background-color: transparent;
-    position: absolute;
+  border: none;
+  border-bottom: 2px solid #000;
+  outline: none;
+  padding: 5px;
+  width: 20rem;
+  background-color: transparent;
+  position: absolute;
 }
 
-.bookingSection_manageBooking_buttonSearch { 
-    position: absolute;
+.bookingSection_manageBooking_buttonSearch {
+  position: absolute;
 }
 
 .bookingSection_manageBooking_buttonSearch button {
-    border-radius: 8px;
-    border: 0;
-    font-family: "Space Grotesk";
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #ebc94e;
+  border-radius: 8px;
+  border: 0;
+  
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #ebc94e;
 }
 
 .bookingSection_manageBooking_otherBenefit p {
-    font-family: "Space Grotesk";
-    font-size: 17px;
-    font-weight: bolder;
-    position: relative;
-    top: 4rem;
-    left: 1.5rem;
+  
+  font-size: 17px;
+  font-weight: bolder;
+  position: relative;
+  top: 4rem;
+  left: 1.5rem;
 }
 
 .benefits-section {
-    display: flex;
+  display: flex;
 }
 
 .benefit-detail {
-    position: relative;
-    top: 5rem;
-    left: 1.5rem;
-    margin-right: 1.5rem;
+  position: relative;
+  top: 5rem;
+  left: 1.5rem;
+  margin-right: 1.5rem;
 }
 
 .benefit-detail span {
-    font-family: "Space Grotesk";
-    font-size: 13px;
-    position: relative;
-    top: -0.6rem;
-    left: 0.6rem;
+  
+  font-size: 13px;
+  position: relative;
+  top: -0.6rem;
+  left: 0.6rem;
 }
 
 .manageBooking_closeTab_section {
-    position: absolute;
+  position: absolute;
 }
 
 .closeTab_section {
-    position: absolute;
+  position: absolute;
 }
 
 .closeTab_section button {
-    width: 3.5rem;
-    height: 2.2rem;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border: 0;
-    background-color: #094c5b;
-    cursor: pointer;
+  width: 3.5rem;
+  height: 2.2rem;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 0;
+  background-color: #1a4532;
+  cursor: pointer;
 }
 
 .manageBooking_closeTab_section button {
-    width: 3.5rem;
-    height: 2.2rem;
-    border-top-left-radius: 50px;
-    border-top-right-radius: 50px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border: 0;
-    background-color: #094c5b;
-    cursor: pointer;
+  width: 3.5rem;
+  height: 2.2rem;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border: 0;
+  background-color: #1a4532;
+  cursor: pointer;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0; /* Start fully transparent */
-    }
-    to {
-        opacity: 1; /* End fully opaque */
-    }
+  from {
+    opacity: 0; /* Start fully transparent */
+  }
+  to {
+    opacity: 1; /* End fully opaque */
+  }
 }
 
 .fadeIn {
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in forwards;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
 }
 
 .focusedDiv {
-    z-index: 40;
+  z-index: 40;
 }
 
-.detail-input-ticketNumber:focus + .input-box-ticketNumber-reservationCode-label {
-    top: -5rem;
-    color: red;
+.detail-input-ticketNumber:focus
+  + .input-box-ticketNumber-reservationCode-label {
+  top: -5rem;
+  color: red;
 }
