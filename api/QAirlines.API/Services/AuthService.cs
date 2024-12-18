@@ -194,5 +194,31 @@ namespace QAirlines.API.Services
                 Token = token
             };
         }
+
+        public async Task<AuthServiceResponse> MakeFlightAdmin(string usernameOrEmail)
+        {
+            ApplicationUser user;
+            if (usernameOrEmail.Contains("@"))
+            {
+                user = await _userManager.FindByEmailAsync(usernameOrEmail);
+            }
+            user = await _userManager.FindByNameAsync(usernameOrEmail);
+
+            if (user == null)
+            {
+                return new AuthServiceResponse
+                {
+                    IsSuccess = false,
+                    Message = $"{usernameOrEmail} does not exist."
+                };
+            }
+
+            await _userManager.AddToRoleAsync(user, Role.FlightAdmin);
+            return new AuthServiceResponse
+            {
+                IsSuccess = true,
+                Message = "Role updated successfully."
+            };
+        }
     }
 }
