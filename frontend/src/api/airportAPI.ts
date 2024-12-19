@@ -7,4 +7,4 @@ export function getAllAirport() {
 }
 export function getAllAirports() {
     return API.get(`${URL_PREFIX}`);
-}
+}   

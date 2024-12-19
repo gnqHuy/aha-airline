@@ -2,18 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllAirport, getAllAirports } from "../../../api/airportAPI";
 import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
-
-interface City {
-  id: string;
-  name: string;
-  country: string;
-}
-
-interface Airport {
-  iata: string;
-  name: string;
-  city: City;
-}
+import { Airport } from "../../../object/airport";
 
 const Airports: React.FC = () => {
   const [airports, setAirports] = useState<Airport[]>([]);
@@ -22,7 +11,7 @@ const Airports: React.FC = () => {
   const [newAirport, setNewAirport] = useState<Airport>({
     iata: "",
     name: "",
-    city: { id: "", name: "", country: "" },
+    city: {name: "", country: "" },
   });
 
   const [search, setSearch] = useState({
@@ -118,7 +107,7 @@ const Airports: React.FC = () => {
     setNewAirport({
       iata: "",
       name: "",
-      city: { id: "", name: "", country: "" },
+      city: { name: "", country: "" },
     });
   };
 
@@ -233,7 +222,13 @@ const Airports: React.FC = () => {
           </thead>
           <tbody>
             {filteredAirports.map((airport, index) => (
-              <tr key={index} className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}>
+              <tr key={index} className={`${
+                editingAirport && editingAirport.name === airport.name
+                  ? "bg-golden-hover"
+                  : index % 2 === 0
+                  ? "bg-white"
+                  : "bg-gray-100"
+              }`}>
                 <td className="border border-gray-300 px-4 py-2 text-base">{airport.iata}</td>
                 <td className="border border-gray-300 px-4 py-2 text-base">{airport.name}</td>
                 <td className="border border-gray-300 px-4 py-2 text-base">{airport.city.name}</td>

@@ -5,7 +5,6 @@ import BookingSection from "../../components/BookingSection/BookingSection";
 import Layout from "../../components/Layout/Layout";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import FlightTable from "../../components/FlightTable/FlightTable";
 
 const HomePage: React.FC = () => {
   return (
