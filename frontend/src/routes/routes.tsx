@@ -23,6 +23,12 @@ import LoginPage from '../pages/LoginPage/LoginPage';
 import NewsPage from '../pages/NewsPage/NewsPage';
 import { BookedTicketProvider } from '../context/BookedFlight/BookedFlight';
 import Register from '../pages/LoginPage/Register/Register';
+import Admin from '../pages/Admin/Admin';
+import Aircrafts from '../pages/Admin/Aircrafts/Aircrafts';
+import Airports from '../pages/Admin/Airports/Airports';
+import Cities from '../pages/Admin/Cities/Cities';
+import FlightRoutes from '../pages/Admin/FlightRoutes/FlightRoutes';
+import Flights from '../pages/Admin/Flights/Flights';
 
 export const router = createBrowserRouter([
   {
@@ -212,5 +218,37 @@ export const router = createBrowserRouter([
         <Register />
       </>
     )
+  },
+  {
+    path: "/admin",
+    element: (
+      <>
+        <ScrollToTop />
+        <Admin />
+      </>
+    ),
+    children: [
+      {
+        path: "aircrafts",
+        element: <Aircrafts/>,
+      },
+      {
+        path: "airports",
+        element: <Airports/>,
+      },
+      {
+        path: "cities",
+        element: <Cities/>,
+      },
+      {
+        path: "flight-routes",
+        element: <FlightRoutes/>,
+      },
+      {
+        path: "flights",
+        element: <Flights/>,
+      },
+    ],
   }
+  ,
 ]);
