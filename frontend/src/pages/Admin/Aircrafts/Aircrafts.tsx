@@ -3,15 +3,7 @@ import { addAircrafts, getAllAircrafts } from "../../../api/aircraftsAPI";
 import { FaWrench } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { FaDeleteLeft } from "react-icons/fa6";
-
-interface Aircraft {
-  name: string;
-  manufacturer: string;
-  noOfSeats: number;
-  status: number;
-  terminal: string;
-  availableAt: string;
-}
+import { Aircraft } from "../../../object/aircraft";
 
 const Aircrafts: React.FC = () => {
     const [aircrafts, setAircrafts] = useState<Aircraft[]>([]);
@@ -23,7 +15,6 @@ const Aircrafts: React.FC = () => {
       noOfSeats: 0,
       status: 1,
       terminal: "",
-      availableAt: "",
     });
 
     const [editingAircraft, setEditingAircraft] = useState<Aircraft | null>(null);
@@ -34,7 +25,6 @@ const Aircrafts: React.FC = () => {
       noOfSeats: "",
       status: "",
       terminal: "",
-      availableAt: "",
     });
   
     useEffect(() => {
@@ -66,8 +56,7 @@ const Aircrafts: React.FC = () => {
         (search.manufacturer === "" || aircraft.manufacturer.toLowerCase().includes(search.manufacturer.toLowerCase())) &&
         (search.noOfSeats === "" || aircraft.noOfSeats.toString().includes(search.noOfSeats)) &&
         (search.status === "" || aircraft.status.toString() === search.status) &&
-        (search.terminal === "" || aircraft.terminal.toLowerCase().includes(search.terminal.toLowerCase())) &&
-        (search.availableAt === "" || new Date(aircraft.availableAt).toLocaleString().includes(search.availableAt))
+        (search.terminal === "" || aircraft.terminal.toLowerCase().includes(search.terminal.toLowerCase()))
       );
     });
   
@@ -106,16 +95,10 @@ const Aircrafts: React.FC = () => {
         noOfSeats: 0,
         status: 1,
         terminal: "",
-        availableAt: "",
       });
     };
     
     const renderStatus = (status: number) => (status === 1 ? "Active" : "Inactive");
-  
-    const formatDateTime = (dateTime: string) => {
-      const date = new Date(dateTime);
-      return date.toLocaleString();
-    };
   
     if (loading) return <div>Loading...</div>;
     if (error) return <div className="text-red-600">Error: {error}</div>;
@@ -166,14 +149,6 @@ const Aircrafts: React.FC = () => {
                 onChange={handleSearchChange}
                 className="pl-2 py-2 border rounded flex-1 text-base"
             />
-            <input
-                type="text"
-                name="availableAt"
-                placeholder="Search by Available At"
-                value={search.availableAt}
-                onChange={handleSearchChange}
-                className="pl-2 py-2 border rounded flex-1 text-base"
-            />
         </div>
 
         <div className="overflow-y-auto h-[80%]">
@@ -185,7 +160,6 @@ const Aircrafts: React.FC = () => {
                   <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Seats</th>
                   <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Status</th>
                   <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Terminal</th>
-                  <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Available At</th>
                   <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold"></th>
                 </tr>
                 <tr className="bg-gray-100 sticky">
@@ -236,15 +210,6 @@ const Aircrafts: React.FC = () => {
                       className="w-full px-2 py-1 border rounded"
                   />
                   </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                  <input
-                      type="datetime-local"
-                      name="availableAt"
-                      value={newAircraft.availableAt}
-                      onChange={handleInputChange}
-                      className="w-full px-2 py-1 border rounded"
-                  />
-                  </td>
                   <td className="border border-gray-300 px-2 py-2 text-sm">
                     <div className="flex justify-center items-center">
                       {editingAircraft ? (
@@ -268,13 +233,18 @@ const Aircrafts: React.FC = () => {
             </thead>
             <tbody>
                 {filteredAircrafts.map((aircraft, index) => (
-                <tr key={index} className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}>
+                <tr key={index} className={`${
+                  editingAircraft && aircraft.terminal === editingAircraft.terminal
+                    ? "bg-golden-hover"
+                    : index % 2 === 0
+                    ? "bg-white"
+                    : "bg-gray-100"
+                }`}>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.name}</td>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.manufacturer}</td>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.noOfSeats}</td>
                     <td className="border border-gray-300 px-4 py-2 text-base">{renderStatus(aircraft.status)}</td>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.terminal}</td>
-                    <td className="border border-gray-300 px-4 py-2 text-base">{formatDateTime(aircraft.availableAt)}</td>
                     <td className="border border-gray-300 px-2 py-2">
                       <div className="flex justify-center items-center space-x-2">
                         <button

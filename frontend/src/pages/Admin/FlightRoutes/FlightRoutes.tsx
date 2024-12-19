@@ -2,27 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllFlightRoutes } from "../../../api/flightRoutes";
 import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
-
-interface City {
-  id: string;
-  name: string;
-  country: string;
-}
-
-interface Airport {
-  iata: string;
-  name: string;
-  city: City;
-}
-
-interface FlightRoute {
-  fromAirportIATA: string;
-  toAirportIATA: string;
-  fromAirport: Airport;
-  toAirport: Airport;
-  noOfFlights: number;
-  distance: number;
-}
+import { FlightRoute } from "../../../object/flightRoute";
 
 const FlightRoutes: React.FC = () => {
   const [flightRoutes, setFlightRoutes] = useState<FlightRoute[]>([]);
@@ -31,8 +11,8 @@ const FlightRoutes: React.FC = () => {
   const [newFlightRoute, setNewFlightRoute] = useState<FlightRoute>({
     fromAirportIATA: "",
     toAirportIATA: "",
-    fromAirport: { iata: "", name: "", city: { id: "", name: "", country: "" } },
-    toAirport: { iata: "", name: "", city: { id: "", name: "", country: "" } },
+    fromAirport: { iata: "", name: "", city: { name: "", country: "" } },
+    toAirport: { iata: "", name: "", city: { name: "", country: "" } },
     noOfFlights: 0,
     distance: 0,
   });
@@ -95,8 +75,8 @@ const FlightRoutes: React.FC = () => {
     setNewFlightRoute({
       fromAirportIATA: "",
       toAirportIATA: "",
-      fromAirport: { iata: "", name: "", city: { id: "", name: "", country: "" } },
-      toAirport: { iata: "", name: "", city: { id: "", name: "", country: "" } },
+      fromAirport: { iata: "", name: "", city: { name: "", country: "" } },
+      toAirport: { iata: "", name: "", city: { name: "", country: "" } },
       noOfFlights: 0,
       distance: 0,
     });
@@ -374,7 +354,13 @@ const FlightRoutes: React.FC = () => {
           </thead>
           <tbody>
             {filteredFlightRoutes.map((route, index) => (
-              <tr className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}>
+              <tr className={`${
+                editingRoute && editingRoute === route
+                  ? "bg-golden-hover"
+                  : index % 2 === 0
+                  ? "bg-white"
+                  : "bg-gray-100"
+              }`}>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{route.fromAirportIATA}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{route.toAirportIATA}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{route.fromAirport.name}</td>

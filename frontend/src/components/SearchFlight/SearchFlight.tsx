@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { Flight } from "../../object/flight/flight";
 import { useFlightContext } from "../../context/FlightContext/FlightContext";
 import { useNavigate } from "react-router-dom";
 import { useSearchFlightState } from "../../context/SearchFlightState/SearchFlightState";
 import { AiOutlineClose } from "react-icons/ai";
+import { FlightPreviewType } from "../../object/flightPreview";
 
 type Props = {
-  flight: Flight | null;
+  flightPreview: FlightPreviewType | null;
 };
 
 const MAX_PASSENGERS = 9;
 
-const SearchFlight: React.FC<Props> = ({ flight }) => {
-  const { setSelectedFlight, setSelectedPassenger } = useFlightContext();
+const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
+  const { setSelectedFlightPreview, setSelectedPassenger } = useFlightContext();
   const { setSearchFlightState } = useSearchFlightState();
   const navigate = useNavigate();
 
@@ -42,46 +42,48 @@ const SearchFlight: React.FC<Props> = ({ flight }) => {
     setErrorMessage("");
   };
 
-  const handleSearchFlight = (flight: Flight) => {
-    setSelectedFlight(flight);
-    setSelectedPassenger({ adults, children, infants });
-    navigate("/ticket");
+  const handleSearchFlight = () => {
+    if (flightPreview) {
+      setSelectedFlightPreview(flightPreview);
+      setSelectedPassenger({ adults, children, infants });
+      navigate("/ticket");
+    }
   };
 
-  if (!flight) {
+  if (!flightPreview) {
     return <div className="text-center text-red-500">No flight selected</div>;
   }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
-      <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-xl">
+      <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl">
         <h2 className="text-2xl font-bold mb-6 text-center text-golden">
           Search Flight
         </h2>
 
         <div className="flex flex-col lg:flex-row text-left px-6">
-          <div className="flex-1">
+          <div className="flex-[1.7]">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Flight Details</h3>
             <div className="">
               <p className="text-gray-700">
-                <strong>From:</strong> {flight.from}
+                <strong>From:</strong> {flightPreview.fromAirport.name} ({flightPreview.fromAirport.iata}), {flightPreview.fromAirport.city.name}, {flightPreview.fromAirport.city.country}
               </p>
               <p className="text-gray-700">
-                <strong>To:</strong> {flight.to}
+                <strong>To:</strong> {flightPreview.toAirport.name} ({flightPreview.toAirport.iata}), {flightPreview.toAirport.city.name} , {flightPreview.toAirport.city.country}
               </p>
               <p className="text-gray-700">
-                <strong>Day:</strong> {flight.day}
+                <strong>Departure Time:</strong> {new Date(flightPreview.departureTime).toLocaleString()}
               </p>
               <p className="text-gray-700">
-                <strong>Ticket Type:</strong> {flight.ticketType}
+                <strong>Minimum Price:</strong> {flightPreview.minimumPrice.toLocaleString()} VND
               </p>
             </div>
-          </div>
+        </div>
 
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Passengers</h3>
             <div className="space-y-4">
-              {[
+              {[ 
                 { label: "Adults (12+ years)", type: "adult", count: adults },
                 { label: "Children (2-11 years)", type: "child", count: children },
                 { label: "Infants (under 2 years)", type: "infant", count: infants },
@@ -115,7 +117,7 @@ const SearchFlight: React.FC<Props> = ({ flight }) => {
 
         <div className="mt-6 flex justify-center space-x-4">
           <button
-            onClick={() => handleSearchFlight(flight)}
+            onClick={handleSearchFlight}
             className="px-4 w-40 py-2 rounded hover:bg-golden-hover transition"
           >
             Search

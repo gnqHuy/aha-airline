@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../../api/authAPI';
 import { login } from '../../../redux/slice/authSlice';
 import { RootState } from '../../../redux/store';
+import { Link } from 'react-router-dom';
 
 interface Props {
   handleSetRegister: () => void;
