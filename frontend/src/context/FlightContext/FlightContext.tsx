@@ -28,6 +28,8 @@ type FlightContextType = {
 
   index: number;
   setIndex: (index: number) => void;
+  count: number;
+  setCount: (count: number) => void;
 };
 
 type News = {
@@ -143,6 +145,7 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [airports, setAirports] = useState<any[]>([]);
   const [news, setNews] = useState<any>(NewSlide[0]);
   const [index, setIndex] = useState<number>(Number(localStorage.getItem('news-index')));
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     setNewsList(NewSlide);
@@ -151,6 +154,10 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     })
     localStorage.setItem('news-index', index.toString());
   }, [index]);
+
+  useEffect(() => {
+    console.log("state updated.")
+  }, [])
 
   return (
     <FlightContext.Provider
@@ -170,7 +177,9 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         news,
         setNews,
         index,
-        setIndex
+        setIndex,
+        count,
+        setCount
       }}
     >
       {children}
