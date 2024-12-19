@@ -110,7 +110,6 @@ const Aircrafts: React.FC = () => {
       });
     };
     
-    
     const renderStatus = (status: number) => (status === 1 ? "Active" : "Inactive");
   
     const formatDateTime = (dateTime: string) => {
@@ -237,7 +236,7 @@ const Aircrafts: React.FC = () => {
                       className="w-full px-2 py-1 border rounded"
                   />
                   </td>
-                  <td className="border border-gray-300 px-4 py-2 flex items-center space-x-2">
+                  <td className="border border-gray-300 px-4 py-2">
                   <input
                       type="datetime-local"
                       name="availableAt"
@@ -246,35 +245,47 @@ const Aircrafts: React.FC = () => {
                       className="w-full px-2 py-1 border rounded"
                   />
                   </td>
-                  <td className="px-2">
-                    {editingAircraft ? (
-                      <button onClick={handleSaveEdit} className="bg-green-600 hover:bg-green-400 border-none px-5 py-2 text-white rounded">Save</button>
-                    ) : (
-                      <button onClick={handleAddAircraft} className="bg-blue-600 hover:bg-blue-400 border-none px-6 py-2 text-white rounded">Add</button>
-                    )}
+                  <td className="border border-gray-300 px-2 py-2 text-sm">
+                    <div className="flex justify-center items-center">
+                      {editingAircraft ? (
+                        <button
+                          onClick={handleSaveEdit}
+                          className="bg-green-600 hover:bg-green-400 border-none px-5 py-2 text-white rounded"
+                        >
+                          Save
+                        </button>
+                      ) : (
+                        <button
+                          onClick={handleAddAircraft}
+                          className="bg-blue-600 hover:bg-blue-400 border-none px-6 py-2 text-white rounded"
+                        >
+                          Add
+                        </button>
+                      )}
+                    </div>
                   </td>
               </tr>
             </thead>
             <tbody>
                 {filteredAircrafts.map((aircraft, index) => (
                 <tr key={index} className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}>
-                    <td className="border border-gray-300 px-4 py-2 text-sm">{aircraft.name}</td>
-                    <td className="border border-gray-300 px-4 py-2 text-sm">{aircraft.manufacturer}</td>
-                    <td className="border border-gray-300 px-4 py-2 text-sm">{aircraft.noOfSeats}</td>
-                    <td className="border border-gray-300 px-4 py-2 text-sm">{renderStatus(aircraft.status)}</td>
-                    <td className="border border-gray-300 px-4 py-2 text-sm">{aircraft.terminal}</td>
-                    <td className="border border-gray-300 px-4 py-2 text-sm">{formatDateTime(aircraft.availableAt)}</td>
-                    <td className="border border-gray-300 px-2 py-2 text-sm">
-                      <div className="flex items-center space-x-2">
+                    <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.name}</td>
+                    <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.manufacturer}</td>
+                    <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.noOfSeats}</td>
+                    <td className="border border-gray-300 px-4 py-2 text-base">{renderStatus(aircraft.status)}</td>
+                    <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.terminal}</td>
+                    <td className="border border-gray-300 px-4 py-2 text-base">{formatDateTime(aircraft.availableAt)}</td>
+                    <td className="border border-gray-300 px-2 py-2">
+                      <div className="flex justify-center items-center space-x-2">
                         <button
                           onClick={() => handleEditAircraft(aircraft)}
-                          className="bg-green-600 border-none rounded px-2 pt-1 hover:bg-green-400 transition duration-200"
+                          className="bg-green-600 border-none rounded text-sm px-2 pt-1 hover:bg-green-400 transition duration-200"
                         >
                           <FaWrench color="white"/>
                         </button>
                         <button
                           onClick={() => handleDeleteAirCraft(aircraft)}
-                          className="bg-red-600 border-none rounded px-2 pt-1 hover:bg-red-400 transition duration-200"
+                          className="bg-red-600 border-none rounded text-sm px-2 pt-1 hover:bg-red-400 transition duration-200"
                         >
                           <FaDeleteLeft color="white"/>
                         </button>
