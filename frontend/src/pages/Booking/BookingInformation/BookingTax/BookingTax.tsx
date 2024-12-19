@@ -6,7 +6,7 @@ const BookingTax = (props: Props) => {
   return (
     <div className = "">
         <p className = " text-3xl text-[#1A4532] font-bold">Tax, Fee & Surcharge</p>
-        <div className = "w-[70rem]">
+        <div className = "w-[75vw]">
             <p className = " text-2xl text-[#1A4532] font-bold">What is an airline ticket?</p>
             <p className = "text-lg">An airline ticket is a contract for transportation services between an airline and a passenger, represented in the form of an electronic ticket (All passenger and itinerary information is stored electronically).</p>
             <p className = "text-lg">Information displayed on the electronic ticket includes:</p>
@@ -19,14 +19,14 @@ const BookingTax = (props: Props) => {
             </ul>
             <p className = "text-lg relative top-[1rem]">Passengers can store the PNR code in various forms, such as text messages, images, handwritten notes, emails, etc. When checking in at the airport, passengers provide the matching booking code with the ticket number stored in the system. Bamboo Airways will then print and deliver the boarding pass to the customer.</p>
         </div>
-        <div className = "w-[70rem] h-[0.05rem] bg-[gray] relative top-[2rem]"></div>
-        <div className = "w-[70rem]">
+        <div className = "w-[75vw] h-[0.05rem] bg-[gray] relative top-[2rem]"></div>
+        <div className = "w-[75vw]">
             <p className = " text-2xl text-[#1A4532] font-bold relative top-[1.5rem]">What is a boarding pass?</p>
             <p className = "text-lg">A boarding pass consists of two parts, one of which is detached by the airline staff during the boarding process. The remaining part is retained by the passenger so that when boarding the aircraft, the flight attendants can guide passengers to their assigned seats as indicated on the pass.</p>
             <p className = "text-lg">Information on the boarding pass includes: Passenger name, flight number, departure and arrival points, seat number, seat class, date and time of the flight, and the departure gate.</p>
         </div>
-        <div className = "w-[70rem] h-[0.05rem] bg-[gray] relative top-[1.5rem]"></div>
-        <div className = "w-[70rem]">
+        <div className = "w-[75vw] h-[0.05rem] bg-[gray] relative top-[1.5rem]"></div>
+        <div className = "w-[75vw]">
             <p className = " text-2xl text-[#1A4532] font-bold relative top-[1rem]">How is the airfare calculated?</p>
             <p className = "text-lg">Bamboo Airways' airfare <b>(applicable only for domestic routes)</b> consists of the following components:</p>
             <div>
