@@ -10,10 +10,6 @@ type Props = {}
 
 const LoginPage = (props: Props) => {
     const [register, setRegister] = useState<boolean>(false);
-
-    const handleSetRegister = () => {
-        register === true ? setRegister(false) : setRegister(true);
-    }
     return (
         <div className="relative w-full h-screen overflow-hidden">
             {/* Background image */}

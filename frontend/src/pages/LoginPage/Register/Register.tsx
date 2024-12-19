@@ -14,10 +14,10 @@ const Register = (props: Props) => {
             {/* image */}
             <div className = "h-[100%] w-[50%] relative">
                 <img src = "https://images.wallpaperscraft.com/image/single/airplane_wing_view_152515_3840x2160.jpg" alt = "" className = "w-full h-full rounded-tl-[12px] rounded-bl-[12px]"/>
-                <Link to = "/">
-                    <div className = "w-[10rem] h-[2rem] bg-gray-400 font-space-grotesk rounded-[15px] flex absolute top-[1rem] right-[1rem] hover:bg-Green hover:text-golden text-black">
-                        <p className = "relative bottom-[0.7rem] ml-[0.5rem]">Back to website</p>
-                        <FaLongArrowAltRight className = "relative left-[0.2rem] top-[0.5rem]"/>
+                <Link to="/">
+                    <div className="w-[10rem] h-[2rem] bg-gray-400 opacity-50 rounded-[15px] flex items-center justify-center absolute top-[1rem] right-[1rem] hover:opacity-60 hover:text-gray-950 text-white">
+                        <p className="text-sm">Back to website</p>
+                        <FaLongArrowAltRight className="ml-2" />
                     </div>
                 </Link>
             </div>
