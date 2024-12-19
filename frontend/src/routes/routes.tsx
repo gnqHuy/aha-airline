@@ -17,12 +17,11 @@ import TravelDocument from '../pages/TravelInfo/TravelDocument/TravelDocument';
 import Ticket from '../pages/TicketPage/TicketPage';
 import { SearchFlightStateProvider } from '../context/SearchFlightState/SearchFlightState';
 import TicketCard from '../pages/TicketCart/TicketCart';
-import { TicketProvider } from '../context/TicketContext/TicketContext';
-import PassengerInfo from '../components/BookingSection/Book/Content/PassengerInfo/PassengerInfo';
 import PassengerInfor from '../pages/PassengerInfo/PassengerInfor';
-import { BookedTicketProvider } from '../context/BookedTicket/BookedTicket';
 import Payment from '../pages/Payment/Payment';
 import LoginPage from '../pages/LoginPage/LoginPage';
+import NewsPage from '../pages/NewsPage/NewsPage';
+import { BookedTicketProvider } from '../context/BookedFlight/BookedFlight';
 import Register from '../pages/LoginPage/Register/Register';
 
 export const router = createBrowserRouter([
@@ -74,7 +73,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/explore/destination/:nameCity",
+    path: "/explore/destination/:city",
     element: (
       <>
         <SearchFlightStateProvider>
@@ -97,10 +96,8 @@ export const router = createBrowserRouter([
     path: "/ticket",
     element: (
       <>
-      <TicketProvider>
         <ScrollToTop />
         <Ticket />
-      </TicketProvider>
       </>
     ),
   },
@@ -108,10 +105,8 @@ export const router = createBrowserRouter([
     path: "/ticket/ticketCart",
     element: (
       <>
-      <TicketProvider>
         <ScrollToTop />
         <TicketCard />
-      </TicketProvider>
       </>
     ),
   },
@@ -119,14 +114,10 @@ export const router = createBrowserRouter([
     path: "/ticket/ticketCart/passengerInfor",
     element: (
       <>
-      
-        <TicketProvider>
-          <BookedTicketProvider>
+        <BookedTicketProvider>
           <ScrollToTop />
           <PassengerInfor />
-          </BookedTicketProvider>
-        </TicketProvider>
-      
+        </BookedTicketProvider>      
       </>
     ),
   },
@@ -134,14 +125,10 @@ export const router = createBrowserRouter([
     path: "/ticket/ticketCart/passengerInfor/payment",
     element: (
       <>
-      
-        <TicketProvider>
-          <BookedTicketProvider>
+        <BookedTicketProvider>
           <ScrollToTop />
           <Payment />
-          </BookedTicketProvider>
-        </TicketProvider>
-      
+        </BookedTicketProvider>      
       </>
     ),
   },

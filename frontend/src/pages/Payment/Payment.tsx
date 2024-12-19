@@ -2,7 +2,7 @@ import React from 'react';
 import Layout1 from '../../components/Layout/Layout1';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { useBookedTicket } from '../../context/BookedTicket/BookedTicket';
+import { useBookedTicket } from '../../context/BookedFlight/BookedFlight';
 import ElectronicTicket from '../../components/ElectronicTicket/ElectronicTicket';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
