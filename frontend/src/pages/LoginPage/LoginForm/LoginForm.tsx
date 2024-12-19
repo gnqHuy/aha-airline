@@ -1,61 +1,110 @@
-import React from 'react'
-import { FaUser } from 'react-icons/fa'
-import { MdLock } from 'react-icons/md'
+import React, { useState } from 'react';
+import { FaUser } from 'react-icons/fa';
+import { MdLock } from 'react-icons/md';
+import { useDispatch, useSelector } from 'react-redux';
+import { logIn } from '../../../api/authAPI';
+import { login } from '../../../redux/slice/authSlice';
+import { RootState } from '../../../redux/store';
 
 interface Props {
-    handleSetRegister: () => void;
+  handleSetRegister: () => void;
 }
 
-const LoginForm: React.FC<Props> = ({handleSetRegister}) => {
+const LoginForm: React.FC<Props> = ({ handleSetRegister }) => {
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const token = useSelector((state: RootState) => state.auth.accessToken);
+
+  const handleSubmit = () => {
+    if (!username || !password) {
+      alert('Please fill in both fields');
+      return;
+    }
+
+    logIn({
+        usernameOrEmail: username,
+        password: password
+    }).then((res) => {
+        if (res.data.isSuccess) {
+            dispatch(login({ accessToken: res.data.token }));
+            
+            console.log(token);
+        }
+    });
+
+  };
+
   return (
-    <div className = "h-[100%] w-[50%] relative ">
-        <p className = "text-center text-4xl font-bold text-golden">LOGIN</p>
+    <div className="h-[100%] w-[50%] relative flex flex-col items-center justify-center">
+        {/* Login to AHA */}
+        <div className="flex items-center mb-6">
+            <p className="text-center text-3xl font-bold text-lime-800">Login to&nbsp;</p>
+            <p className="text-center text-3xl font-bold text-golden-ramsay">AHA</p>
+        </div>
 
-        <div className = "mt-[0rem]">
-            {/* input form */}
-            <div className = "mt-[0%]">
-                <p className = " text-[15px] relative top-[0.5rem] left-[20%] text-golden opacity-1">Username</p>
-                <div className = "flex">
-                    <FaUser className = "w-[1.8rem] h-[1.8rem] relative top-[0%] left-[12%] opacity-1" style = {{color: "#D4A422"}}/>
-                    <input id = "animated-input" type = "text" className = "w-[60%] h-[2rem] bg-[#2c694e] relative left-[14%] rounded-[15px] border-none outline-none text-white  pl-[2%]" placeholder = "Username" autoFocus/>
+        <div className="mt-0 w-full">
+            {/* Username input */}
+            <div className="mt-4">
+                <p className="text-[15px] text-left text-golden-ramsay ml-[20%]">Username</p>
+                <div className="flex items-center">
+                    <FaUser
+                        className="w-[1.4rem] h-[1.4rem] ml-[12%]"
+                        style={{ color: '#D4A422' }}
+                    />
+                    <input
+                        id="username-input"
+                        type="text"
+                        className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[2%] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]"
+                        placeholder="Username"
+                        autoFocus
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
                 </div>
             </div>
 
-            {/* password form */}
-            <div className = "mt-[5%]">
-                <p className = " text-[15px] relative top-[0.5rem] left-[20%] text-golden opacity-1">Password</p>
-                <div className = "flex">
-                    <MdLock className = "w-[1.8rem] h-[1.8rem] relative top-[0%] left-[12%] opacity-1" style = {{color: "#D4A422"}}/>
-                    <input id = "animated-input" type = "password" className = "w-[60%] h-[2rem] bg-[#2c694e] relative left-[14%] rounded-[15px] border-none outline-none text-white  pl-[2%]" placeholder = "Password" autoFocus/>
+            {/* Password input */}
+            <div className="mt-4">
+                <p className="text-[15px] text-left text-golden-ramsay ml-[20%]">Password</p>
+                <div className="flex items-center">
+                    <MdLock
+                        className="w-[1.4rem] h-[1.4rem] ml-[12%]"
+                        style={{ color: '#D4A422' }}
+                    />
+                    <input
+                        id="password-input"
+                        type="password"
+                        className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[2%] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
                 </div>
             </div>
         </div>
 
-        {/* remember me and forgot password */}
-        <div className = "flex mt-[2%]">
-            {/* remember me */}
-            <div className = "flex ml-[12%]">
-                <input type = "checkbox" className = "border-none outline-none"/>
-                <p className = " text-golden">Remember me</p>
-            </div>
-
-            {/* forgot password */}
-            <div className = "ml-[33%]">
-                <p className = " text-golden">Forgot?</p>
-            </div>
+        {/* Submit button */}
+        <div className="mt-8">
+            <button
+                className="cursor-pointer px-6 py-1 bg-golden text-[#FCF9F2] border-none outline-none text-lg font-normal rounded-[12px]"
+                onClick={handleSubmit}
+            >
+                Login
+            </button>
         </div>
-
-        {/* submit button */}
-        <div className = "mt-[5%]">
-            <button className = "w-[30%] h-[2.5rem] bg-golden text-Green ml-[35%] border-none outline-none  text-lg font-bold rounded-[12px]">LOGIN</button>
-        </div>
-
+      
         {/* register suggest */}
         <div className = "absolute left-[25%] bottom-[2rem]">
-            <p className = "text-golden">Doesn't have an account? <span className = "underline hover:cursor-pointer" onClick={handleSetRegister}>Register</span></p>
+            <p className = "text-golden">Doesn't have an account? 
+                <Link to = "/sign-up">
+                    <span className = "underline hover:cursor-pointer text-golden">Register</span>
+                </Link>
+            </p>
         </div>
     </div>
-  )
-}
+);
 
-export default LoginForm
+};
+
+export default LoginForm;

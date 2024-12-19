@@ -17,12 +17,15 @@ const Example = () => {
         // {imgLink: url1, header: h1, content: c1}
     ];
 
-    const { newsList, setNews, setIndex} = useFlightContext();
+    const { newsList, setNews, setIndex, count, setCount} = useFlightContext();
     
 
     useEffect(() => {
         console.log(newsList);
     }, [newsList]);
+
+    useEffect(() => {
+    }, [])
 
     return (
         <Slide>
