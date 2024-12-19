@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import './LoginPage.css';
 import bg from '../../assets-test/Images/sunset4.jpg';
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { FaUser } from "react-icons/fa";
-import { MdLock } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import LoginForm from './LoginForm/LoginForm';
 import RegisterPage from './Register/RegisterPage';
@@ -45,10 +43,7 @@ const LoginPage = (props: Props) => {
                     </div>
     
                     {/* Form section */}
-                    {register === false ? 
-                        <LoginForm handleSetRegister={handleSetRegister} /> : 
-                        <RegisterPage handleSetRegister={handleSetRegister} />
-                    }
+                    <LoginForm/>
                 </div>
             </div>
         </div>
