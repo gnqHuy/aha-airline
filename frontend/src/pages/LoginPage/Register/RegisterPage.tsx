@@ -6,9 +6,12 @@ interface Props {
 
 const RegisterPage: React.FC<Props> = ({handleSetRegister}) => {
   return (
-    <div className = " h-[40rem] w-[50%] relative">
-        <p className = "text-center text-4xl font-bold text-golden relative bottom-[1rem]">REGISTER</p>
-
+    <div className="h-[100%] w-[50%] relative flex flex-col items-center justify-center">
+        {/* Login to AHA */}
+        <div className="flex items-center mb-6">
+            <p className="text-center text-2xl font-bold text-lime-800">Join&nbsp;</p>
+            <p className="text-center text-2xl font-bold text-golden-ramsay">AHA Membership</p>
+        </div>
         <div className = "relative bottom-[1.5rem]">
             <div className = "flex">
                 {/* first name */}
