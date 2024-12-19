@@ -8,10 +8,9 @@ import { RootState } from '../../../redux/store';
 import { Link } from 'react-router-dom';
 
 interface Props {
-  handleSetRegister: () => void;
 }
 
-const LoginForm: React.FC<Props> = ({ handleSetRegister }) => {
+const LoginForm: React.FC<Props> = ({ }) => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
