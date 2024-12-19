@@ -4,16 +4,24 @@ import {RouterProvider} from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { router } from './routes/routes';
 import { FlightProvider } from './context/FlightContext/FlightContext';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from './redux/store';
+import { setupAxios } from './utils/api';
+import App from './App';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+setupAxios(store);
+
 root.render(
-  <FlightProvider>
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
-  </FlightProvider>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <App></App>
+    </PersistGate>
+  </Provider>
 );
 
 

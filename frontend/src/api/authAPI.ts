@@ -1,0 +1,7 @@
+import API from "../utils/api";
+
+const URL_PREFIX = 'api/Auth';
+
+export function logIn(objectParam: any) {
+    return API.post(`${URL_PREFIX}/login`, objectParam);
+}
