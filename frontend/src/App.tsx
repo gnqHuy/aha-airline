@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { testAPI } from './api/test';
-import NavBar from './components/NavBar/NavBar';
-import NewsSection from './components/NewsSection/NewsSection';
-import FlightCard from './components/FlightCard/FlightCard';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { FlightProvider } from './context/FlightContext/FlightContext';
+import { router } from './routes/routes';
+import { RouterProvider } from 'react-router-dom';
+import { Persistor } from 'redux-persist';
 
+type Props = {
+}
 
-function App() {
-  // useEffect(() => {
-  //   testAPI().then((res) => {
-  //     console.log(res);
-  //   })
-  // }, [])
+const App: React.FC<Props> = () => {
 
 
   return(
-    <></>
+    <FlightProvider>
+      <React.StrictMode>
+        <RouterProvider router={router} />
+      </React.StrictMode>
+    </FlightProvider>
   );
 }
 export default App;
