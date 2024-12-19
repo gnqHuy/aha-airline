@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllCities } from "../../../api/cities.API";
 import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
-
-interface City {
-  name: string;
-  country: string;
-}
+import { City } from "../../../object/city";
 
 const Cities: React.FC = () => {
   const [cities, setCities] = useState<City[]>([]);
@@ -170,7 +166,13 @@ const Cities: React.FC = () => {
             {filteredCities.map((city, index) => (
               <tr
                 key={index}
-                className={index % 2 === 0 ? "bg-white" : "bg-gray-100"}
+                className={`${
+                  editingCity && city.name === editingCity.name && city.country === editingCity.country
+                    ? "bg-golden-hover"
+                    : index % 2 === 0
+                    ? "bg-white"
+                    : "bg-gray-100"
+                }`}
               >
                 <td className="border border-gray-300 px-4 py-2 text-base">
                   {city.name}

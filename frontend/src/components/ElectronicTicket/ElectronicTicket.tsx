@@ -1,8 +1,8 @@
 import React from "react";
-import { BookedTicket } from "../../object/ticket/ticket";
 import { FaPlane } from "react-icons/fa";
 import { BsClock } from "react-icons/bs";
 import { IoIosArrowForward } from "react-icons/io";
+import { BookedTicket } from "../../object/ticket/ticket";
 
 type ElectronicTicketProps = {
     bookedTicket: BookedTicket;
