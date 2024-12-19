@@ -1,12 +1,12 @@
 import React from 'react'
 import { FaUser } from 'react-icons/fa'
 import { MdLock } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 
 interface Props {
-    handleSetRegister: () => void;
 }
 
-const LoginForm: React.FC<Props> = ({handleSetRegister}) => {
+const LoginForm: React.FC<Props> = ({}) => {
   return (
     <div className = "h-[100%] w-[50%] relative font-space-grotesk">
         <p className = "text-center text-4xl font-bold text-golden">LOGIN</p>
@@ -52,7 +52,11 @@ const LoginForm: React.FC<Props> = ({handleSetRegister}) => {
 
         {/* register suggest */}
         <div className = "absolute left-[25%] bottom-[2rem]">
-            <p className = "text-golden">Doesn't have an account? <span className = "underline hover:cursor-pointer" onClick={handleSetRegister}>Register</span></p>
+            <p className = "text-golden">Doesn't have an account? 
+                <Link to = "/sign-up">
+                    <span className = "underline hover:cursor-pointer text-golden">Register</span>
+                </Link>
+            </p>
         </div>
     </div>
   )

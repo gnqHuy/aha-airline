@@ -1,19 +1,12 @@
-import React, { useState } from 'react'
-import './LoginPage.css';
-import bg from '../../assets-test/Images/sunset4.jpg';
-import { FaLongArrowAltRight } from "react-icons/fa";
-import { Link } from 'react-router-dom';
-import LoginForm from './LoginForm/LoginForm';
-import RegisterPage from './Register/RegisterPage';
+import React from 'react'
+import RegisterPage from './RegisterPage'
+import { Link } from 'react-router-dom'
+import { FaLongArrowAltRight } from 'react-icons/fa'
+import bg from '../../../assets-test/Images/sunset4.jpg';
 
 type Props = {}
 
-const LoginPage = (props: Props) => {
-    const [register, setRegister] = useState<boolean>(false);
-
-    const handleSetRegister = () => {
-        register === true ? setRegister(false) : setRegister(true);
-    }
+const Register = (props: Props) => {
   return (
     <div className = "w-full h-[45.8rem] overflow-hidden">
         <img src = {bg} alt = "" className = "w-full h-[45.8rem] object-cover object-center z-0" id = "login-bg"/>
@@ -30,10 +23,10 @@ const LoginPage = (props: Props) => {
             </div>
 
             {/* form */}
-            <LoginForm/>
+            <RegisterPage/>
         </div>
     </div>
   )
 }
 
-export default LoginPage
+export default Register
