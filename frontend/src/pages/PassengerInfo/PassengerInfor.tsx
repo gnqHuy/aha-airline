@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useFlightContext } from "../../context/FlightContext/FlightContext";
-import { useTicket } from "../../context/TicketContext/TicketContext";
 import PassengerForm from "../../components/PassengerForm/PassengerForm";
-import { useBookedTicket } from "../../context/BookedTicket/BookedTicket";
-import { BookedTicket } from "../../object/ticket/ticket";
+import { useBookedTicket } from "../../context/BookedFlight/BookedFlight";
 import Layout1 from "../../components/Layout/Layout1";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
@@ -13,7 +11,7 @@ type Props = {};
 const PassengerInfor: React.FC<Props> = () => {
   const { selectedPassenger } = useFlightContext();
   const { adults, children, infants } = selectedPassenger;
-  const { selectedClass, selectedTicket } = useTicket();
+  const { selectedFlightClass, selectedFlight } = useFlightContext();
   const { addBookedTicket } = useBookedTicket();
   const navigate = useNavigate();
 
@@ -28,7 +26,7 @@ const PassengerInfor: React.FC<Props> = () => {
     })
   );
 
-  if (!selectedTicket) {
+  if (!selectedFlight) {
     return <div>
             <Layout>
                 <div className="text-center text-red-500 text-2xl pt-4">
@@ -60,35 +58,35 @@ const PassengerInfor: React.FC<Props> = () => {
     }
   
     const classType: "Economy" | "Business" =
-      selectedClass === "Economy" || selectedClass === "Business"
-        ? selectedClass
+      selectedFlightClass === "Economy" || selectedFlightClass === "Business"
+        ? selectedFlightClass
         : "Economy";
   
     passengerData.forEach((passenger, index) => {
       const price =
-        selectedClass === "Economy"
-          ? selectedTicket.economyPrice
-          : selectedTicket.businessPrice;
+        selectedFlightClass === "Economy"
+          ? selectedFlight.economyPrice
+          : selectedFlight.businessPrice;
   
-      const newBookedTicket: BookedTicket = {
-        aircraft: selectedTicket.aircraft,
-        fromIATA: selectedTicket.fromIATA,
-        toIATA: selectedTicket.toIATA,
-        fromAirportName: selectedTicket.fromAirportName,
-        toAirportName: selectedTicket.toAirportName,
-        fromTime: selectedTicket.fromTime,
-        toTime: selectedTicket.toTime,
-        classType: classType,
-        price: price,
-        title: passenger.title,
-        firstName: passenger.firstName,
-        lastName: passenger.lastName,
-        dateOfBirth: passenger.dateOfBirth ? new Date(passenger.dateOfBirth) : new Date(),
-        email: passenger.email,
-        phone: passenger.phone,
-      };
+      // const newBookedTicket: BookedTicket = {
+      //   aircraft: selectedFlight.aircraft,
+      //   fromIATA: selectedFlight.fromIATA,
+      //   toIATA: selectedFlight.toIATA,
+      //   fromAirportName: selectedFlight.fromAirportName,
+      //   toAirportName: selectedFlight.toAirportName,
+      //   fromTime: selectedFlight.fromTime,
+      //   toTime: selectedFlight.toTime,
+      //   classType: classType,
+      //   price: price,
+      //   title: passenger.title,
+      //   firstName: passenger.firstName,
+      //   lastName: passenger.lastName,
+      //   dateOfBirth: passenger.dateOfBirth ? new Date(passenger.dateOfBirth) : new Date(),
+      //   email: passenger.email,
+      //   phone: passenger.phone,
+      // };
   
-      addBookedTicket(newBookedTicket);
+      // addBookedTicket(newBookedTicket);
     });
   
     alert("Tickets booked successfully!");

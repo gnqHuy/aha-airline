@@ -1,6 +1,5 @@
 import React from 'react';
 import { useFlightContext } from '../../context/FlightContext/FlightContext';
-import { useTicket } from '../../context/TicketContext/TicketContext';
 import TicketPreview from '../../components/TicketPreview/TicketPreview';
 import { useNavigate } from 'react-router-dom';
 import Layout1 from '../../components/Layout/Layout1';
@@ -9,15 +8,14 @@ import Layout from '../../components/Layout/Layout';
 type Props = {};
 
 const TicketCard: React.FC<Props> = () => {
-    const { selectedFlight, selectedPassenger } = useFlightContext();
-    const { selectedClass, selectedTicket } = useTicket();
+    const { selectedFlight, selectedPassenger, selectedFlightClass} = useFlightContext();
     const navigate = useNavigate();
 
     const handleConfirmButton = () => {
         navigate("passengerInfor");
     };
 
-    if (!selectedTicket) {
+    if (!selectedFlight) {
         return <div>
             <Layout>
                 <div className="text-center text-red-500 text-2xl pt-4">
@@ -30,17 +28,17 @@ const TicketCard: React.FC<Props> = () => {
     const passengerCount = selectedPassenger.adults + selectedPassenger.children + selectedPassenger.infants;
 
     let totalPrice = 0;
-    if (selectedClass === "economy") {
-        totalPrice = selectedTicket.economyPrice * passengerCount;
-    } else if (selectedClass === "business") {
-        totalPrice = selectedTicket.businessPrice * passengerCount;
+    if (selectedFlightClass === "economy") {
+        totalPrice = selectedFlight.economyPrice * passengerCount;
+    } else if (selectedFlightClass === "business") {
+        totalPrice = selectedFlight.businessPrice * passengerCount;
     }
     
     return (
     <Layout1>
         <div className="text-2xl font-bold text-center text-gray-800 mb-6 pt-6">Your Ticket</div>
         <div id="ticket-content" className="w-[70%] mx-auto">
-            <TicketPreview ticket={selectedTicket} classType={selectedClass} />
+            <TicketPreview flight={selectedFlight} classType={selectedFlightClass} />
         </div>
         <div className="w-[70%] mx-auto text-right">
             <p className="text-2xl font-semibold">Total Price</p>

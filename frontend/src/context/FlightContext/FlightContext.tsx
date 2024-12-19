@@ -1,19 +1,31 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Flight } from "../../object/flight/flight";
-import { PassengerCount } from "../../object/passengerCount/passengerCount";
+import { PassengerCount } from "../../object/passengerCount";
 import { getAllAirport } from "../../api/airportAPI";
+import { FlightPreviewType } from "../../object/flightPreview";
+import { Flight } from "../../object/flight";
 
 type FlightContextType = {
   selectedFlight: Flight | null;
   setSelectedFlight: (flight: Flight) => void;
+
+  selectedFlightClass: string;
+  setSelectedFlightClass: (flightClass: string) => void;
+
+  selectedFlightPreview: FlightPreviewType | null;
+  setSelectedFlightPreview: (flightPreview: FlightPreviewType) => void;
+
   selectedPassenger: PassengerCount;
   setSelectedPassenger: (passengerCount: PassengerCount) => void;
+
   airports: any[];
   setAirports: (flights: any[]) => void;
+
   newsList: any[];
   setNewsList: (news: any[]) => void;
+
   news: any;
   setNews: (news: any) => void;
+
   index: number;
   setIndex: (index: number) => void;
   count: number;
@@ -122,6 +134,8 @@ const FlightContext = createContext<FlightContextType | undefined>(undefined);
 
 export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
+  const [selectedFlightClass, setSelectedFlightClass] = useState<string>("");
+  const [selectedFlightPreview, setSelectedFlightPreview] = useState<FlightPreviewType | null>(null);
   const [selectedPassenger, setSelectedPassenger] = useState<PassengerCount>({
     adults: 1,
     children: 0,
@@ -150,6 +164,10 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       value={{
         selectedFlight,
         setSelectedFlight,
+        selectedFlightClass,
+        setSelectedFlightClass,
+        selectedFlightPreview,
+        setSelectedFlightPreview,
         selectedPassenger,
         setSelectedPassenger,
         airports,
