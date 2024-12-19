@@ -39,7 +39,7 @@ const LoginPage = (props: Props) => {
                     </div>
     
                     {/* Form section */}
-                    {/* <LoginForm/> */}
+                    <LoginForm/>
                 </div>
             </div>
         </div>

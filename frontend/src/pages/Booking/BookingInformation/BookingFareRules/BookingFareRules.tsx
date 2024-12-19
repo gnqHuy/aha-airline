@@ -5,7 +5,7 @@ type Props = {}
 
 const BookingFareRules = (props: Props) => {
   return (
-    <div className = "">
+    <div className = "w-[75vw]">
         <p className = " text-3xl text-[#1A4532] font-bold">Fare Rules</p>
         <div>
             <div className = "">
