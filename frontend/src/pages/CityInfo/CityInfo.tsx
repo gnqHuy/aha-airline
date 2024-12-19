@@ -35,7 +35,7 @@ const CityInfo: React.FC = () => {
 
   return (
     <Layout headerImage={image5}>
-      <div className="w-[70%] mx-auto my-16">
+      <div className="w-[70%] mx-auto pt-4 pb-16">
         {cityInfo ? (
           <>
             <p className="text-4xl font-bold text-center text-golden capitalize">{cityInfo.name}</p>

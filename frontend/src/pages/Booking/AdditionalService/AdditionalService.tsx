@@ -18,19 +18,19 @@ const AdditionalService = (props: Props) => {
       }, []);
   return (
     <Layout>
-        <div className = "relative h-[200rem] overflow-x-clip bg-slate-50 bottom-[2rem]">
+        <div className = "relative h-[190rem] overflow-x-clip bg-slate-50 bottom-[2rem]">
             <div className = "relative left-[15rem] top-[1rem]">
                 <p className="text-3xl text-golden font-bold">Additional Services</p>
                 <div className = "relative top-[2rem]">
                     <section id = "seat-selection">
                         <SeatSelection />
                     </section>
-                    <div className = "relative top-[10rem]">
+                    <div className = "relative top-[5rem]">
                         <section id = "excess-baggage">
                             <ExcessBaggage />
                         </section>
                     </div>
-                    <section id = "business-lounge" className = "relative top-[20rem]">
+                    <section id = "business-lounge" className = "relative top-[10rem]">
                         <BusinessLounge />
                     </section>
                 </div>

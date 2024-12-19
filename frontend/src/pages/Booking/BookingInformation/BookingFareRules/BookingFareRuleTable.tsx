@@ -4,28 +4,28 @@ type Props = {}
 
 const BookingFareRuleTable = (props: Props) => {
   return (
-    <div className = "absolute font-space-grotesk">
+    <div className = "absolute ">
         {/* header */}
         <div className = "flex text-center border-x-2 border-y-[1px] border-solid border-white">
-            <div className = "w-[8rem] bg-[#ebc94e] h-[3rem] font-space-grotesk text-[black] font-bold">
+            <div className = "w-[8rem] bg-[#ebc94e] h-[3rem]  text-[black] font-bold">
                 <p className = "relative bottom-[0.1rem]">Group</p>
             </div>
-            <div className = "w-[16rem] bg-[#ebc94e] h-[3rem] font-space-grotesk text-[black] font-bold">
+            <div className = "w-[16rem] bg-[#ebc94e] h-[3rem]  text-[black] font-bold">
                 <p className = "relative bottom-[0.1rem]">Business</p>
             </div>
-            <div className = "w-[16rem] bg-[#ebc94e] h-[3rem] font-space-grotesk text-[black] font-bold">
+            <div className = "w-[16rem] bg-[#ebc94e] h-[3rem]  text-[black] font-bold">
                 <p className = "relative bottom-[0.1rem]">Skyboss</p>
             </div>
-            <div className = "w-[16rem] bg-[#ebc94e] h-[3rem] font-space-grotesk text-[black] font-bold">
+            <div className = "w-[16rem] bg-[#ebc94e] h-[3rem]  text-[black] font-bold">
                 <p className = "relative bottom-[0.1rem]">Deluxe</p>
             </div>
-            <div className = "w-[16rem] bg-[#ebc94e] h-[3rem] font-space-grotesk text-[black] font-bold">
+            <div className = "w-[16rem] bg-[#ebc94e] h-[3rem]  text-[black] font-bold">
                 <p className = "relative bottom-[0.1rem]">Eco</p>
             </div>
         </div>
 
         {/* carry-on baggage */}
-        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem] font-space-grotesk font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
+        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem]  font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
             <p className = "absolute left-[1rem] top-[-0.2rem]">Carry-on baggage</p>
         </div>
 
@@ -66,7 +66,7 @@ const BookingFareRuleTable = (props: Props) => {
         </div>
 
         {/* checked baggage */}
-        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem] font-space-grotesk font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
+        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem]  font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
             <p className = "absolute left-[1rem] top-[-0.2rem]">Checked baggage</p>
         </div>
 
@@ -119,7 +119,7 @@ const BookingFareRuleTable = (props: Props) => {
         </div>
 
         {/* hot meal */}
-        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem] font-space-grotesk font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
+        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem]  font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
             <p className = "absolute left-[1rem] top-[-0.2rem]">Hot meal</p>
         </div>
 
@@ -160,7 +160,7 @@ const BookingFareRuleTable = (props: Props) => {
         </div>
 
         {/* 03-in-01 amenities */}
-        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem] font-space-grotesk font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
+        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem]  font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
             <p className = "absolute left-[1rem] top-[-0.2rem]">03-in-01 amenities</p>
         </div>
         <div className = "flex text-[#ebc94e]">
@@ -188,7 +188,7 @@ const BookingFareRuleTable = (props: Props) => {
         </div>
 
         {/* seat */}
-        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem] font-space-grotesk font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
+        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem]  font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
             <p className = "absolute left-[1rem] top-[-0.2rem]">Seat</p>
         </div>
         <div className = "flex text-[#ebc94e]">
@@ -216,7 +216,7 @@ const BookingFareRuleTable = (props: Props) => {
         </div>
 
         {/* priority check in */}
-        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem] font-space-grotesk font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
+        <div className = "w-[72rem] bg-[#b3afaf] relative bottom-[0rem]  font-bold text-sm h-[2.5rem] border-x-2 border-y-[1px] border-solid border-white">
             <p className = "absolute left-[1rem] top-[-0.2rem]">Priority Check-in</p>
         </div>
         <div className = "flex text-[#ebc94e]">

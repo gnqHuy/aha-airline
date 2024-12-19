@@ -5,8 +5,8 @@ type Props = {}
 const BookingPaymentOption = (props: Props) => {
   return (
     <div>
-        <p className = "font-space-grotesk text-3xl text-[#094c5b] font-bold">Payment Options</p>
-        <div className = "font-space-grotesk text-lg">
+        <p className = " text-3xl text-[#1A4532] font-bold">Payment Options</p>
+        <div className = " text-lg">
             <p>When purchasing tickets online on Vietnam Airlines' website or mobile app, passengers can pay using one of the following methods:</p>
             <ul>
                 <li>International payment cards (Visa, Master, JCB, Amex, UATP, UnionPay);</li>

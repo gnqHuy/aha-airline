@@ -20,7 +20,7 @@ const Destination: React.FC = () => {
   }, []);
   return (
     <Layout>
-      <div id="asia" className="mt-14">
+      <div id="asia" className="pt-4">
         <div className="w-[1016px] mx-auto">
           <p className="text-3xl text-golden font-bold">Asia</p>
         </div>

@@ -6,9 +6,9 @@ type Props = {}
 const ExcessBaggage = (props: Props) => {
   return (
     <div className = "w-[70rem]">
-        <p className = "font-space-grotesk text-3xl text-[#094c5b] font-bold">Excess Baggage</p>
-        <div className = "font-space-grotesk">
-            <p className = "text-2xl text-[#094c5b] font-bold">Prepaid Baggage</p>
+        <p className = " text-3xl text-[#1A4532] font-bold">Excess Baggage</p>
+        <div className = "">
+            <p className = "text-2xl text-[#1A4532] font-bold">Prepaid Baggage</p>
             <p className = "text-lg relative bottom-[1rem]">Prepaid baggage allows passengers to purchase additional checked baggage at least 3 hours before departure time via Vietnam Airlines website/app or sales office/agent. With prepaid baggage, passengers can save up to 50% compared to purchasing additional checked baggage at the airport (Excess baggage).</p>
             <p className = "text-xl relative bottom-[1rem] font-bold">How to buy prepaid baggage</p>
             <p className = "text-lg relative bottom-[2rem]">Passengers can purchase up to 15 pieces of prepaid baggage via following channels:</p>

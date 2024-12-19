@@ -6,7 +6,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   cursor: pointer;
-  font-family: Arial, sans-serif;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
