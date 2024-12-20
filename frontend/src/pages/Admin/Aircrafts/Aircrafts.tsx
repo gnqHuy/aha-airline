@@ -4,6 +4,7 @@ import { FaWrench } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { Aircraft } from "../../../object/aircraft";
+import { AircraftStatus } from "../../../object/enum/AircraftStatus";
 
 const Aircrafts: React.FC = () => {
     const [aircrafts, setAircrafts] = useState<Aircraft[]>([]);
@@ -13,7 +14,7 @@ const Aircrafts: React.FC = () => {
       name: "",
       manufacturer: "",
       noOfSeats: 0,
-      status: 1,
+      status: AircraftStatus.Holding,
       terminal: "",
     });
 
@@ -23,7 +24,7 @@ const Aircrafts: React.FC = () => {
       name: "",
       manufacturer: "",
       noOfSeats: "",
-      status: "",
+      status: AircraftStatus.Holding,
       terminal: "",
     });
   
@@ -51,11 +52,12 @@ const Aircrafts: React.FC = () => {
     };
   
     const filteredAircrafts = aircrafts.filter((aircraft) => {
+      console.log(aircraft.status === search.status)
       return (
         (search.name === "" || aircraft.name.toLowerCase().includes(search.name.toLowerCase())) &&
         (search.manufacturer === "" || aircraft.manufacturer.toLowerCase().includes(search.manufacturer.toLowerCase())) &&
         (search.noOfSeats === "" || aircraft.noOfSeats.toString().includes(search.noOfSeats)) &&
-        (search.status === "" || aircraft.status.toString() === search.status) &&
+        (aircraft.status == search.status) &&
         (search.terminal === "" || aircraft.terminal.toLowerCase().includes(search.terminal.toLowerCase()))
       );
     });
@@ -98,8 +100,6 @@ const Aircrafts: React.FC = () => {
       });
     };
     
-    const renderStatus = (status: number) => (status === 1 ? "Active" : "Inactive");
-  
     if (loading) return <div>Loading...</div>;
     if (error) return <div className="text-red-600">Error: {error}</div>;
   
@@ -137,9 +137,10 @@ const Aircrafts: React.FC = () => {
                 onChange={handleSearchChange}
                 className="pl-2 py-2 border rounded flex-1 text-base"
             >
-                <option value="">Search by Status</option>
-                <option value="1">Active</option>
-                <option value="0">Inactive</option>
+                <option value={""}>Status</option>
+                <option value={AircraftStatus.Airborne}>Airborne</option>
+                <option value={AircraftStatus.Fuelling}>Fueling</option>
+                <option value={AircraftStatus.Holding}>Holding</option>
             </select>
             <input
                 type="text"
@@ -197,8 +198,9 @@ const Aircrafts: React.FC = () => {
                       onChange={handleInputChange}
                       className="w-full px-2 py-1 border rounded"
                   >
-                      <option value={1}>Active</option>
-                      <option value={0}>Inactive</option>
+                      <option value={AircraftStatus.Airborne}>Airborne</option>
+                      <option value={AircraftStatus.Fuelling}>Fueling</option>
+                      <option value={AircraftStatus.Holding}>Holding</option>
                   </select>
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
@@ -243,7 +245,7 @@ const Aircrafts: React.FC = () => {
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.name}</td>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.manufacturer}</td>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.noOfSeats}</td>
-                    <td className="border border-gray-300 px-4 py-2 text-base">{renderStatus(aircraft.status)}</td>
+                    <td className="border border-gray-300 px-4 py-2 text-base">{AircraftStatus[aircraft.status]}</td>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.terminal}</td>
                     <td className="border border-gray-300 px-2 py-2">
                       <div className="flex justify-center items-center space-x-2">

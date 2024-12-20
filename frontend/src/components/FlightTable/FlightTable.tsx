@@ -32,7 +32,6 @@ const FlightTable: React.FC<FlightTableProps> = ({ iata1: iata }) => {
       });
       setFlightPreview(response.data);
       setFilteredFlights(response.data); 
-      console.log(response.data)
     } catch (err) {
       setError('Failed to load flight route data.');
     } finally {
