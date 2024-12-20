@@ -20,6 +20,10 @@ namespace QAirlines.DataAccess.Model_Configuration
                 .HasColumnName("id")
                 .ValueGeneratedOnAdd();
 
+            builder.Property(e => e.Model)
+                .HasColumnType("varchar(255)")
+                .HasColumnName("model");
+
             builder.Property(e => e.Name)
                 .IsRequired()
                 .HasColumnType("varchar(255)")

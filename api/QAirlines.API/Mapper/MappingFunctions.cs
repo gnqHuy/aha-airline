@@ -2,6 +2,11 @@
 using QAirlines.Models;
 using QAirlines.UnitOfWorks;
 using AutoMapper;
+using QAirlines.Models.Summary;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using QAirlines.Models.User;
+using System.Threading.Tasks;
 
 namespace QAirlines.API.Mapper
 {
@@ -9,11 +14,13 @@ namespace QAirlines.API.Mapper
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MappingFunctions(IUnitOfWork unitOfWork, IMapper mapper)
+        public MappingFunctions(IUnitOfWork unitOfWork, IMapper mapper, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _userManager = userManager;
         }
         public AirportDTO AirportMapper(Airport airport)
         {
@@ -64,6 +71,50 @@ namespace QAirlines.API.Mapper
                 EconomyPrice = flight.EconomyPrice,
                 BusinessPrice = flight.BusinessPrice,
                 Status = flight.Status
+            };
+        }
+
+        public TicketDTO TicketMapper(Ticket ticket)
+        {
+            var flight = _unitOfWork.Flights.GetById(ticket.FlightId);
+            var flightRoute = _unitOfWork.FlightRoutes.GetById(flight.FlightRouteId);
+
+            var aircraft = _unitOfWork.Aircrafts.GetById(flight.AircraftId);
+            var aircraftDTO = _mapper.Map<AircraftDTO>(aircraft);
+
+            var seat = _unitOfWork.Seats.GetById(ticket.SeatId);
+            var reservation = _unitOfWork.Reservations.GetById(ticket.ReservationId);
+
+            var fromAirport = AirportMapper(_unitOfWork.Airports.GetByIATA(flightRoute.FromAirportIATA));
+            var toAirport = AirportMapper(_unitOfWork.Airports.GetByIATA(flightRoute.ToAirportIATA));
+
+            var flightSummary = new FlightSummary
+            {
+                Id = flight.Id,
+                Aircraft = aircraftDTO,
+                FromAirport = fromAirport,
+                ToAirport = toAirport,
+                BoardingTime = flight.BoardingTime,
+                DepartureTime = flight.DepartureTime,
+                ArrivalTime = flight.ArrivalTime,
+                Status = flight.Status,
+                BoardingGate = flight.BoardingGate,
+            };
+
+            return new TicketDTO
+            {
+                Id = ticket.Id,
+                FlightInfo = flightSummary,
+                BookerId = ticket.UserId != null ? ticket.UserId : null,
+                SeatNumber = seat.Position,
+                ReservationCode = reservation.ReservationCode,
+                PassengerTitle = ticket.PassengerTitle,
+                FirstName = ticket.FirstName,
+                LastName = ticket.LastName,
+                PassengerDOB = ticket.PassengerDOB,
+                Status = ticket.Status,
+                ContactEmail = ticket.ContactEmail,
+                PhoneNumber = ticket.PhoneNumber,
             };
         }
     }

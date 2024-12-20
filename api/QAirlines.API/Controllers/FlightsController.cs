@@ -56,6 +56,28 @@ namespace QAirlines.API.Controllers
             return flightPreviews.ToList();
         }
 
+        //[HttpPut("ResetSeats")]
+        //public async Task ResetNoOfSeats()
+        //{
+        //    _flightService.ResetRemainingSeats();
+        //}
+
+        [HttpPut("ResetNoOfAvalableSeat")]
+        public void ResetAvailableSeat(Guid flightId, int remainingEcoSeats, int remainingBsnSeats)
+        {
+            var flight = _unitOfWork.Flights.GetById(flightId);
+            flight.RemainingBsnSeats = remainingBsnSeats;
+            flight.RemainingEcoSeats = remainingEcoSeats;
+            _unitOfWork.Commit();
+        }
+
+        [HttpPost("GenerateSeats")]
+        public async Task<IActionResult> GenerateSeats()
+        {
+            int count = await _flightService.GenerateSeats();
+            return Ok($"Generated and added {count} seats");
+        }
+
         [HttpGet("FromRequest")]
         public async Task<IEnumerable<FlightDTO>> GetFromRequest([FromQuery]string fromIATA, string toIATA, DateTime? dateTime)
         {

@@ -7,6 +7,7 @@ using QAirlines.Models.User;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -190,6 +191,11 @@ namespace QAirlines.API.Services
             return new AuthServiceResponse
             {
                 IsSuccess = true,
+                User = new MinimalUser
+                {
+                    Username = user.UserName,
+                    Roles = roles.ToList()
+                },
                 Message = "Login successfully.",
                 Token = token
             };
