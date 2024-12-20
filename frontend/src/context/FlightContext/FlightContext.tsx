@@ -151,6 +151,7 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setNewsList(NewSlide);
     getAllAirport().then((res) => {
       setAirports(res.data);
+      console.log(res.data);
     })
     localStorage.setItem('news-index', index.toString());
   }, [index]);

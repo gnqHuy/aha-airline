@@ -61,7 +61,7 @@ namespace QAirlines.API.Mapper
 
             return new FlightDTO
             {
-                Id = flightRoute.Id,
+                Id = flight.Id,
                 Aircraft = aircraftDTO,
                 FlightRoute = flightRouteDTO,
                 BoardingTime = flight.BoardingTime,
@@ -74,19 +74,25 @@ namespace QAirlines.API.Mapper
             };
         }
 
-        public TicketDTO TicketMapper(Ticket ticket)
+        public async Task<TicketDTO> TicketMapper(Ticket ticket)
         {
-            var flight = _unitOfWork.Flights.GetById(ticket.FlightId);
-            var flightRoute = _unitOfWork.FlightRoutes.GetById(flight.FlightRouteId);
+            var flight = await _unitOfWork.Flights.GetByIdAsync(ticket.FlightId);
+            var flightRoute = await _unitOfWork.FlightRoutes.GetByIdAsync(flight.FlightRouteId);
 
-            var aircraft = _unitOfWork.Aircrafts.GetById(flight.AircraftId);
+            var aircraft = await _unitOfWork.Aircrafts.GetByIdAsync(flight.AircraftId);
             var aircraftDTO = _mapper.Map<AircraftDTO>(aircraft);
 
-            var seat = _unitOfWork.Seats.GetById(ticket.SeatId);
-            var reservation = _unitOfWork.Reservations.GetById(ticket.ReservationId);
+            var seat = await _unitOfWork.Seats.GetByIdAsync(ticket.SeatId);
+            var reservation = await _unitOfWork.Reservations.GetByIdAsync(ticket.ReservationId);
 
             var fromAirport = AirportMapper(_unitOfWork.Airports.GetByIATA(flightRoute.FromAirportIATA));
             var toAirport = AirportMapper(_unitOfWork.Airports.GetByIATA(flightRoute.ToAirportIATA));
+
+            var user = new ApplicationUser();
+            if (ticket.UserId.HasValue)
+            {
+                user = await _userManager.FindByNameAsync(ticket.UserId.Value.ToString());
+            }
 
             var flightSummary = new FlightSummary
             {
@@ -106,6 +112,8 @@ namespace QAirlines.API.Mapper
                 Id = ticket.Id,
                 FlightInfo = flightSummary,
                 BookerId = ticket.UserId != null ? ticket.UserId : null,
+                BookerFirstName = user != null ? user.FirstName : null,
+                BookerLastName = user != null ? user.LastName : null,
                 SeatNumber = seat.Position,
                 ReservationCode = reservation.ReservationCode,
                 PassengerTitle = ticket.PassengerTitle,
