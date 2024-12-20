@@ -1,0 +1,103 @@
+[
+  {
+    "isSuccess": true,
+    "message": "Tickets generated successfully.",
+    "reservationCode": "YRXGOO",
+    "userId": null,
+    "flightInfo": {
+      "id": "08dd2091-ad7a-4fb4-816b-bf5786475df3",
+      "aircraft": {
+        "id": "08dd17b6-6644-4b60-8d08-0693856a626c",
+        "name": "AHA-034",
+        "model": "Boeing 787-9 Dreamliner",
+        "manufacturer": "Boeing",
+        "noOfSeats": 294
+      },
+      "fromAirport": {
+        "iata": "HAN",
+        "name": "Noi Bai Intl",
+        "city": {
+          "id": "08dd07e8-52d8-4990-8049-c3859368870c",
+          "name": "Hanoi",
+          "country": "Vietnam"
+        }
+      },
+      "toAirport": {
+        "iata": "SGN",
+        "name": "Tan Son Nhat Intl",
+        "city": {
+          "id": "08dd07e8-52d8-499a-8f2e-d3b7dc670b86",
+          "name": "Ho Chi Minh City",
+          "country": "Vietnam"
+        }
+      },
+      "boardingTime": "2024-12-20T08:30:00",
+      "departureTime": "2024-12-20T09:00:00",
+      "arrivalTime": "2024-12-20T10:25:00",
+      "status": 0,
+      "boardingGate": "9/T1"
+    },
+    "ticketSummaries": [
+      {
+        "seatId": "08dd205a-5412-4afe-8945-f57604e1dcd3",
+        "seatPosition": "10A",
+        "passengerTitle": 1,
+        "firstName": "Aliceeehhh",
+        "lastName": "Smith",
+        "passengerDOB": "1990-05-15T00:00:00Z",
+        "status": 0,
+        "class": 0,
+        "contactEmail": "alice.smith@example.com",
+        "phoneNumber": "123-456-7890"
+      },
+      {
+        "seatId": "08dd205a-5412-474c-8fbc-b3f53449de87",
+        "seatPosition": "1E",
+        "passengerTitle": 0,
+        "firstName": "Bobbbbnn",
+        "lastName": "Johnson",
+        "passengerDOB": "1985-10-22T00:00:00Z",
+        "status": 0,
+        "class": 1,
+        "contactEmail": "bob.johnson@example.com",
+        "phoneNumber": "234-567-8901"
+      },
+      {
+        "seatId": "08dd205a-5412-4b14-8c4f-b0c7a3b17c55",
+        "seatPosition": "10B",
+        "passengerTitle": 2,
+        "firstName": "Charlieeee",
+        "lastName": "Williamssss",
+        "passengerDOB": "2000-07-11T00:00:00Z",
+        "status": 0,
+        "class": 0,
+        "contactEmail": "charlie.williams@example.com",
+        "phoneNumber": "345-678-9012"
+      },
+      {
+        "seatId": "08dd205a-5412-475f-8e22-b476e239e7fb",
+        "seatPosition": "1F",
+        "passengerTitle": 1,
+        "firstName": "Dianaaaa",
+        "lastName": "Brownnnnn",
+        "passengerDOB": "1992-03-03T00:00:00Z",
+        "status": 0,
+        "class": 1,
+        "contactEmail": "diana.brown@example.com",
+        "phoneNumber": "456-789-0123"
+      },
+      {
+        "seatId": "08dd205a-5412-4b25-8a69-df28b64f73c5",
+        "seatPosition": "10C",
+        "passengerTitle": 0,
+        "firstName": "Ethannnnn",
+        "lastName": "Davissssss",
+        "passengerDOB": "1988-09-19T00:00:00Z",
+        "status": 0,
+        "class": 0,
+        "contactEmail": "ethan.davis@example.com",
+        "phoneNumber": "567-890-1234"
+      }
+    ]
+  }
+]
