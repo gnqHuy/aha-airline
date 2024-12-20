@@ -17,10 +17,10 @@ const HomePage: React.FC = () => {
       <div className="w-[1016px] mx-auto pt-4"> <p className="text-3xl text-golden font-bold">Booking</p></div>
       <div className="flex flex-col items-center my-4">
         <div className="flex justify-center items-center my-4 gap-4">
-          <GenericCard image={image6} title={"Online Booking"} link={"onlinebooking"} />
-          <GenericCard image={image7} title={"Booking Information"} link={"booking-info"} />    
+          <GenericCard image={image6} title={"Online Booking"} link={"onlinebooking"} width = "32.5vw"/>
+          <GenericCard image={image7} title={"Booking Information"} link={"booking-info"} width = "32.5vw"/>    
         </div>
-        <GenericCard image={image2} title={"Additional Service"} link={"additional-services"} width={"1016px"} />
+        <GenericCard image={image2} title={"Additional Service"} link={"additional-services"} width={"66.3vw"} />
       </div>
     </Layout>
   );
