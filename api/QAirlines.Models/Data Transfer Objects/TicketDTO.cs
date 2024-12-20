@@ -13,6 +13,8 @@ namespace QAirlines.Models.Data_Transfer_Objects
         public Guid Id { get; set; }
         public FlightSummary FlightInfo { get; set; }
         public Guid? BookerId { get; set; }
+        public string? BookerFirstName { get; set; }
+        public string? BookerLastName { get; set; }
         public string SeatNumber { get; set; }
         public string ReservationCode { get; set; }
         public PassengerTitle PassengerTitle { get; set; }

@@ -92,7 +92,7 @@ namespace QAirlines.API.Controllers
         }
 
         [HttpGet("GetByReservationCode")]
-        public IActionResult GetByReservationCode(string reservationCode)
+        public async Task<IActionResult> GetByReservationCode(string reservationCode)
         {
             var tickets = _unitOfWork.Tickets.GetByReservationCode(reservationCode);
 
@@ -105,7 +105,7 @@ namespace QAirlines.API.Controllers
 
             foreach (var ticket in tickets)
             {
-                var ticketDTO = _mappingFunctions.TicketMapper(ticket);
+                var ticketDTO = await _mappingFunctions.TicketMapper(ticket);
                 ticketDTOs.Add(ticketDTO);
             }
 
