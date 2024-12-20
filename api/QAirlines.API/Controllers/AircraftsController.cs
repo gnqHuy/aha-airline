@@ -46,6 +46,13 @@ namespace QAirlines.API.Controllers
             _unitOfWork.Commit();
         }
 
+        [HttpPost("update")]
+        public void UpdateAircrafts()
+        {
+            _unitOfWork.Aircrafts.UpdateNoOfSeats();
+            _unitOfWork.Commit();
+        }
+
         [HttpPut]
         public IActionResult UpdateAircraft([FromQuery]AircraftRequest request)
         {
