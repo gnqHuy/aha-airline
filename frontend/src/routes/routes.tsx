@@ -80,7 +80,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/explore/destination/:city",
+    path: "/explore/destination/:nameCity",
     element: (
       <>
         <SearchFlightStateProvider>

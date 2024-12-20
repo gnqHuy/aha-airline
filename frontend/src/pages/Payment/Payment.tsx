@@ -14,7 +14,6 @@ type Props = {};
 const Payment: React.FC<Props> = () => {
   const { flightTickets, selectedFlight } = useFlightContext();
   const navigate = useNavigate();
-  console.log(flightTickets)
 
   if (!flightTickets || flightTickets.tickets.length === 0) {
     return (
@@ -22,7 +21,7 @@ const Payment: React.FC<Props> = () => {
         <Layout>
           <div className="text-center text-red-500 text-2xl pt-4">
             No flight has been selected, or the flight details are incomplete.
-            <br /> Please return to select your flight.
+            <br /> Kindly return and choose your flight to proceed.
           </div>
         </Layout>
       </div>
@@ -63,7 +62,7 @@ const Payment: React.FC<Props> = () => {
   };
 
   const handleClickConfirm = async () => {
-    generatePDFs();
+    
     try {
         AddTickets(flightTickets).then((response) => {
           if (response.data.isSuccess) {
@@ -76,7 +75,7 @@ const Payment: React.FC<Props> = () => {
         console.error(error);
         alert("An error occurred while adding tickets.");
     }
-    console.log(flightTickets)
+    generatePDFs();
     navigate("/");
   }
 

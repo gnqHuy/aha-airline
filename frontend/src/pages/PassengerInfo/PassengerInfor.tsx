@@ -32,7 +32,7 @@ const PassengerInfor: React.FC<Props> = () => {
         <Layout>
           <div className="text-center text-red-500 text-2xl pt-4">
             No flight has been selected, or the flight details are incomplete.
-            <br /> Please return to select your flight.
+            <br /> Kindly return and choose your flight to proceed.
           </div>
         </Layout>
       </div>
@@ -76,7 +76,6 @@ const PassengerInfor: React.FC<Props> = () => {
         contactEmail: passenger.email,
         phoneNumber: passenger.phone,
       };
-      console.log(ticket);
       addFlightTicket(ticket);
     });
 

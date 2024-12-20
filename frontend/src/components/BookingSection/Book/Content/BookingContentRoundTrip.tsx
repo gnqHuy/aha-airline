@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaArrowRight, FaCalendarAlt, FaGift } from 'react-icons/fa'
 import { FaArrowRightArrowLeft } from 'react-icons/fa6'
 import { RiExpandUpDownFill } from 'react-icons/ri'
 import CalendarDepart from './Calendar/CalendarDepart';
+import FlightPreview from '../../../FlightPreview/FlightPreview';
+import { useFlightContext } from '../../../../context/FlightContext/FlightContext';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
     handleSetupDisplaySuggestion: () => void;
@@ -41,8 +44,80 @@ const BookingContentRoundTrip: React.FC<Props> = ({
     selectedAirportTo, 
     selectedDateDepart, 
     selectedDateReturn, 
-    flightOption
+    flightOption,
         }) => {
+    
+    const {setSelectedFlightPreview, setSelectedPassenger} = useFlightContext();
+    const navigate = useNavigate();
+    function parseAirportInfo(input: string): {
+        iata: string;
+        cityName: string;
+        country: string;
+    } {
+        const parts = input.split(/ \(|\), /);
+        
+        if (parts.length < 3) {
+            throw new Error("Input string is not in the correct format");
+        }
+        
+        return {
+            cityName: parts[0].trim(),
+            iata: parts[1].trim(),
+            country: parts[2].trim(),
+        };
+    }
+    
+    function convertToISO(dateString: string, time: string): string {
+        const [day, month, year] = dateString.split("/").map(Number);
+        return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}T${time}`;
+    }
+                      
+    const handleFindFlightClick = () => {
+        try {
+            if (!selectedAirport || !selectedAirportTo || !selectedDateDepart) {
+                alert("Please fill in all required fields: departure airport, destination airport, and departure date.");
+                return;
+            }
+    
+            const fromInput = parseAirportInfo(selectedAirport);
+            const toInput = parseAirportInfo(selectedAirportTo);
+            const departureTime = convertToISO(selectedDateDepart, "00:00:01");
+    
+            const flightPreview = {
+                fromAirport: {
+                    iata: fromInput.iata,
+                    name: "",
+                    city: {
+                        name: fromInput.cityName,
+                        country: fromInput.country,
+                    },
+                },
+                toAirport: {
+                    iata: toInput.iata,
+                    name: "",
+                    city: {
+                        name: toInput.cityName,
+                        country: toInput.country,
+                    },
+                },
+                departureTime: departureTime,
+                minimumPrice: 0,
+            };
+    
+            setSelectedFlightPreview(flightPreview);
+            setSelectedPassenger({
+                adults: adultPassengerQuantity,
+                children: childrenPassengerQuantity,
+                infants: infantPassengerQuantity,
+            });
+    
+            navigate("ticket");
+        } catch (error) {
+            alert("An error occurred while processing your request. Please check your inputs and try again.");
+            console.error(error);
+        }
+    };    
+        
   return (
     <div className = "flex">
         {/* flight from */}
@@ -119,10 +194,10 @@ const BookingContentRoundTrip: React.FC<Props> = ({
 
         {/* find flight button */}
         <div className = "absolute top-[12rem] right-[5rem] medium:right-[5vw] small:top-[20rem]">
-            <button className = "w-[10rem] h-[2.5rem] border-none  font-bold bg-[#ebc94e]" style = {{fontSize: "15px", borderRadius: "10px"}}>FIND FLIGHT</button>
+            <button onClick={handleFindFlightClick} className = "w-[10rem] h-[2.5rem] cursor-pointer border-none hover:bg-golden-hover  font-bold bg-golden" style = {{fontSize: "15px", borderRadius: "10px"}}>FIND FLIGHT</button>
         </div>
     </div>
   )
 }
 
-export default BookingContentRoundTrip
+export default BookingContentRoundTrip;

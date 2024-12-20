@@ -14,7 +14,6 @@ const NewsPage = (props: Props) => {
         <div>
             {newsList.map((news, idx) => {
                 if (idx === index) {
-                    console.log(count);
                     return <div>
                         <h1 className="text-4xl font-semibold text-golden mb-6 ml-[13rem] mt-[0.5rem] relative top-[2.5rem]">{news?.header}</h1>
                         <div className = "mt-[5rem] ml-[13rem]" dangerouslySetInnerHTML={{__html: news?.content}}/>
