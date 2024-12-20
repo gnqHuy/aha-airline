@@ -30,6 +30,7 @@ import Cities from '../pages/Admin/Cities/Cities';
 import FlightRoutes from '../pages/Admin/FlightRoutes/FlightRoutes';
 import Flights from '../pages/Admin/Flights/Flights';
 import BookManagement from '../pages/BookManagement/BookManagement';
+import CheckInManagement from '../pages/CheckInManagement/CheckInManagement';
 
 export const router = createBrowserRouter([
   {
@@ -257,6 +258,15 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <BookManagement />
+      </>
+    )
+  }, 
+  {
+    path: "/checkin-management", 
+    element: (
+      <>
+        <ScrollToTop />
+        <CheckInManagement />
       </>
     )
   }
