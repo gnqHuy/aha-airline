@@ -1,16 +1,9 @@
 import { Aircraft } from "./aircraft";
+import { FlightStatus } from "./enum/FlightStatus";
 import { FlightRoute } from "./flightRoute";
 
-export enum FlightStatus
-{
-    Upcomming,
-    Boarding,
-    Departed,
-    Delayed,
-    Cancelled
-}
-
 export interface Flight {
+  id: string,
   aircraft: Aircraft,
   flightRoute: FlightRoute,
   boardingTime: string,

@@ -1,21 +1,26 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { PassengerCount } from "../../object/passengerCount";
-import { getAllAirport } from "../../api/airportAPI";
-import { FlightPreviewType } from "../../object/flightPreview";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { Flight } from "../../object/flight";
+import { FlightPreviewType } from "../../object/flightPreview";
+import { PassengerCount } from "../../object/passengerCount";
+import { FlightTickets, Ticket } from "../../object/ticket";
+import { SeatClass } from "../../object/enum/SeatClass";
+import { getAllAirport } from "../../api/airportAPI";
 
 type FlightContextType = {
   selectedFlight: Flight | null;
   setSelectedFlight: (flight: Flight) => void;
 
-  selectedFlightClass: string;
-  setSelectedFlightClass: (flightClass: string) => void;
+  selectedFlightClass: SeatClass;
+  setSelectedFlightClass: (flightClass: SeatClass) => void;
 
   selectedFlightPreview: FlightPreviewType | null;
   setSelectedFlightPreview: (flightPreview: FlightPreviewType) => void;
 
   selectedPassenger: PassengerCount;
   setSelectedPassenger: (passengerCount: PassengerCount) => void;
+
+  flightTickets: FlightTickets;
+  addFlightTicket: (ticket: Ticket) => void;
 
   airports: any[];
   setAirports: (flights: any[]) => void;
@@ -35,8 +40,8 @@ type FlightContextType = {
 type News = {
   imgLink: string;
   header: string;
-  content: string; 
-}
+  content: string;
+};
 
 const content1Sample = `<div class="max-w-4xl relative left-[6rem] p-6 bg-[] rounded-lg shadow-lg ">
       <div class="text-center mb-6">
@@ -129,12 +134,11 @@ const NewSlide = [
   {imgLink: "https://upload.wikimedia.org/wikipedia/commons/0/03/Australian_Airlines_VH-OGI_Sydney_Airport_2005.jpg", header: "50% discount for domestic flights", content: content2Sample, link: "/news"}
 ]
 
-
 const FlightContext = createContext<FlightContextType | undefined>(undefined);
 
 export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
-  const [selectedFlightClass, setSelectedFlightClass] = useState<string>("");
+  const [selectedFlightClass, setSelectedFlightClass] = useState<SeatClass>(SeatClass.Economy);
   const [selectedFlightPreview, setSelectedFlightPreview] = useState<FlightPreviewType | null>(null);
   const [selectedPassenger, setSelectedPassenger] = useState<PassengerCount>({
     adults: 1,
@@ -147,22 +151,32 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [index, setIndex] = useState<number>(Number(localStorage.getItem('news-index')));
   const [count, setCount] = useState(0);
 
+  const [flightTickets, setFlightTickets] = useState<FlightTickets>({
+      flightId: "",
+      // bookedId: "08dd20c7-c957-4dd5-86db-d26c6f4cb6bc",
+      tickets: [],
+  });
+
+  const addFlightTicket = (ticket: Ticket) => {
+    setFlightTickets((prevFlight) => ({
+      flightId: selectedFlight?.id || "",
+      tickets: [...prevFlight.tickets, ticket],
+    }));
+  };
+
   useEffect(() => {
     setNewsList(NewSlide);
     getAllAirport().then((res) => {
       setAirports(res.data);
-      console.log(res.data);
-    })
+    });
     localStorage.setItem('news-index', index.toString());
   }, [index]);
-
-  useEffect(() => {
-    console.log("state updated.")
-  }, [])
 
   return (
     <FlightContext.Provider
       value={{
+        flightTickets,
+        addFlightTicket,
         selectedFlight,
         setSelectedFlight,
         selectedFlightClass,
@@ -191,7 +205,7 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 export const useFlightContext = () => {
   const context = useContext(FlightContext);
   if (!context) {
-    throw new Error("useFlight must be used within a FlightProvider");
+    throw new Error("useFlightContext must be used within a FlightProvider");
   }
   return context;
 };

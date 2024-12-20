@@ -30,7 +30,6 @@ const FlightPreview = (props: Props) => {
     try {
       const response = await getFlightPreview(getFlight);
       const response2 = await getAllAirport();
-      console.log(response.data);
       setFlights(response.data);
     } catch (err) {
       setError('Failed to load flight route data.');

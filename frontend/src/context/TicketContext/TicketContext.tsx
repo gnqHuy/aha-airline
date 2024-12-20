@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { Ticket } from "../../object/ticket/ticket";
+import { Ticket } from "../../object/ticket";
 
 type TicketContextType = {
   selectedTicket: Ticket | null;

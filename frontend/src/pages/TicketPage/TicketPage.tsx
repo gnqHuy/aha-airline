@@ -6,6 +6,7 @@ import Layout1 from "../../components/Layout/Layout1";
 import Layout from "../../components/Layout/Layout";
 import { Flight } from "../../object/flight";
 import { getFromRequest } from "../../api/flightAPI";
+import { SeatClass } from "../../object/enum/SeatClass";
 
 const TicketPage: React.FC = () => {
   const { selectedFlightPreview } = useFlightContext();
@@ -28,7 +29,7 @@ const TicketPage: React.FC = () => {
             selectedFlightPreview.departureTime
           );
           setFlights(response.data);
-          console.log(response.data);
+          console.log(response.data)
         } catch (err) {
           setError("Failed to load flight route data.");
         } finally {
@@ -65,7 +66,7 @@ const TicketPage: React.FC = () => {
           <div className="grid grid-cols-1 gap-6 w-[70%] mx-auto">
             {flights.map((flight) => (
               <div>
-                <TicketPreview flight={flight} classType="none" />
+                <TicketPreview flight={flight} classType={SeatClass.None}/>
               </div>
             ))}
           </div>
