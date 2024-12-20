@@ -1,7 +1,7 @@
 import { Aircraft } from "./aircraft";
 import { FlightRoute } from "./flightRoute";
 
-enum FlightStatus
+export enum FlightStatus
 {
     Upcomming,
     Boarding,
