@@ -29,6 +29,8 @@ import Airports from '../pages/Admin/Airports/Airports';
 import Cities from '../pages/Admin/Cities/Cities';
 import FlightRoutes from '../pages/Admin/FlightRoutes/FlightRoutes';
 import Flights from '../pages/Admin/Flights/Flights';
+import BookManagement from '../pages/BookManagement/BookManagement';
+import CheckInManagement from '../pages/CheckInManagement/CheckInManagement';
 
 export const router = createBrowserRouter([
   {
@@ -249,6 +251,23 @@ export const router = createBrowserRouter([
         element: <Flights/>,
       },
     ],
+  },
+  {
+    path: "/book-management", 
+    element: (
+      <>
+        <ScrollToTop />
+        <BookManagement />
+      </>
+    )
+  }, 
+  {
+    path: "/checkin-management", 
+    element: (
+      <>
+        <ScrollToTop />
+        <CheckInManagement />
+      </>
+    )
   }
-  ,
 ]);
