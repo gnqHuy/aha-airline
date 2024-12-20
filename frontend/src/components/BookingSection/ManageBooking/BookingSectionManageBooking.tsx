@@ -7,7 +7,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { FaPlaneCircleCheck } from "react-icons/fa6";
 import { IoTicket } from "react-icons/io5";
 import { IoIosArrowUp } from "react-icons/io";
-import ManageBookingInfo from './ManageBookingInfo';
+import BookingInfo from './BookingInfo';
 
 interface Props {
     sectionTab: string;
@@ -85,7 +85,7 @@ const BookingSectionManageBooking: React.FC<Props> = ({sectionTab, handleChangeT
 
             {displayInfo === true && 
                 <div className = "relative mt-[5rem] ml-[2rem]">
-                    <ManageBookingInfo 
+                    <BookingInfo
                         storeReservationCode = {storeReservationCode}
                         storeLastname = {storeLastname}
                         handleDisplayInfo={handleDisplayInfo}

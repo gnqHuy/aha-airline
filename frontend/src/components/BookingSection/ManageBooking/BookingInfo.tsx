@@ -1,5 +1,5 @@
 import React from 'react'
-import './ManageBookingInfo.css';
+import './BookingInfo.css';
 
 interface Props {
     storeReservationCode: string;
@@ -7,7 +7,7 @@ interface Props {
     handleDisplayInfo: () => void;
 }
 
-const ManageBookingInfo:React.FC<Props> = ({storeReservationCode, storeLastname, handleDisplayInfo}) => {
+const BookingInfo:React.FC<Props> = ({storeReservationCode, storeLastname, handleDisplayInfo}) => {
   return (
     <div>
         {/* box info */}
@@ -47,4 +47,4 @@ const ManageBookingInfo:React.FC<Props> = ({storeReservationCode, storeLastname,
   )
 }
 
-export default ManageBookingInfo
+export default BookingInfo
