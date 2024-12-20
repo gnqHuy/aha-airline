@@ -10,12 +10,13 @@ import { getFlightPreview } from '../../api/flightAPI';
 import type { FlightPreviewType } from '../../object/flightPreview';
 import { getAllAirport } from '../../api/airportAPI';
 import { Airport } from '../../object/airport';
+import { useFlightContext } from '../../context/FlightContext/FlightContext';
 
 type Props = {};
 
 const FlightPreview = (props: Props) => {
   const [flights, setFlights] = useState<FlightPreviewType[]>([]);
-  const [airport, setAirport] = useState<Airport[]>([]);
+  const { airports } = useFlightContext();
   const [departureCity, setDepartureCity] = useState('Hanoi');
   const [isDepartureListOpen, setIsDepartureListOpen] = useState(false);
   const departureListRef = useRef<HTMLDivElement>(null);
@@ -31,7 +32,6 @@ const FlightPreview = (props: Props) => {
       const response2 = await getAllAirport();
       console.log(response.data);
       setFlights(response.data);
-      setAirport(response2.data);
     } catch (err) {
       setError('Failed to load flight route data.');
     } finally {
@@ -92,7 +92,7 @@ const FlightPreview = (props: Props) => {
 
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredAirport = airport.filter((airport) =>
+  const filteredAirport = airports.filter((airport) =>
     airport.city.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
