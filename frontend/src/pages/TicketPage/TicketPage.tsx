@@ -7,6 +7,7 @@ import Layout from "../../components/Layout/Layout";
 import { Flight } from "../../object/flight";
 import { getFromRequest } from "../../api/flightAPI";
 import { SeatClass } from "../../object/enum/SeatClass";
+import { Link } from "react-router-dom";
 
 const TicketPage: React.FC = () => {
   const { selectedFlightPreview } = useFlightContext();
@@ -29,9 +30,14 @@ const TicketPage: React.FC = () => {
             selectedFlightPreview.departureTime
           );
           setFlights(response.data);
-          console.log(response.data)
         } catch (err) {
-          setError("Failed to load flight route data.");
+          return <div>
+            <Layout>
+                <div className="text-center text-red-500 text-2xl pt-4">
+                    No flight has been selected, or the flight details are incomplete. <br/> Please return to select your flight.
+                </div>
+            </Layout>
+          </div>;
         } finally {
           setLoading(false);
         }
@@ -60,17 +66,25 @@ const TicketPage: React.FC = () => {
     <Layout1 headerImage={headerImage}>
       <div className="min-h-screen bg-gray-100">
         <div className="container mx-auto py-6">
-          <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          <h1 className="text-2xl font-bold text-center mb-6">
             Available Tickets
           </h1>
           <div className="grid grid-cols-1 gap-6 w-[70%] mx-auto">
-            {flights.map((flight) => (
-              <div>
-                <TicketPreview flight={flight} classType={SeatClass.None}/>
-              </div>
-            ))}
+            {flights.length === 0 ? (
+              <p className="mx-auto text-2xl text-center text-">
+                Currently, there are no flights available for your selected route.<br/> 
+                Please consider choosing an alternative option or adjusting your search criteria. <br/>
+                <Link to={"/"} className="no-underline text-xl text-golden">Back to HomePage</Link>
+              </p> 
+            ) : (
+              flights.map((flight) => (
+                <div key={flight.id}>
+                  <TicketPreview flight={flight} classType={SeatClass.None} />
+                </div>
+              ))
+            )}
           </div>
-        </div>
+      </div>
       </div>
     </Layout1>
   );

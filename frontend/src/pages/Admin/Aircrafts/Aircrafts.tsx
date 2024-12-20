@@ -52,7 +52,6 @@ const Aircrafts: React.FC = () => {
     };
   
     const filteredAircrafts = aircrafts.filter((aircraft) => {
-      console.log(aircraft.status === search.status)
       return (
         (search.name === "" || aircraft.name.toLowerCase().includes(search.name.toLowerCase())) &&
         (search.manufacturer === "" || aircraft.manufacturer.toLowerCase().includes(search.manufacturer.toLowerCase())) &&

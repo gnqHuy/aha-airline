@@ -90,7 +90,6 @@ const Flights: React.FC = () => {
         ? await getFromRequest(fromIATA, toIATA)
         : await getPagedFlightDTO(10, page);
   
-      console.log(response.data);
       setFlights(response.data);
     } catch (err) {
       setError("Failed to load flight data.");
