@@ -18,6 +18,9 @@ namespace QAirlines.UnitOfWorks
         public IFlightRouteRepository FlightRoutes { get; }
         public IRefreshTokenRepository RefreshTokens { get; }
         public IApplicationUserRepository ApplicationUsers { get; }
+        public ISeatRepository Seats { get; }
+        public ITicketRepository Tickets { get; }
+        public IReservationRepository Reservations { get; }
         public int Commit();
     }
 }

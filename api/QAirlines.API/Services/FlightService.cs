@@ -269,6 +269,28 @@ namespace QAirlines.API.Services
                     aircraft.AvailableAt = arrivalTime;
                     nextRoute.NoOfFlights++;
 
+                    int ecoSeats = 0;
+                    int bsnSeats = 0;
+
+                    if (aircraft.NoOfSeats < 200)
+                    {
+                        bsnSeats = 36;
+                    }
+                    if (aircraft.NoOfSeats < 300 && aircraft.NoOfSeats > 200)
+                    {
+                        bsnSeats = 48;
+                    }
+                    if (aircraft.NoOfSeats < 400 && aircraft.NoOfSeats > 300)
+                    {
+                        bsnSeats = 60;
+                    }
+                    if (aircraft.NoOfSeats < 500 && aircraft.NoOfSeats > 400)
+                    {
+                        bsnSeats = 72;
+                    }
+
+                    ecoSeats = aircraft.NoOfSeats - bsnSeats;
+
                     var flight = new Flight
                     {
                         AircraftId = aircraft.Id,
@@ -280,7 +302,8 @@ namespace QAirlines.API.Services
                         BoardingGate = RandomGate(1, 20),
                         EconomyPrice = economyPrice,
                         BusinessPrice = businessPrice,
-                        RemainingSeats = aircraft.NoOfSeats
+                        RemainingEcoSeats = ecoSeats,
+                        RemainingBsnSeats = bsnSeats,
                     };
                     flights.Add(flight);
                 }
@@ -288,5 +311,55 @@ namespace QAirlines.API.Services
 
             return flights;
         }
+
+        public async Task<int> GenerateSeats()
+        {
+            var aircrafts = await _unitOfWork.Aircrafts.GetAllAsync();
+            int count = 0;
+
+            foreach (var aircraft in aircrafts)
+            {
+                int totalRows = aircraft.NoOfSeats / 6;
+                string[] seatLetters = { "A", "B", "C", "D", "E", "F" };
+
+                for (int i = 0; i < aircraft.NoOfSeats; i++)
+                {
+                    int logicalRowNumber = (i / 6) + 1;
+                    int actualRowNumber = logicalRowNumber >= 13 ? logicalRowNumber + 1 : logicalRowNumber;
+
+                    string seatPosition = $"{actualRowNumber}{seatLetters[i % 6]}";
+
+                    SeatClass seatClass = i < 36 ? SeatClass.Business : SeatClass.Economy;
+
+                    var seat = new Seat
+                    {
+                        AircraftId = aircraft.Id,
+                        Number = i + 1,
+                        Position = seatPosition,
+                        Class = seatClass,
+                        IsAvaiable = true,
+                    };
+
+                    _unitOfWork.Seats.Add(seat);
+                    count++;
+                }
+            }
+
+            _unitOfWork.Commit(); 
+            return count;
+        }
+
+
+        //public async Task ResetRemainingSeats()
+        //{
+        //    var flights = await _unitOfWork.Flights.GetAllAsync();
+
+        //    foreach (var flight in flights)
+        //    {
+        //        var aircraft = _unitOfWork.Aircrafts.GetById(flight.AircraftId);
+        //        flight.RemainingSeats = aircraft.NoOfSeats;
+        //    }
+        //    _unitOfWork.Commit();
+        //}
     }
 }

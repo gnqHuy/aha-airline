@@ -4,6 +4,9 @@ import "../../index.css";
 import Explore from "./Explore/Explore";
 import Booking from "./Booking/Booking";
 import TravelInfo from "./TravelInfo/TravelInfo";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../redux/selector/authSelector";
+import { logout } from "../../redux/slice/authSlice";
 
 type Props = {};
 
@@ -24,7 +27,8 @@ const NavBar: React.FC<Props> = () => {
     setDropdownState((prev) => ({ ...prev, [key]: false }));
   };
 
-  const isLoggedIn = false;
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   return (
     <nav className="grid grid-cols-[2fr_2fr_1fr] w-[80%] mx-auto items-center text-black">
@@ -110,17 +114,20 @@ const NavBar: React.FC<Props> = () => {
       </div>
 
       <div className="flex justify-center gap-6 ml-[5rem]">
-        {isLoggedIn ? (
+        {user ? (
           <>
             <Link
-              to="/profile"
+              to=""
               className="text-black font-bold hover:text-golden no-underline"
             >
-              Account
+              {user.username}
             </Link>
             <Link
-              to="/logout"
-              className="text-black font-bold hover:text-golden no-underline"
+              to=""
+              className="text-black cursor-pointer font-bold hover:text-golden no-underline"
+              onClick={(e) => {
+                dispatch(logout());
+              }}
             >
               Logout
             </Link>
