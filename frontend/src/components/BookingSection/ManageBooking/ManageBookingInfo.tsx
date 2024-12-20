@@ -1,5 +1,6 @@
 import React from 'react'
-import './BookingInfo.css';
+import './ManageBookingInfo.css';
+import { Link } from 'react-router-dom';
 
 interface Props {
     storeReservationCode: string;
@@ -7,7 +8,7 @@ interface Props {
     handleDisplayInfo: () => void;
 }
 
-const BookingInfo:React.FC<Props> = ({storeReservationCode, storeLastname, handleDisplayInfo}) => {
+const ManageBookingInfo:React.FC<Props> = ({storeReservationCode, storeLastname, handleDisplayInfo}) => {
   return (
     <div>
         {/* box info */}
@@ -41,10 +42,12 @@ const BookingInfo:React.FC<Props> = ({storeReservationCode, storeLastname, handl
         {/* buttons */}
         <div className = "flex mt-[1.5rem]">
             <button className = "w-[8rem] h-[2.5rem] bg-white text-Green border-[2px] border-Green border-solid rounded-[8px] font-bold text-base absolute right-[15rem] hover:cursor-pointer" onClick = {handleDisplayInfo}>Close</button>
-            <button className = "w-[8rem] h-[2.5rem] bg-golden-ramsay text-white border-[2px] border-none rounded-[8px] font-bold text-base absolute right-[5rem] hover:cursor-pointer">Services</button>
+            <Link to = "/book-management">
+                <button className = "w-[8rem] h-[2.5rem] bg-golden-ramsay text-white border-[2px] border-none rounded-[8px] font-bold text-base absolute right-[5rem] hover:cursor-pointer">Services</button>
+            </Link>
         </div>
     </div>
   )
 }
 
-export default BookingInfo
+export default ManageBookingInfo;
