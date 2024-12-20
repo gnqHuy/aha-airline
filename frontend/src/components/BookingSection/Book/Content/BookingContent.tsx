@@ -10,6 +10,7 @@ import GenericContent from './GenericContent/GenericContent';
 import CalendarReturn from './Calendar/CalendarReturn';
 import { getAllAirport } from '../../../../api/airportAPI';
 import { useFlightContext } from '../../../../context/FlightContext/FlightContext';
+import { getAllAircrafts } from '../../../../api/aircraftAPI';
 
 interface Props {
     sectionTab: string;
@@ -61,6 +62,12 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
     // selected date
     const [selectedDateDepart, setSelectedDateDepart] = useState<string>("Depart");
     const [selectedDateReturn, setSelectedDateReturn] = useState<string>("Return");
+
+    useEffect(() => {
+        getAllAircrafts().then((res) => {
+            console.log(res.data);
+        })
+    }, []);
 
     // change the suggestion of flight from
     const handleSetupDisplaySuggestion = () => {
@@ -285,10 +292,10 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
                         <PiWarningCircle className = "w-[2rem] h-[2rem]" style = {{color: "#ab861b"}}/>
                     </div>
                     <div className = "text-left absolute left-[3.5rem] top-[0.2rem]">
-                        <p className = "font-space-grotesk font-bold medium:text-[1.5vw]">IMPORTANT INFORMATION:</p>
-                        <p className = "font-space-grotesk relative top-[-1rem] w-[56rem] medium:w-[75vw] small:w-[71vw]" style = {{fontSize: "16px"}}>Your country/region is <b>Vietnam</b> and payment will be charged in <b>Vietnamese Dong (VND).</b></p>
-                        <p className = "font-space-grotesk relative top-[-2rem] w-[56rem] medium:w-[75vw] small:w-[71vw]" style = {{fontSize: "16px"}}>According to regulations of the Ministry of Finance, E-VAT invoices are only issued for payment in VND.</p>
-                        <p className = "font-space-grotesk relative top-[-3rem] w-[56rem] medium:w-[75vw] small:w-[71vw]" style = {{fontSize: "16px"}}>In case of paying by other currency, you may change website country/region.</p>
+                        <p className = " font-bold medium:text-[1.5vw]">IMPORTANT INFORMATION:</p>
+                        <p className = " relative top-[-1rem] w-[56rem] medium:w-[75vw] small:w-[71vw]" style = {{fontSize: "16px"}}>Your country/region is <b>Vietnam</b> and payment will be charged in <b>Vietnamese Dong (VND).</b></p>
+                        <p className = " relative top-[-2rem] w-[56rem] medium:w-[75vw] small:w-[71vw]" style = {{fontSize: "16px"}}>According to regulations of the Ministry of Finance, E-VAT invoices are only issued for payment in VND.</p>
+                        <p className = " relative top-[-3rem] w-[56rem] medium:w-[75vw] small:w-[71vw]" style = {{fontSize: "16px"}}>In case of paying by other currency, you may change website country/region.</p>
                     </div>
                     <div className = "absolute right-[0rem]">
                         <IoMdClose className = "w-[1.5rem] h-[1.5rem] hover:cursor-pointer" style = {{color: "gray"}} onClick = {() => setDisplayInformation(false)}/>

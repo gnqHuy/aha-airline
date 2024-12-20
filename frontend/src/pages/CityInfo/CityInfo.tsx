@@ -1,62 +1,90 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
-import citiesData from "../../assets-test/Json/cities.json";
 import image6 from '../../assets-test/Images/paris.jpg';
 import image5 from '../../assets-test/Images/hanoi.jpg';
-import image4 from '../../assets-test/Images/beijing.jpg';
 import FlightTable from "../../components/FlightTable/FlightTable";
 import CurrencyExchange from "../../components/CurrencyExchange/CurrencyExchange";
 import GenericCard from "../../components/GenericCard/GenericCard";
+import { getFlightPreview } from "../../api/flightAPI";
+import { FlightPreviewType } from "../../object/flightPreview";
+
+const cityNameMapping: { [key: string]: string } = {
+  HAN: "Hanoi",
+  SGN: "Ho Chi Minh City",
+  PAR: "Paris",
+  ROM: "Rome",
+  NYC: "New York",
+  LON: "London",
+  MEX: "Mexico City",
+  MEL: "Melbourne",
+  SYD: "Sydney",
+  CAI: "Cairo",
+  SEW: "Seoul",
+  ICN: "Seoul",
+  SIN: "Singapore",
+};
 
 type City = {
   name: string;
   description: string;
+  iata: string;
 };
 
 const CityInfo: React.FC = () => {
-  const { nameCity } = useParams<{ nameCity: string }>();
-  const location = useLocation(); 
-  const [cityInfo, setCityInfo] = useState<City | null>(null);
+  const { city } = useParams<{ city: string | undefined }>();
   const [randomCities, setRandomCities] = useState<City[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  const cityName = city ? cityNameMapping[city.toUpperCase()] || "Unknown City" : "Unknown City";
+
+  const generateRandomCities = () => {
+    const cities = Object.keys(cityNameMapping);
+    const randomCities: City[] = [];
+    const randomIndexes = new Set<number>();
+
+    while (randomCities.length < 3) {
+      const randomIndex = Math.floor(Math.random() * cities.length);
+      if (!randomIndexes.has(randomIndex)) {
+        const iataCode = cities[randomIndex];
+        randomCities.push({
+          name: cityNameMapping[iataCode],
+          description: `Explore flights to ${cityNameMapping[iataCode]}.`,
+          iata: iataCode,
+        });
+        randomIndexes.add(randomIndex);
+      }
+    }
+
+    setRandomCities(randomCities);
+  };
 
   useEffect(() => {
-    const city = citiesData.find((city: { name: string }) => city.name.toLowerCase() === nameCity?.toLowerCase());
-    setCityInfo(city || null);
+    generateRandomCities();
+    setLoading(false);
+  }, []);
 
-    const filteredCities = citiesData.filter((c: City) => c.name.toLowerCase() !== nameCity?.toLowerCase());
-    const shuffledCities = filteredCities.sort(() => 0.5 - Math.random());
-    setRandomCities(shuffledCities.slice(0, 3));
-  }, [nameCity]);
+  const generateLink = (cityName: string) => `/explore/destination/${cityName.toLowerCase()}`;
 
-  const generateLink = (cityName: string) => {
-    return location.pathname.replace(nameCity || "", cityName.toLowerCase());
-  };
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div className="text-red-600">Error: {error}</div>;
 
   return (
     <Layout headerImage={image5}>
-      <div className="w-[70%] mx-auto my-16">
-        {cityInfo ? (
-          <>
-            <p className="text-4xl font-bold text-center text-golden capitalize">{cityInfo.name}</p>
-            <p className="mt-4 text-lg text-gray-700">{cityInfo.description}</p>
-            <FlightTable nameCity={cityInfo.name} />
-          </>
-        ) : (
-          <p className="text-center text-red-500 text-lg">
-            Sorry, we couldn't find any information about this city.
-          </p>
-        )}
+      <div className="w-[70%] mx-auto pt-4 pb-16">
+        <p className="text-4xl font-bold text-center text-golden capitalize">{city}</p>
+        <FlightTable iata1={city} />
         <CurrencyExchange />
         <div>
-          <p className="text-3xl font-semibold m-0 mb-4 text-golden">More Destination</p>
+          <p className="text-3xl font-semibold m-0 mb-4 text-golden">More Destinations</p>
           <div className="flex items-center gap-5 mt-4">
             {randomCities.map((city) => (
               <GenericCard
-                key={city.name}
-                image={image6} 
+                key={city.iata}
+                image={image6}
                 title={city.name}
-                link={generateLink(city.name)} 
+                link={generateLink(city.name)} // Use city name for the link
                 width="100%"
               />
             ))}
