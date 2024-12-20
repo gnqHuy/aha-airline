@@ -21,14 +21,9 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("char(36)")
                 .HasColumnName("id");
 
-            builder.Property(e => e.BookerId)
+            builder.Property(e => e.UserId)
                 .HasColumnType("char(36)")
                 .HasColumnName("booker_id");
-
-            builder.Property(e => e.ContactId)
-                .IsRequired()
-                .HasColumnType("char(36)")
-                .HasColumnName("contact_id");
 
             builder.Property(e => e.FlightId)
                 .IsRequired()
@@ -39,6 +34,11 @@ namespace QAirlines.DataAccess.Configuration
                 .IsRequired()
                 .HasColumnType("char(36)")
                 .HasColumnName("seat_id");
+
+            builder.Property(e => e.ReservationId)
+                .IsRequired()
+                .HasColumnType("char(36)")
+                .HasColumnName("reservation_id");
 
             builder.Property(e => e.PassengerTitle)
                 .IsRequired()
@@ -65,20 +65,30 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("int")
                 .HasColumnName("status");
 
+            builder.Property(e => e.ContactEmail)
+                .IsRequired()
+                .HasColumnType("varchar(255)")
+                .HasColumnName("contact_email");
+
+            builder.Property(e => e.PhoneNumber)
+                .IsRequired()
+                .HasColumnType("varchar(255)")
+                .HasColumnName("phone_number");
+
             builder.HasOne(e => e.User)
                 .WithMany(u => u.Tickets)
-                .HasForeignKey(e => e.BookerId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            builder.HasOne(e => e.Contact)
-                .WithMany(c => c.Tickets)
-                .HasForeignKey(e => e.ContactId)
-                .IsRequired()
+                .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(e => e.Flight)
                 .WithMany(f => f.Tickets)
                 .HasForeignKey(e => e.FlightId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(e => e.Reservation)
+                .WithMany(f => f.Tickets)
+                .HasForeignKey(e => e.ReservationId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
 

@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace QAirlines.Repositories.Custom.Interfaces
 {
-    public interface IAircraftRepository : IGenericRepository<Aircraft, Guid>
+    public interface ISeatRepository : IGenericRepository<Seat, Guid>
     {
-        IEnumerable<Aircraft> GetLargestAircrafts(int count);
-        void UpdateAircrafts();
-        void UpdateNoOfSeats();
-        Task ResetAvailableTime();
+        Task<Seat> GetByPosition(Guid aircraftId, int number);
+
+        void ResetAvailability();
     }
 }

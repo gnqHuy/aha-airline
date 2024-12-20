@@ -21,7 +21,8 @@ namespace QAirlines.Models
         public string BoardingGate { get; set; }
         public int EconomyPrice { get; set; }
         public int BusinessPrice { get; set; }
-        public int? RemainingSeats { get; set; }
+        public int RemainingEcoSeats { get; set; }
+        public int RemainingBsnSeats { get; set; }
         public virtual Aircraft? Aircraft { get; set; }
         public virtual FlightRoute? FlightRoute { get; set; }
         public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
