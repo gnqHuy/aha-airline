@@ -57,6 +57,8 @@ namespace QAirlines.API
             services.AddScoped<DistanceCalculation>();
             services.AddScoped<FlightService>();
             services.AddScoped<AuthService>();
+            services.AddScoped<TicketService>();
+            services.AddScoped<RandomStringGenerator>();
 
             #endregion
 
@@ -69,6 +71,9 @@ namespace QAirlines.API
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IFlightRepository, FlightRepository>();
             services.AddScoped<IFlightRouteRepository, FlightRouteRepository>();
+            services.AddScoped<ISeatRepository, SeatRepository>();
+            services.AddScoped<ITicketRepository, TicketRepository>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
 
             #endregion
 

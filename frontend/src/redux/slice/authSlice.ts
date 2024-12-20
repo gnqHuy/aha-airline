@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { UserStore } from "../../types/user";
 
 export interface InitialAuthState {
-    // user: UserStore | null,
+    user: UserStore | null,
     accessToken: string | null
 }
 
 const initialState : InitialAuthState = {
-    // user: null,
+    user: null,
     accessToken: null
 };
 
@@ -16,11 +16,11 @@ const authSlice = createSlice({
     initialState: initialState,
     reducers: {
         login: (state, action) => {
-            // state.user = action.payload.user;
+            state.user = action.payload.user;
             state.accessToken = action.payload.accessToken;
         },
         logout: (state) => {
-            // state.user = null;
+            state.user = null;
             state.accessToken = null;
         }
     },

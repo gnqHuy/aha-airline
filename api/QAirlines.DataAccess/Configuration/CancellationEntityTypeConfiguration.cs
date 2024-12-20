@@ -36,11 +36,11 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("datetime")
                 .HasColumnName("time");
 
-            builder.HasOne(e => e.Ticket)
-                .WithOne(t => t.Cancellation)
-                .HasForeignKey<Cancellation>(e => e.TicketId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+            //builder.HasOne(e => e.Ticket)
+            //    .WithOne(t => t.Cancellation)
+            //    .HasForeignKey<Cancellation>(e => e.TicketId)
+            //    .IsRequired()
+            //    .OnDelete(DeleteBehavior.Cascade);
 
             builder.ToTable("cancellations");
         }
