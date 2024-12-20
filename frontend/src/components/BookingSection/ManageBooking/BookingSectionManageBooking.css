@@ -1,6 +1,5 @@
 .bookingSection_manageBooking_container {
   width: 60rem;
-  height: 22rem;
   background-color: #fcf9f2;
   position: absolute;
   left: 20%;
@@ -90,7 +89,7 @@
 }
 
 .manageBooking_closeTab_section {
-  position: absolute;
+  position: relative;
 }
 
 .closeTab_section {
