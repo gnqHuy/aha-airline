@@ -28,6 +28,7 @@ const RegisterPage: React.FC<Props> = ({}) => {
             password: password
         }).then((res) => {
           if (res.data) {
+            console.log(res.data);
             alert(res.data);
             navigate("/");
           }
