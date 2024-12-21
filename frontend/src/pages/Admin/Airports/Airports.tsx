@@ -27,7 +27,7 @@ const Airports: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await getAllAirport();
-        (response);
+        // (response);
         setAirports(response.data);
       } catch (err) {
         setError("Failed to load airport data.");

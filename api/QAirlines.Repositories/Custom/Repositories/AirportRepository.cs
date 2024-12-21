@@ -30,7 +30,20 @@ namespace QAirlines.Repositories.Custom.Repositories
 
         public Airport GetByIATA(string iata)
         {
-            var airport = _context.Airports.FirstOrDefault(a => a.IATA.Trim().ToLower().Equals(iata.Trim().ToLower()));
+            var airport = _context.Airports.Find(iata);
+            return airport;
+        }
+
+        public async Task<IEnumerable<Airport>> GetByIATACodesAsync(IEnumerable<string> iataCodes)
+        {
+            return await _context.Airports
+                .Where(a => iataCodes.Contains(a.IATA))
+                .ToListAsync();
+        }
+
+        public async Task<Airport> GetByIATAAsync(string iata)
+        {
+            var airport = await _context.Airports.FindAsync(iata);
             return airport;
         }
 

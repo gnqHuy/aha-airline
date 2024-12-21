@@ -10,7 +10,7 @@ namespace QAirlines.Models.Data_Transfer_Objects
 {
     public class TicketDTO
     {
-        public Guid Id { get; set; }
+        public Guid TicketId { get; set; }
         public FlightSummary FlightInfo { get; set; }
         public Guid? BookerId { get; set; }
         public string? BookerFirstName { get; set; }

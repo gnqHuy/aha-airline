@@ -33,6 +33,17 @@ namespace QAirlines.API.Mapper
             };
         }
 
+        public async Task<AirportDTO> AirportMapperAsync(Airport airport)
+        {
+            var city = await _unitOfWork.Cities.GetByIdAsync(airport.CityId);
+            return new AirportDTO
+            {
+                IATA = airport.IATA,
+                Name = airport.Name,
+                City = _mapper.Map<CityDTO>(city),
+            };
+        }
+
         public FlightRouteDTO FlightRouteMapper(FlightRoute flightRoute)
         {
             var fromAirport = _unitOfWork.Airports.GetByIATA(flightRoute.FromAirportIATA);
@@ -50,6 +61,11 @@ namespace QAirlines.API.Mapper
                 NoOfFlights = flightRoute.NoOfFlights,
                 Distance = flightRoute.Distance,
             };
+        }
+
+        public AircraftDTO AircraftMapper(Aircraft aircraft)
+        {
+            return _mapper.Map<AircraftDTO>(aircraft);
         }
 
         public FlightDTO FlightMapper(Flight flight)
@@ -109,7 +125,7 @@ namespace QAirlines.API.Mapper
 
             return new TicketDTO
             {
-                Id = ticket.Id,
+                TicketId = ticket.Id,
                 FlightInfo = flightSummary,
                 BookerId = ticket.UserId != null ? ticket.UserId : null,
                 BookerFirstName = user != null ? user.FirstName : null,
