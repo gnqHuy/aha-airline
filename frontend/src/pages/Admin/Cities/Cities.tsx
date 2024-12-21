@@ -24,7 +24,7 @@ const Cities: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await getAllCities();
-        console.log(response);
+        (response);
         setCities(response.data);
       } catch (err) {
         setError("Failed to load city data.");

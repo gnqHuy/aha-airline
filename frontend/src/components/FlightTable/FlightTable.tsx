@@ -6,10 +6,11 @@ import { FlightPreviewType } from '../../object/flightPreview';
 import { getFlightPreview } from '../../api/flightAPI';
 
 type FlightTableProps = {
-  iata1: string | undefined;
+  nameCity: string | undefined;
+  iata: string;
 };
 
-const FlightTable: React.FC<FlightTableProps> = ({ iata1: iata }) => {
+const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
   const [filteredFlights, setFilteredFlights] = useState<FlightPreviewType[]>([]);
   const [fromValue, setFromValue] = useState('');
   const [fromFocused, setFromFocused] = useState(false);
@@ -26,13 +27,12 @@ const FlightTable: React.FC<FlightTableProps> = ({ iata1: iata }) => {
     try {
       const response = await getFlightPreview({
         FromAirportIATA: "",
-        ToAirportIATA: "HAN",
+        ToAirportIATA: iata,
         pageSize: 20,
         pageNumber: 0,
       });
       setFlightPreview(response.data);
       setFilteredFlights(response.data); 
-      console.log(response.data)
     } catch (err) {
       setError('Failed to load flight route data.');
     } finally {
@@ -67,7 +67,7 @@ const FlightTable: React.FC<FlightTableProps> = ({ iata1: iata }) => {
 
   return (
     <div className="w-full max-w-6xl mx-auto text-center p-4">
-      <h2 className="text-2xl text-golden font-semibold mb-6">Best Flight Tickets to {iata}</h2>
+      <h2 className="text-2xl text-golden font-semibold mb-6">Best Flight Tickets to {nameCity}</h2>
       <div className="flex text-left justify-between gap-4">
         <div className="relative flex items-center shadow-sm bg-gray-100 w-2/3 pt-2 pl-4">
           <div className="relative flex flex-col w-full">
@@ -98,7 +98,7 @@ const FlightTable: React.FC<FlightTableProps> = ({ iata1: iata }) => {
           </div>
           <div className="relative flex flex-col w-full">
             <div id="to-input" className="bg-transparent border-none outline-none text-gray-700 text-base pt-5 pb-1">
-              {iata}
+              {nameCity}
             </div>
             <label
               htmlFor="to-input"

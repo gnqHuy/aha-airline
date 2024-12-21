@@ -45,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
   const departureDate = new Date(selectedFlightPreview.departureTime);
 
   const formattedDate = departureDate.toLocaleDateString("en-US", {
-    weekday: "short",
+    weekday: "long",
     day: "numeric",
     month: "short",
     year: "numeric",
@@ -94,11 +94,11 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
             </div>
           </div>
           <div className="h-14 w-px bg-golden mx-4"></div>
-          <div className="flex items-center justify-center w-36 font-semibold">
+          <div className="flex items-center justify-center w-38 font-semibold">
             <div>
               Depart<br />
               <span className="block mt-2 font-normal">
-                {formattedDate}, {formattedTime}
+                {formattedDate}
               </span>
             </div>
           </div>

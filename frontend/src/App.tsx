@@ -14,11 +14,11 @@ const App: React.FC<Props> = () => {
 
 
   return(
-    <FlightProvider>
-      <React.StrictMode>
-        <RouterProvider router={router} />
-      </React.StrictMode>
-    </FlightProvider>
+      <FlightProvider>
+        <React.StrictMode>
+          <RouterProvider router={router} />
+        </React.StrictMode>
+      </FlightProvider>
   );
 }
 export default App;

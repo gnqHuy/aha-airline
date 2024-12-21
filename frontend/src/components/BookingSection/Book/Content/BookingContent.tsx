@@ -65,7 +65,6 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
 
     useEffect(() => {
         getAllAircrafts().then((res) => {
-            console.log(res.data);
         })
     }, []);
 
@@ -223,9 +222,6 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
         const today = new Date();
         const convertDateDepart = convertToDate(date);
         const convertDateReturn = convertToDate(selectedDateReturn);
-        console.log("Today: " + today);
-        console.log("Depart: " + convertDateDepart);
-        console.log("Return: " + convertDateReturn);
         if ((convertDateDepart <= convertDateReturn || selectedDateReturn === "Return") && convertDateDepart >= today) {
             setSelectedDateDepart(date);
         }
@@ -236,9 +232,6 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
         const today = new Date();
         const convertDateDepart = convertToDate(selectedDateDepart);
         const convertDateReturn = convertToDate(date);
-        console.log("Today: " + today);
-        console.log("Depart: " + convertDateDepart);
-        console.log("Return: " + convertDateReturn);
         if ((convertDateReturn >= convertDateDepart || selectedDateDepart === "Depart") && convertDateReturn >= today) {
             setSelectedDateReturn(date);
         }

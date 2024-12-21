@@ -17,7 +17,6 @@ const CheckInManagement = (props: Props) => {
             }
             return response.json();
         }).then((response) => {
-            console.log(response);
             setReservations(response);
         }).catch((err) => console.error(err));
     }, []);
