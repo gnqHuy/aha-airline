@@ -33,7 +33,6 @@ const FlightRoutes: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await getAllFlightRoutes();
-        console.log(response.data);
         setFlightRoutes(response.data);
       } catch (err) {
         setError("Failed to load flight route data.");

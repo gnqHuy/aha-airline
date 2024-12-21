@@ -38,7 +38,6 @@ const LoginForm: React.FC<Props> = ({}) => {
             },
           })
         );
-        console.log(token);
         navigate("/");
       }
     }).catch((error) => {

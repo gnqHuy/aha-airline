@@ -21,8 +21,6 @@ export const setupAxios = (store: EnhancedStore) => {
                     
                 }
             }
-            console.log(request.headers);
-
             return request;
         },
         (error: AxiosError) => Promise.reject(error)
