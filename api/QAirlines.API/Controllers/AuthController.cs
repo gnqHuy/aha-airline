@@ -47,7 +47,7 @@ namespace QAirlines.API.Controllers
                 return BadRequest(result.Message);
             }
 
-            return Ok(result);
+            return Ok(result.Message);
         }
 
         [HttpPost("login")]
