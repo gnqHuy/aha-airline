@@ -31,6 +31,7 @@ import Flights from '../pages/Admin/Flights/Flights';
 import BookManagement from '../pages/BookManagement/BookManagement';
 import CheckInManagement from '../pages/CheckInManagement/CheckInManagement';
 import YourTicket from '../pages/YourTicket/YourTicket';
+import ProtectedRoute from './protectedRoute';
 
 export const router = createBrowserRouter([
   {
@@ -220,10 +221,12 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <>
-        <ScrollToTop />
-        <Admin />
-      </>
+      <ProtectedRoute requiredRoles={["SuperAdmin", "FlightAdmin"]}>
+          <>
+            <ScrollToTop />
+            <Admin />
+          </>
+        </ProtectedRoute>
     ),
     children: [
       {
