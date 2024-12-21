@@ -59,9 +59,9 @@ const FlightPreview = (props: Props) => {
   useEffect(() => {
     fetchData({
       FromAirportIATA: "HAN",
-      ToAirportIATA: "",
-      PageSize: 15,
-      PageNumber: 0,
+      // ToAirportIATA: "",
+      // PageSize: "",
+      // PageNumber: "",
     });
   }, []);
 
@@ -79,9 +79,9 @@ const FlightPreview = (props: Props) => {
     setIsDepartureListOpen(false);
     fetchData({
       FromAirportIATA: airport.iata,
-      ToAirportIATA: "",
-      PageSize: 15,
-      PageNumber: 0,
+      // ToAirportIATA: "",
+      // PageSize: 15,
+      // PageNumber: 0,
     });
   };
 

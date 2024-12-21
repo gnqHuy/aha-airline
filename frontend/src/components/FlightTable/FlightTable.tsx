@@ -26,10 +26,10 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
   const fetchData = async () => {
     try {
       const response = await getFlightPreview({
-        FromAirportIATA: "",
+        // FromAirportIATA: "",
         ToAirportIATA: iata,
-        pageSize: 20,
-        pageNumber: 0,
+        // pageSize: 20,
+        // pageNumber: 0,
       });
       setFlightPreview(response.data);
       setFilteredFlights(response.data); 

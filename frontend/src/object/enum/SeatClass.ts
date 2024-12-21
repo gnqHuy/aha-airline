@@ -1,5 +1,5 @@
 export enum SeatClass {
-    None,
-    Economy,
-    Business
+    None = -1,
+    Economy = 0,
+    Business = 1,
 }
