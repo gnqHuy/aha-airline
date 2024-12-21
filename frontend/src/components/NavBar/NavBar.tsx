@@ -80,7 +80,7 @@ const NavBar: React.FC<Props> = () => {
             Explore
           </Link>
           <div
-            className={`absolute top-full text-left left-[80%] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
+            className={`absolute top-[3.1rem] text-left left-[80%] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
               dropdownState.Explore
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-5 pointer-events-none"
@@ -104,7 +104,7 @@ const NavBar: React.FC<Props> = () => {
             Booking
           </Link>
           <div
-            className={`absolute top-full text-left left-[-71px] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
+            className={`absolute top-[3.1rem] text-left left-[-71px] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
               dropdownState.Booking
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-5 pointer-events-none"
@@ -128,7 +128,7 @@ const NavBar: React.FC<Props> = () => {
             Travel Info
           </Link>
           <div
-            className={`absolute top-full text-left left-[-235px] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
+            className={`absolute top-[3.1rem] text-left left-[-235px] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
               dropdownState.TravelInfo
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-5 pointer-events-none"
@@ -142,9 +142,9 @@ const NavBar: React.FC<Props> = () => {
       <div className="flex justify-center gap-6 ml-[5rem]">
         {user ? (
           <div>
-            <div className = "rounded-[50%] w-[2.8rem] h-[2.8rem] border-Green border-solid border-[3px] font-bold" ref = {dropdownRef}>
+            <div className = "rounded-[50%] w-[2.4rem] h-[2.4rem] border-Green border-solid border-[3px] font-bold" ref = {dropdownRef}>
               <div onClick = {() => loginDropdown === true ? setLoginDropdown(false) : setLoginDropdown(true)}>
-                <img src = {LoginAvatar} alt = "" className = "rounded-[50%] w-[2.8rem] h-[2.8rem] hover:cursor-pointer"/>
+                <img src = {LoginAvatar} alt = "" className = "rounded-[50%] w-[2.4rem] h-[2.4rem] hover:cursor-pointer"/>
               </div>
               {loginDropdown === true && 
                 <div className = "absolute z-50 right-[0rem] mr-[13rem] mt-[1.5rem] small:mr-[10vw] medium:mr-[10vw] big:mr-[12vw]">

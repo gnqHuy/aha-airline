@@ -5,9 +5,9 @@ type Props = {};
 
 const Explore: React.FC<Props> = () => {
   return (
-    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[20vw] medium:grid-cols-3 bg-white">
+    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[5vw] medium:grid-cols-3 bg-white small:relative small:grid-cols-3 small:left-[50vw]">
       {/* Check-In */}
-      <div className = "medium:relative medium:left-[17vw]">
+      <div className = "medium:relative medium:left-[20vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/travel-info/check-in"
@@ -45,7 +45,7 @@ const Explore: React.FC<Props> = () => {
       </div>
 
       {/* Baggage Info */}
-      <div className = "medium:relative medium:left-[13vw]">
+      <div className = "medium:relative medium:left-[13vw] small:relative small:right-[20vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/travel-info/baggageinfo"
@@ -83,7 +83,7 @@ const Explore: React.FC<Props> = () => {
       </div>
 
       {/* Travel Document */}
-      <div className = "medium:relative medium:left-[10vw]">
+      <div className = "medium:relative medium:left-[10vw] small:relative small:right-[40vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/travel-info/traveldocument"
