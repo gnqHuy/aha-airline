@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QAirlines.Models;
+using QAirlines.Models.Enums;
 using QAirlines.Models.Request;
 using QAirlines.UnitOfWorks;
 using System.Collections.Generic;
@@ -31,19 +32,62 @@ namespace QAirlines.API.Controllers
         }
 
         [HttpPost]
-        public void AddAircraft([FromQuery]AircraftRequest request)
+        public IActionResult AddAircraft([FromQuery]AircraftRequest request)
         {
-            Aircraft aircraft = new Aircraft
+            var airport = _unitOfWork.Airports.GetByIATA(request.Terminal);
+
+            if (airport == null)
             {
-                Name = request.Name,
-                Manufacturer = request.Manufacturer,
-                NoOfSeats = request.NoOfSeats,
-                Status = request.Status,
-                Terminal = request.Terminal,
-                AvailableAt = request.AvailableAt,
-            };
-            _unitOfWork.Aircrafts.Add(aircraft);
+                return BadRequest("Terminal not found.");
+            }
+            string newAircraftName = _unitOfWork.Aircrafts.AddAircraft(request);
             _unitOfWork.Commit();
+
+            var aircraft = _unitOfWork.Aircrafts.GetByName(newAircraftName);
+            int totalRows = aircraft.NoOfSeats / 6;
+            string[] seatLetters = { "A", "B", "C", "D", "E", "F" };
+            int bsnSeats = 0;
+
+            if (aircraft.NoOfSeats < 200)
+            {
+                bsnSeats = 36;
+            }
+            if (aircraft.NoOfSeats < 300 && aircraft.NoOfSeats > 200)
+            {
+                bsnSeats = 48;
+            }
+            if (aircraft.NoOfSeats < 400 && aircraft.NoOfSeats > 300)
+            {
+                bsnSeats = 60;
+            }
+            if (aircraft.NoOfSeats < 500 && aircraft.NoOfSeats > 400)
+            {
+                bsnSeats = 72;
+            }
+
+            for (int i = 0; i < aircraft.NoOfSeats; i++)
+            {
+                int logicalRowNumber = (i / 6) + 1;
+                int actualRowNumber = logicalRowNumber >= 13 ? logicalRowNumber + 1 : logicalRowNumber;
+
+                string seatPosition = $"{actualRowNumber}{seatLetters[i % 6]}";
+
+                SeatClass seatClass = i < bsnSeats ? SeatClass.Business : SeatClass.Economy;
+
+                var seat = new Seat
+                {
+                    AircraftId = aircraft.Id,
+                    Number = i + 1,
+                    Position = seatPosition,
+                    Class = seatClass,
+                    IsAvaiable = true,
+                };
+
+                _unitOfWork.Seats.Add(seat);
+            }
+            _unitOfWork.Commit();
+
+            return Ok($"New aircraft {aircraft.Name} added with {aircraft.NoOfSeats} seats");
         }
 
         [HttpPost("update")]

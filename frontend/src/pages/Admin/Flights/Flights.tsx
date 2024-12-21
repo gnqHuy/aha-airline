@@ -48,6 +48,8 @@ interface Flight {
   departureTime: string,
   arrivalTime: string,
   boardingGate: string,
+  remainingBsnSeats: number,
+  remainingEcoSeats: number,
   economyPrice: number,
   businessPrice: number,
   status: FlightStatus,
@@ -71,6 +73,8 @@ const Flights: React.FC = () => {
     departureTime: "",
     arrivalTime: "",
     boardingGate: "",
+    remainingBsnSeats: 0,
+    remainingEcoSeats: 0,
     economyPrice: 0,
     businessPrice: 0,
     status: FlightStatus.Upcomming,
@@ -141,6 +145,8 @@ const Flights: React.FC = () => {
       departureTime: "",
       arrivalTime: "",
       boardingGate: "",
+      remainingBsnSeats: 0,
+      remainingEcoSeats: 0,
       economyPrice: 0,
       businessPrice: 0,
       status: FlightStatus.Upcomming,
@@ -176,6 +182,8 @@ const Flights: React.FC = () => {
       departureTime: "",
       arrivalTime: "",
       boardingGate: "",
+      remainingBsnSeats: 0,
+      remainingEcoSeats: 0,
       economyPrice: 0,
       businessPrice: 0,
       status: FlightStatus.Upcomming,
@@ -315,15 +323,17 @@ const Flights: React.FC = () => {
             <tr>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">From IATA</th>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">To IATA</th>
-              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">From City</th>
-              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">To City</th>
+              {/* <th className="border border-gray-300 px-4 py-2 text-left font-semibold">From City</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">To City</th> */}
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Boarding Gate</th>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Departure Time</th>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Arrival Time</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Business Seats</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Economy Seats</th>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Economy Price</th>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Business Price</th>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Status</th>
-              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Remaining Seat</th>
+              {/* <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Remaining Seat</th> */}
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold"></th>
             </tr>
             <tr className="bg-gray-100 sticky">
@@ -345,7 +355,7 @@ const Flights: React.FC = () => {
                   className="w-full px-2 py-1 border rounded"
                 />
               </td>
-              <td className="border border-gray-300 px-4 py-2">
+              {/* <td className="border border-gray-300 px-4 py-2">
                 <input
                   type="text"
                   name="fromCity"
@@ -362,7 +372,7 @@ const Flights: React.FC = () => {
                   onChange={handleInputChange}
                   className="w-full px-2 py-1 border rounded"
                 />
-              </td>
+              </td> */}
               <td className="border border-gray-300 px-4 py-2">
                 <input
                   type="text"
@@ -387,6 +397,24 @@ const Flights: React.FC = () => {
                   name="arrivalTime"
                   value={newFlight.arrivalTime}
                   onChange={handleInputChange}
+                  className="w-full px-2 py-1 border rounded"
+                />
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                <input
+                  type="text"
+                  name="Business Seats"
+                  value={newFlight.remainingBsnSeats}
+                  // onChange={handleInputChange}
+                  className="w-full px-2 py-1 border rounded"
+                />
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                <input
+                  type="text"
+                  name="Economy Seats"
+                  value={newFlight.remainingEcoSeats}
+                  // onChange={handleInputChange}
                   className="w-full px-2 py-1 border rounded"
                 />
               </td>
@@ -422,7 +450,7 @@ const Flights: React.FC = () => {
                     <option value={FlightStatus.Departed}>Departed</option>
                 </select>
               </td>
-              <td className="border border-gray-300 px-4 py-2">
+              {/* <td className="border border-gray-300 px-4 py-2">
                 <input
                   type="number"
                   name="remainingSeat"
@@ -430,7 +458,7 @@ const Flights: React.FC = () => {
                   onChange={handleInputChange}
                   className="w-full px-2 py-1 border rounded"
                 />
-              </td>
+              </td> */}
               <td className="border border-gray-300 px-2 py-2 text-sm">
                 <div className="flex justify-center items-center">
                   {editingFlight ? (
@@ -459,15 +487,17 @@ const Flights: React.FC = () => {
               >
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.flightRoute.fromAirportIATA}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.flightRoute.toAirportIATA}</td>
-                <td className="border border-gray-300 px-4 py-2 text-sm">{flight.flightRoute.fromAirport.city.name}</td>
-                <td className="border border-gray-300 px-4 py-2 text-sm">{flight.flightRoute.toAirport.city.name}</td>
+                {/* <td className="border border-gray-300 px-4 py-2 text-sm">{flight.flightRoute.fromAirport.city.name}</td>
+                <td className="border border-gray-300 px-4 py-2 text-sm">{flight.flightRoute.toAirport.city.name}</td> */}
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.boardingGate}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.departureTime}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.arrivalTime}</td>
+                <td className="border border-gray-300 px-4 py-2 text-sm">{flight.remainingBsnSeats}</td>
+                <td className="border border-gray-300 px-4 py-2 text-sm">{flight.remainingEcoSeats}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.economyPrice.toLocaleString()}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.businessPrice.toLocaleString()}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{FlightStatus[flight.status]}</td>
-                <td className="border border-gray-300 px-4 py-2 text-sm">{flight.aircraft.noOfSeats}</td>
+                {/* <td className="border border-gray-300 px-4 py-2 text-sm">{flight.aircraft.noOfSeats}</td> */}
                 <td className="border border-gray-300 px-2 py-2">
                   <div className="flex justify-center items-center space-x-2">
                     <button

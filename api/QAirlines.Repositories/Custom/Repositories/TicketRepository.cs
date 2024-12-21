@@ -66,7 +66,7 @@ namespace QAirlines.Repositories.Custom.Repositories
             var ticket = _context.Tickets
                 .Where(x => x.ReservationId.Equals(reservationId));
 
-            return ticket;
+            return ticket.ToList();
         }
     }
 }

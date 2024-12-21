@@ -12,9 +12,11 @@ const Aircrafts: React.FC = () => {
     const [error, setError] = useState("");
     const [newAircraft, setNewAircraft] = useState<Aircraft>({
       name: "",
+      model: "",
       manufacturer: "",
       noOfSeats: 0,
       status: AircraftStatus.Holding,
+      availableAt: null,
       terminal: "",
     });
 
@@ -22,9 +24,11 @@ const Aircrafts: React.FC = () => {
 
     const [search, setSearch] = useState({
       name: "",
+      model: "",
       manufacturer: "",
       noOfSeats: "",
-      status: AircraftStatus.Holding,
+      availableAt: "",
+      // status: AircraftStatus.Holding,
       terminal: "",
     });
   
@@ -54,9 +58,10 @@ const Aircrafts: React.FC = () => {
     const filteredAircrafts = aircrafts.filter((aircraft) => {
       return (
         (search.name === "" || aircraft.name.toLowerCase().includes(search.name.toLowerCase())) &&
+        (search.model === "" || aircraft.model.toLowerCase().includes(search.model.toLowerCase())) &&
         (search.manufacturer === "" || aircraft.manufacturer.toLowerCase().includes(search.manufacturer.toLowerCase())) &&
         (search.noOfSeats === "" || aircraft.noOfSeats.toString().includes(search.noOfSeats)) &&
-        (aircraft.status == search.status) &&
+        // (aircraft.status == search.status) &&
         (search.terminal === "" || aircraft.terminal.toLowerCase().includes(search.terminal.toLowerCase()))
       );
     });
@@ -70,7 +75,20 @@ const Aircrafts: React.FC = () => {
     };
   
     const handleAddAircraft = async () => {
-      addAircrafts(newAircraft);
+      if (newAircraft.noOfSeats % 6 != 0) {
+        alert("Please enter a number that is divisible by 6.")
+      } else {
+        addAircrafts(newAircraft);
+        setNewAircraft({
+          name: "",
+          model: "",
+          manufacturer: "",
+          noOfSeats: 0,
+          status: 1,
+          availableAt: null,
+          terminal: "",
+        });
+      }
     };
 
     const handleDeleteAirCraft = (aircraftDelete: Aircraft) => {
@@ -92,9 +110,11 @@ const Aircrafts: React.FC = () => {
       setEditingAircraft(null);
       setNewAircraft({
         name: "",
+        model: "",
         manufacturer: "",
         noOfSeats: 0,
         status: 1,
+        availableAt: null,
         terminal: "",
       });
     };
@@ -104,7 +124,7 @@ const Aircrafts: React.FC = () => {
   
     return (
       <>
-        <div className="text-4xl pb-6 pt-4 font-bold text-center text-golden capitalize">Aircafts</div>
+        <div className="text-4xl pb-6 pt-4 font-bold text-center text-golden capitalize">Aircrafts</div>
         <div className="mb-6 flex space-x-4">
             <input
                 type="text"
@@ -130,7 +150,15 @@ const Aircrafts: React.FC = () => {
                 onChange={handleSearchChange}
                 className="pl-2 py-2 border rounded flex-1 text-base"
             />
-            <select
+            <input
+                type="text"
+                name="terminal"
+                placeholder="Search by Terminal"
+                value={search.terminal}
+                onChange={handleSearchChange}
+                className="pl-2 py-2 border rounded flex-1 text-base"
+            />
+            {/* <select
                 name="status"
                 value={search.status}
                 onChange={handleSearchChange}
@@ -140,7 +168,7 @@ const Aircrafts: React.FC = () => {
                 <option value={AircraftStatus.Airborne}>Airborne</option>
                 <option value={AircraftStatus.Fuelling}>Fueling</option>
                 <option value={AircraftStatus.Holding}>Holding</option>
-            </select>
+            </select> */}
             <input
                 type="text"
                 name="terminal"
@@ -156,9 +184,11 @@ const Aircrafts: React.FC = () => {
             <thead className="bg-golden-hover sticky top-0 z-10">
                 <tr>
                   <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Name</th>
+                  <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Model</th>
                   <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Manufacturer</th>
                   <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Seats</th>
-                  <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Status</th>
+                  {/* <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Status</th> */}
+                  <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Available At</th>
                   <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Terminal</th>
                   <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold"></th>
                 </tr>
@@ -168,6 +198,15 @@ const Aircrafts: React.FC = () => {
                       type="text"
                       name="name"
                       value={newAircraft.name}
+                      // onChange={handleInputChange}
+                      className="w-full px-2 py-1 border rounded"
+                  />
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                  <input
+                      type="text"
+                      name="model"
+                      value={newAircraft.model}
                       onChange={handleInputChange}
                       className="w-full px-2 py-1 border rounded"
                   />
@@ -190,7 +229,7 @@ const Aircrafts: React.FC = () => {
                       className="w-full px-2 py-1 border rounded"
                   />
                   </td>
-                  <td className="border border-gray-300 px-4 py-2">
+                  {/* <td className="border border-gray-300 px-4 py-2">
                   <select
                       name="status"
                       value={newAircraft.status}
@@ -201,6 +240,15 @@ const Aircrafts: React.FC = () => {
                       <option value={AircraftStatus.Fuelling}>Fueling</option>
                       <option value={AircraftStatus.Holding}>Holding</option>
                   </select>
+                  </td> */}
+                  <td className="border border-gray-300 px-4 py-2">
+                  <input
+                      type="text"
+                      name="availableAt"
+                      value={newAircraft.availableAt}
+                      onChange={handleInputChange}
+                      className="w-full px-2 py-1 border rounded"
+                  />
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                   <input
@@ -213,21 +261,21 @@ const Aircrafts: React.FC = () => {
                   </td>
                   <td className="border border-gray-300 px-2 py-2 text-sm">
                     <div className="flex justify-center items-center">
-                      {editingAircraft ? (
+                      {/* {editingAircraft ? (
                         <button
                           onClick={handleSaveEdit}
                           className="bg-green-600 hover:bg-green-400 border-none px-5 py-2 text-white rounded"
                         >
                           Save
                         </button>
-                      ) : (
+                      ) : ( */}
                         <button
                           onClick={handleAddAircraft}
                           className="bg-blue-600 hover:bg-blue-400 border-none px-6 py-2 text-white rounded"
                         >
                           Add
                         </button>
-                      )}
+                      {/* )} */}
                     </div>
                   </td>
               </tr>
@@ -242,9 +290,11 @@ const Aircrafts: React.FC = () => {
                     : "bg-gray-100"
                 }`}>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.name}</td>
+                    <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.model}</td>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.manufacturer}</td>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.noOfSeats}</td>
-                    <td className="border border-gray-300 px-4 py-2 text-base">{AircraftStatus[aircraft.status]}</td>
+                    {/* <td className="border border-gray-300 px-4 py-2 text-base">{AircraftStatus[aircraft.status]}</td> */}
+                    <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.availableAt}</td>
                     <td className="border border-gray-300 px-4 py-2 text-base">{aircraft.terminal}</td>
                     <td className="border border-gray-300 px-2 py-2">
                       <div className="flex justify-center items-center space-x-2">
