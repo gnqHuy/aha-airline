@@ -4,6 +4,7 @@ import TicketPreview from '../../components/TicketPreview/TicketPreview';
 import { useNavigate } from 'react-router-dom';
 import Layout1 from '../../components/Layout/Layout1';
 import Layout from '../../components/Layout/Layout';
+import { SeatClass } from '../../object/enum/SeatClass';
 
 type Props = {};
 
@@ -28,9 +29,9 @@ const TicketCard: React.FC<Props> = () => {
     const passengerCount = selectedPassenger.adults + selectedPassenger.children + selectedPassenger.infants;
 
     let totalPrice = 0;
-    if (selectedFlightClass === "economy") {
+    if (selectedFlightClass === SeatClass.Economy) {
         totalPrice = selectedFlight.economyPrice * passengerCount;
-    } else if (selectedFlightClass === "business") {
+    } else if (selectedFlightClass === SeatClass.Business) {
         totalPrice = selectedFlight.businessPrice * passengerCount;
     }
     

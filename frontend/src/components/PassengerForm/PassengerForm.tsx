@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { PassengerTitle } from "../../object/enum/PassengerTitle";
 
 type Props = {
   passengerType: "adult" | "child" | "infant";
   onPassengerChange: (passenger: {
-    title: string;
+    title: PassengerTitle | undefined;
     firstName: string;
     lastName: string;
     dateOfBirth: string;
@@ -14,7 +15,7 @@ type Props = {
 
 const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) => {
   const [dob, setDob] = useState("");
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState<PassengerTitle>();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -57,10 +58,18 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
   };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
+    const value = parseInt(e.target.value, 10) as PassengerTitle;
     setTitle(value);
-    onPassengerChange({ title: value, firstName, lastName, dateOfBirth: dob, email, phone: phoneNumber });
+    onPassengerChange({
+      title: value,
+      firstName,
+      lastName,
+      dateOfBirth: dob,
+      email,
+      phone: phoneNumber,
+    });
   };
+  
 
   const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -104,19 +113,32 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
             className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-golden-hover focus:outline-none"
           >
             <option value="">Select title</option>
-            {passengerType === "adult" ? (
-              <>
-                <option value="Mr">Mr</option>
-                <option value="Mrs">Mrs</option>
-                <option value="Ms">Ms</option>
-              </>
-            ) : (
-              <>
-                <option value="MSTR">MSTR</option>
-                <option value="MISS">MISS</option>
-              </>
-            )}
+            {Object.keys(PassengerTitle)
+              .filter((key) => isNaN(Number(key)))
+              .map((key) => {
+                const enumKey = key as keyof typeof PassengerTitle;
+                const enumValue = PassengerTitle[enumKey];
+                
+                if (passengerType === "adult" && (enumValue === PassengerTitle.Mr || enumValue === PassengerTitle.Ms || enumValue === PassengerTitle.Mrs)) {
+                  return (
+                    <option key={enumValue} value={enumValue}>
+                      {enumKey}
+                    </option>
+                  );
+                }
+
+                if (passengerType !== "adult" && (enumValue === PassengerTitle.MSTR || enumValue === PassengerTitle.MISS)) {
+                  return (
+                    <option key={enumValue} value={enumValue}>
+                      {enumKey}
+                    </option>
+                  );
+                }
+
+                return null; 
+              })}
           </select>
+
         </div>
 
         <div className="flex flex-col space-y-2 mr-4">
