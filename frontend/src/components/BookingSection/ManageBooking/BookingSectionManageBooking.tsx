@@ -8,6 +8,8 @@ import { FaPlaneCircleCheck } from "react-icons/fa6";
 import { IoTicket } from "react-icons/io5";
 import { IoIosArrowUp } from "react-icons/io";
 import ManageBookingInfo from './ManageBookingInfo';
+import { GetByReservationOrTicketCode } from '../../../api/ticket';
+import { useFlightContext } from '../../../context/FlightContext/FlightContext';
 
 interface Props {
     sectionTab: string;
@@ -18,11 +20,9 @@ interface Props {
 const BookingSectionManageBooking: React.FC<Props> = ({sectionTab, handleChangeTab, prevTab}) => {
     // check focus reservation and last name for animation
     const [isFocusReservation, setIsFocusReservation] = useState<Boolean>(false);
-    const [isFocusLastname, setIsFocusLastname] = useState<Boolean>(false);
 
     // reservation and lastname
     const [reservationCode, setReservationCode] = useState<string>("");
-    const [lastName, setLastname] = useState<string>("");
 
     // state to manage display info
     const [displayInfo, setDisplayInfo] = useState<boolean>(false);
@@ -31,25 +31,41 @@ const BookingSectionManageBooking: React.FC<Props> = ({sectionTab, handleChangeT
     const [storeReservationCode, setStoreReservationCode] = useState<string>("");
     const [storeLastname, setStoreLastname] = useState<string>("");
 
+    // get all reservation code
+    const [reservations, setReservations] = useState<any[]>([]);
+
+    // context
+    const {setManageBookingReservationCode} = useFlightContext();
+
     const handleSearch = () => {
-        if (reservationCode.length > 0 && lastName.length > 0) {
+        if (reservationCode.length > 0) {
+            fetchData();
             setDisplayInfo(true);
             setStoreReservationCode(reservationCode);
-            setStoreLastname(lastName);
+            setManageBookingReservationCode(reservationCode);
+            localStorage.setItem("manageBookingReservationCode", reservationCode);
             setReservationCode("");
-            setLastname("");
             setIsFocusReservation(false);
-            setIsFocusLastname(false);
         } else {
             setReservationCode("");
-            setLastname("");
             setIsFocusReservation(false);
-            setIsFocusLastname(false);
         }
     }
 
     const handleDisplayInfo = () => {
         displayInfo === true ? setDisplayInfo(false) : setDisplayInfo(true);
+    }
+
+    const fetchData = async () => {
+        try {
+            const response = await GetByReservationOrTicketCode(reservationCode);
+            setReservations(response.data);
+            console.log("Data reservation:"+response.data)
+        } catch (err) {
+            return <div className = "text-red-500 text-base">Failed to get your information! Check your reservation code!</div>;
+        } finally {
+            
+        }
     }
   return (
     <div>
@@ -69,19 +85,6 @@ const BookingSectionManageBooking: React.FC<Props> = ({sectionTab, handleChangeT
                     </div>
                 </div>
 
-                <div className = "relative top-[3.1rem] left-[3rem] input-box-lastName medium:left-[38vw] small:left-[38vw]">
-                    <div className = "relative left-[0.5rem]">
-                        <label className = {isFocusLastname === false ? "text-label transition-all duration-300 ease-in-out medium:text-sm small:text-xs" : "text-focus relative bottom-4 transition-all duration-300 medium:text-sm small:text-xs"}>Last Name</label>
-                    </div>
-                    <div className = "relative bottom-[1rem]">
-                        <input type = "text" className = "detail-input-lastName medium:w-[31vw] small:w-[31vw]" onFocus = {() => setIsFocusLastname(true)} onBlur = {() => {
-                            if (lastName.length === 0) {
-                                setIsFocusLastname(false);
-                            }
-                        }} onChange = {e => setLastname(e.target.value)} value = {lastName}/>
-                    </div>
-                </div>
-
                 <div className = "bookingSection_manageBooking_buttonSearch top-[3.5rem] left-[48rem] medium:left-[73vw] small:left-[73vw]">
                     <button className = "w-[8rem] h-[3rem] small:w-[6rem] small:h-[2.5rem] hover:cursor-pointer" onClick = {handleSearch}>Search</button>
                 </div>
@@ -90,9 +93,9 @@ const BookingSectionManageBooking: React.FC<Props> = ({sectionTab, handleChangeT
             {displayInfo === true && 
                 <div className = "relative mt-[5rem] ml-[2rem]">
                     <ManageBookingInfo
-                        storeReservationCode = {storeReservationCode}
-                        storeLastname = {storeLastname}
                         handleDisplayInfo={handleDisplayInfo}
+                        reservations = {reservations}
+                        storeReservationCode = {storeReservationCode}
                     />
                 </div>
             }

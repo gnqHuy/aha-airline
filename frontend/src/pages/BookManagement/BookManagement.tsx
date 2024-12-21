@@ -1,27 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import headerImage from "../../assets-test/Images/sunset4.jpg";
 import { IoIosAirplane } from "react-icons/io";
 import Layout from '../../components/Layout/Layout';
+import { useFlightContext } from '../../context/FlightContext/FlightContext';
+import { GetByReservationOrTicketCode } from '../../api/ticket';
 
 type Props = {}
 
 const BookManagement = (props: Props) => {
-    const SampleJourneys = [
-        {
-            fromDestination: "Hanoi (HAN)", 
-            toDestination: "Bangkok (BKK)", 
-            flightDate: "20/12/2024, 3:46",
-            flightNumber: "VN 615", 
-            freeBaggageAllowance: "1 item 23KG"
-        }, 
-        {
-            fromDestination: "Bangkok (BKK)", 
-            toDestination: "Osaka (KIX)", 
-            flightDate: "20/12/2024, 3:50",
-            flightNumber: "BK 618", 
-            freeBaggageAllowance: "1 item 23KG"
+    const [reservations, setReservations] = useState<any[]>([]);
+
+    const {manageBookingReservationCode} = useFlightContext();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await GetByReservationOrTicketCode(manageBookingReservationCode);
+                setReservations(response.data);
+                console.log("Data reservation:"+response.data)
+            } catch (err) {
+                return <div className = "text-red-500 text-base">Failed to get your information! Check your reservation code!</div>;
+            } finally {
+                
+            }
         }
-    ]
+        fetchData();
+    }, []);
   return (
     <Layout headerImage = {headerImage}>
         <div className = "ml-[12vw]">
@@ -35,39 +39,36 @@ const BookManagement = (props: Props) => {
             </div>
 
             {/* info */}
-            <div className = "w-[80%] mt-[0rem] bg-white border-[2px] border-Green border-solid rounded-[8px] flex">
-                {/* customer info */}
-                <div className = "ml-[2rem] mt-[1rem]">
-                    <p className = "text-base font-bold">Customer name:</p>
-                    <p className = "text-base font-bold">Reservation code:</p>
-                    <p className = "text-base font-bold">Ticket number:</p>
-                    <p className = "text-base font-bold">Email:</p>
-                    <br/>
-                    <p className = "text-base font-bold">Payment status: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Paid</p>
-                    <p className = "text-base font-bold">Additional services: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [<span className = "underline text-Green">Detail</span>]</p>
-                </div>
+            {reservations.map((reservation) => {
+                return (
+                    <div className = "w-[80%] mt-[0rem] bg-white border-[2px] border-Green border-solid rounded-[8px] flex mb-[2rem]">
+                        <div className = "ml-[2rem] mt-[1rem]">
+                            <p className = "text-base font-bold"><b>Customer name: </b> {`${reservation?.firstName} ${reservation?.lastName}`}</p>
+                            <p className = "text-base font-bold">Reservation code: {manageBookingReservationCode}</p>
+                            <p className = "text-base font-bold">Ticket number: {reservation?.ticketCode}</p>
+                            <p className = "text-base font-bold">Email: {reservation?.contactEmail}</p>
+                            <p className = "text-base font-bold">Phone number: {reservation?.phoneNumber}</p>
+                            <p className = "text-base font-bold">Payment status: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {`${reservation?.status === 0 ? "Unpaid" : "Paid"}`}</p>
+                        </div>
 
-                {/* journey info */}
-                <div className = "ml-[30%] mt-[1rem] w-[40%]">
-                    {SampleJourneys.map((journey, index) => {
-                        return (
-                            <div className = "flex text-base">
-                                <p className = "w-[30%]">{`Route ${index + 1}`}: </p>
-                                <div className = "ml-[1rem]">
-                                    <div className = "flex font-bold">
-                                        <p className = "text-Green">{journey.fromDestination}</p>
-                                        <IoIosAirplane style = {{color: "#1A4532"}} className = "mx-[1rem] mt-[1.2rem] w-[1.4rem] h-[1.4rem]"/>
-                                        <p className = "text-Green">{journey.toDestination}</p>
-                                    </div>
-                                    <p className = "text-base relative bottom-[1.5rem]"><span className = "font-bold">Flight date: </span>{journey.flightDate}</p>
-                                    <p className = "text-base relative bottom-[2rem]"><span className = "font-bold">Flight number: </span>{journey.flightNumber}</p>
-                                    <p className = "text-base relative bottom-[2.5rem]"><span className = "font-bold">Free baggage allowance: </span>{journey.freeBaggageAllowance}</p>
-                                </div>
+                        <div className = "absolute left-[40vw] mt-[1rem] font-bold">
+                            <div className = "flex text-Green">
+                                <p>{`${reservation?.flightInfo?.fromAirport?.city?.name} (${reservation?.flightInfo?.fromAirport?.iata}), ${reservation?.flightInfo?.fromAirport?.city?.country}`}</p>
+                                <IoIosAirplane style = {{color: "#1A4532"}} className = "w-[1.5rem] h-[1.5rem] ml-[0.7rem] relative top-[1.1rem]"/>
+                                <p className = "ml-[0.5rem]">{`${reservation?.flightInfo?.toAirport?.city?.name} (${reservation?.flightInfo?.toAirport?.iata}), ${reservation?.flightInfo?.toAirport?.city?.country}`}</p>
                             </div>
-                        )
-                    })}
-                </div>
-            </div>
+                            <div className = "relative bottom-[1rem]">
+                                <p><b>Boarding time: </b>{reservations[0]?.flightInfo?.boardingTime}</p>
+                                <p className = "relative bottom-[0.5rem]"><b>Departure time: </b>{reservations[0]?.flightInfo?.departureTime}</p>
+                                <p className = "relative bottom-[1rem]"><b>Arrival time: </b>{reservations[0]?.flightInfo?.arrivalTime}</p>
+                                <p className = "relative bottom-[1.5rem]"><b>Aircraft name: </b>{reservations[0]?.flightInfo?.aircraft?.name}</p>
+                                <p className = "relative bottom-[2rem]"><b>Aircraft model: </b>{reservations[0]?.flightInfo?.aircraft?.model}</p>
+                                <p className = "relative bottom-[2.5rem]"><b>Seat number: </b>{reservations[0]?.flightInfo?.seatNumber}</p>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })}
         </div>
     </Layout>
   )
