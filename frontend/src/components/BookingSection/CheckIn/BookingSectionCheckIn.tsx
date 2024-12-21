@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './BookingSectionCheckIn.css';
 import { IoIosArrowUp } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import { useFlightContext } from '../../../context/FlightContext/FlightContext';
 
 interface Props {
     sectionTab: string;
@@ -13,14 +14,29 @@ const BookingSectionCheckIn: React.FC<Props> = ({sectionTab, handleChangeTab, pr
     const [activeOption, setActiveOption] = useState<string>("reservationCode");
 
     const [focusReservationCode, setFocusReservationCode] = useState<boolean>(false);
-    const [focusName, setFocusName] = useState<boolean>(false);
     const [focusEticket, setFocusEticket] = useState<boolean>(false);
-    const [focusProgram, setFocusProgram] = useState<boolean>(false);
 
     const [reservationCode, setReservationCode] = useState<string>("");
-    const [name, setName] = useState<string>("");
     const [eTicket, setETicket] = useState<string>("");
-    const [program, setProgram] = useState<string>("");
+
+    // context
+    const {setCheckinReservationCode} = useFlightContext();
+    const {setCheckinTicket} = useFlightContext();
+    const {setCheckinOption} = useFlightContext();
+
+    const setupCheckinReservationCode = () => {
+        setCheckinReservationCode(reservationCode);
+        localStorage.setItem("checkinReservationCode", reservationCode);
+        setCheckinOption("reservation");
+        localStorage.setItem("checkinOption", "reservation");
+    }
+
+    const setupCheckinTicket = () => {
+        setCheckinTicket(eTicket);      
+        localStorage.setItem("checkinTicket", eTicket);
+        setCheckinOption("ticket");
+        localStorage.setItem("checkinOption", "ticket");
+    }
   return (
     <div>
         <div className = {sectionTab === "checkIn" ? "overlay" : ""} onClick = {() => handleChangeTab("default")}></div>
@@ -32,18 +48,14 @@ const BookingSectionCheckIn: React.FC<Props> = ({sectionTab, handleChangeTab, pr
                 <button className = {activeOption === "reservationCode" ? "active-button" : ""} onClick = {() => {
                     setActiveOption("reservationCode");
                     setReservationCode("");
-                    setName("");
                 }}>Enter your reservation Code</button>
                 <button className = {activeOption === "eTicket" ? "active-button" : ""} onClick = {() => {
                     setActiveOption("eTicket");
                     setETicket("");
-                    setName("");
                 }}>eTicket number</button>
                 <button className = {activeOption === "flyerNumber" ? "active-button": ""} onClick = {() => {
                     setActiveOption("flyerNumber");
                     setReservationCode("");
-                    setName("");
-                    setProgram("");
                 }}>Frequent Flyer Number</button>
             </div>
 
@@ -61,24 +73,12 @@ const BookingSectionCheckIn: React.FC<Props> = ({sectionTab, handleChangeTab, pr
                         }} onChange = {e => setReservationCode(e.target.value)} value = {reservationCode}/>
                     </div>
                 </div>
-                <div className = "relative left-[16rem] top-[4rem]">
-                    <div className = "relative top-[1.5rem]">
-                        <label className = {focusName === false ? "text-label transition-all duration-300 ease-in-out medium:text-sm small:text-xs relative right-[11.5rem]" : "text-focus bottom-4 transition-all duration-300 medium:text-sm small:text-xs relative right-[11.5rem]"}>Family Name</label>
-                    </div>
-                    <div>
-                        <input type = "text" id = "options_input_familyName" className = "w-[18rem] medium:w-[26vw] small:w-[35vw]" onFocus = {() => setFocusName(true)} onBlur = {() => {
-                            if (name.length === 0) {
-                                setFocusName(false);
-                            }
-                        }} onChange = {e => setName(e.target.value)} value = {name}/>
-                    </div>
-                </div>
                 <div className = " relative left-[10rem] medium:left-[15vw] small:left-[-5rem] small:top-[3rem]">
-                    {(reservationCode.length > 0 && name.length > 0) ?
+                    {(reservationCode.length > 0) ?
                         <Link to = "/checkin-management">
-                            <button className = "hover:cursor-pointer">CHECK IN</button>
+                            <button className = "hover:cursor-pointer" onClick={setupCheckinReservationCode}>CHECK IN</button>
                         </Link> : 
-                        <button className = "hover:cursor-pointer">CHECK IN</button>
+                        <button className = "hover:cursor-pointer" onClick={setupCheckinReservationCode}>CHECK IN</button>
                     }
                 </div>
             </div>}
@@ -97,24 +97,12 @@ const BookingSectionCheckIn: React.FC<Props> = ({sectionTab, handleChangeTab, pr
                         }} onChange = {e => setETicket(e.target.value)} value = {eTicket}/>
                     </div>
                 </div>
-                <div className = "relative left-[16rem] top-[4rem]">
-                    <div className = "relative top-[1.5rem]">
-                        <label className = {focusName === false ? "text-label transition-all duration-300 ease-in-out medium:text-sm small:text-xs relative right-[11.5rem]" : "text-focus bottom-4 transition-all duration-300 medium:text-sm small:text-xs relative right-[11.5rem]"}>Family Name</label>
-                    </div>
-                    <div>
-                        <input type = "text" id = "options_input_familyName" className = "w-[18rem] medium:w-[26vw] small:w-[35vw]" onFocus = {() => setFocusName(true)} onBlur = {() => {
-                            if (name.length === 0) {
-                                setFocusName(false);
-                            }
-                        }} onChange = {e => setName(e.target.value)} value = {name}/>
-                    </div>
-                </div>
                 <div className = " relative left-[10rem] medium:left-[15vw] small:left-[-5rem] small:top-[3rem]">
-                    {(eTicket.length > 0 && name.length > 0) ?
+                    {(eTicket.length > 0) ?
                         <Link to = "/checkin-management">
-                            <button className = "hover:cursor-pointer">CHECK IN</button>
+                            <button className = "hover:cursor-pointer" onClick={setupCheckinTicket}>CHECK IN</button>
                         </Link> : 
-                        <button className = "hover:cursor-pointer">CHECK IN</button>
+                        <button className = "hover:cursor-pointer" onClick={setupCheckinTicket}>CHECK IN</button>
                     }
                 </div>
             </div>}
@@ -134,38 +122,12 @@ const BookingSectionCheckIn: React.FC<Props> = ({sectionTab, handleChangeTab, pr
                     </div>
                 </div>
 
-                <div className = "relative left-[15rem] top-[4rem]">
-                    <div className = "relative top-[1.5rem]">
-                        <label className = {focusName === false ? "text-label transition-all duration-300 ease-in-out relative right-[11.5rem] text-[15px] medium:text-[13px] small:text-[13px]" : "text-focus bottom-4 transition-all duration-300 relative right-[11.5rem] text-[15px] medium:text-[13px] small:text-[13px]"}>Family Name</label>
-                    </div>
-                    <div>
-                        <input type = "text" id = "options_input_familyName" className = "w-[18rem] medium:w-[26vw] small:w-[25vw]" onFocus = {() => setFocusName(true)} onBlur = {() => {
-                            if (name.length === 0) {
-                                setFocusName(false);
-                            }
-                        }} onChange = {e => setName(e.target.value)} value = {name}/>
-                    </div>
-                </div>
-
-                <div className = "relative left-[16rem] top-[4rem]">
-                    <div className = "relative top-[1.5rem]">
-                        <label className = {focusProgram === false ? "text-label transition-all duration-300 ease-in-out relative right-[11.5rem] text-[15px] medium:text-[13px] small:text-[13px]" : "text-focus relative bottom-4 transition-all duration-300 right-[11.5rem] text-[15px] medium:text-[13px] small:text-[13px]"}>Frequent Flyer Program</label>
-                    </div>
-                    <div>
-                        <input type = "text" id = "options_input_familyName" className = "w-[18rem] medium:w-[26vw] small:w-[25vw]" onFocus = {() => setFocusProgram(true)} onBlur = {() => {
-                            if (program.length === 0) {
-                                setFocusProgram(false);
-                            }
-                        }} onChange = {e => setProgram(e.target.value)} value = {program}/>
-                    </div>
-                </div>
-
-                <div className = " relative left-[-8rem] top-[1rem] medium:left-[-8rem] medium:top-[2rem] small:left-[-5rem] small:top-[3rem]">
-                    {(reservationCode.length > 0 && name.length > 0 && program.length > 0) ?
+                <div className = " relative left-[8rem] top-[1rem] medium:left-[-8rem] medium:top-[2rem] small:left-[-5rem] small:top-[3rem]">
+                    {(reservationCode.length > 0) ?
                         <Link to = "/checkin-management">
-                            <button className = "hover:cursor-pointer">CHECK IN</button>
+                            <button className = "hover:cursor-pointer" onClick={setupCheckinReservationCode}>CHECK IN</button>
                         </Link> : 
-                        <button className = "hover:cursor-pointer">CHECK IN</button>
+                        <button className = "hover:cursor-pointer" onClick={setupCheckinReservationCode}>CHECK IN</button>
                     }
                 </div>
             </div>}
