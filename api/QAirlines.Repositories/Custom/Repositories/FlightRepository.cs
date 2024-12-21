@@ -16,6 +16,10 @@ namespace QAirlines.Repositories.Custom.Repositories
     public class FlightRepository : GenericRepository<Flight, Guid>, IFlightRepository
     {
         public FlightRepository(QAirlineDbContext context) : base(context) { }
+        public override async Task<IEnumerable<Flight>> GetPagedAsync(int pageSize, int pageNumber)
+        {
+            return await _context.Flights.OrderByDescending(f => f.ArrivalTime).Skip(pageNumber * pageSize).Take(pageSize).ToListAsync();
+        }
 
         public async Task<Flight> GetCheapestByRouteId(Guid routeId)
         {
@@ -31,6 +35,15 @@ namespace QAirlines.Repositories.Custom.Repositories
         {
             var flights = await _context.Flights
                 .Where(f => f.FlightRouteId == request.RouteId && f.DepartureTime.Date.Equals(request.DepartTime.Date))
+                .ToListAsync();
+
+            return flights;
+        }
+
+        public async Task<IEnumerable<Flight>> GetFromAircraftAndRoute(Guid aircraftId, Guid routeId)
+        {
+            var flights = await _context.Flights
+                .Where(f => f.FlightRouteId == routeId && f.AircraftId == aircraftId)
                 .ToListAsync();
 
             return flights;

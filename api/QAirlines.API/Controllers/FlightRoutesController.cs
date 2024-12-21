@@ -71,7 +71,7 @@ namespace QAirlines.API.Controllers
         [HttpGet("FromRouteInfo")]
         public async Task<IEnumerable<FlightRouteDTO>> GetFromRequest([FromQuery] FlightRouteRequest request)
         {
-            var flightroutes = await _unitOfWork.FlightRoutes.FindRoutesFromRequest(request);
+            var flightroutes = await _unitOfWork.FlightRoutes.FindRoutesFromRequestAsync(request);
             var flightRouteDTOs = flightroutes
                 .Where(fr => fr != null)
                 .Select(flightRoute => _mappingFunctions.FlightRouteMapper(flightRoute)).ToList();
@@ -84,6 +84,40 @@ namespace QAirlines.API.Controllers
         {
             await _unitOfWork.FlightRoutes.AddRangeAsync(routes);
             _unitOfWork.Commit();
+        }
+
+        [HttpPost]
+        public IActionResult AddFlightRoute(string fromAirportIATA, string toAirportIATA)
+        {
+            var request = new FlightRouteRequest
+            {
+                FromAirportIATA = fromAirportIATA,
+                ToAirportIATA = toAirportIATA,
+            };
+
+            var fr = _unitOfWork.FlightRoutes.FindRoutesFromRequest(request);
+            if (!fr.Any())
+            {
+                var fromAirport = _unitOfWork.Airports.GetByIATA(fromAirportIATA);
+                var toAirport = _unitOfWork.Airports.GetByIATA(toAirportIATA);
+                var distance = _calculation.CalculateDistance(fromAirport.Latitude ?? 0, fromAirport.Longitude ?? 0, toAirport.Latitude ?? 0, toAirport.Longitude ?? 0);
+
+                var flightRoute = new FlightRoute
+                {
+                    FromAirportIATA = fromAirportIATA,
+                    ToAirportIATA = toAirportIATA,
+                    NoOfFlights = 0,
+                    Distance = distance,
+                };
+
+                _unitOfWork.FlightRoutes.Add(flightRoute);
+                _unitOfWork.Commit();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Flight route existed.");
+            }
         }
 
         [HttpPost("AutoGenerate")]

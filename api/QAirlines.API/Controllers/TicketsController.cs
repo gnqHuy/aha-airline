@@ -164,6 +164,7 @@ namespace QAirlines.API.Controllers
                 var ticketDTO = new TicketDTO
                 {
                     TicketId = ticket.Id,
+                    TicketCode = ticket.TicketCode,
                     FlightInfo = flightSummary,
                     BookerId = ticket.UserId != null ? ticket.UserId : null,
                     BookerFirstName = user != null ? user.FirstName : null,

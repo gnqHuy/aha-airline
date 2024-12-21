@@ -93,6 +93,21 @@ namespace QAirlines.API.Controllers
             return flightDTOs;
         }
 
+        [HttpGet("FromAircraftAndRoute")]
+        public async Task<IEnumerable<FlightDTO>> GetFromAircraftAndRoute([FromQuery]string aircraftName, string fromIATA, string toIATA)
+        {
+            var flights = await _flightService.GetFromAircraftAndRoute(aircraftName, fromIATA, toIATA);
+
+            var flightDTOs = new List<FlightDTO>();
+            foreach (var flight in flights)
+            {
+                var flightDTO = _mappingFunctions.FlightMapper(flight);
+                flightDTOs.Add(flightDTO);
+            }
+
+            return flightDTOs;
+        }
+
         [HttpGet("Paged")]
         public async Task<IEnumerable<FlightDTO>> GetPagedDTO([FromQuery]int pageSize, int pageNumber)
         {

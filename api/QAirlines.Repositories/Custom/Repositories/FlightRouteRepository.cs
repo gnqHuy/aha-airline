@@ -16,7 +16,7 @@ namespace QAirlines.Repositories.Custom.Repositories
     {
         public FlightRouteRepository(QAirlineDbContext context) : base(context) { }
 
-        public async Task<IEnumerable<FlightRoute>> FindRoutesFromRequest(FlightRouteRequest request)
+        public async Task<IEnumerable<FlightRoute>> FindRoutesFromRequestAsync(FlightRouteRequest request)
         {
             var flightRoutes = _context.FlightRoutes.AsQueryable();
 
@@ -31,6 +31,23 @@ namespace QAirlines.Repositories.Custom.Repositories
             }
 
             return await flightRoutes.ToListAsync();
+        }
+
+        public IEnumerable<FlightRoute> FindRoutesFromRequest(FlightRouteRequest request)
+        {
+            var flightRoutes = _context.FlightRoutes.AsQueryable();
+
+            if (!string.IsNullOrEmpty(request.FromAirportIATA))
+            {
+                flightRoutes = flightRoutes.Where(fr => fr.FromAirportIATA.Trim().ToLower().Equals(request.FromAirportIATA.Trim().ToLower()));
+            }
+
+            if (!string.IsNullOrEmpty(request.ToAirportIATA))
+            {
+                flightRoutes = flightRoutes.Where(fr => fr.ToAirportIATA.Trim().ToLower().Equals(request.ToAirportIATA.Trim().ToLower()));
+            }
+
+            return flightRoutes.ToList();
         }
 
         public IEnumerable<FlightRoute> FindPagedRoutesFromRequest(FlightRouteRequest request, int pageSize = 9, int pageNumber = 0)

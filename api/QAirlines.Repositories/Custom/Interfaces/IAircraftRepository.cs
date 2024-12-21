@@ -14,6 +14,7 @@ namespace QAirlines.Repositories.Custom.Interfaces
         IEnumerable<Aircraft> GetLargestAircrafts(int count);
         string AddAircraft(AircraftRequest aircraft);
         Aircraft GetByName(string name);
+        Task<Aircraft> GetByNameAsync(string name);
         void UpdateAircrafts();
         void UpdateNoOfSeats();
         Task ResetAvailableTime();

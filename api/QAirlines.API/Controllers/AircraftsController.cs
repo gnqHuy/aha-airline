@@ -31,8 +31,19 @@ namespace QAirlines.API.Controllers
             return BadRequest();
         }
 
+        [HttpGet("Name")]
+        public async Task<IActionResult> GetByNameAsync(string name)
+        {
+            var aircrafts = await _unitOfWork.Aircrafts.GetByNameAsync(name);
+            if (aircrafts != null)
+            {
+                return Ok(aircrafts);
+            }
+            return BadRequest();
+        }
+
         [HttpPost]
-        public IActionResult AddAircraft([FromQuery]AircraftRequest request)
+        public IActionResult AddAircraft([FromBody]AircraftRequest request)
         {
             var airport = _unitOfWork.Airports.GetByIATA(request.Terminal);
 
@@ -97,27 +108,27 @@ namespace QAirlines.API.Controllers
             _unitOfWork.Commit();
         }
 
-        [HttpPut]
-        public IActionResult UpdateAircraft([FromQuery]AircraftRequest request)
-        {
-            Aircraft aircraft = _unitOfWork.Aircrafts.GetById(request.Id ?? new System.Guid());
+        //[HttpPut]
+        //public IActionResult UpdateAircraft([FromQuery]AircraftRequest request)
+        //{
+        //    Aircraft aircraft = _unitOfWork.Aircrafts.GetById(request.Id ?? new System.Guid());
 
-            if (aircraft != null)
-            {
-                aircraft.Name = request.Name;
-                aircraft.Manufacturer = request.Manufacturer;
-                aircraft.NoOfSeats = request.NoOfSeats;
-                aircraft.Status = request.Status;
-                aircraft.Terminal = request.Terminal;
-                aircraft.AvailableAt = request.AvailableAt;
+        //    if (aircraft != null)
+        //    {
+        //        aircraft.Name = request.Name;
+        //        aircraft.Manufacturer = request.Manufacturer;
+        //        aircraft.NoOfSeats = request.NoOfSeats;
+        //        aircraft.Status = request.Status;
+        //        aircraft.Terminal = request.Terminal;
+        //        aircraft.AvailableAt = request.AvailableAt;
 
-                _unitOfWork.Commit();
+        //        _unitOfWork.Commit();
 
-                return Ok();
-            }
+        //        return Ok();
+        //    }
             
-            return BadRequest("Aircraft not found.");
-        }
+        //    return BadRequest("Aircraft not found.");
+        //}
 
         [HttpPost("Range")]
         public async Task AddAircrafts([FromBody] IEnumerable<Aircraft> aircrafts)

@@ -6,6 +6,8 @@ import { FlightTickets, Ticket } from "../../object/ticket";
 import { SeatClass } from "../../object/enum/SeatClass";
 import { getAllAirport } from "../../api/airportAPI";
 import { FlightTicketResponse } from "../../object/reponseTicketData";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/selector/authSelector";
 
 type FlightContextType = {
   responseTicketData: FlightTicketResponse | null;
@@ -172,21 +174,28 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [checkinReservationCode, setCheckinReservationCode] = useState<string>(String(localStorage.getItem("checkinReservationCode")));
   const [checkinTicket, setCheckinTicket] = useState<string>(String(localStorage.getItem("checkinTicket")));
   const [checkinOption, setCheckinOption] = useState<string>(String(localStorage.getItem("checkinOption")));
+  const user = useSelector(selectUser);
 
   const [flightTickets, setFlightTickets] = useState<FlightTickets>({
       flightId: "",
-      // bookedId: "08dd20c7-c957-4dd5-86db-d26c6f4cb6bc",
+      bookedId: user != null ? user.id : null,
       tickets: [],
   });
 
   const addFlightTicket = (ticket: Ticket) => {
+    console.log(flightTickets);
     const flightId = selectedFlight ? selectedFlight.id : "defaultFlightId"; // Sử dụng ID mặc định nếu không có selectedFlight
     setFlightTickets((prevFlight) => ({
       flightId,
+      bookedId: user != null ? user.id : null,
       tickets: [...prevFlight.tickets, ticket],
     }));
+
   };
   
+  useEffect(() => {
+    console.log(user?.id);
+  }, [])
 
   useEffect(() => {
     setNewsList(NewSlide);
