@@ -16,14 +16,18 @@ interface Props {
 }
 
 const BookingSectionManageBooking: React.FC<Props> = ({sectionTab, handleChangeTab, prevTab}) => {
+    // check focus reservation and last name for animation
     const [isFocusReservation, setIsFocusReservation] = useState<Boolean>(false);
     const [isFocusLastname, setIsFocusLastname] = useState<Boolean>(false);
 
+    // reservation and lastname
     const [reservationCode, setReservationCode] = useState<string>("");
     const [lastName, setLastname] = useState<string>("");
 
+    // state to manage display info
     const [displayInfo, setDisplayInfo] = useState<boolean>(false);
 
+    // store reservationCode and lastname for other page
     const [storeReservationCode, setStoreReservationCode] = useState<string>("");
     const [storeLastname, setStoreLastname] = useState<string>("");
 
