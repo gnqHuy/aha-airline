@@ -142,9 +142,9 @@ const NavBar: React.FC<Props> = () => {
       <div className="flex justify-center gap-6 ml-[5rem]">
         {user ? (
           <div>
-            <div className = "rounded-[50%] w-[2.8rem] h-[2.8rem] border-Green border-solid border-[3px] font-bold" ref = {dropdownRef}>
+            <div className = "rounded-[50%] w-[2.3rem] h-[2.3rem] border-Green border-solid border-[3px] font-bold" ref = {dropdownRef}>
               <div onClick = {() => loginDropdown === true ? setLoginDropdown(false) : setLoginDropdown(true)}>
-                <img src = {LoginAvatar} alt = "" className = "rounded-[50%] w-[2.8rem] h-[2.8rem] hover:cursor-pointer"/>
+                <img src = {LoginAvatar} alt = "" className = "rounded-[50%] w-[2.3rem] h-[2.3rem] hover:cursor-pointer"/>
               </div>
               {loginDropdown === true && 
                 <div className = "absolute z-50 right-[0rem] mr-[13rem] mt-[1.5rem] small:mr-[10vw] medium:mr-[10vw] big:mr-[12vw]">
