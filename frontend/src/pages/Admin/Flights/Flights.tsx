@@ -73,7 +73,7 @@ const Flights: React.FC = () => {
     boardingGate: "",
     economyPrice: 0,
     businessPrice: 0,
-    status: 0,
+    status: FlightStatus.Upcomming,
   });
   const [editingFlight, setEditingFlight] = useState<Flight | null>(null);
   const [searchFromIATA, setSearchFromIATA] = useState<string>("");
@@ -90,7 +90,6 @@ const Flights: React.FC = () => {
         ? await getFromRequest(fromIATA, toIATA)
         : await getPagedFlightDTO(10, page);
   
-      console.log(response.data);
       setFlights(response.data);
     } catch (err) {
       setError("Failed to load flight data.");
@@ -144,7 +143,7 @@ const Flights: React.FC = () => {
       boardingGate: "",
       economyPrice: 0,
       businessPrice: 0,
-      status: 0,
+      status: FlightStatus.Upcomming,
     });
   };
   
@@ -179,7 +178,7 @@ const Flights: React.FC = () => {
       boardingGate: "",
       economyPrice: 0,
       businessPrice: 0,
-      status: 0,
+      status: FlightStatus.Upcomming,
     });
   };  
 
@@ -410,13 +409,18 @@ const Flights: React.FC = () => {
                 />
               </td>
               <td className="border border-gray-300 px-4 py-2">
-                <input
-                  type="number"
-                  name="status"
-                  value={newFlight.status}
-                  onChange={handleInputChange}
-                  className="w-full px-2 py-1 border rounded"
-                />
+                <select
+                    name="status"
+                    value={newFlight.status}
+                    onChange={handleInputChange}
+                    className="pl-2 py-2 border rounded flex-1"
+                >
+                    <option value={FlightStatus.Upcomming}>Upcomming</option>
+                    <option value={FlightStatus.Boarding}>Boarding</option>
+                    <option value={FlightStatus.Cancelled}>Cancelled</option>
+                    <option value={FlightStatus.Delayed}>Delayed</option>
+                    <option value={FlightStatus.Departed}>Departed</option>
+                </select>
               </td>
               <td className="border border-gray-300 px-4 py-2">
                 <input
@@ -462,7 +466,7 @@ const Flights: React.FC = () => {
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.arrivalTime}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.economyPrice.toLocaleString()}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.businessPrice.toLocaleString()}</td>
-                <td className="border border-gray-300 px-4 py-2 text-sm">{flight.status.toLocaleString()}</td>
+                <td className="border border-gray-300 px-4 py-2 text-sm">{FlightStatus[flight.status]}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.aircraft.noOfSeats}</td>
                 <td className="border border-gray-300 px-2 py-2">
                   <div className="flex justify-center items-center space-x-2">

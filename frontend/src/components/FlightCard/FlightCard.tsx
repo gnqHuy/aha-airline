@@ -12,7 +12,7 @@ const FlightCard: React.FC<FlightCardProps> = ({ flight, image }) => {
 
   const formattedDate = departureDate.toLocaleDateString('en-US', {
     year: 'numeric',
-    month: 'short',
+    month: 'long',
     day: 'numeric',
   });
 
@@ -30,7 +30,7 @@ const FlightCard: React.FC<FlightCardProps> = ({ flight, image }) => {
           {flight.fromAirport.city.name} <br /> to {flight.toAirport.city.name}
         </p>
         <p className="depart">
-          Departure Time: <br/> {formattedDate}, {formattedTime}
+          <b>Departure Time:</b> <br/> {formattedDate}
         </p>
         <p className="price">
           From: {flight.minimumPrice.toLocaleString()} VND
