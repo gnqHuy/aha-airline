@@ -52,7 +52,7 @@ const ManageBookingInfo:React.FC<Props> = ({handleDisplayInfo, reservations, sto
                 </div>
 
 
-                <div className = "w-[0.01rem] h-[26.5vw] bg-gray-500 rounded-[8px] mt-[1.8rem] ml-[1%]"></div>
+                <div className = "w-[0.01rem] h-[20vw] bg-gray-500 rounded-[8px] mt-[1rem] ml-[1%]"></div>
                 <div className = "ml-[1rem]">
                     <p className = "text-Green font-bold text-lg">Customer info:</p>
                     {reservations.map((reservation, index) => {
@@ -60,7 +60,7 @@ const ManageBookingInfo:React.FC<Props> = ({handleDisplayInfo, reservations, sto
                             <div className = "text-base relative bottom-[1rem] ml-[0]">
                                 <p className = "font-bold">{`Customer ${index + 1}:`}</p>
                                 <ul id = "journey-list" className = "relative bottom-[1rem]">
-                                    <li>{`${reservation?.passengerTitle === 1 ? "Mrs" : "Mr"} ${reservation?.firstName} ${reservation?.lastName}/${reservation?.ticketCode}`}</li>
+                                    <li>{`${reservation?.passengerTitle === 1 ? "Mrs" : "Mr"} ${reservation?.firstName} ${reservation?.lastName}/${reservations[0].ticketCode}`}</li>
                                 </ul>
                             </div>
                         )
