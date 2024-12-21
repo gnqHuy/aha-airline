@@ -264,5 +264,14 @@ export const router = createBrowserRouter([
         <CheckInManagement />
       </>
     )
+  }, 
+  {
+    path: "/news", 
+    element: (
+      <>
+        <ScrollToTop />
+        <NewsPage />
+      </>
+    )
   }
 ]);
