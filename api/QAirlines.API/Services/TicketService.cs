@@ -116,15 +116,20 @@ namespace QAirlines.API.Services
                 {
                     if (remainingEcoSeats > 0)
                     {
-                        var position = GetSeatPosition(noOfBusinessSeats, noOfEconomySeats, remainingBsnSeats, remainingEcoSeats, ticket.Class);
+                        var seat = _unitOfWork.Seats.GetNextAvailableSeat(aircraft.Id, ticket.Class);
 
-                        int seatNumber = position.Item1;
-                        string seatPosition = position.Item2;
+                        int seatNumber = seat.Number;
+                        string seatPosition = seat.Position;
+                        string ticketCode = _randomStringGenerator.GenerateRandomString();
 
-                        var seat = await _unitOfWork.Seats.GetByPosition(aircraft.Id, seatNumber);
+                        while (_unitOfWork.Tickets.IsCodeDuplicated(ticketCode))
+                        {
+                            ticketCode = _randomStringGenerator.GenerateRandomString();
+                        }
 
                         var ticketResponse = new TicketSummary
                         {
+                            TicketCode = ticketCode,
                             SeatId = seat.Id,
                             SeatPosition = seatPosition,
                             PassengerTitle = ticket.PassengerTitle,
@@ -139,7 +144,6 @@ namespace QAirlines.API.Services
 
                         ticketResponses.Add(ticketResponse);
                         flight.RemainingEcoSeats--;
-                        seat.IsAvaiable = false;
                     } else
                     {
                         return new AddTicketResponse
@@ -154,15 +158,20 @@ namespace QAirlines.API.Services
                 {
                     if (flight.RemainingEcoSeats > 0)
                     {
-                        var position = GetSeatPosition(noOfBusinessSeats, noOfEconomySeats, remainingBsnSeats, remainingEcoSeats, ticket.Class);
+                        var seat = _unitOfWork.Seats.GetNextAvailableSeat(aircraft.Id, ticket.Class);
 
-                        int seatNumber = position.Item1;
-                        string seatPosition = position.Item2;
+                        int seatNumber = seat.Number;
+                        string seatPosition = seat.Position;
+                        string ticketCode = _randomStringGenerator.GenerateRandomString();
 
-                        var seat = await _unitOfWork.Seats.GetByPosition(aircraft.Id, seatNumber);
+                        while (_unitOfWork.Tickets.IsCodeDuplicated(ticketCode))
+                        {
+                            ticketCode = _randomStringGenerator.GenerateRandomString();
+                        }
 
                         var ticketResponse = new TicketSummary
                         {
+                            TicketCode = ticketCode,
                             SeatId = seat.Id,
                             SeatPosition = seatPosition,
                             PassengerTitle = ticket.PassengerTitle,
@@ -177,7 +186,6 @@ namespace QAirlines.API.Services
 
                         ticketResponses.Add(ticketResponse);
                         flight.RemainingBsnSeats--;
-                        seat.IsAvaiable = false;
                     }
                     else
                     {

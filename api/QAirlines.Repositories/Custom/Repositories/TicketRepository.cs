@@ -1,4 +1,5 @@
-﻿using QAirlines.DataAccess.DbContext;
+﻿using Microsoft.EntityFrameworkCore;
+using QAirlines.DataAccess.DbContext;
 using QAirlines.Models;
 using QAirlines.Models.Request;
 using QAirlines.Repositories.Custom.Interfaces;
@@ -27,10 +28,34 @@ namespace QAirlines.Repositories.Custom.Repositories
             return true;
         }
 
+        public async Task<IEnumerable<Ticket>> GetByTicketCodeAsync(string ticketCode)
+        {
+            var ticket = await _context.Tickets.Where(x => x.TicketCode == ticketCode).ToListAsync();
+
+            return ticket;
+        }
+
         public IEnumerable<Ticket> GetByReservationCode(string reservationCode)
         {
             var reservation = _context.Reservations
                 .FirstOrDefault(x => x.ReservationCode.Trim().ToLower().Equals(reservationCode.Trim().ToLower()));
+
+            var reservationId = reservation?.Id;
+
+            if (reservation == null)
+            {
+                return null;
+            }
+            var ticket = _context.Tickets
+                .Where(x => x.ReservationId.Equals(reservationId));
+
+            return ticket;
+        }
+
+        public async Task<IEnumerable<Ticket>> GetByReservationCodeAsync(string reservationCode)
+        {
+            var reservation = await _context.Reservations
+                .FirstOrDefaultAsync(x => x.ReservationCode.Trim().ToLower().Equals(reservationCode.Trim().ToLower()));
 
             var reservationId = reservation?.Id;
 

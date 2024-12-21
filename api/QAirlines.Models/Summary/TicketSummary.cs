@@ -9,6 +9,7 @@ namespace QAirlines.Models.Summary
 {
     public class TicketSummary
     {
+        public string TicketCode { get; set; }
         public Guid SeatId { get; set; }
         public string SeatPosition { get; set; }
         public PassengerTitle PassengerTitle { get; set; }
