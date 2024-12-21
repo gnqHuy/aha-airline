@@ -8,7 +8,7 @@ type Props = {};
 
 const SideBar: React.FC<Props> = () => {
   return (
-    <nav className="h-full w-60 bg-white shadow-lg flex flex-col">
+    <nav className="h-full w-50 bg-white shadow-lg flex flex-col">
       <NavLink to={"/"} className="text-3xl font-bold text-golden p-5 no-underline">
         AHA Airline
       </NavLink>

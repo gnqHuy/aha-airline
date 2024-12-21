@@ -12,12 +12,12 @@ const Aircrafts: React.FC = () => {
     const [error, setError] = useState("");
     const [newAircraft, setNewAircraft] = useState<Aircraft>({
       name: "",
-      model: "",
-      manufacturer: "",
-      noOfSeats: 0,
+      model: "Boeing 737-800",
+      manufacturer: "Boeing",
+      noOfSeats: 60,
       status: AircraftStatus.Holding,
       availableAt: null,
-      terminal: "",
+      terminal: "HPH",
     });
 
     const [editingAircraft, setEditingAircraft] = useState<Aircraft | null>(null);
@@ -78,16 +78,28 @@ const Aircrafts: React.FC = () => {
       if (newAircraft.noOfSeats % 6 != 0) {
         alert("Please enter a number that is divisible by 6.")
       } else {
-        addAircrafts(newAircraft);
-        setNewAircraft({
-          name: "",
-          model: "",
-          manufacturer: "",
-          noOfSeats: 0,
-          status: 1,
-          availableAt: null,
-          terminal: "",
-        });
+        try {
+          var res = await addAircrafts(newAircraft);
+          console.log(res);
+          alert(res.data);
+          setNewAircraft({
+            name: "",
+            model: "",
+            manufacturer: "",
+            noOfSeats: 0,
+            status: 1,
+            availableAt: null,
+            terminal: "",
+          });
+        } catch (error: any) {
+            if (error.response) {
+                alert('Server Error:' + error.response.data);
+            } else if (error.request) {
+                alert('Network Error:' + error.request);
+            } else {
+                alert('Error:' + error.message);
+            }
+        }
       }
     };
 

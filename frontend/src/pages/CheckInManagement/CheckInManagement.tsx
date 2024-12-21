@@ -114,8 +114,8 @@ const CheckInManagement = (props: Props) => {
                                     </div>
 
                                     {/* seat position */}
-                                    <div className = "ml-[6.5rem] relative bottom-[1rem]">
-                                        <p className = {reservation?.class === 0 ? "text-[60px] text-Green font-bold text-center" : "text-[60px] text-golden font-bold text-center"}>{reservation?.seatPosition}</p>
+                                    <div className = "ml-[8.5rem] relative bottom-[1rem]">
+                                        <p className = {reservation?.class === 0 ? "text-[60px] text-Green font-bold text-center" : "text-[60px] text-golden font-bold text-center"}>{reservation?.seatNumber}</p>
                                         {reservation?.class === 0 ? 
                                             <p className = "text-4xl text-Green font-bold relative bottom-[3rem] right-[0rem]">Economy</p> : 
                                             <p className = "text-4xl text-golden font-bold relative bottom-[3rem] right-[0rem]">Business</p>

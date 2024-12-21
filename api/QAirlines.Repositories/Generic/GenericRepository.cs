@@ -31,7 +31,7 @@ namespace QAirlines.Repositories.Generic
             return list;
         }
 
-        public async Task<IEnumerable<T>> GetPagedAsync(int pageSize, int pageNumber)
+        public virtual async Task<IEnumerable<T>> GetPagedAsync(int pageSize, int pageNumber)
         {
             if (pageSize <= 0)
             {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllFlightRoutes } from "../../../api/flightRoutes";
+import { addFlightRoute, getAllFlightRoutes } from "../../../api/flightRoutes";
 import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { FlightRoute } from "../../../object/flightRoute";
@@ -52,6 +52,21 @@ const FlightRoutes: React.FC = () => {
     }));
   };
   const handleAddFlightRoute = async () => {
+    var newFlightRouteFromIATA = newFlightRoute.fromAirportIATA.toUpperCase();
+    var newFlightRouteToIATA = newFlightRoute.toAirportIATA.toUpperCase();
+
+    try {
+      const response = await addFlightRoute(newFlightRouteFromIATA, newFlightRouteToIATA);
+      alert('Flight route added successfully.');
+    } catch (error : any) {
+        if (error.response) {
+            alert('Server Error:' + error.response.data);
+        } else if (error.request) {
+            alert('Network Error:' + error.request);
+        } else {
+            alert('Error:' + error.message);
+        }
+    }
   };
   
   const handleDeleteAirCraft = (flightRouteDelete: FlightRoute) => {
@@ -255,6 +270,7 @@ const FlightRoutes: React.FC = () => {
               <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">To City</th>
               <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">From Country</th>
               <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">To Country</th>
+              <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Distance</th>
               <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold"></th>
             </tr>
             <tr className="bg-gray-100 sticky">
@@ -282,7 +298,7 @@ const FlightRoutes: React.FC = () => {
                   name="fromAirportName"
                   value={newFlightRoute.fromAirport.name}
                   onChange={handleInputChange}
-                  className="w-full px-2 py-1 border rounded"
+                  className="w-full px-2 py-1 border rounded cursor-not-allowed pointer-events-none"
                 />
               </td>
               <td className="border border-gray-300 px-4 py-2">
@@ -291,7 +307,7 @@ const FlightRoutes: React.FC = () => {
                   name="toAirportName"
                   value={newFlightRoute.toAirport.name}
                   onChange={handleInputChange}
-                  className="w-full px-2 py-1 border rounded"
+                  className="w-full px-2 py-1 border rounded cursor-not-allowed pointer-events-none"
                 />
               </td>
               <td className="border border-gray-300 px-4 py-2">
@@ -300,7 +316,7 @@ const FlightRoutes: React.FC = () => {
                   name="fromCityName"
                   value={newFlightRoute.fromAirport.city.name}
                   onChange={handleInputChange}
-                  className="w-full px-2 py-1 border rounded"
+                  className="w-full px-2 py-1 border rounded cursor-not-allowed pointer-events-none"
                 />
               </td>
               <td className="border border-gray-300 px-4 py-2">
@@ -309,7 +325,7 @@ const FlightRoutes: React.FC = () => {
                   name="toCityName"
                   value={newFlightRoute.toAirport.city.name}
                   onChange={handleInputChange}
-                  className="w-full px-2 py-1 border rounded"
+                  className="w-full px-2 py-1 border rounded cursor-not-allowed pointer-events-none"
                 />
               </td>
               <td className="border border-gray-300 px-4 py-2">
@@ -318,7 +334,7 @@ const FlightRoutes: React.FC = () => {
                   name="fromCountry"
                   value={newFlightRoute.fromAirport.city.country}
                   onChange={handleInputChange}
-                  className="w-full px-2 py-1 border rounded"
+                  className="w-full px-2 py-1 border rounded cursor-not-allowed pointer-events-none"
                 />
               </td>
               <td className="border border-gray-300 px-4 py-2">
@@ -326,7 +342,16 @@ const FlightRoutes: React.FC = () => {
                   type="text"
                   name="toCountry"
                   value={newFlightRoute.toAirport.city.country}
-                  onChange={handleInputChange}
+                  // onChange={handleInputChange}
+                  className="w-full px-2 py-1 border rounded cursor-not-allowed pointer-events-none"
+                />
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                <input
+                  type="text"
+                  name="distance"
+                  value={newFlightRoute.distance}
+                  // onChange={handleInputChange}
                   className="w-full px-2 py-1 border rounded"
                 />
               </td>
@@ -368,6 +393,7 @@ const FlightRoutes: React.FC = () => {
                 <td className="border border-gray-300 px-4 py-2 text-sm">{route.toAirport.city.name}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{route.fromAirport.city.country}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{route.toAirport.city.country}</td>
+                <td className="border border-gray-300 px-4 py-2 text-sm">{route.distance}</td>
                 <td className="border border-gray-300 px-2 py-2">
                   <div className="flex justify-center items-center space-x-2">
                     <button

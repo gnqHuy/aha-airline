@@ -63,7 +63,7 @@ const BookManagement = (props: Props) => {
                                 <p className = "relative bottom-[1rem]"><b>Arrival time: </b>{reservations[0]?.flightInfo?.arrivalTime}</p>
                                 <p className = "relative bottom-[1.5rem]"><b>Aircraft name: </b>{reservations[0]?.flightInfo?.aircraft?.name}</p>
                                 <p className = "relative bottom-[2rem]"><b>Aircraft model: </b>{reservations[0]?.flightInfo?.aircraft?.model}</p>
-                                <p className = "relative bottom-[2.5rem]"><b>Seat number: </b>{reservations[0]?.flightInfo?.seatNumber}</p>
+                                <p className = "relative bottom-[2.5rem]"><b>Seat number: </b>{reservations[0]?.seatNumber}</p>
                             </div>
                         </div>
                     </div>

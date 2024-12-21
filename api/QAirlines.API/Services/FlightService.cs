@@ -227,7 +227,7 @@ namespace QAirlines.API.Services
                 ToAirportIATA = toAirportIATA
             };
 
-            var route = await _unitOfWork.FlightRoutes.FindRoutesFromRequest(flightRouteRequest);
+            var route = await _unitOfWork.FlightRoutes.FindRoutesFromRequestAsync(flightRouteRequest);
 
             var flightRequest = new FlightRequest
             {
@@ -236,6 +236,22 @@ namespace QAirlines.API.Services
             };
 
             var flights = await _unitOfWork.Flights.GetFromRequest(flightRequest);
+
+            return flights;
+        }
+
+        public async Task<IEnumerable<Flight>> GetFromAircraftAndRoute(string aircraftName, string fromAirportIATA, string toAirportIATA)
+        {
+            var flightRouteRequest = new FlightRouteRequest
+            {
+                FromAirportIATA = fromAirportIATA,
+                ToAirportIATA = toAirportIATA
+            };
+
+            var route = await _unitOfWork.FlightRoutes.FindRoutesFromRequestAsync(flightRouteRequest);
+            var aircraft = await _unitOfWork.Aircrafts.GetByNameAsync(aircraftName);
+
+            var flights = await _unitOfWork.Flights.GetFromAircraftAndRoute(aircraft.Id, route.ElementAt(0).Id);
 
             return flights;
         }
@@ -255,7 +271,7 @@ namespace QAirlines.API.Services
                         FromAirportIATA = aircraft.Terminal
                     };
 
-                    var filteredRoutes = await _unitOfWork.FlightRoutes.FindRoutesFromRequest(request);
+                    var filteredRoutes = await _unitOfWork.FlightRoutes.FindRoutesFromRequestAsync(request);
                     var nextRoute = RandomRoute(filteredRoutes);
 
                     DateTime boardingTime = RoundTime(GetBoardingTime(aircraft.AvailableAt));

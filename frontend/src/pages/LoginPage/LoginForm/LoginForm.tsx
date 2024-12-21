@@ -33,8 +33,9 @@ const LoginForm: React.FC<Props> = ({}) => {
           login({
             accessToken: res.data.token,
             user: {
-              username: res.data.user.username,
-              roles: res.data.user.roles,
+                id: res.data.user.id,
+                username: res.data.user.username,
+                roles: res.data.user.roles,
             },
           })
         );
