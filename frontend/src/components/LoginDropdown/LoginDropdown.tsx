@@ -3,6 +3,7 @@ import LoginAvatar from '../../assets-test/Images/sunset3.jpg';
 import { BsCreditCard2FrontFill } from "react-icons/bs";
 import { IoTicket } from "react-icons/io5";
 import { IoLogOutSharp } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 interface Props {
     username: string;
@@ -38,10 +39,14 @@ const LoginDropdown:React.FC<Props> = ({username, roles, handleLogout}) => {
                 <BsCreditCard2FrontFill style = {{color: "#1A4532"}} className = "w-[1.8rem] h-[1.8rem]"/>
                 <p className = "text-base ml-[1rem] relative bottom-[0.9rem]">Credit point: 0</p>
             </div>
-            <div className = "flex ml-[1.5rem] mt-[0rem] relative bottom-[1rem] hover:cursor-pointer">
-                <IoTicket style = {{color: "#1A4532"}} className = "w-[1.8rem] h-[1.8rem]" />
-                <p className = "text-base ml-[1rem] relative bottom-[0.9rem]">Your tickets</p>
-            </div>
+
+            {/* your ticket */}
+            <Link to = "/your-ticket" className = "no-underline">
+                <div className = "flex ml-[1.5rem] mt-[0rem] relative bottom-[1rem] hover:cursor-pointer">
+                    <IoTicket style = {{color: "#1A4532"}} className = "w-[1.8rem] h-[1.8rem]" />
+                    <p className = "text-base ml-[1rem] relative bottom-[0.9rem] text-Green">Your tickets</p>
+                </div>
+            </Link>
         </div>
 
         <div className = "w-full h-[0.01rem] bg-[#b8b6b6] relative bottom-[2rem]"></div>
