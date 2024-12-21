@@ -321,6 +321,24 @@ namespace QAirlines.API.Services
             {
                 int totalRows = aircraft.NoOfSeats / 6;
                 string[] seatLetters = { "A", "B", "C", "D", "E", "F" };
+                int bsnSeats = 0;
+
+                if (aircraft.NoOfSeats < 200)
+                {
+                    bsnSeats = 36;
+                }
+                if (aircraft.NoOfSeats < 300 && aircraft.NoOfSeats > 200)
+                {
+                    bsnSeats = 48;
+                }
+                if (aircraft.NoOfSeats < 400 && aircraft.NoOfSeats > 300)
+                {
+                    bsnSeats = 60;
+                }
+                if (aircraft.NoOfSeats < 500 && aircraft.NoOfSeats > 400)
+                {
+                    bsnSeats = 72;
+                }
 
                 for (int i = 0; i < aircraft.NoOfSeats; i++)
                 {
@@ -329,7 +347,7 @@ namespace QAirlines.API.Services
 
                     string seatPosition = $"{actualRowNumber}{seatLetters[i % 6]}";
 
-                    SeatClass seatClass = i < 36 ? SeatClass.Business : SeatClass.Economy;
+                    SeatClass seatClass = i < bsnSeats ? SeatClass.Business : SeatClass.Economy;
 
                     var seat = new Seat
                     {

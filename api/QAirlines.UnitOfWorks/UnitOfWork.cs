@@ -20,7 +20,6 @@ namespace QAirlines.UnitOfWorks
         public IFlightRepository Flights { get; private set; }
         public IFlightRouteRepository FlightRoutes { get; private set; }
         public IRefreshTokenRepository RefreshTokens { get; private set; }
-        public IApplicationUserRepository ApplicationUsers { get; private set; }
         public ISeatRepository Seats { get; private set; }
         public ITicketRepository Tickets { get; private set; }
         public IReservationRepository Reservations { get; private set; }
@@ -36,7 +35,6 @@ namespace QAirlines.UnitOfWorks
             Flights = new FlightRepository(context);
             FlightRoutes = new FlightRouteRepository(context);
             RefreshTokens = new RefreshTokenRepository(context);
-            ApplicationUsers = new ApplicationUserRepository(context);
             Seats = new SeatRepository(context);
             Tickets = new TicketRepository(context);
             Reservations = new ReservationRepository(context);
