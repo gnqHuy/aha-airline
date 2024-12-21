@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QAirlines.DataAccess.DbContext;
 using QAirlines.Models;
+using QAirlines.Models.Enums;
+using QAirlines.Models.Request;
 using QAirlines.Repositories.Custom.Interfaces;
 using QAirlines.Repositories.Generic;
 using System;
@@ -18,6 +20,33 @@ namespace QAirlines.Repositories.Custom.Repositories
         public IEnumerable<Aircraft> GetLargestAircrafts(int count)
         {
             return _context.Aircrafts.OrderByDescending(a => a.NoOfSeats).Take(count).ToList();
+        }
+
+        public string AddAircraft(AircraftRequest aircraft)
+        {
+            var aircrafts = _context.Aircrafts.OrderBy(a => a.Id).ToList();
+            var name = aircrafts.Count < 100 ? $"AHA-0{aircrafts.Count + 1}" : $"AHA-{aircrafts.Count + 1}";
+
+            var newAircraft = new Aircraft
+            {
+                Model = aircraft.Model,
+                Name = name,
+                Manufacturer = aircraft.Manufacturer,
+                NoOfSeats = aircraft.NoOfSeats,
+                Status = AircraftStatus.Holding,
+                Terminal = "HAN",
+                AvailableAt = DateTime.Now,
+            };
+
+            Add(newAircraft);
+            return name;
+        }
+
+        public Aircraft GetByName(string name)
+        {
+            var aircraft = _context.Aircrafts.FirstOrDefault(x => x.Name == name);
+
+            return aircraft;
         }
 
         public override void AddRange(IEnumerable<Aircraft> aircrafts)
