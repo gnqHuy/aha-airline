@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QAirlines.Models.Base
+namespace QAirlines.Models.Response
 {
-    public interface IEntity<T>
+    public class SeatService
     {
-        public T Id { get; set; }
+
     }
 }

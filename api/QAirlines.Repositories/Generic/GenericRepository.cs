@@ -6,10 +6,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using QAirlines.Models;
+using QAirlines.Models.Base;
 
 namespace QAirlines.Repositories.Generic
 {
-    public class GenericRepository<T, Key> : IGenericRepository<T, Key> where T : class
+    public class GenericRepository<T, Key> : IGenericRepository<T, Key> where T : class, IEntity<Key>
     {
         protected readonly QAirlineDbContext _context;
 
@@ -53,6 +55,18 @@ namespace QAirlines.Repositories.Generic
         {
             var target = await _context.Set<T>().FindAsync(id);
             return target;
+        }
+
+        public async Task<IEnumerable<T>> GetByIdsAsync(IEnumerable<Key> ids)
+        {
+            if (ids == null || !ids.Any())
+            {
+                return Enumerable.Empty<T>();
+            }
+
+            return await _context.Set<T>()
+                .Where(entity => ids.Contains(entity.Id))
+                .ToListAsync();
         }
 
         public IEnumerable<T> FindAll(Expression<Func<T, bool>> expression)
