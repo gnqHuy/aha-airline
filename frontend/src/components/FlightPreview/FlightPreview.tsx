@@ -2,18 +2,37 @@ import React, { useState, useRef, useEffect } from 'react';
 import FlightCard from '../FlightCard/FlightCard';
 import './FlightPreview.css';
 import { GiWorld } from "react-icons/gi";
-import image1 from "../../assets-test/Images/beijing.jpg";
 import SearchFlight from '../SearchFlight/SearchFlight';
 import { useSearchFlightState } from '../../context/SearchFlightState/SearchFlightState';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { getFlightPreview } from '../../api/flightAPI';
 import type { FlightPreviewType } from '../../object/flightPreview';
-import { getAllAirport } from '../../api/airportAPI';
 import { Airport } from '../../object/airport';
 import { useFlightContext } from '../../context/FlightContext/FlightContext';
+import Spinner from '../Spinner/Spinner';
+
+import image1 from '../../assets-test/Images/cities/hanoi.jpg';
+import image2 from '../../assets-test/Images/cities/singapore.jpg';
+import image3 from '../../assets-test/Images/cities/seoul.jpg';
+import image4 from '../../assets-test/Images/cities/paris.jpg';
+import image5 from '../../assets-test/Images/cities/rome.jpg';
+import image6 from '../../assets-test/Images/cities/london.jpg';
+import image7 from '../../assets-test/Images/cities/cairo.jpg';
+import image8 from '../../assets-test/Images/cities/marrakech.jpg';
+import image9 from '../../assets-test/Images/cities/newyork.jpg';
+import image10 from '../../assets-test/Images/cities/toronto.jpg';
+import image11 from '../../assets-test/Images/cities/mexico.jpg';
+import image12 from '../../assets-test/Images/cities/sydney.jpg';
+import image13 from '../../assets-test/Images/cities/melbourne.jpg';
+import image14 from '../../assets-test/Images/cities/istanbul.webp';
+import image15 from '../../assets-test/Images/cities/san-francisco.jpg';
+
+const images = [
+  image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, 
+  image11, image12, image13, image14, image15
+];
 
 type Props = {};
-
 const FlightPreview = (props: Props) => {
   const [flights, setFlights] = useState<FlightPreviewType[]>([]);
   const { airports } = useFlightContext();
@@ -29,8 +48,6 @@ const FlightPreview = (props: Props) => {
   const fetchData = async (getFlight: Object) => {
     try {
       const response = await getFlightPreview(getFlight);
-      const response2 = await getAllAirport();
-      console.log(response.data);
       setFlights(response.data);
     } catch (err) {
       setError('Failed to load flight route data.');
@@ -96,8 +113,8 @@ const FlightPreview = (props: Props) => {
     airport.city.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div className="text-red-600">Error: {error}</div>;
+  if (loading) return <div className='mx-auto mt-20'>Loading...</div>;
+  if (error) return <div className="mx-auto mt-20 text-red-600">Error: {error}</div>;
 
   return (
     <div className="w-[59vw] mx-auto text-center items-center p-4 mt-24 mb-12">
@@ -151,9 +168,12 @@ const FlightPreview = (props: Props) => {
 
       <div className="grid grid-cols-[repeat(auto-fit,_240px)] justify-center gap-7 mt-6">
         {flights.length > 0 ? (
-          flights.slice(0, visibleCount).map((flight) => (
+          flights.slice(0, visibleCount).map((flight, index) => (
             <div onClick={() => handleSelectedFlight(flight)} key={flight.departureTime}>
-              <FlightCard flight={flight} image={image1} />
+              <FlightCard 
+                flight={flight} 
+                image={images[index % images.length]}
+              />
             </div>
           ))
         ) : (

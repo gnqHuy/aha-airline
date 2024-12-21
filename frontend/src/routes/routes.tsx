@@ -21,7 +21,6 @@ import PassengerInfor from '../pages/PassengerInfo/PassengerInfor';
 import Payment from '../pages/Payment/Payment';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import NewsPage from '../pages/NewsPage/NewsPage';
-import { BookedTicketProvider } from '../context/BookedFlight/BookedFlight';
 import Register from '../pages/LoginPage/Register/Register';
 import Admin from '../pages/Admin/Admin';
 import Aircrafts from '../pages/Admin/Aircrafts/Aircrafts';
@@ -81,7 +80,7 @@ export const router = createBrowserRouter([
     ),
   },
   {
-    path: "/explore/destination/:city",
+    path: "/explore/destination/:nameCity",
     element: (
       <>
         <SearchFlightStateProvider>
@@ -122,10 +121,8 @@ export const router = createBrowserRouter([
     path: "/ticket/ticketCart/passengerInfor",
     element: (
       <>
-        <BookedTicketProvider>
           <ScrollToTop />
           <PassengerInfor />
-        </BookedTicketProvider>      
       </>
     ),
   },
@@ -133,10 +130,8 @@ export const router = createBrowserRouter([
     path: "/ticket/ticketCart/passengerInfor/payment",
     element: (
       <>
-        <BookedTicketProvider>
           <ScrollToTop />
           <Payment />
-        </BookedTicketProvider>      
       </>
     ),
   },
