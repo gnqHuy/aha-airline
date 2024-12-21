@@ -39,6 +39,18 @@ type FlightContextType = {
   setIndex: (index: number) => void;
   count: number;
   setCount: (count: number) => void;
+
+  manageBookingReservationCode: string;
+  setManageBookingReservationCode: (reservationCode: string) => void;
+
+  checkinReservationCode: string;
+  setCheckinReservationCode: (reservationCode: string) => void;
+
+  checkinTicket: string;
+  setCheckinTicket: (ticket: string) => void;
+
+  checkinOption: string;
+  setCheckinOption: (option: string) => void;
 };
 
 type News = {
@@ -156,6 +168,11 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [index, setIndex] = useState<number>(Number(localStorage.getItem('news-index')));
   const [count, setCount] = useState(0);
 
+  const [manageBookingReservationCode, setManageBookingReservationCode] = useState<string>(String(localStorage.getItem("manageBookingReservationCode")));
+  const [checkinReservationCode, setCheckinReservationCode] = useState<string>(String(localStorage.getItem("checkinReservationCode")));
+  const [checkinTicket, setCheckinTicket] = useState<string>(String(localStorage.getItem("checkinTicket")));
+  const [checkinOption, setCheckinOption] = useState<string>(String(localStorage.getItem("checkinOption")));
+
   const [flightTickets, setFlightTickets] = useState<FlightTickets>({
       flightId: "",
       // bookedId: "08dd20c7-c957-4dd5-86db-d26c6f4cb6bc",
@@ -177,7 +194,11 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       setAirports(res.data);
     });
     localStorage.setItem('news-index', index.toString());
-  }, [index]);
+    localStorage.setItem('manageBookingReservationCode', manageBookingReservationCode);
+    localStorage.setItem('checkinReservationCode', checkinReservationCode);
+    localStorage.setItem('checkinTicket', checkinTicket);
+    localStorage.setItem('checkinOption', checkinOption);
+  }, [index, manageBookingReservationCode, checkinReservationCode, checkinTicket, checkinOption]);
 
   return (
     <FlightContext.Provider
@@ -203,7 +224,15 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         index,
         setIndex,
         count,
-        setCount
+        setCount, 
+        manageBookingReservationCode, 
+        setManageBookingReservationCode, 
+        checkinReservationCode, 
+        setCheckinReservationCode, 
+        checkinTicket,
+        setCheckinTicket, 
+        checkinOption, 
+        setCheckinOption
       }}
     >
       {children}
