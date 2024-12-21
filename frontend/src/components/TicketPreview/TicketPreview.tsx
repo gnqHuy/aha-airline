@@ -58,10 +58,10 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None }) 
         <div className="flex-1 p-4">
           <div className="flex items-center justify-between">
             <div className="text-left">
-              <div className="text-2xl font-semibold text-gray-900">
+              <div className="text-2xl font-semibold text-gray-900 small:text-xl">
                 {formatDate(flight.departureTime)}
               </div>
-              <div className="text-xl font-medium text-gray-900">
+              <div className="text-xl font-medium text-gray-900 small:text-lg">
                 {formatTime(flight.departureTime)}
               </div>
               <div className="text-lg text-golden">
@@ -76,10 +76,10 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None }) 
             </div>
 
             <div className="text-right">
-              <div className="text-2xl font-semibold text-gray-900">
+              <div className="text-2xl font-semibold text-gray-900 small:text-xl">
                 {formatDate(flight.arrivalTime)}
               </div>
-              <div className="text-xl font-medium text-gray-900">
+              <div className="text-xl font-medium text-gray-900 small:text-lg">
                 {formatTime(flight.arrivalTime)}
               </div>
               <div className="text-lg text-golden">
