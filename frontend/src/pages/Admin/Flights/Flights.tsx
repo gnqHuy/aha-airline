@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
-import { getFromRequest, getPagedFlightDTO } from "../../../api/flightAPI";
+import { getFromAircraftAndRoute, getFromRequest, getPagedFlightDTO } from "../../../api/flightAPI";
 import { EnumDeclaration } from "typescript";
 import { AxiosResponse } from "axios";
 import Pagination from "../Pagination/Pagination";
@@ -42,6 +42,7 @@ enum FlightStatus
 }
 
 interface Flight {
+  id: string,
   aircraft: Aircraft,
   flightRoute: FlightRoute,
   boardingTime: string,
@@ -60,6 +61,7 @@ const Flights: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [newFlight, setNewFlight] = useState<Flight>({
+    id: "",
     aircraft: { name: "", manufacturer: "", noOfSeats: 0 },
     flightRoute: {
       fromAirportIATA: "",
@@ -82,16 +84,17 @@ const Flights: React.FC = () => {
   const [editingFlight, setEditingFlight] = useState<Flight | null>(null);
   const [searchFromIATA, setSearchFromIATA] = useState<string>("");
   const [searchToIATA, setSearchToIATA] = useState<string>("");
+  const [aircraftNameSearch, setAircraftNameSearch] = useState<string>("");
   const [searchError, setSearchError] = useState<string | null>(null);
   const [page, setPage] = useState<number>(0);
   
-  const fetchData = async (page: number = 0, fromIATA: string = "", toIATA: string = "") => {
+  const fetchData = async (page: number = 0, fromIATA: string = "", toIATA: string = "", aircraftName: string | null = "AHA-001") => {
     setLoading(true);
     setSearchError(null);
   
     try {
-      const response = fromIATA && toIATA
-        ? await getFromRequest(fromIATA, toIATA)
+      const response = fromIATA && toIATA && aircraftName
+        ? await getFromAircraftAndRoute(aircraftName, fromIATA, toIATA)
         : await getPagedFlightDTO(10, page);
   
       setFlights(response.data);
@@ -115,9 +118,13 @@ const Flights: React.FC = () => {
     setSearchToIATA(event.target.value);
   };
 
+  const handleSearchChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAircraftNameSearch(event.target.value);
+  };
+
   const handleSearchSubmit = async () => {
-    if (!searchFromIATA && !searchToIATA || searchFromIATA && searchToIATA) {
-      fetchData(page, searchFromIATA, searchToIATA);
+    if (!searchFromIATA && !searchToIATA || searchFromIATA && searchToIATA && aircraftNameSearch) {
+      fetchData(page, searchFromIATA, searchToIATA, aircraftNameSearch);
     }
     else {
       setSearchError("Both 'From' and 'To' IATA codes are required.");
@@ -132,6 +139,7 @@ const Flights: React.FC = () => {
   const handleAddFlight = async () => {
     setFlights((prev) => [...prev, newFlight]);
     setNewFlight({
+      id: "",
       aircraft: { name: "", manufacturer: "", noOfSeats: 0 },
       flightRoute: {
         fromAirportIATA: "",
@@ -169,6 +177,7 @@ const Flights: React.FC = () => {
     );
     setEditingFlight(null);
     setNewFlight({
+      id: "",
       aircraft: { name: "", manufacturer: "", noOfSeats: 0 },
       flightRoute: {
         fromAirportIATA: "",
@@ -301,9 +310,10 @@ const Flights: React.FC = () => {
         />
         <input
           type="text"
-          name="date-time"
-          placeholder="Search by Time"
-          onChange={handleSearchChange}
+          name="Aircraft Name"
+          placeholder="Search by Aircraft name"
+          value={aircraftNameSearch}
+          onChange={handleSearchChange2}
           className="pl-2 py-2 border rounded flex-1 "
         />
         <button
@@ -321,6 +331,8 @@ const Flights: React.FC = () => {
         <table className="min-w-full border-collapse border border-gray-300">
           <thead className="bg-golden-hover sticky top-0 z-10">
             <tr>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Id</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Aircraft</th>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">From IATA</th>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">To IATA</th>
               {/* <th className="border border-gray-300 px-4 py-2 text-left font-semibold">From City</th>
@@ -337,6 +349,24 @@ const Flights: React.FC = () => {
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold"></th>
             </tr>
             <tr className="bg-gray-100 sticky">
+              <td className="border border-gray-300 px-4 py-2">
+                <input
+                  type="text"
+                  name="id"
+                  // value={newFlight.flightRoute.fromAirportIATA}
+                  // onChange={handleInputChange}
+                  className="w-full px-2 py-1 border rounded"
+                />
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                <input
+                  type="text"
+                  name="aircraft.name"
+                  // value={newFlight.flightRoute.fromAirportIATA}
+                  // onChange={handleInputChange}
+                  className="w-full px-2 py-1 border rounded"
+                />
+              </td>
               <td className="border border-gray-300 px-4 py-2">
                 <input
                   type="text"
@@ -485,6 +515,8 @@ const Flights: React.FC = () => {
               <tr 
               className={`${editingFlight && editingFlight === flight? "bg-golden-hover": index % 2 === 0? "bg-white" : "bg-gray-100"}`}
               >
+                <td className="border border-gray-300 px-4 py-2 text-sm">{flight.id}</td>
+                <td className="border border-gray-300 px-4 py-2 text-sm">{flight.aircraft.name}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.flightRoute.fromAirportIATA}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.flightRoute.toAirportIATA}</td>
                 {/* <td className="border border-gray-300 px-4 py-2 text-sm">{flight.flightRoute.fromAirport.city.name}</td>

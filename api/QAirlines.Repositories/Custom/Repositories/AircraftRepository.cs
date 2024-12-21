@@ -34,7 +34,7 @@ namespace QAirlines.Repositories.Custom.Repositories
                 Manufacturer = aircraft.Manufacturer,
                 NoOfSeats = aircraft.NoOfSeats,
                 Status = AircraftStatus.Holding,
-                Terminal = "HAN",
+                Terminal = aircraft.Terminal,
                 AvailableAt = DateTime.Now,
             };
 
@@ -45,6 +45,13 @@ namespace QAirlines.Repositories.Custom.Repositories
         public Aircraft GetByName(string name)
         {
             var aircraft = _context.Aircrafts.FirstOrDefault(x => x.Name == name);
+
+            return aircraft;
+        }
+
+        public async Task<Aircraft> GetByNameAsync(string name)
+        {
+            var aircraft = await _context.Aircrafts.FirstOrDefaultAsync(x => x.Name == name);
 
             return aircraft;
         }

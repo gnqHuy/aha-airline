@@ -16,6 +16,6 @@ namespace QAirlines.Models.Request
         public int NoOfSeats { get; set; }
         public AircraftStatus Status { get; set; }
         public string Terminal { get; set; }
-        public DateTime AvailableAt { get; set; }
+        public DateTime? AvailableAt { get; set; }
     }
 }

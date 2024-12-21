@@ -162,7 +162,7 @@ const Airports: React.FC = () => {
               <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Country</th>
               <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold"></th>
             </tr>
-            <tr className="bg-gray-100 sticky">
+            {/* <tr className="bg-gray-100 sticky">
               <td className="border border-gray-300 px-4 py-2">
                 <input
                   type="text"
@@ -218,7 +218,7 @@ const Airports: React.FC = () => {
                   )}
                 </div>
               </td>
-            </tr>
+            </tr> */}
           </thead>
           <tbody>
             {filteredAirports.map((airport, index) => (

@@ -193,6 +193,7 @@ namespace QAirlines.API.Services
                 IsSuccess = true,
                 User = new MinimalUser
                 {
+                    Id = user.Id,
                     Username = user.UserName,
                     Roles = roles.ToList()
                 },

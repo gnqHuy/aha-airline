@@ -13,6 +13,6 @@ export interface Ticket {
   
 export interface FlightTickets {
     flightId: string;
-    // bookedId: string;
+    bookedId: string | null;
     tickets: Ticket[];
 }
