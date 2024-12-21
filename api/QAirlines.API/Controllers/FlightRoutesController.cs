@@ -53,7 +53,7 @@ namespace QAirlines.API.Controllers
         }
 
         [HttpGet("DTO")]
-        [Authorize(Roles = Role.FlightAdmin)]
+        //[Authorize(Roles = Role.FlightAdmin)]
         public async Task<IActionResult> GetAllDTO()
         {
             var flightRoutes = await _unitOfWork.FlightRoutes.GetAllAsync();
