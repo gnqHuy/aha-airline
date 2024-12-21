@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import headerImage from "../../assets-test/Images/sunset4.jpg";
 import { IoIosAirplane } from "react-icons/io";
 import Layout from '../../components/Layout/Layout';
-import { GetByReservationOrTicketCode } from '../../api/ticket';
+import { CancelTicketByCode, GetByReservationOrTicketCode, UpgradeSeatByCode } from '../../api/ticket';
 import { useFlightContext } from '../../context/FlightContext/FlightContext';
+import { SeatClass } from '../../object/enum/SeatClass';
+import { Ticket } from '../../object/ticket';
 
 type Props = {}
 
 const CheckInManagement = (props: Props) => {
-    const [reservations, setReservations] = useState<any[]>([]);
+    const [reservations, setReservations] = useState<Ticket[]>([]);
 
     const [displayOption, setDisplayOption] = useState<boolean>(false);
 
@@ -45,7 +47,28 @@ const CheckInManagement = (props: Props) => {
             }
             fetchData();
         }
-    }, []);
+    }, [reservations]);
+    const handleCancel = async (code: string) => {
+        try {
+            const response = await CancelTicketByCode(code);
+            alert(response.data);
+        } catch (err) {
+            return <div className = "text-red-500 text-base">Failed to cancel!!</div>;
+        } finally {
+            
+        }
+    }
+
+    const handleUpgrade = async (code: string) => {
+        try {
+            const response = await UpgradeSeatByCode(code);
+            alert(response.data);
+        } catch (err) {
+            return <div className = "text-red-500 text-base">Failed to Upgrade!!</div>;
+        } finally {
+            
+        }
+    }
   return (
     <Layout headerImage = {headerImage}>
         <div className = "ml-[12vw]">
@@ -115,8 +138,8 @@ const CheckInManagement = (props: Props) => {
 
                                     {/* seat position */}
                                     <div className = "ml-[8.5rem] relative bottom-[1rem]">
-                                        <p className = {reservation?.class === 0 ? "text-[60px] text-Green font-bold text-center" : "text-[60px] text-golden font-bold text-center"}>{reservation?.seatNumber}</p>
-                                        {reservation?.class === 0 ? 
+                                        <p className = {reservation.seatClass == SeatClass.Economy ? "text-[60px] text-Green font-bold text-center" : "text-[60px] text-golden font-bold text-center"}>{reservation?.seatNumber}</p>
+                                        {reservation?.seatClass == SeatClass.Economy ? 
                                             <p className = "text-4xl text-Green font-bold relative bottom-[3rem] right-[0rem]">Economy</p> : 
                                             <p className = "text-4xl text-golden font-bold relative bottom-[3rem] right-[0rem]">Business</p>
                                         }
@@ -128,8 +151,8 @@ const CheckInManagement = (props: Props) => {
                         {/* option */}
                         {displayOption === true && 
                             <div className = "flex mt-[0.5rem] ml-[43vw]">
-                                <button className = "bg-red-500 text-white w-[8vw] h-[2.5rem] rounded-[7px] text-base font-bold border-white hover:cursor-pointer">Cancel</button>
-                                <button className = "bg-golden text-white w-[8vw] h-[2.5rem] rounded-[7px] text-base font-bold border-white ml-[1rem] hover:cursor-pointer">Upgrade seat</button>
+                                <button onClick={() => handleCancel(reservation.ticketCode)} className = "bg-red-500 text-white w-[8vw] h-[2.5rem] rounded-[7px] text-base font-bold border-white hover:cursor-pointer">Cancel</button>
+                                <button onClick={() => handleUpgrade(reservation.ticketCode)} className = "bg-golden text-white w-[8vw] h-[2.5rem] rounded-[7px] text-base font-bold border-white ml-[1rem] hover:cursor-pointer">Upgrade seat</button>
                             </div>
                         }
                     </>
