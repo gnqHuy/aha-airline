@@ -91,24 +91,27 @@ namespace QAirlines.API.Controllers
             return addTicketResponse;
         }
 
+        [HttpGet("GetTicketByTicketCode")]
+        public async Task<IEnumerable<Ticket>> GetByTicketCode(string ticketCode)
+        {
+            var ticket = await _unitOfWork.Tickets.GetByTicketCodeAsync(ticketCode);
+            return ticket;
+        }
+
         [HttpGet("GetByReservationOrTicketCode")]
         public async Task<IActionResult> GetByReservationOrTicketCode(string reservationCode)
         {
-            var ticketCheck = await _unitOfWork.Tickets.GetByTicketCodeAsync(reservationCode);
-            var reservationCheck = await _unitOfWork.Tickets.GetByReservationCodeAsync(reservationCode);
+            var reservation = await _unitOfWork.Reservations.GetByReservationCodeAsync(reservationCode);
 
             var tickets = new List<Ticket>();
 
-            if (ticketCheck != null)
+            if (reservation == null)
             {
-                tickets = ticketCheck.ToList();
-            }
-            else if (reservationCheck != null)
-            {
-                tickets = reservationCheck.ToList();
+                var filteredTicket = await _unitOfWork.Tickets.GetByTicketCodeAsync(reservationCode);
+                tickets = filteredTicket.ToList();
             } else
             {
-                return BadRequest("Cannot find tickets for your reservation/ticket code.");
+                tickets = _unitOfWork.Tickets.GetAll().Where(x => x.ReservationId == reservation.Id).ToList();
             }
 
             var seatIds = new List<Guid>();

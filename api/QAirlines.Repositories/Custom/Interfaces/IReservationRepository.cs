@@ -13,5 +13,6 @@ namespace QAirlines.Repositories.Custom.Interfaces
         bool IsCodeDuplicated(string reservationCode);
 
         Reservation GetByReservationCode(string reservationCode);
+        Task<Reservation> GetByReservationCodeAsync(string reservationCode);
     }
 }
