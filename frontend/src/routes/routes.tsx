@@ -30,6 +30,7 @@ import FlightRoutes from '../pages/Admin/FlightRoutes/FlightRoutes';
 import Flights from '../pages/Admin/Flights/Flights';
 import BookManagement from '../pages/BookManagement/BookManagement';
 import CheckInManagement from '../pages/CheckInManagement/CheckInManagement';
+import YourTicket from '../pages/YourTicket/YourTicket';
 
 export const router = createBrowserRouter([
   {
@@ -271,6 +272,15 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <NewsPage />
+      </>
+    )
+  }, 
+  {
+    path: "/your-ticket", 
+    element: (
+      <>
+        <ScrollToTop />
+        <YourTicket />
       </>
     )
   }
