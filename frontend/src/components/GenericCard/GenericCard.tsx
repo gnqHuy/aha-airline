@@ -19,6 +19,7 @@ const CardComponent: React.FC<CardProps> = ({ image, title, link, width = "500px
       <img
         src={image}
         alt={title}
+        loading="lazy"
         className="w-full h-full object-cover top-0 left-0 absolute transition-transform duration-300 group-hover:scale-105" 
       />
 
