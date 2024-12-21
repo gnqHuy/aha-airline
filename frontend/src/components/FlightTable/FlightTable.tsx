@@ -93,10 +93,12 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
               FROM
             </label>
           </div>
-          <div className="text-golden text-2xl mx-5">
+
+          <div className="text-golden text-2xl mx-5 small:absolute small:left-[0vw] small:ml-[18vw]">
             <FaPlane />
           </div>
-          <div className="relative flex flex-col w-full">
+
+          <div className="relative flex flex-col w-full ml-[5rem] small:absolute small:left-[0vw] small:ml-[30vw]">
             <div id="to-input" className="bg-transparent border-none outline-none text-gray-700 text-base pt-5 pb-1">
               {nameCity}
             </div>

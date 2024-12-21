@@ -17,9 +17,9 @@ const TravelInfoCheckIn = (props: Props) => {
       }, []);
   return (
     <Layout>
-        <div className = "relative h-[150rem] overflow-x-clip bg-slate-50 bottom-[2rem]">
+        <div className = "relative overflow-x-clip overflow-y-auto bg-slate-50 bottom-[0rem]">
             {/* online check-in */}
-            <div className = "relative left-[15rem] top-[1rem]  w-[70rem]">
+            <div className = "relative left-[12vw] top-[1rem] w-[75vw]">
                 <p className="text-3xl text-golden font-bold">Check In</p>
                 <div className = "relative top-[2rem]" id = "online">
                     <p className = "text-2xl text-Green font-bold">Online Check-in</p>
@@ -62,51 +62,51 @@ const TravelInfoCheckIn = (props: Props) => {
                     {/* guide */}
                     <div className = "flex">
                         <div>
-                            <div className = {guideStep === 1 ? "hover:bg-[#ebc94e] w-[20rem] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#ebc94e]" : "hover:bg-[#ebc94e] w-[20rem] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#d5dadb]"} onClick = {() => setGuideStep(1)}>
+                            <div className = {guideStep === 1 ? "hover:bg-[#ebc94e] w-[20vw] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#ebc94e]" : "hover:bg-[#ebc94e] w-[20vw] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#d5dadb]"} onClick = {() => setGuideStep(1)}>
                                 <p className = "text-2xl font-bold relative bottom-[1rem] left-[1rem]">Step 1</p>
                             </div>
-                            <div className = {guideStep === 2 ? "hover:bg-[#ebc94e] w-[20rem] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#ebc94e]" : "hover:bg-[#ebc94e] w-[20rem] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#d5dadb]"} onClick = {() => setGuideStep(2)}>
+                            <div className = {guideStep === 2 ? "hover:bg-[#ebc94e] w-[20vw] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#ebc94e]" : "hover:bg-[#ebc94e] w-[20vw] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#d5dadb]"} onClick = {() => setGuideStep(2)}>
                                 <p className = "text-2xl font-bold relative bottom-[1rem] left-[1rem]">Step 2</p>
                             </div>
-                            <div className = {guideStep === 3 ? "hover:bg-[#ebc94e] w-[20rem] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#ebc94e]" : "hover:bg-[#ebc94e] w-[20rem] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#d5dadb]"} onClick = {() => setGuideStep(3)}>
+                            <div className = {guideStep === 3 ? "hover:bg-[#ebc94e] w-[20vw] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#ebc94e]" : "hover:bg-[#ebc94e] w-[20vw] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#d5dadb]"} onClick = {() => setGuideStep(3)}>
                                 <p className = "text-2xl font-bold relative bottom-[1rem] left-[1rem]">Step 3</p>
                             </div>
-                            <div className = {guideStep === 4 ? "hover:bg-[#ebc94e] w-[20rem] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#ebc94e]" : "hover:bg-[#ebc94e] w-[20rem] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#d5dadb]"} onClick = {() => setGuideStep(4)}>
+                            <div className = {guideStep === 4 ? "hover:bg-[#ebc94e] w-[20vw] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#ebc94e]" : "hover:bg-[#ebc94e] w-[20vw] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#d5dadb]"} onClick = {() => setGuideStep(4)}>
                                 <p className = "text-2xl font-bold relative bottom-[1rem] left-[1rem]">Step 4</p>
                             </div>
-                            <div className = {guideStep === 5 ? "hover:bg-[#ebc94e] w-[20rem] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#ebc94e]" : "hover:bg-[#ebc94e] w-[20rem] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#d5dadb]"} onClick = {() => setGuideStep(5)}>
+                            <div className = {guideStep === 5 ? "hover:bg-[#ebc94e] w-[20vw] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#ebc94e]" : "hover:bg-[#ebc94e] w-[20vw] h-[4rem] text-left border-white border-x-[1px] border-y-[1px] border-solid hover:cursor-pointer bg-[#d5dadb]"} onClick = {() => setGuideStep(5)}>
                                 <p className = "text-2xl font-bold relative bottom-[1rem] left-[1rem]">Step 5</p>
                             </div>
                         </div>
-                        <div className = "bg-[#1A4532] w-[50rem] h-[20.4rem] border-white border-x-[1px] border-y-[1px] border-solid text-[#ebc94e]">
+                        <div className = "bg-[#1A4532] w-[55vw] h-[20.4rem] border-white border-x-[1px] border-y-[1px] border-solid text-[#ebc94e]">
                             {guideStep === 1 && 
                                 <div className = "relative left-[1rem] w-[48rem] fadeIn">
                                     <p className = "text-lg font-bold">At check-in counter </p>
-                                    <p className = "text-lg relative bottom-[1rem]">At the airport, please follow the electronic board displaying flight information at the terminal for your check-in counter. Upon arrival at the counter, ground service staff shall check your PNR/ ticket number and your travel documents. Check-in baggage will be placed on the conveyor belt for weighing and transported separately. </p>
+                                    <p className = "text-lg relative bottom-[1rem] w-[52vw] small:text-[16px]">At the airport, please follow the electronic board displaying flight information at the terminal for your check-in counter. Upon arrival at the counter, ground service staff shall check your PNR/ ticket number and your travel documents. Check-in baggage will be placed on the conveyor belt for weighing and transported separately. </p>
                                 </div>
                             }
                             {guideStep === 2 && 
                                 <div className = "relative left-[1rem] w-[48rem] fadeIn">
                                     <p className = "text-lg font-bold">Receive boarding pass </p>
-                                    <p className = "text-lg relative bottom-[1rem]">Upon completion of check-in procedures, ground service staff shall return your documents and boarding pass stating boarding gate. </p>
+                                    <p className = "text-lg relative bottom-[1rem] w-[52vw] small:text-[16px]">Upon completion of check-in procedures, ground service staff shall return your documents and boarding pass stating boarding gate. </p>
                                 </div>
                             }
                             {guideStep === 3 && 
                                 <div className = "relative left-[1rem] w-[48rem] fadeIn">
                                     <p className = "text-lg font-bold">At security area </p>
-                                    <p className = "text-lg relative bottom-[1rem]">Upon receiving boarding pass, please go to the security area. Then, you shall be required to take off your belongings such as watch, shoes, bag, belt... then put them into a tray and go through screening machine. </p>
+                                    <p className = "text-lg relative bottom-[1rem] w-[52vw] small:text-[16px]">Upon receiving boarding pass, please go to the security area. Then, you shall be required to take off your belongings such as watch, shoes, bag, belt... then put them into a tray and go through screening machine. </p>
                                 </div>
                             }
                             {guideStep === 4 && 
                                 <div className = "relative left-[1rem] w-[48rem] fadeIn">
                                     <p className = "text-lg font-bold">At boarding gate </p>
-                                    <p className = "text-lg relative bottom-[1rem]">Passengers are advised to be present at boarding gate around 30 to 40 minutes before departure time. Upon waiting for boarding, passengers with Business cabin tickets or Voucher for Business lounge entrance are welcomed to use our First Lounge. At least 15 minutes before departure time, if you are not at the designated boarding gate, AHA Airlines shall mark you as no-show and proceed accordingly to our regulations. </p>
+                                    <p className = "text-lg relative bottom-[1rem] w-[52vw] small:text-[16px]">Passengers are advised to be present at boarding gate around 30 to 40 minutes before departure time. Upon waiting for boarding, passengers with Business cabin tickets or Voucher for Business lounge entrance are welcomed to use our First Lounge. At least 15 minutes before departure time, if you are not at the designated boarding gate, AHA Airlines shall mark you as no-show and proceed accordingly to our regulations. </p>
                                 </div>
                             }
                             {guideStep === 5 && 
                                 <div className = "relative left-[1rem] w-[48rem] fadeIn">
                                     <p className = "text-lg font-bold">Boarding </p>
-                                    <p className = "text-lg relative bottom-[1rem]">After boarding the plane, please go to the right seat number stated on the ticket. Don't forget to put your suitcase, backpack or belongings in the overhead luggage compartment then close the door and sit down, fasten your seat belt and wait for the plane to take off. </p>
+                                    <p className = "text-lg relative bottom-[1rem] w-[52vw] small:text-[16px]">After boarding the plane, please go to the right seat number stated on the ticket. Don't forget to put your suitcase, backpack or belongings in the overhead luggage compartment then close the door and sit down, fasten your seat belt and wait for the plane to take off. </p>
                                 </div>
                             }
                         </div>

@@ -6,10 +6,10 @@ type Props = {}
 const TravelDocument = (props: Props) => {
   return (
     <Layout>
-        <div className = "relative h-[200rem] overflow-x-clip  bottom-[2rem]">
-            <p className="text-3xl text-golden font-bold relative left-[15rem] top-[3rem] my-0">Travel Document</p>
+        <div className = "relative overflow-x-clip overflow-y-auto bottom-[0rem]">
+            <p className="text-3xl text-golden font-bold relative left-[12vw] top-[3rem] my-0">Travel Document</p>
             {/* identification documents */}
-            <div className = "relative left-[15rem] top-[3rem] w-[70rem]">
+            <div className = "relative left-[12vw] top-[3rem] w-[75vw]">
                 <p className = "text-3xl text-Green font-bold">Identification Documents and Visa</p>
                 <p className = "text-lg relative bottom-[1rem]">Passengers are required to to present forms of identifications documents at check-in.</p>
                 <p className = "text-lg relative bottom-[2rem]">(Pursuant to Appendix VII - Personal information when traveling by air; Identification documents, tickets, boarding passes, issued together with Circular 42/2023/TT-BGTVT dated December 29, 2023 of the Minister of Transport).</p>
@@ -39,7 +39,7 @@ const TravelDocument = (props: Props) => {
             </div>
 
             {/* health */}
-            <div className = "left-[15rem] w-[70rem] relative top-[5rem]">
+            <div className = "left-[12vw] w-[73vw] relative top-[5rem]">
                 <p className = "text-3xl text-Green font-bold ">Health status confirmation requirements</p>
                 <div>
                     <div className = "flex bg-golden">
@@ -56,13 +56,13 @@ const TravelDocument = (props: Props) => {
 
                     <div className = "flex bg-[#1A4532] text-golden h-[7rem]">
                         <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative top-[1rem]">Asthma, Bronchitis, and Chest-related Conditions </p>
+                            <p className = "relative top-[1rem] small:text-[13px] medium:text-[14px]">Asthma, Bronchitis, and Chest-related Conditions </p>
                         </div>
                         <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative top-[1rem]">The condition is well-controlled</p>
+                            <p className = "relative top-[1rem] small:text-[13px]">The condition is well-controlled</p>
                         </div>
                         <div className = "w-[40rem] border-white border-solid border-x-[1px] border-y-[1px] font-bold">
-                            <p className = "relative left-[0.5rem] bottom-[0.2rem]">Carry your usual inhaler.<br/>Seek medical advice if you experience wheezing before flying.<br/>Consult your doctor if you have difficulty breathing even at rest, cannot walk 50 meters, or climb two flights of stairs without experiencing shortness of breath.</p>
+                            <p className = "relative left-[0.5rem] bottom-[0.2rem] small:text-[11px] medium:text-[12px]">Carry your usual inhaler.<br/>Seek medical advice if you experience wheezing before flying.<br/>Consult your doctor if you have difficulty breathing even at rest, cannot walk 50 meters, or climb two flights of stairs without experiencing shortness of breath.</p>
                         </div>
                     </div>
 
@@ -71,10 +71,10 @@ const TravelDocument = (props: Props) => {
                             <p className = "relative top-[2.5rem]">Heart Conditions </p>
                         </div>
                         <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative top-[0.5rem]">You can climb two flights of stairs without any issues.<br/>High blood pressure is well-controlled.</p>
+                            <p className = "relative top-[0.5rem] small:text-[13px] small:top-[-0.8rem] medium:text-[14px] medium:top-[-0.5rem]">You can climb two flights of stairs without any issues.<br/>High blood pressure is well-controlled.</p>
                         </div>
                         <div className = "w-[40rem] border-white border-solid border-x-[1px] border-y-[1px] font-bold">
-                            <p className = "relative left-[0.5rem] bottom-[0.3rem]">You have recently experienced a heart attack.<br/>If you frequently experience chest pain (typically characterized by chest discomfort) during flights, you are at twice the risk of experiencing high-altitude chest pain compared to being on the ground. Consult a doctor before flying and ensure you have enough medication to relieve chest pain.</p>
+                            <p className = "relative left-[0.5rem] bottom-[0.3rem] small:text-[11px] medium:text-[12px]">You have recently experienced a heart attack.<br/>If you frequently experience chest pain (typically characterized by chest discomfort) during flights, you are at twice the risk of experiencing high-altitude chest pain compared to being on the ground. Consult a doctor before flying and ensure you have enough medication to relieve chest pain.</p>
                         </div>
                     </div>
 
@@ -83,10 +83,10 @@ const TravelDocument = (props: Props) => {
                             <p className = "relative top-[3.5rem]">Diabetes Management</p>
                         </div>
                         <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative top-[3.5rem]">The disease is well controlled.</p>
+                            <p className = "relative top-[3.5rem] small:top-[2.5rem]">The disease is well controlled.</p>
                         </div>
                         <div className = "w-[40rem] border-white border-solid border-x-[1px] border-y-[1px] font-bold">
-                            <p className = "relative left-[0.5rem] bottom-[-0.2rem]">Order special meals when booking your ticket.<br/>Take insulin and eat on time.<br/>People with diabetes often struggle to adapt to meal schedules and medication across multiple time zones. It is advisable to maintain your routine like at home throughout your journey and only adjust it to local time when you arrive at your destination.</p>
+                            <p className = "relative left-[0.5rem] bottom-[-0.2rem] small:text-[11px] medium:text-[12px]">Order special meals when booking your ticket.<br/>Take insulin and eat on time.<br/>People with diabetes often struggle to adapt to meal schedules and medication across multiple time zones. It is advisable to maintain your routine like at home throughout your journey and only adjust it to local time when you arrive at your destination.</p>
                         </div>
                     </div>
                 </div>

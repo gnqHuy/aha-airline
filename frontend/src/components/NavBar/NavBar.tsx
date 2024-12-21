@@ -80,7 +80,7 @@ const NavBar: React.FC<Props> = () => {
             Explore
           </Link>
           <div
-            className={`absolute top-full text-left left-[80%] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
+            className={`absolute top-[3.1rem] text-left left-[80%] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
               dropdownState.Explore
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-5 pointer-events-none"
@@ -104,7 +104,7 @@ const NavBar: React.FC<Props> = () => {
             Booking
           </Link>
           <div
-            className={`absolute top-full text-left left-[-71px] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
+            className={`absolute top-[3.1rem] text-left left-[-71px] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
               dropdownState.Booking
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-5 pointer-events-none"
@@ -128,7 +128,7 @@ const NavBar: React.FC<Props> = () => {
             Travel Info
           </Link>
           <div
-            className={`absolute top-full text-left left-[-235px] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
+            className={`absolute top-[3.1rem] text-left left-[-235px] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
               dropdownState.TravelInfo
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-5 pointer-events-none"

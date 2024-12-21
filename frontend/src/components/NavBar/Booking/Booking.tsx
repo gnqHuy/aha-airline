@@ -5,7 +5,7 @@ type Props = {};
 
 const Explore: React.FC<Props> = () => {
   return (
-    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[19vw] medium:grid-cols-3 bg-white">
+    <div className="relative grid grid-cols-3 pl-8 medium:left-[5vw] medium:grid-cols-3 bg-white small:relative small:grid-cols-3 small:left-[35vw]">
       {/* Online Booking */}
       <div className = "medium:relative medium:left-[5vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
@@ -29,7 +29,7 @@ const Explore: React.FC<Props> = () => {
       </div>
 
       {/* Booking Info */}
-      <div>
+      <div className = "small:relative small:right-[20vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/booking/booking-info"
@@ -67,7 +67,7 @@ const Explore: React.FC<Props> = () => {
       </div>
 
       {/* Additional Services */}
-      <div>
+      <div className = "small:relative small:right-[35vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/booking/additional-services"
