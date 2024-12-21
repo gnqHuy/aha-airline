@@ -16,7 +16,7 @@ const LoginDropdown:React.FC<Props> = ({username, roles, handleLogout}) => {
     <div className = "w-[20vw] bg-[#faf9f7] rounded-[5px] small:w-[40vw] medium:w-[40vw]">
         {/* username and roles */}
         <div className = "w-full flex">
-            <img src = {LoginAvatar} className = "rounded-[50%] w-[2.5rem] h-[2.5rem] border-solid border-[2px] border-Green ml-[1rem] mt-[1.8rem]" alt = ""/>
+            <img src = {LoginAvatar} className = "rounded-[50%] w-[2.4rem] h-[2.4rem] border-solid border-[2px] border-Green ml-[1rem] mt-[1.8rem]" alt = ""/>
             <div className = "ml-[1rem] relative bottom-[0.5rem]">
                 <p className = "text-[20px] font-bold text-Green">{username}</p>
                 <div className = "flex">
