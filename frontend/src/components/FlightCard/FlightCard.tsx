@@ -24,7 +24,7 @@ const FlightCard: React.FC<FlightCardProps> = ({ flight, image }) => {
 
   return (
     <div className="flight-card-container">
-      <img src={image} alt={`Flight to ${flight.toAirport.city.name}`} />
+      <img src={image} loading='lazy' alt={`Flight to ${flight.toAirport.city.name}`} />
       <div className="flight-info">
         <p className="city-name">
           {flight.fromAirport.city.name} <br /> to {flight.toAirport.city.name}
