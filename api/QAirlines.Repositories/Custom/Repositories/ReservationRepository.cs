@@ -1,4 +1,5 @@
-﻿using QAirlines.DataAccess.DbContext;
+﻿using Microsoft.EntityFrameworkCore;
+using QAirlines.DataAccess.DbContext;
 using QAirlines.Models.Domain_Objects;
 using QAirlines.Repositories.Custom.Interfaces;
 using QAirlines.Repositories.Generic;
@@ -29,6 +30,12 @@ namespace QAirlines.Repositories.Custom.Repositories
         public Reservation GetByReservationCode(string reservationCode)
         {
             var reservation = _context.Reservations.FirstOrDefault(x => x.ReservationCode == reservationCode);
+            return reservation;
+        }
+
+        public async Task<Reservation> GetByReservationCodeAsync(string reservationCode)
+        {
+            var reservation = await _context.Reservations.FirstOrDefaultAsync(x => x.ReservationCode == reservationCode);
             return reservation;
         }
     }
