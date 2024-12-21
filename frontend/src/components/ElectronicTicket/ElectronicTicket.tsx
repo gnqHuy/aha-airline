@@ -3,13 +3,15 @@ import { BsClock } from "react-icons/bs";
 import { Ticket } from "../../object/ticket";
 import { Flight } from "../../object/flight";
 import { PassengerTitle } from "../../object/enum/PassengerTitle";
+import { FlightInfo, FlightTicketResponse, TicketSummary } from "../../object/reponseTicketData";
+import { SeatClass } from "../../object/enum/SeatClass";
 
 type ElectronicTicketProps = {
-  ticket: Ticket;
-  flightDetails: Flight | null;
+  ticketSummary: TicketSummary;
+  flightInfo: FlightInfo;
 };
 
-const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticket, flightDetails }) => {
+const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticketSummary, flightInfo }) => {
   const calculateDuration = (from: string, to: string): string => {
     const fromTime = new Date(from).getTime();
     const toTime = new Date(to).getTime();
@@ -19,30 +21,31 @@ const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticket, flightDetai
     return `${hours}h ${minutes}m`;
   };
 
-  if (!flightDetails) {
-    return <div>Flight details are missing.</div>;
+  if (!ticketSummary) {
+    return <div>Something are wrong, please back to home page.</div>;
   }
 
   return (
     <div className="w-[70%] mx-auto border border-gray-300 rounded-lg p-6 shadow-sm bg-white my-4">
       <div className="text-3xl font-bold text-golden">AHA AIRLINE</div>
       <div className="flex gap-14">
+        <div><p><strong>Ticket Code:</strong> {ticketSummary.ticketCode}</p></div>
         <div>
           <div className="mb-4">
             <p>
-              <strong>Passenger:</strong> {PassengerTitle[ticket.passengerTitle]}. {ticket.firstName} {ticket.lastName}
+              <strong>Passenger:</strong> {PassengerTitle[ticketSummary.passengerTitle]}. {ticketSummary.firstName} {ticketSummary.lastName}
             </p>
             <p>
-              <strong>Date of Birth:</strong> {new Date(ticket.passengerDOB).toLocaleDateString()}
+              <strong>Date of Birth:</strong> {new Date(ticketSummary.passengerDOB).toLocaleDateString()}
             </p>
           </div>
         </div>
         <div>
           <p>
-            <strong>Email:</strong> {ticket.contactEmail}
+            <strong>Email:</strong> {ticketSummary.contactEmail}
           </p>
           <p>
-            <strong>Phone Number:</strong> {ticket.phoneNumber}
+            <strong>Phone Number:</strong> {ticketSummary.phoneNumber}
           </p>
         </div>
       </div>
@@ -63,35 +66,35 @@ const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticket, flightDetai
           <tbody className="bg-golden-hover">
             <tr>
               <td className="p-3">
-                {flightDetails.flightRoute.fromAirportIATA} <br /> {flightDetails.flightRoute.fromAirport.name}
+                <strong>{flightInfo.fromAirport.name}</strong> <br /> {flightInfo.fromAirport.iata}
               </td>
               <td className="p-3">
-                {flightDetails.flightRoute.toAirportIATA} <br /> {flightDetails.flightRoute.toAirport.name}
+                <strong>{flightInfo.toAirport.name}</strong> <br /> {flightInfo.toAirport.iata}
                 </td>
               <td className="p-3">
-                {new Date(flightDetails.departureTime).toLocaleTimeString()} <br />{" "}
-                {new Date(flightDetails.departureTime).toLocaleDateString()}
+                {new Date(flightInfo.departureTime).toLocaleTimeString()} <br />{" "}
+                {new Date(flightInfo.departureTime).toLocaleDateString()}
               </td>
               <td className="p-3">
-                {new Date(flightDetails.arrivalTime).toLocaleTimeString()} <br />{" "}
-                {new Date(flightDetails.arrivalTime).toLocaleDateString()}
+                {new Date(flightInfo.arrivalTime).toLocaleTimeString()} <br />{" "}
+                {new Date(flightInfo.arrivalTime).toLocaleDateString()}
               </td>
             </tr>
           </tbody>
         </table>
         <div className="flex items-center justify-between mt-4 mx-4 text-base text-gray-700">
           <div className="flex flex-col items-start">
-            <div className="font-medium">Class: {ticket.class}</div>
+            <div className="font-medium">Class: {SeatClass[ticketSummary.class]}</div>
             <div className="flex items-center mt-1">
               <BsClock className="mr-2 text-golden" />
               Duration:{" "}
               <span className="ml-1 font-semibold">
-                {calculateDuration(flightDetails.departureTime, flightDetails.arrivalTime)}
+                {calculateDuration(flightInfo.departureTime, flightInfo.arrivalTime)}
               </span>
             </div>
           </div>
           <div>
-            <span className="font-medium">{flightDetails.aircraft.name}</span> <br /> operated by
+            <span className="font-medium">{flightInfo.aircraft.name}</span> <br /> operated by
             AHA Airline
           </div>
         </div>
