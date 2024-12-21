@@ -5,7 +5,7 @@ type Props = {}
 
 const ExcessBaggage = (props: Props) => {
   return (
-    <div className = "w-[70rem]">
+    <div className = "w-[75vw]">
         <p className = " text-3xl text-[#1A4532] font-bold">Excess Baggage</p>
         <div className = "">
             <p className = "text-2xl text-[#1A4532] font-bold">Prepaid Baggage</p>
@@ -23,7 +23,7 @@ const ExcessBaggage = (props: Props) => {
                 <li>The maximum weight of a standard piece is 23kg.</li>
                 <li>The maximum total three dimensions of a standard piece is158cm.</li>
             </ul>
-            <img src = {ExcessBaggageImage} alt = "" />
+            <img src = {ExcessBaggageImage} alt = "" className = "w-[75vw]"/>
             <p className = "text-xl relative bottom-[0rem] font-bold">Notes:</p>
             <ul className = "text-lg relative bottom-[0rem]">
                 <li>Prepaid baggage must be purchased at least 03 hours before departure.</li>

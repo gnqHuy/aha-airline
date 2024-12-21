@@ -8,7 +8,7 @@ import image3 from '../../assets-test/Images/cities/istanbul.webp';
 const HomePage: React.FC = () => {
   return (
     <Layout>
-      <div className="w-[1016px] mx-auto pt-4"> <p className="text-3xl text-golden font-bold">Booking</p></div>
+      <div className="w-[1016px] mx-[16vw] pt-4"> <p className="text-3xl text-golden font-bold">Booking</p></div>
       <div className="flex flex-col items-center my-4">
         <div className="flex justify-center items-center my-4 gap-4">
           <GenericCard image={image1} title={"Online Booking"} link={"/"} width = "32.5vw"/>

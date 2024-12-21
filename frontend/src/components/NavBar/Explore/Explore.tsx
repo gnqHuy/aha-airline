@@ -6,7 +6,8 @@ const Explore: React.FC = () => {
     const offers = offersData.slice(0, 5);
 
   return (
-    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[20vw] medium:grid-cols-3">
+    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[5vw] medium:grid-cols-3 small:relative small:grid-cols-3 small:left-[30vw]">
+      {/* destination */}
       <div className = "medium:left-[5vw] medium:relative">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
@@ -60,7 +61,8 @@ const Explore: React.FC = () => {
         </ul>
       </div>
 
-      <div className = "">
+      {/* offer */}
+      <div className = "small:relative small:right-[20vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/explore/offer"
@@ -81,7 +83,9 @@ const Explore: React.FC = () => {
           ))}
         </ul>
       </div>
-      <div>
+
+      {/* experience */}
+      <div className = "small:relative small:right-[30vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/explore/experience"
