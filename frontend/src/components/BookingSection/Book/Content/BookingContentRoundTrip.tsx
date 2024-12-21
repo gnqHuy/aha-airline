@@ -6,6 +6,7 @@ import CalendarDepart from './Calendar/CalendarDepart';
 import FlightPreview from '../../../FlightPreview/FlightPreview';
 import { useFlightContext } from '../../../../context/FlightContext/FlightContext';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 interface Props {
     handleSetupDisplaySuggestion: () => void;
@@ -47,7 +48,7 @@ const BookingContentRoundTrip: React.FC<Props> = ({
     flightOption,
         }) => {
     
-    const {setSelectedFlightPreview, setSelectedPassenger} = useFlightContext();
+    const {setSelectedFlightPreview, setSelectedPassenger, setReturnDate, setRoundTrip} = useFlightContext();
     const navigate = useNavigate();
     function parseAirportInfo(input: string): {
         iata: string;
@@ -75,13 +76,26 @@ const BookingContentRoundTrip: React.FC<Props> = ({
     const handleFindFlightClick = () => {
         try {
             if (!selectedAirport || !selectedAirportTo || !selectedDateDepart) {
-                alert("Please fill in all required fields: departure airport, destination airport, and departure date.");
+                toast.success("Please fill in all required fields: departure airport, destination airport, and departure date.", {
+                    position: "top-right"
+                  });
                 return;
+            }
+            else {
+                toast.success("Choose your flight!", {
+                    position: "top-right"
+                  });
             }
     
             const fromInput = parseAirportInfo(selectedAirport);
             const toInput = parseAirportInfo(selectedAirportTo);
             const departureTime = convertToISO(selectedDateDepart, "00:00:01");
+
+            if (flightOption === "roundTrip") {
+                setRoundTrip(true);
+                console.log(selectedDateReturn + " " + convertToISO(selectedDateReturn, "00:00:01")) 
+                setReturnDate(convertToISO(selectedDateReturn, "00:00:01"));
+            }
     
             const flightPreview = {
                 fromAirport: {
@@ -121,6 +135,7 @@ const BookingContentRoundTrip: React.FC<Props> = ({
   return (
     <div className = "flex">
         {/* flight from */}
+        <ToastContainer />
         <div className = "absolute top-[2.5rem] hover:cursor-pointer" onClick = {handleSetupDisplaySuggestion}>
             <p className = " text-gray-500 absolute top-[1rem] left-[2.2rem]" style = {{fontSize: "12px"}}>From</p>
             {displaySuggestion === true ? 

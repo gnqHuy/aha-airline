@@ -10,14 +10,26 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/selector/authSelector";
 
 type FlightContextType = {
-  responseTicketData: FlightTicketResponse | null;
-  setResponseTicketData: (response: FlightTicketResponse) => void;
+  // responseTicketData: FlightTicketResponse | null;
+  // setResponseTicketData: (response: FlightTicketResponse) => void;
 
   selectedFlight: Flight | null;
   setSelectedFlight: (flight: Flight) => void;
 
+  selectedFlightRound: Flight | null;
+  setSelectedFlightRound: (flight: Flight) => void;
+
+  roundTrip: boolean;
+  setRoundTrip: (roundTrip: boolean) => void;
+
+  returnDate: string;
+  setReturnDate: (returnDate: string) => void;
+
   selectedFlightClass: SeatClass;
   setSelectedFlightClass: (flightClass: SeatClass) => void;
+
+  selectedFlightRoundClass: SeatClass;
+  setSelectedFlightRoundClass: (flightClass: SeatClass) => void;
 
   selectedFlightPreview: FlightPreviewType | null;
   setSelectedFlightPreview: (flightPreview: FlightPreviewType) => void;
@@ -27,6 +39,9 @@ type FlightContextType = {
 
   flightTickets: FlightTickets;
   addFlightTicket: (ticket: Ticket) => void;
+
+  flightTicketsRound: FlightTickets;
+  addFlightTicketRound: (ticket: Ticket) => void;
 
   airports: any[];
   setAirports: (flights: any[]) => void;
@@ -53,6 +68,8 @@ type FlightContextType = {
 
   checkinOption: string;
   setCheckinOption: (option: string) => void;
+
+  clearData:()=>void;
 };
 
 type News = {
@@ -156,8 +173,10 @@ const FlightContext = createContext<FlightContextType | undefined>(undefined);
 
 export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
-  const [responseTicketData, setResponseTicketData] = useState<FlightTicketResponse | null>(null);
+  const [selectedFlightRound, setSelectedFlightRound] = useState<Flight | null>(null);
+  // const [responseTicketData, setResponseTicketData] = useState<FlightTicketResponse | null>(null);
   const [selectedFlightClass, setSelectedFlightClass] = useState<SeatClass>(SeatClass.Economy);
+  const [selectedFlightRoundClass, setSelectedFlightRoundClass] = useState<SeatClass>(SeatClass.Economy);
   const [selectedFlightPreview, setSelectedFlightPreview] = useState<FlightPreviewType | null>(null);
   const [selectedPassenger, setSelectedPassenger] = useState<PassengerCount>({
     adults: 1,
@@ -175,6 +194,8 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [checkinTicket, setCheckinTicket] = useState<string>(String(localStorage.getItem("checkinTicket")));
   const [checkinOption, setCheckinOption] = useState<string>(String(localStorage.getItem("checkinOption")));
   const user = useSelector(selectUser);
+  const [roundTrip, setRoundTrip] = useState<boolean>(false);
+  const [returnDate, setReturnDate] = useState<string>("");
 
   const [flightTickets, setFlightTickets] = useState<FlightTickets>({
       flightId: "",
@@ -183,8 +204,7 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   });
 
   const addFlightTicket = (ticket: Ticket) => {
-    console.log(flightTickets);
-    const flightId = selectedFlight ? selectedFlight.id : "defaultFlightId"; // Sử dụng ID mặc định nếu không có selectedFlight
+    const flightId = selectedFlight ? selectedFlight.id : "defaultFlightId";
     setFlightTickets((prevFlight) => ({
       flightId,
       bookedId: user != null ? user.id : null,
@@ -193,9 +213,24 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
   };
   
-  useEffect(() => {
-    console.log(user?.id);
-  }, [])
+  const [flightTicketsRound, setFlightTicketsRound] = useState<FlightTickets>({
+    flightId: "",
+    bookedId: user != null ? user.id : null,
+    tickets: [],
+  });
+
+  const addFlightTicketRound = (ticket: Ticket) => {
+    const flightId = selectedFlightRound ? selectedFlightRound.id : "defaultFlightId";
+    setFlightTicketsRound((prevFlight) => ({
+      flightId,
+      bookedId: user != null ? user.id : null,
+      tickets: [...prevFlight.tickets, ticket],
+    }));
+  };
+
+  const clearData = () => {
+    setRoundTrip(false);
+  }
 
   useEffect(() => {
     setNewsList(NewSlide);
@@ -212,8 +247,19 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   return (
     <FlightContext.Provider
       value={{
-        responseTicketData,
-        setResponseTicketData,
+        clearData,
+        flightTicketsRound,
+        addFlightTicketRound,
+        selectedFlightRoundClass,
+        setSelectedFlightRoundClass,
+        selectedFlightRound,
+        setSelectedFlightRound,
+        returnDate,
+        setReturnDate,
+        setRoundTrip,
+        roundTrip,
+        // responseTicketData,
+        // setResponseTicketData,
         flightTickets,
         addFlightTicket,
         selectedFlight,

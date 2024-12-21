@@ -1,30 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaPlane } from "react-icons/fa6";
 import { BsClock } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
 import { Flight } from "../../object/flight";
-import { useFlightContext } from "../../context/FlightContext/FlightContext";
 import { SeatClass } from "../../object/enum/SeatClass";
 
 type Props = {
   flight: Flight;
   classType?: SeatClass;
+  handleSelectedFlight? :  (flight: Flight, classType: SeatClass) => void;
 };
 
-const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None }) => {
+const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, handleSelectedFlight }) => {
   const [classType1, setClassType1] = useState(SeatClass.None);
-  const {setSelectedFlight, setSelectedFlightClass} = useFlightContext();  
-  const navigate = useNavigate();
 
   const handleSelectClassType = (type: SeatClass) => {
     setClassType1(classType1 === type ? SeatClass.None : type);
   };  
-
-   const handleSelectFlight = (flight: Flight, classType: SeatClass) => {
-    setSelectedFlight(flight);
-    setSelectedFlightClass(classType);
-    navigate("ticketCart");
-  };
 
   const calculateDuration = (from: Date, to: Date): string => {
     const duration = (to.getTime() - from.getTime()) / (1000 * 60);
@@ -128,17 +119,17 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None }) 
             </div>
           </div>
         ) : classType === SeatClass.Economy ? (
-          <div className="p-4 text-center text-xl bg-golden">
-            <div className="font-semibold mb-10 text-Green">Economy</div>
-            <div className="font-bold text-Green">
-              {flight.economyPrice.toLocaleString()} VND
+          <div className="p-4 px-8 text-center text-xl bg-Green">
+            <div className="font-semibold mb-10 text-golden">Economy</div>
+            <div className="font-bold text-golden">
+              {flight.economyPrice.toLocaleString()} <br/>VND
             </div>
           </div>
         ) : (
-          <div className="p-4 text-center text-xl bg-golden">
+          <div className="p-4 px-8 text-center text-xl bg-golden">
             <div className="font-semibold mb-10 text-Green">Business</div>
             <div className="font-bold text-Green">
-              {flight.businessPrice.toLocaleString()} VND
+              {flight.businessPrice.toLocaleString()} <br/> VND
             </div>
           </div>
         )}
@@ -156,9 +147,9 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None }) 
 
           <div className="flex items-center justify-center p-4">
             <button 
-              onClick={() => handleSelectFlight(flight, SeatClass.Business)}
+              onClick={() => handleSelectedFlight?.(flight, SeatClass.Business)}
               className="my-auto px-6 py-2 text-golden text-base cursor-pointer border-golden font-semibold hover:bg-golden hover:text-white rounded-md">
-              Confirm and continue
+              Choose Class
             </button>
           </div>
         </div>
@@ -174,9 +165,9 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None }) 
 
           <div className="flex items-center justify-center p-4">
             <button
-              onClick={() => handleSelectFlight(flight, SeatClass.Economy)} 
+              onClick={() => handleSelectedFlight?.(flight, SeatClass.Economy)} 
              className="my-auto px-6 py-2 text-golden text-base cursor-pointer border-golden font-semibold hover:bg-golden hover:text-white rounded-md">
-              Confirm and continue
+              Choose Class
             </button>
           </div>
         </div>

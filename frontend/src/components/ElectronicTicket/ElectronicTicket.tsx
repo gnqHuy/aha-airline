@@ -9,9 +9,10 @@ import { SeatClass } from "../../object/enum/SeatClass";
 type ElectronicTicketProps = {
   ticketSummary: TicketSummary;
   flightInfo: FlightInfo;
+  reservation: string;
 };
 
-const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticketSummary, flightInfo }) => {
+const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticketSummary, flightInfo, reservation }) => {
   const calculateDuration = (from: string, to: string): string => {
     const fromTime = new Date(from).getTime();
     const toTime = new Date(to).getTime();
@@ -28,8 +29,11 @@ const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticketSummary, flig
   return (
     <div className="w-[70%] mx-auto border border-gray-300 rounded-lg p-6 shadow-sm bg-white my-4">
       <div className="text-3xl font-bold text-golden">AHA AIRLINE</div>
-      <div className="flex gap-14">
-        <div><p><strong>Ticket Code:</strong> {ticketSummary.ticketCode}</p></div>
+      <div className="flex pl-4 gap-44">
+        <div>
+          <div><p><strong>Reservation Code:</strong> {reservation}</p></div>
+          <div><p><strong>Ticket Code:</strong> {ticketSummary.ticketCode}</p></div>
+        </div>
         <div>
           <div className="mb-4">
             <p>
