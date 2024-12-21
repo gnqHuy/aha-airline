@@ -8,8 +8,8 @@ type Props = {}
 
 const Register = (props: Props) => {
   return (
-    <div className = "w-full h-[45.8rem] overflow-hidden">
-        <img src = {bg} alt = "" className = "w-full h-[45.8rem] object-cover object-center z-0" id = "login-bg"/>
+    <div className = "relative w-full h-screen overflow-hidden">
+        <img src = {bg} alt = "" className = "absolute top-0 left-0 w-full h-full object-cover" id = "login-bg"/>
         <div className = "w-[70%] h-[40rem] z-10 absolute top-[5%] left-[15%] bg-[#1A4532] rounded-[12px] shadow-gray flex">
             {/* image */}
             <div className = "h-[100%] w-[50%] relative">

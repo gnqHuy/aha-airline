@@ -10,7 +10,7 @@ import { PassengerTitle } from "../../object/enum/PassengerTitle";
 type Props = {};
 
 const PassengerInfor: React.FC<Props> = () => {
-  const { selectedPassenger, selectedFlightClass, selectedFlight, addFlightTicket, flightTickets } =
+  const { selectedPassenger, selectedFlightClass, selectedFlight, addFlightTicket, flightTickets, flightTicketsRound, addFlightTicketRound } =
     useFlightContext();
   const { adults, children, infants } = selectedPassenger;
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const PassengerInfor: React.FC<Props> = () => {
     setPassengerData(updatedPassengerData);
   };
 
-  const handleConfirm = () => {
+  const handleUpdateTicket = () => {
     const allFieldsFilled = passengerData.every(
       (passenger) =>
         passenger.title !== null &&
@@ -78,10 +78,49 @@ const PassengerInfor: React.FC<Props> = () => {
       };
       addFlightTicket(ticket);
     });
+  };
 
+  const handleUpdateTicketRound = () => {
+    const allFieldsFilled = passengerData.every(
+      (passenger) =>
+        passenger.title !== null &&
+        passenger.firstName &&
+        passenger.lastName &&
+        passenger.dateOfBirth &&
+        passenger.email &&
+        passenger.phone
+    );
+
+    if (!allFieldsFilled) {
+      alert("Please fill out all the fields before continuing.");
+      return;
+    }
+
+    const classType: SeatClass =
+      selectedFlightClass === SeatClass.Economy || selectedFlightClass === SeatClass.Business
+        ? selectedFlightClass
+        : SeatClass.Economy;
+
+    passengerData.forEach((passenger) => {
+      const ticket = {
+        class: classType,
+        passengerTitle: passenger.title as PassengerTitle,
+        firstName: passenger.firstName,
+        lastName: passenger.lastName,
+        passengerDOB: passenger.dateOfBirth,
+        contactEmail: passenger.email,
+        phoneNumber: passenger.phone,
+      };
+      addFlightTicketRound(ticket);
+    });
+  };
+
+  const handleConfirm = () => {
+    handleUpdateTicket();
+    handleUpdateTicketRound();
     alert("Tickets booked successfully!");
     navigate("payment");
-  };
+  }
 
   return (
     <>
