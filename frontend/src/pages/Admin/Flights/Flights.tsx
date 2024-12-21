@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
-import { getFromAircraftAndRoute, getFromRequest, getPagedFlightDTO } from "../../../api/flightAPI";
+import { generateFlights, getFromAircraftAndRoute, getFromRequest, getPagedFlightDTO } from "../../../api/flightAPI";
 import { EnumDeclaration } from "typescript";
 import { AxiosResponse } from "axios";
 import Pagination from "../Pagination/Pagination";
@@ -87,6 +87,7 @@ const Flights: React.FC = () => {
   const [aircraftNameSearch, setAircraftNameSearch] = useState<string>("");
   const [searchError, setSearchError] = useState<string | null>(null);
   const [page, setPage] = useState<number>(0);
+  const [autoGenerate, setAutoGenerate] = useState<number>(0);
   
   const fetchData = async (page: number = 0, fromIATA: string = "", toIATA: string = "", aircraftName: string | null = "AHA-001") => {
     setLoading(true);
@@ -127,7 +128,7 @@ const Flights: React.FC = () => {
       fetchData(page, searchFromIATA, searchToIATA, aircraftNameSearch);
     }
     else {
-      setSearchError("Both 'From' and 'To' IATA codes are required.");
+      setSearchError("All input are required.");
       return; 
     }
   };
@@ -197,8 +198,21 @@ const Flights: React.FC = () => {
       businessPrice: 0,
       status: FlightStatus.Upcomming,
     });
-  };  
+  };
+  const handleChangeAutoGenerate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAutoGenerate(parseInt(e.target.value));
+  };
 
+  const handleAutoGenerate = async () => {
+    try {
+      const response = await generateFlights(autoGenerate);
+      fetchData(0);
+    } catch (err) {
+      setError("Failed to load flight data.");
+    } finally {
+      setLoading(false);
+    }
+  }
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
   
@@ -283,7 +297,6 @@ const Flights: React.FC = () => {
       }
     });
   };
-
   
   if (loading) return <div>Loading...</div>;
   if (error) return <div className="text-red-600">Error: {error}</div>;
@@ -321,6 +334,22 @@ const Flights: React.FC = () => {
           className="bg-blue-600 hover:bg-blue-400 border-none px-5 py-2 text-white rounded"
         >
           Search
+        </button>
+      </div>
+      <div className="my-4 w-">
+        <input
+            type="number"
+            name="autoGenerate"
+            placeholder="Auto Generate Data"
+            value={autoGenerate}
+            onChange={handleChangeAutoGenerate}
+            className="pl-2 mr-4 py-2 border rounded flex-1"
+          />
+        <button
+          onClick={handleAutoGenerate}
+          className="bg-blue-600 hover:bg-blue-400 border-none px-5 py-2 text-white rounded"
+        >
+          Auto Generate
         </button>
       </div>
       {searchError && <p style={{ color: 'red' }}>{searchError}</p>}

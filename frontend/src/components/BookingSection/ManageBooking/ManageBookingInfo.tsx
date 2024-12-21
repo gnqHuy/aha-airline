@@ -60,7 +60,7 @@ const ManageBookingInfo:React.FC<Props> = ({handleDisplayInfo, reservations, sto
                             <div className = "text-base relative bottom-[1rem] ml-[0]">
                                 <p className = "font-bold">{`Customer ${index + 1}:`}</p>
                                 <ul id = "journey-list" className = "relative bottom-[1rem]">
-                                    <li>{`${reservation?.passengerTitle === 1 ? "Mrs" : "Mr"} ${reservation?.firstName} ${reservation?.lastName}/${reservations[0].ticketCode}`}</li>
+                                    <li>{`${reservation?.passengerTitle === 1 ? "Mrs" : "Mr"} ${reservation?.firstName} ${reservation?.lastName}/${reservation.ticketCode}`}</li>
                                 </ul>
                             </div>
                         )

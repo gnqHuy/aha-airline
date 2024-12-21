@@ -21,9 +21,9 @@ export function UpgradeSeatByCode(query: string) {
 }
 
 export function CancelTicketById(query: string) {
-    return API.put(`${URL_PREFIX}/CancelTicket/Id?ticketId=${query}`);
+    return API.delete(`${URL_PREFIX}/CancelTicket/Id?ticketId=${query}`);
 }
 
 export function CancelTicketByCode(query: string) {
-    return API.put(`${URL_PREFIX}/CancelTicket/Code?ticketCode=${query}`);
+    return API.delete(`${URL_PREFIX}/CancelTicket/Code?ticketCode=${query}`);
 }
