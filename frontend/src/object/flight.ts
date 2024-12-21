@@ -10,6 +10,8 @@ export interface Flight {
   departureTime: string,
   arrivalTime: string,
   boardingGate: string,
+  remainingBsnSeats: number,
+  remainingEcoSeats: number,
   economyPrice: number,
   businessPrice: number,
   status: FlightStatus,
