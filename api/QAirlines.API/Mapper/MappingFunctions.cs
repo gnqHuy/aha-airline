@@ -84,6 +84,8 @@ namespace QAirlines.API.Mapper
                 DepartureTime = flight.DepartureTime,
                 ArrivalTime = flight.ArrivalTime,
                 BoardingGate = flight.BoardingGate,
+                RemainingBsnSeats = flight.RemainingBsnSeats,
+                RemainingEcoSeats = flight.RemainingEcoSeats,
                 EconomyPrice = flight.EconomyPrice,
                 BusinessPrice = flight.BusinessPrice,
                 Status = flight.Status
