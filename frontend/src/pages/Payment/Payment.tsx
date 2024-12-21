@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout1 from "../../components/Layout/Layout1";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
@@ -12,10 +12,27 @@ import { AddTickets } from "../../api/ticket";
 type Props = {};
 
 const Payment: React.FC<Props> = () => {
-  const { flightTickets, selectedFlight } = useFlightContext();
+  const { flightTickets, selectedFlight, responseTicketData, setResponseTicketData} = useFlightContext();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+      const response = await AddTickets(flightTickets);
+      console.log(response.data)
+      setResponseTicketData(response.data);
+    }
+      catch (err) {
+        setError("Failed to load reponse data.");
+      } finally {
+        setLoading(false);  }
+    };
 
-  if (!flightTickets || flightTickets.tickets.length === 0) {
+    fetchData();
+  }, [flightTickets]);  
+
+  if (!flightTickets || flightTickets.tickets.length === 0 ){
     return (
       <div>
         <Layout>
@@ -29,13 +46,13 @@ const Payment: React.FC<Props> = () => {
   }
 
   const generatePDFs = () => {
-    flightTickets.tickets.forEach((ticket, index) => {
+    responseTicketData?.ticketSummaries.forEach((ticket, index) => {
       const ticketElement = document.createElement("div");
       ticketElement.id = `ticket-${index}`;
       document.body.appendChild(ticketElement);
 
       ReactDOM.render(
-        <ElectronicTicket ticket={ticket} flightDetails={selectedFlight} />,
+        <ElectronicTicket ticketSummary={ticket} flightInfo={responseTicketData.flightInfo} />,
         ticketElement
       );
 
@@ -62,19 +79,6 @@ const Payment: React.FC<Props> = () => {
   };
 
   const handleClickConfirm = async () => {
-    
-    try {
-        AddTickets(flightTickets).then((response) => {
-          if (response.data.isSuccess) {
-            alert(`Tickets added successfully! Reservation Code: ${response.data.reservationCode}`);
-        } else {
-            alert("Failed to add tickets.");
-        }
-      })
-    } catch (error) {
-        console.error(error);
-        alert("An error occurred while adding tickets.");
-    }
     generatePDFs();
     navigate("/");
   }
@@ -84,9 +88,10 @@ const Payment: React.FC<Props> = () => {
       <h1 className="text-2xl font-bold text-center text-gray-800 mb-6 mt-0 pt-4">
         Check Your Ticket's Information
       </h1>
-      {flightTickets.tickets.map((ticket, index) => (
+      <p className="text-center text-xl mb-10" >Please double-check your ticket details. If there are any discrepancies, kindly contact us immediately.</p>
+      {responseTicketData?.ticketSummaries.map((ticket, index) => (
         <div id={`ticket-content-${index}`} key={index}>
-          <ElectronicTicket ticket={ticket} flightDetails={selectedFlight} />
+          <ElectronicTicket ticketSummary={ticket} flightInfo={responseTicketData.flightInfo} />
         </div>
       ))}
 
@@ -95,7 +100,7 @@ const Payment: React.FC<Props> = () => {
           onClick={handleClickConfirm}
           className="my-auto px-6 py-2 text-golden text-base cursor-pointer border-golden font-semibold hover:bg-golden hover:text-white rounded-md"
         >
-          Confirm and Book Ticket
+          Confirm and Print Ticket
         </button>
       </div>
     </Layout1>

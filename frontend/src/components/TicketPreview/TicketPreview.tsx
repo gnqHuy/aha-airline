@@ -147,10 +147,11 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None }) 
       {classType1 === SeatClass.Business ? (
         <div className="flex w-[80%] mx-auto flex-row border shadow-md overflow-hidden bg-white">
           <div className="p-4 ml-auto">
-            <div className="font-semibold text-2xl">Business</div>
-            <div className="text-lg text-golden">
+            <div className="font-bold text-2xl">Business</div>
+            <div className="text-xl font-semibold text-golden">
               {flight.businessPrice.toLocaleString()} VND
             </div>
+            <div className="text-lg"><span className="font-semibold">Remaining Seat: </span> {flight.remainingBsnSeats}</div>
           </div>
 
           <div className="flex items-center justify-center p-4">
@@ -164,10 +165,11 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None }) 
       ) : classType1 === SeatClass.Economy ? (
         <div className="flex w-[80%] mx-auto flex-row border shadow-md overflow-hidden bg-white">
           <div className="p-4 ml-auto">
-            <div className="font-semibold text-2xl">Economy</div>
-            <div className="text-lg text-golden">
+            <div className="font-bold text-2xl">Economy</div>
+            <div className="text-xl font-semibold text-golden">
               {flight.economyPrice.toLocaleString()} VND
             </div>
+            <div className="text-lg"><span className="font-semibold">Remaining Seat: </span> {flight.remainingEcoSeats}</div>
           </div>
 
           <div className="flex items-center justify-center p-4">

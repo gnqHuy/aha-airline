@@ -5,8 +5,12 @@ import { PassengerCount } from "../../object/passengerCount";
 import { FlightTickets, Ticket } from "../../object/ticket";
 import { SeatClass } from "../../object/enum/SeatClass";
 import { getAllAirport } from "../../api/airportAPI";
+import { FlightTicketResponse } from "../../object/reponseTicketData";
 
 type FlightContextType = {
+  responseTicketData: FlightTicketResponse | null;
+  setResponseTicketData: (response: FlightTicketResponse) => void;
+
   selectedFlight: Flight | null;
   setSelectedFlight: (flight: Flight) => void;
 
@@ -138,6 +142,7 @@ const FlightContext = createContext<FlightContextType | undefined>(undefined);
 
 export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
+  const [responseTicketData, setResponseTicketData] = useState<FlightTicketResponse | null>(null);
   const [selectedFlightClass, setSelectedFlightClass] = useState<SeatClass>(SeatClass.Economy);
   const [selectedFlightPreview, setSelectedFlightPreview] = useState<FlightPreviewType | null>(null);
   const [selectedPassenger, setSelectedPassenger] = useState<PassengerCount>({
@@ -158,11 +163,13 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   });
 
   const addFlightTicket = (ticket: Ticket) => {
+    const flightId = selectedFlight ? selectedFlight.id : "defaultFlightId"; // Sử dụng ID mặc định nếu không có selectedFlight
     setFlightTickets((prevFlight) => ({
-      flightId: selectedFlight?.id || "",
+      flightId,
       tickets: [...prevFlight.tickets, ticket],
     }));
   };
+  
 
   useEffect(() => {
     setNewsList(NewSlide);
@@ -175,6 +182,8 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   return (
     <FlightContext.Provider
       value={{
+        responseTicketData,
+        setResponseTicketData,
         flightTickets,
         addFlightTicket,
         selectedFlight,
