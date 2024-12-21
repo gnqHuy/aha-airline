@@ -1,40 +1,70 @@
 import React from 'react'
 import './ManageBookingInfo.css';
 import { Link } from 'react-router-dom';
+import { IoIosAirplane } from 'react-icons/io';
+import { BsLightbulb } from 'react-icons/bs';
+import { useFlightContext } from '../../../context/FlightContext/FlightContext';
 
 interface Props {
-    storeReservationCode: string;
-    storeLastname: string;
+    reservations: any[];
     handleDisplayInfo: () => void;
+    storeReservationCode: string;
 }
 
-const ManageBookingInfo:React.FC<Props> = ({storeReservationCode, storeLastname, handleDisplayInfo}) => {
+const ManageBookingInfo:React.FC<Props> = ({handleDisplayInfo, reservations, storeReservationCode}) => {
   return (
     <div>
         {/* box info */}
-        <div className = "w-[95%] h-[20rem] bg-[#edd798]">
+        <div className = "w-[95%] bg-[#edd798]">
             <div className = "w-[100%] h-[2.5rem] bg-white">
                 <span className = "text-lg pl-[1rem] relative top-[0.5rem] font-bold text-Green">Reservation Code: {storeReservationCode}</span>
             </div>
-            <div className = "flex h-[17.5rem]">
+            <div className = "flex">
                 <div className = "ml-[1rem]">
                     <p className = "text-Green font-bold text-lg">Journey info:</p>
-                    <ul id = "journey-list" className = "mb-[1rem] text-base relative bottom-[0.5rem]">
-                        <li>Sample Journey 1</li>
-                        <li>Sample Journey 2</li>
+                    <ul id = "journey-list" className = "mb-[1rem] text-base relative bottom-[1.5rem] right-[1rem] font-bold text-Green">
+                        <li>
+                            <div className = "flex">
+                                <p>{`${reservations[0]?.flightInfo?.fromAirport?.city?.name} (${reservations[0]?.flightInfo?.fromAirport?.iata}), ${reservations[0]?.flightInfo?.fromAirport?.city?.country}`}</p>
+                                <IoIosAirplane style = {{color: "#1A4532"}} className = "w-[1.5rem] h-[1.5rem] ml-[0.7rem] relative top-[1.1rem]"/>
+                                <p className = "ml-[0.5rem]">{`${reservations[0]?.flightInfo?.toAirport?.city?.name} (${reservations[0]?.flightInfo?.toAirport?.iata}), ${reservations[0]?.flightInfo?.toAirport?.city?.country}`}</p>
+                            </div>
+                        </li>
+                        <li className = "relative bottom-[1.5rem]">
+                            <p><b>Boarding time: </b>{reservations[0]?.flightInfo?.boardingTime}</p>
+                        </li>
+                        <li className = "relative bottom-[2rem]">
+                            <p><b>Departure time: </b>{reservations[0]?.flightInfo?.departureTime}</p>
+                        </li>
+                        <li className = "relative bottom-[2.5rem]">
+                            <p><b>Arrival time: </b>{reservations[0]?.flightInfo?.arrivalTime}</p>
+                        </li>
+                        <li className = "relative bottom-[3rem]">
+                            <p><b>Aircraft name: </b>{reservations[0]?.flightInfo?.aircraft?.name}</p>
+                        </li>
+                        <li className = "relative bottom-[3.5rem]">
+                            <p><b>Aircraft model: </b>{reservations[0]?.flightInfo?.aircraft?.model}</p>
+                        </li>
+                        <li className = "relative bottom-[4rem]">
+                            <p><b>Boarding gate: </b>{reservations[0]?.flightInfo?.boardingGate}</p>
+                        </li>
                     </ul>
                 </div>
-                <div className = "w-[0.01rem] h-[80%] bg-gray-500 rounded-[8px] mt-[1.8rem] ml-[28%]"></div>
+
+
+                <div className = "w-[0.01rem] h-[26.5vw] bg-gray-500 rounded-[8px] mt-[1.8rem] ml-[1%]"></div>
                 <div className = "ml-[1rem]">
                     <p className = "text-Green font-bold text-lg">Customer info:</p>
-                    <ul id = "journey-list" className = "text-base relative bottom-[0.5rem]">
-                        <li>{storeLastname}/ Ticket Number 1</li>
-                        <li>{storeLastname}/ Ticket Number 2</li>
-                        <li>{storeLastname}/ Ticket Number 3</li>
-                        <li>{storeLastname}/ Ticket Number 4</li>
-                    </ul>
-                    <p className = "text-Green font-bold text-lg">E-mail address:</p>
-                    <p className = "text-lg relative bottom-[1rem] ml-[1rem]">nguyenducanh2925@gmail.com</p>
+                    {reservations.map((reservation, index) => {
+                        return (
+                            <div className = "text-base relative bottom-[1rem] ml-[0]">
+                                <p className = "font-bold">{`Customer ${index + 1}:`}</p>
+                                <ul id = "journey-list" className = "relative bottom-[1rem]">
+                                    <li>{`${reservation?.passengerTitle === 1 ? "Mrs" : "Mr"} ${reservation?.firstName} ${reservation?.lastName}/${reservation?.ticketCode}`}</li>
+                                </ul>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>
