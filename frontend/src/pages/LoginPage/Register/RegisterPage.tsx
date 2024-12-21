@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { signUp } from '../../../api/authAPI';
 
 interface Props {
 }
@@ -10,6 +11,31 @@ const RegisterPage: React.FC<Props> = ({}) => {
     const [email, setEmail] = useState<string>("");
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+
+    const navigate = useNavigate();
+    
+      const handleSubmit = () => {
+        if (!username || !password || !firstname || !lastname || !email) {
+          alert("Please fill in both fields");
+          return;
+        }
+    
+        signUp({
+            firstName: firstname,
+            lastName: lastname,
+            username: username,
+            email: email,
+            password: password
+        }).then((res) => {
+          if (res.data) {
+            alert(res.data);
+            navigate("/");
+          }
+        }).catch((error) => {
+            alert(error || "Failed to log in. Please try again.");
+        });
+      };
+
   return (
     <div className = "h-[40rem] w-[50%] relative bg-white rounded-tr-[12px] rounded-br-[12px]">
         <p className = "text-center text-3xl font-bold text-Green relative bottom-[1rem]">Register to <span className = "text-golden">AHA</span></p>
@@ -19,7 +45,11 @@ const RegisterPage: React.FC<Props> = ({}) => {
                 {/* first name */}
                 <div className = "relative left-[1rem] bottom-[1.5rem]">
                     <p className = "relative left-[0.5rem] text-golden">Firstname</p>
-                    <input type = "text" className = "w-[13rem] h-[2rem] bg-[#FCF9F2] relative bottom-[1rem] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]" placeholder = "Your firstname" onChange={e => setFirstname(e.target.value)}/>
+                    <input 
+                        type = "text" 
+                        className = "w-[13rem] h-[2rem] bg-[#FCF9F2] relative bottom-[1rem] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]" 
+                        placeholder = "Your firstname" 
+                        onChange={e => setFirstname(e.target.value)}/>
                     {/* <div className = "h-[0.1rem]">
                         <p className = "text-sm font-bold relative left-[0.5rem] text-red-500 bottom-[1.5rem]">Error</p>
                     </div> */}
@@ -28,7 +58,11 @@ const RegisterPage: React.FC<Props> = ({}) => {
                 {/* last name */}
                 <div className = "relative left-[1rem] bottom-[1.5rem] ml-[2rem]">
                     <p className = "relative left-[0.5rem] text-golden">Lastname</p>
-                    <input type = "text" className = "w-[14rem] h-[2rem] bg-[#FCF9F2] relative bottom-[1rem] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]" placeholder = "Your lastname" onChange={e => setLastname(e.target.value)}/>
+                    <input 
+                        type = "text" 
+                        className = "w-[14rem] h-[2rem] bg-[#FCF9F2] relative bottom-[1rem] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]" 
+                        placeholder = "Your lastname" 
+                        onChange={e => setLastname(e.target.value)}/>
                     {/* <div className = "h-[0.1rem]">
                         <p className = "text-sm font-bold relative left-[0.5rem] text-red-500 bottom-[1.5rem]">Error</p>
                     </div> */}
@@ -73,7 +107,12 @@ const RegisterPage: React.FC<Props> = ({}) => {
 
             {/* submit */}
             <div className = "relative bottom-[5rem]">
-                <button className = "w-[30%] h-[2.5rem] bg-golden text-white ml-[35%] border-none outline-none text-lg font-bold rounded-[12px]">Sign Up</button>
+                <button 
+                    className = "w-[30%] h-[2.5rem] bg-golden text-white ml-[35%] border-none outline-none text-lg font-bold rounded-[12px]"
+                    onClick={handleSubmit}
+                >
+                    Sign Up
+                </button>
             </div>
 
             {/* additional  */}

@@ -17,6 +17,7 @@ namespace QAirlines.Models.Data_Transfer_Objects
         public string? BookerFirstName { get; set; }
         public string? BookerLastName { get; set; }
         public string SeatNumber { get; set; }
+        public SeatClass SeatClass { get; set; }
         public string ReservationCode { get; set; }
         public PassengerTitle PassengerTitle { get; set; }
         public string FirstName { get; set; }

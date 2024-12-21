@@ -170,6 +170,7 @@ namespace QAirlines.API.Controllers
                     BookerFirstName = user != null ? user.FirstName : null,
                     BookerLastName = user != null ? user.LastName : null,
                     SeatNumber = seat.Position,
+                    SeatClass = seat.Class,
                     ReservationCode = reservationCode,
                     PassengerTitle = ticket.PassengerTitle,
                     FirstName = ticket.FirstName,
