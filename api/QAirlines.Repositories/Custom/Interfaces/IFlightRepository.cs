@@ -16,7 +16,9 @@ namespace QAirlines.Repositories.Custom.Interfaces
         //Task<IEnumerable<Flight>> GetFlightsToArrivalCity(Guid cityId);
         //Task<IEnumerable<Flight>> GetFlightsFromTerminalInfo(Guid departureId, Guid arrivalId);
         //Task<Flight> GetFlightByTicket(Guid ticketId);
+        Task<IEnumerable<Flight>> GetPagedAsync(int pageSize, int pageNumber);
         Task<Flight> GetCheapestByRouteId(Guid routeId);
         Task<IEnumerable<Flight>> GetFromRequest(FlightRequest request);
+        Task<IEnumerable<Flight>> GetFromAircraftAndRoute(Guid aircraftId, Guid routeId);
     }
 }

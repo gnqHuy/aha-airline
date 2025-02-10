@@ -22,22 +22,22 @@ const BookingInformation = (props: Props) => {
       }, []);
   return (
     <Layout>
-        <div className = "h-[280rem] relative overflow-x-clip bottom-[2rem] bg-slate-50">
-            <div className = "relative left-[15rem] top-[1rem]">
+        <div className = "h-[260rem] relative overflow-x-clip overflow-y-auto bottom-[0rem] bg-slate-50">
+            <div className = "relative left-[12vw] top-[1rem]">
                 <p className="text-3xl text-golden font-bold">Booking information</p>
             </div>
-            <div className = "relative left-[15rem] top-[5rem]">
+            <div className = "relative left-[12vw] top-[2rem]">
                 <section id = "fare-rules">
                     <BookingFareRules />
                 </section>
 
-                <div className = "relative top-[70rem]">
+                <div className = "relative top-[60rem]">
                     <section id = "payment-options">
                         <BookingPaymentOption />
                     </section>
                 </div>
 
-                <div className = "relative top-[82rem]">
+                <div className = "relative top-[63rem]">
                     <section id = "tax-fee-surcharge">
                         <BookingTax />
                     </section>

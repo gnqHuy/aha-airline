@@ -16,7 +16,7 @@ const Footer = (props: Props) => {
             <div className="md:flex md:justify-between mb-4">
                 <div className="mb-6 ml-10 md:mb-0">
                     <Link to="/" className="flex items-center no-underline text-golden hover:opacity-80">
-                        <span className="self-center text-3xl font-semibold whitespace-nowrap">AHA AIRLINE</span>
+                        <span className="self-center text-3xl font-semibold whitespace-nowrap small:relative small:top-[1vw]">AHA AIRLINE</span>
                     </Link>
                     <ul className="font-medium text-sm list-none p-0 ml-6">
                         <li className="mb-4">
@@ -33,7 +33,7 @@ const Footer = (props: Props) => {
                         </li>
                     </ul>
                 </div>
-                <div className="mr-5 grid grid-cols-2 gap-8 sm:gap-20 sm:grid-cols-3">
+                <div className="mr-5 grid grid-cols-2 gap-8 sm:gap-20 sm:grid-cols-3 small:relative small:left-[5vw]">
                     <div>
                         <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Resources</h2>
                         <ul className="font-medium text-sm list-none p-0">
@@ -44,7 +44,7 @@ const Footer = (props: Props) => {
                                 <a href="/booking" className="text-white no-underline hover:opacity-80">Booking</a>
                             </li>
                             <li className="mb-4">
-                                <a href="/travelinfo" className="text-white no-underline hover:opacity-80">Travel Info</a>
+                                <a href="/travel-info" className="text-white no-underline hover:opacity-80">Travel Info</a>
                             </li>
                             <li className="mb-4">
                                 <a href="/explore/experience" className="text-white no-underline hover:opacity-80">Experience</a>

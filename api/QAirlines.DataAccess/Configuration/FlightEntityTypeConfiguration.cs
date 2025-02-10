@@ -66,6 +66,14 @@ namespace QAirlines.DataAccess.Configuration
                 .HasColumnType("int")
                 .HasColumnName("business_price");
 
+            builder.Property(e => e.RemainingEcoSeats)
+                .HasColumnType("int")
+                .HasColumnName("remaining_eco_seats");
+
+            builder.Property(e => e.RemainingBsnSeats)
+                .HasColumnType("int")
+                .HasColumnName("remaining_bsn_seats");
+
             builder.HasOne(e => e.Aircraft)
                 .WithMany(a => a.Flights)
                 .HasForeignKey(e => e.AircraftId)

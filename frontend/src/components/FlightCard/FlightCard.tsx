@@ -1,21 +1,40 @@
 import React from 'react';
 import './FlightCard.css';
-import { Flight } from '../../object/flight/flight';
+import { FlightPreviewType } from '../../object/flightPreview';
 
 type FlightCardProps = {
-  flight: Flight;
+  flight: FlightPreviewType;
   image: string;
 };
 
-const FlightCard: React.FC<FlightCardProps> = ({flight, image}) => {
+const FlightCard: React.FC<FlightCardProps> = ({ flight, image }) => {
+  const departureDate = new Date(flight.departureTime);
+
+  const formattedDate = departureDate.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  const formattedTime = departureDate.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  });
+
   return (
     <div className="flight-card-container">
-      <img src={image} alt={`Flight to ${flight.from}`} />
+      <img src={image} loading='lazy' alt={`Flight to ${flight.toAirport.city.name}`} />
       <div className="flight-info">
-        <p className="city-name">{flight.from} <br/> to {flight.to}</p>
-        <p className="depart">Depart: {flight.day}</p>
-        <p className="price">{flight.price.toLocaleString()}</p>
-        <p className="ticketType">{flight.ticketType}</p>
+        <p className="city-name">
+          {flight.fromAirport.city.name} <br /> to {flight.toAirport.city.name}
+        </p>
+        <p className="depart">
+          <b>Departure Time:</b> <br/> {formattedDate}
+        </p>
+        <p className="price">
+          From: {flight.minimumPrice.toLocaleString()} VND
+        </p>
       </div>
     </div>
   );

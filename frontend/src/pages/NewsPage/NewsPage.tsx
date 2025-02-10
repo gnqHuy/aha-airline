@@ -6,7 +6,7 @@ type Props = {
 }
 
 const NewsPage = (props: Props) => {
-    const { newsList, index } = useFlightContext();
+    const { newsList, index, count } = useFlightContext();
     useEffect(() => {
     }, []);
   return (

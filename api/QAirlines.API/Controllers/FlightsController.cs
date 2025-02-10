@@ -56,13 +56,65 @@ namespace QAirlines.API.Controllers
             return flightPreviews.ToList();
         }
 
+        //[HttpPut("ResetSeats")]
+        //public async Task ResetNoOfSeats()
+        //{
+        //    _flightService.ResetRemainingSeats();
+        //}
+
+        [HttpPut("ResetNoOfAvalableSeat")]
+        public void ResetAvailableSeat(Guid flightId, int remainingEcoSeats, int remainingBsnSeats)
+        {
+            var flight = _unitOfWork.Flights.GetById(flightId);
+            flight.RemainingBsnSeats = remainingBsnSeats;
+            flight.RemainingEcoSeats = remainingEcoSeats;
+            _unitOfWork.Commit();
+        }
+
+        [HttpPost("GenerateSeats")]
+        public async Task<IActionResult> GenerateSeats()
+        {
+            int count = await _flightService.GenerateSeats();
+            return Ok($"Generated and added {count} seats");
+        }
+
         [HttpGet("FromRequest")]
-        public async Task<IEnumerable<FlightDTO>> GetFromRequest([FromQuery]string fromIATA, string toIATA, DateTime dateTime)
+        public async Task<IEnumerable<FlightDTO>> GetFromRequest([FromQuery]string fromIATA, string toIATA, DateTime? dateTime)
         {
             var flights = await _flightService.GetFromRequest(fromIATA, toIATA, dateTime);
             
             var flightDTOs = new List<FlightDTO>();
             foreach (var flight in flights) 
+            {
+                var flightDTO = _mappingFunctions.FlightMapper(flight);
+                flightDTOs.Add(flightDTO);
+            }
+
+            return flightDTOs;
+        }
+
+        [HttpGet("FromAircraftAndRoute")]
+        public async Task<IEnumerable<FlightDTO>> GetFromAircraftAndRoute([FromQuery]string aircraftName, string fromIATA, string toIATA)
+        {
+            var flights = await _flightService.GetFromAircraftAndRoute(aircraftName, fromIATA, toIATA);
+
+            var flightDTOs = new List<FlightDTO>();
+            foreach (var flight in flights)
+            {
+                var flightDTO = _mappingFunctions.FlightMapper(flight);
+                flightDTOs.Add(flightDTO);
+            }
+
+            return flightDTOs;
+        }
+
+        [HttpGet("Paged")]
+        public async Task<IEnumerable<FlightDTO>> GetPagedDTO([FromQuery]int pageSize, int pageNumber)
+        {
+            var flights = await _unitOfWork.Flights.GetPagedAsync(pageSize, pageNumber);
+
+            var flightDTOs = new List<FlightDTO>();
+            foreach (var flight in flights)
             {
                 var flightDTO = _mappingFunctions.FlightMapper(flight);
                 flightDTOs.Add(flightDTO);
@@ -90,7 +142,7 @@ namespace QAirlines.API.Controllers
         {
             DateTime current = DateTime.Now;
             current = current.AddDays(days);
-            var flights = _flightService.GenerateContinuousRandomFlight(current);
+            var flights = await _flightService.GenerateContinuousRandomFlight(current);
 
             if (flights != null)
             {
@@ -100,6 +152,7 @@ namespace QAirlines.API.Controllers
                 int count = flights.Count();
                 return Ok($"Generated and added {count} flights");
             }
+
             return BadRequest();
         }
 

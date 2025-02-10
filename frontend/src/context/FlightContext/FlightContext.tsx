@@ -1,30 +1,84 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { Flight } from "../../object/flight/flight";
-import { PassengerCount } from "../../object/passengerCount/passengerCount";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { Flight } from "../../object/flight";
+import { FlightPreviewType } from "../../object/flightPreview";
+import { PassengerCount } from "../../object/passengerCount";
+import { FlightTickets, Ticket } from "../../object/ticket";
+import { SeatClass } from "../../object/enum/SeatClass";
 import { getAllAirport } from "../../api/airportAPI";
+import { FlightTicketResponse } from "../../object/reponseTicketData";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/selector/authSelector";
 
 type FlightContextType = {
+  // responseTicketData: FlightTicketResponse | null;
+  // setResponseTicketData: (response: FlightTicketResponse) => void;
+
   selectedFlight: Flight | null;
   setSelectedFlight: (flight: Flight) => void;
+
+  selectedFlightRound: Flight | null;
+  setSelectedFlightRound: (flight: Flight) => void;
+
+  roundTrip: boolean;
+  setRoundTrip: (roundTrip: boolean) => void;
+
+  returnDate: string;
+  setReturnDate: (returnDate: string) => void;
+
+  selectedFlightClass: SeatClass;
+  setSelectedFlightClass: (flightClass: SeatClass) => void;
+
+  selectedFlightRoundClass: SeatClass;
+  setSelectedFlightRoundClass: (flightClass: SeatClass) => void;
+
+  selectedFlightPreview: FlightPreviewType | null;
+  setSelectedFlightPreview: (flightPreview: FlightPreviewType) => void;
+
   selectedPassenger: PassengerCount;
   setSelectedPassenger: (passengerCount: PassengerCount) => void;
+
+  flightTickets: FlightTickets;
+  addFlightTicket: (ticket: Ticket) => void;
+
+  flightTicketsRound: FlightTickets;
+  addFlightTicketRound: (ticket: Ticket) => void;
+
   airports: any[];
   setAirports: (flights: any[]) => void;
+
   newsList: any[];
   setNewsList: (news: any[]) => void;
+
   news: any;
   setNews: (news: any) => void;
+
   index: number;
   setIndex: (index: number) => void;
+  count: number;
+  setCount: (count: number) => void;
+
+  manageBookingReservationCode: string;
+  setManageBookingReservationCode: (reservationCode: string) => void;
+
+  checkinReservationCode: string;
+  setCheckinReservationCode: (reservationCode: string) => void;
+
+  checkinTicket: string;
+  setCheckinTicket: (ticket: string) => void;
+
+  checkinOption: string;
+  setCheckinOption: (option: string) => void;
+
+  clearData:()=>void;
 };
 
 type News = {
   imgLink: string;
   header: string;
-  content: string; 
-}
+  content: string;
+};
 
-const content1Sample = `<div class="max-w-4xl relative left-[6rem] p-6 bg-[] rounded-lg shadow-lg font-space-grotesk">
+const content1Sample = `<div class="max-w-4xl relative left-[6rem] p-6 bg-[] rounded-lg shadow-lg ">
       <div class="text-center mb-6">
         <h1 class="text-4xl font-semibold text-blue-600">
           AHA Airlines Announces Exclusive 20% Discount on International Flights!
@@ -67,7 +121,7 @@ const content1Sample = `<div class="max-w-4xl relative left-[6rem] p-6 bg-[] rou
       </div>
     </div>`
 
-  const content2Sample = `<div class="max-w-4xl p-6 rounded-lg shadow-lg relative left-[6rem] font-space-grotesk">
+  const content2Sample = `<div class="max-w-4xl p-6 rounded-lg shadow-lg relative left-[6rem] ">
       <div class="text-center mb-6">
         <h1 class="text-4xl font-semibold text-red-600">
           Big Sale! Get 50% Off on All Domestic Flights with AHA Airlines!
@@ -115,11 +169,15 @@ const NewSlide = [
   {imgLink: "https://upload.wikimedia.org/wikipedia/commons/0/03/Australian_Airlines_VH-OGI_Sydney_Airport_2005.jpg", header: "50% discount for domestic flights", content: content2Sample, link: "/news"}
 ]
 
-
 const FlightContext = createContext<FlightContextType | undefined>(undefined);
 
 export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
+  const [selectedFlightRound, setSelectedFlightRound] = useState<Flight | null>(null);
+  // const [responseTicketData, setResponseTicketData] = useState<FlightTicketResponse | null>(null);
+  const [selectedFlightClass, setSelectedFlightClass] = useState<SeatClass>(SeatClass.Economy);
+  const [selectedFlightRoundClass, setSelectedFlightRoundClass] = useState<SeatClass>(SeatClass.Economy);
+  const [selectedFlightPreview, setSelectedFlightPreview] = useState<FlightPreviewType | null>(null);
   const [selectedPassenger, setSelectedPassenger] = useState<PassengerCount>({
     adults: 1,
     children: 0,
@@ -129,20 +187,87 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [airports, setAirports] = useState<any[]>([]);
   const [news, setNews] = useState<any>(NewSlide[0]);
   const [index, setIndex] = useState<number>(Number(localStorage.getItem('news-index')));
+  const [count, setCount] = useState(0);
+
+  const [manageBookingReservationCode, setManageBookingReservationCode] = useState<string>(String(localStorage.getItem("manageBookingReservationCode")));
+  const [checkinReservationCode, setCheckinReservationCode] = useState<string>(String(localStorage.getItem("checkinReservationCode")));
+  const [checkinTicket, setCheckinTicket] = useState<string>(String(localStorage.getItem("checkinTicket")));
+  const [checkinOption, setCheckinOption] = useState<string>(String(localStorage.getItem("checkinOption")));
+  const user = useSelector(selectUser);
+  const [roundTrip, setRoundTrip] = useState<boolean>(false);
+  const [returnDate, setReturnDate] = useState<string>("");
+
+  const [flightTickets, setFlightTickets] = useState<FlightTickets>({
+      flightId: "",
+      bookedId: user != null ? user.id : null,
+      tickets: [],
+  });
+
+  const addFlightTicket = (ticket: Ticket) => {
+    const flightId = selectedFlight ? selectedFlight.id : "defaultFlightId";
+    setFlightTickets((prevFlight) => ({
+      flightId,
+      bookedId: user != null ? user.id : null,
+      tickets: [...prevFlight.tickets, ticket],
+    }));
+
+  };
+  
+  const [flightTicketsRound, setFlightTicketsRound] = useState<FlightTickets>({
+    flightId: "",
+    bookedId: user != null ? user.id : null,
+    tickets: [],
+  });
+
+  const addFlightTicketRound = (ticket: Ticket) => {
+    const flightId = selectedFlightRound ? selectedFlightRound.id : "defaultFlightId";
+    setFlightTicketsRound((prevFlight) => ({
+      flightId,
+      bookedId: user != null ? user.id : null,
+      tickets: [...prevFlight.tickets, ticket],
+    }));
+  };
+
+  const clearData = () => {
+    setRoundTrip(false);
+  }
 
   useEffect(() => {
     setNewsList(NewSlide);
     getAllAirport().then((res) => {
       setAirports(res.data);
-    })
+    });
     localStorage.setItem('news-index', index.toString());
-  }, [index]);
+    localStorage.setItem('manageBookingReservationCode', manageBookingReservationCode);
+    localStorage.setItem('checkinReservationCode', checkinReservationCode);
+    localStorage.setItem('checkinTicket', checkinTicket);
+    localStorage.setItem('checkinOption', checkinOption);
+  }, [index, manageBookingReservationCode, checkinReservationCode, checkinTicket, checkinOption]);
 
   return (
     <FlightContext.Provider
       value={{
+        clearData,
+        flightTicketsRound,
+        addFlightTicketRound,
+        selectedFlightRoundClass,
+        setSelectedFlightRoundClass,
+        selectedFlightRound,
+        setSelectedFlightRound,
+        returnDate,
+        setReturnDate,
+        setRoundTrip,
+        roundTrip,
+        // responseTicketData,
+        // setResponseTicketData,
+        flightTickets,
+        addFlightTicket,
         selectedFlight,
         setSelectedFlight,
+        selectedFlightClass,
+        setSelectedFlightClass,
+        selectedFlightPreview,
+        setSelectedFlightPreview,
         selectedPassenger,
         setSelectedPassenger,
         airports,
@@ -152,7 +277,17 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         news,
         setNews,
         index,
-        setIndex
+        setIndex,
+        count,
+        setCount, 
+        manageBookingReservationCode, 
+        setManageBookingReservationCode, 
+        checkinReservationCode, 
+        setCheckinReservationCode, 
+        checkinTicket,
+        setCheckinTicket, 
+        checkinOption, 
+        setCheckinOption
       }}
     >
       {children}
@@ -163,7 +298,7 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 export const useFlightContext = () => {
   const context = useContext(FlightContext);
   if (!context) {
-    throw new Error("useFlight must be used within a FlightProvider");
+    throw new Error("useFlightContext must be used within a FlightProvider");
   }
   return context;
 };

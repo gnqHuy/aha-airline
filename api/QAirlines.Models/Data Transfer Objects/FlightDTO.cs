@@ -16,6 +16,8 @@ namespace QAirlines.Models.Data_Transfer_Objects
         public DateTime DepartureTime { get; set; }
         public DateTime ArrivalTime { get; set; }
         public string BoardingGate { get; set; }
+        public int RemainingBsnSeats { get; set; }
+        public int RemainingEcoSeats { get; set; }
         public int EconomyPrice { get; set; }
         public int BusinessPrice { get; set; }
         public FlightStatus Status { get; set; }

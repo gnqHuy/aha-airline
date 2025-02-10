@@ -17,13 +17,21 @@ import TravelDocument from '../pages/TravelInfo/TravelDocument/TravelDocument';
 import Ticket from '../pages/TicketPage/TicketPage';
 import { SearchFlightStateProvider } from '../context/SearchFlightState/SearchFlightState';
 import TicketCard from '../pages/TicketCart/TicketCart';
-import { TicketProvider } from '../context/TicketContext/TicketContext';
-import PassengerInfo from '../components/BookingSection/Book/Content/PassengerInfo/PassengerInfo';
 import PassengerInfor from '../pages/PassengerInfo/PassengerInfor';
-import { BookedTicketProvider } from '../context/BookedTicket/BookedTicket';
 import Payment from '../pages/Payment/Payment';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import NewsPage from '../pages/NewsPage/NewsPage';
+import Register from '../pages/LoginPage/Register/Register';
+import Admin from '../pages/Admin/Admin';
+import Aircrafts from '../pages/Admin/Aircrafts/Aircrafts';
+import Airports from '../pages/Admin/Airports/Airports';
+import Cities from '../pages/Admin/Cities/Cities';
+import FlightRoutes from '../pages/Admin/FlightRoutes/FlightRoutes';
+import Flights from '../pages/Admin/Flights/Flights';
+import BookManagement from '../pages/BookManagement/BookManagement';
+import CheckInManagement from '../pages/CheckInManagement/CheckInManagement';
+import YourTicket from '../pages/YourTicket/YourTicket';
+import ProtectedRoute from './protectedRoute';
 
 export const router = createBrowserRouter([
   {
@@ -97,10 +105,8 @@ export const router = createBrowserRouter([
     path: "/ticket",
     element: (
       <>
-      <TicketProvider>
         <ScrollToTop />
         <Ticket />
-      </TicketProvider>
       </>
     ),
   },
@@ -108,10 +114,8 @@ export const router = createBrowserRouter([
     path: "/ticket/ticketCart",
     element: (
       <>
-      <TicketProvider>
         <ScrollToTop />
         <TicketCard />
-      </TicketProvider>
       </>
     ),
   },
@@ -119,14 +123,8 @@ export const router = createBrowserRouter([
     path: "/ticket/ticketCart/passengerInfor",
     element: (
       <>
-      
-        <TicketProvider>
-          <BookedTicketProvider>
           <ScrollToTop />
           <PassengerInfor />
-          </BookedTicketProvider>
-        </TicketProvider>
-      
       </>
     ),
   },
@@ -134,14 +132,8 @@ export const router = createBrowserRouter([
     path: "/ticket/ticketCart/passengerInfor/payment",
     element: (
       <>
-      
-        <TicketProvider>
-          <BookedTicketProvider>
           <ScrollToTop />
           <Payment />
-          </BookedTicketProvider>
-        </TicketProvider>
-      
       </>
     ),
   },
@@ -218,11 +210,80 @@ export const router = createBrowserRouter([
     )
   }, 
   {
+    path: "/sign-up", 
+    element: (
+      <>
+        <ScrollToTop />
+        <Register />
+      </>
+    )
+  },
+  {
+    path: "/admin",
+    element: (
+      <ProtectedRoute requiredRoles={["SuperAdmin", "FlightAdmin"]}>
+          <>
+            <ScrollToTop />
+            <Admin />
+          </>
+        </ProtectedRoute>
+    ),
+    children: [
+      {
+        path: "aircrafts",
+        element: <Aircrafts/>,
+      },
+      {
+        path: "airports",
+        element: <Airports/>,
+      },
+      {
+        path: "cities",
+        element: <Cities/>,
+      },
+      {
+        path: "flight-routes",
+        element: <FlightRoutes/>,
+      },
+      {
+        path: "flights",
+        element: <Flights/>,
+      },
+    ],
+  },
+  {
+    path: "/book-management", 
+    element: (
+      <>
+        <ScrollToTop />
+        <BookManagement />
+      </>
+    )
+  }, 
+  {
+    path: "/checkin-management", 
+    element: (
+      <>
+        <ScrollToTop />
+        <CheckInManagement />
+      </>
+    )
+  }, 
+  {
     path: "/news", 
     element: (
       <>
         <ScrollToTop />
         <NewsPage />
+      </>
+    )
+  }, 
+  {
+    path: "/your-ticket", 
+    element: (
+      <>
+        <ScrollToTop />
+        <YourTicket />
       </>
     )
   }

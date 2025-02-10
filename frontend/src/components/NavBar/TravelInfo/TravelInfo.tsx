@@ -5,11 +5,16 @@ type Props = {};
 
 const Explore: React.FC<Props> = () => {
   return (
-    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[20vw] medium:grid-cols-3 bg-white">
+    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[5vw] medium:grid-cols-3 bg-white small:relative small:grid-cols-3 small:left-[50vw]">
       {/* Check-In */}
-      <div className = "medium:relative medium:left-[17vw]">
-        <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
-          Check-In
+      <div className = "medium:relative medium:left-[20vw]">
+        <h2 className="mb-5 text-sm font-semibold uppercase">
+          <a
+            href="/travel-info/check-in"
+            className="text-golden no-underline hover:opacity-80 transition-opacity"
+          >
+            Check-In
+          </a>
         </h2>
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
@@ -40,9 +45,14 @@ const Explore: React.FC<Props> = () => {
       </div>
 
       {/* Baggage Info */}
-      <div className = "medium:relative medium:left-[13vw]">
-        <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
-          Baggage Info
+      <div className = "medium:relative medium:left-[13vw] small:relative small:right-[20vw]">
+        <h2 className="mb-5 text-sm font-semibold uppercase">
+          <a
+            href="/travel-info/baggageinfo"
+            className="text-golden no-underline hover:opacity-80 transition-opacity"
+          >
+            Baggage Info
+          </a>
         </h2>
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
@@ -73,9 +83,14 @@ const Explore: React.FC<Props> = () => {
       </div>
 
       {/* Travel Document */}
-      <div className = "medium:relative medium:left-[10vw]">
-        <h2 className="mb-5 text-sm font-semibold uppercase text-golden">
-          Travel Document
+      <div className = "medium:relative medium:left-[10vw] small:relative small:right-[40vw]">
+        <h2 className="mb-5 text-sm font-semibold uppercase">
+          <a
+            href="/travel-info/traveldocument"
+            className="text-golden no-underline hover:opacity-80 transition-opacity"
+          >
+            Travel Document
+          </a>
         </h2>
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">

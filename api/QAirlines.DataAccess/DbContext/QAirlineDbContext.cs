@@ -27,7 +27,6 @@ namespace QAirlines.DataAccess.DbContext
 
         public DbSet<Aircraft> Aircrafts { get; set; }
         public DbSet<Airport> Airports { get; set; }
-        public DbSet<Cancellation> Cancellation { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<FlightRoute> FlightRoutes { get; set; }
         public DbSet<Flight> Flights { get; set; }
@@ -35,7 +34,7 @@ namespace QAirlines.DataAccess.DbContext
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
 
         #endregion
     }

@@ -3,12 +3,13 @@ import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import "./NewsSection.css";
 
-import image1 from '../../assets-test/Images/offer1.png';
-import image2 from '../../assets-test/Images/seoul.jpg';
-import image3 from '../../assets-test/Images/tokyo.jpg';
+import image1 from '../../assets-test/Images/coupon1.jpeg';
+import image2 from '../../assets-test/Images/cities/seoul.jpg';
+import image3 from '../../assets-test/Images/cities/tokyo.jpg';
 import { useFlightContext } from '../../context/FlightContext/FlightContext';
 
 const Example = () => {
+    
     const slides = [
         { image: image1, link: "/explore/offer" },
         { image: image2, link: "/explore/destination/seoul" },
@@ -17,12 +18,14 @@ const Example = () => {
         // {imgLink: url1, header: h1, content: c1}
     ];
 
-    const { newsList, setNews, setIndex} = useFlightContext();
+    const { newsList, setNews, setIndex, count, setCount} = useFlightContext();
     
 
     useEffect(() => {
-        console.log(newsList);
     }, [newsList]);
+
+    useEffect(() => {
+    }, [])
 
     return (
         <Slide>
@@ -40,7 +43,6 @@ const Example = () => {
                             onClick={() => {
                                 setIndex(index);
                                 localStorage.setItem('news-index', index.toString());
-                                console.log(slide);
                             }}
                         />
                     </a>

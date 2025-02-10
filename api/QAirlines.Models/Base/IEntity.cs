@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QAirlines.Models.Base
 {
-    internal interface IEntity<T>
+    public interface IEntity<T>
     {
         public T Id { get; set; }
     }

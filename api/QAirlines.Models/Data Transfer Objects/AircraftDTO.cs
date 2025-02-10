@@ -10,6 +10,7 @@ namespace QAirlines.Models.Data_Transfer_Objects
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string Model { get; set; }
         public string Manufacturer { get; set; }
         public int NoOfSeats { get; set; }
     }

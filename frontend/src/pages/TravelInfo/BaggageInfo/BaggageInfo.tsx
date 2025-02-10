@@ -16,10 +16,10 @@ const BaggageInfo = (props: Props) => {
       }, []);
   return (
     <Layout>
-        <div className = "relative h-[170rem] overflow-x-clip font-space-grotesk bg-slate-50 bottom-[2rem]">
-            <p className="text-3xl text-golden font-bold relative left-[15rem] top-[1rem]">Baggage Info</p>
+        <div className = "relative overflow-x-clip overflow-y-auto bg-slate-50 bottom-[0rem]">
+            <p className="text-3xl text-golden font-bold relative left-[12vw] top-[1rem]">Baggage Info</p>
             {/* carry-on baggage */}
-            <div className = "relative left-[15rem] w-[70rem]" id = "carry-on">
+            <div className = "relative left-[12vw] top-[3rem] w-[75vw]" id = "carry-on">
                 <p className = "text-3xl text-Green font-bold">Carry-on Baggage</p>
                 <p className = "text-lg">Each passenger (except for infants under 2 years old) is allowed the following standard free carry-on baggage on BAV flights: </p>
                 <ul className = "relative bottom-[0.5rem]">
@@ -35,13 +35,13 @@ const BaggageInfo = (props: Props) => {
                     <li>An assistive device for disabled passengers (crutches, canes, or a foldable wheelchair that fits in the overhead bin) or a medical device, or</li>
                     <li>A laptop bag with maximum dimensions of 40cm x 30cm x 10cm</li>
                 </ul>
-                <div className = "w-[70rem] h-[0.01rem] bg-gray-500"></div>
+                <div className = "w-[75vw] h-[0.01rem] bg-gray-500"></div>
                 <p className = "text-lg">Free carry-on baggage for infants includes:</p>
                 <ul>
                     <li>A baby bag (containing food and diapers for use during the flight) not exceeding 3 kg and within the maximum dimensions of the carry-on baggage, and</li>
                     <li className = "relative top-[0.5rem]">A foldable baby stroller/lightweight pram that fits in the overhead bin (not exceeding the weight and/or size of the carry-on baggage)</li>
                 </ul>
-                <div className = "w-[70rem] h-[0.01rem] bg-gray-500"></div>
+                <div className = "w-[75vw] h-[0.01rem] bg-gray-500"></div>
                 <p className = "text-xl font-bold italic">Note:</p>
                 <ul>
                     <li>All carry-on baggage must be weighed and tagged. Untagged carry-on baggage will not be allowed on board (except for passengers who check-in online)</li>
@@ -53,13 +53,13 @@ const BaggageInfo = (props: Props) => {
             </div>
 
             {/* excess baggage */}
-            <div className = "relative left-[15rem] top-[5rem]" id = "excess">
+            <div className = "relative left-[12vw] top-[7rem]" id = "excess">
                 <ExcessBaggage />
             </div>
 
             {/* special baggage */}
-            <div className = "w-[70rem] relative left-[15rem] top-[8rem]" id = "special">
-                <p className = "text-3xl font-bold text-[#094c5b]">Special Baggage</p>
+            <div className = "w-[75vw] relative left-[12vw] top-[9rem]" id = "special">
+                <p className = "text-3xl font-bold text-[#1A4532]">Special Baggage</p>
                 <p className = "text-lg relative bottom-[1rem]">AHA Airlines provides a service for transporting oversized luggage, bicycles and sports equipment such as skiing equipment, skateboards as checked baggage.</p>
                 <p className = "text-lg relative bottom-[1rem]"><b>Skiing Equipment/ Water Slideboarding:</b> 01 skiing/ surfing board, 01 pair of ski poles, 1 pair of skiing shoes. Any other equipment which is not listed here is not considered as part of skiing equipment/ surfing board.</p>
                 <p className = "text-lg relative bottom-[1rem]"><b>Surfing Board:</b> Sports equipment for skiing/surfing including 01 skateboard. </p>

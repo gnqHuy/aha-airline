@@ -181,13 +181,22 @@ namespace QAirlines.API.Services
             var flightPreviews = new List<FlightPreview>();
             var flightRoutes = new List<FlightRoute>();
 
-            if (request.RouteInfo == null)
+            if (string.IsNullOrEmpty(request.FromAirportIATA) && string.IsNullOrEmpty(request.ToAirportIATA))
             {
-                flightRoutes = _unitOfWork.FlightRoutes.FindMostPopularRoutes(request.PageSize, request.PageNumber).ToList();
+                flightRoutes = _unitOfWork.FlightRoutes.FindMostPopularRoutes().ToList();
             } 
             else
             {
-                flightRoutes = _unitOfWork.FlightRoutes.FindPagedRoutesFromRequest(request.RouteInfo, request.PageSize, request.PageNumber).ToList();
+                FlightRouteRequest frRequest = new FlightRouteRequest
+                {
+                    FromAirportIATA = request.FromAirportIATA,
+                    ToAirportIATA = request.ToAirportIATA
+                };
+                if (request.PageSize == 0)
+                {
+                    request.PageSize = 9;
+                }
+                flightRoutes = _unitOfWork.FlightRoutes.FindPagedRoutesFromRequest(frRequest, request.PageSize, request.PageNumber).ToList();
             }
 
             foreach (var flightRoute in flightRoutes)
@@ -210,7 +219,7 @@ namespace QAirlines.API.Services
             return flightPreviews;
         }
 
-        public async Task<IEnumerable<Flight>> GetFromRequest(string fromAirportIATA,  string toAirportIATA, DateTime departTime)
+        public async Task<IEnumerable<Flight>> GetFromRequest(string fromAirportIATA,  string toAirportIATA, DateTime? departTime)
         {
             var flightRouteRequest = new FlightRouteRequest
             {
@@ -218,12 +227,12 @@ namespace QAirlines.API.Services
                 ToAirportIATA = toAirportIATA
             };
 
-            var route = _unitOfWork.FlightRoutes.FindRoutesFromRequest(flightRouteRequest);
+            var route = await _unitOfWork.FlightRoutes.FindRoutesFromRequestAsync(flightRouteRequest);
 
             var flightRequest = new FlightRequest
             {
                 RouteId = route.ElementAt(0).Id,
-                DepartTime = departTime,
+                DepartTime = departTime ?? DateTime.Now.AddDays(1),
             };
 
             var flights = await _unitOfWork.Flights.GetFromRequest(flightRequest);
@@ -231,7 +240,23 @@ namespace QAirlines.API.Services
             return flights;
         }
 
-        public IEnumerable<Flight> GenerateContinuousRandomFlight(DateTime dateTime)
+        public async Task<IEnumerable<Flight>> GetFromAircraftAndRoute(string aircraftName, string fromAirportIATA, string toAirportIATA)
+        {
+            var flightRouteRequest = new FlightRouteRequest
+            {
+                FromAirportIATA = fromAirportIATA,
+                ToAirportIATA = toAirportIATA
+            };
+
+            var route = await _unitOfWork.FlightRoutes.FindRoutesFromRequestAsync(flightRouteRequest);
+            var aircraft = await _unitOfWork.Aircrafts.GetByNameAsync(aircraftName);
+
+            var flights = await _unitOfWork.Flights.GetFromAircraftAndRoute(aircraft.Id, route.ElementAt(0).Id);
+
+            return flights;
+        }
+
+        public async Task<IEnumerable<Flight>> GenerateContinuousRandomFlight(DateTime dateTime)
         {
             var flightRoutes = _unitOfWork.FlightRoutes.GetAll();
             var aircrafts = _unitOfWork.Aircrafts.GetAll();
@@ -246,7 +271,7 @@ namespace QAirlines.API.Services
                         FromAirportIATA = aircraft.Terminal
                     };
 
-                    var filteredRoutes = _unitOfWork.FlightRoutes.FindRoutesFromRequest(request);
+                    var filteredRoutes = await _unitOfWork.FlightRoutes.FindRoutesFromRequestAsync(request);
                     var nextRoute = RandomRoute(filteredRoutes);
 
                     DateTime boardingTime = RoundTime(GetBoardingTime(aircraft.AvailableAt));
@@ -260,6 +285,28 @@ namespace QAirlines.API.Services
                     aircraft.AvailableAt = arrivalTime;
                     nextRoute.NoOfFlights++;
 
+                    int ecoSeats = 0;
+                    int bsnSeats = 0;
+
+                    if (aircraft.NoOfSeats < 200)
+                    {
+                        bsnSeats = 36;
+                    }
+                    if (aircraft.NoOfSeats < 300 && aircraft.NoOfSeats > 200)
+                    {
+                        bsnSeats = 48;
+                    }
+                    if (aircraft.NoOfSeats < 400 && aircraft.NoOfSeats > 300)
+                    {
+                        bsnSeats = 60;
+                    }
+                    if (aircraft.NoOfSeats < 500 && aircraft.NoOfSeats > 400)
+                    {
+                        bsnSeats = 72;
+                    }
+
+                    ecoSeats = aircraft.NoOfSeats - bsnSeats;
+
                     var flight = new Flight
                     {
                         AircraftId = aircraft.Id,
@@ -270,7 +317,9 @@ namespace QAirlines.API.Services
                         Status = FlightStatus.Upcomming,
                         BoardingGate = RandomGate(1, 20),
                         EconomyPrice = economyPrice,
-                        BusinessPrice = businessPrice
+                        BusinessPrice = businessPrice,
+                        RemainingEcoSeats = ecoSeats,
+                        RemainingBsnSeats = bsnSeats,
                     };
                     flights.Add(flight);
                 }
@@ -278,5 +327,73 @@ namespace QAirlines.API.Services
 
             return flights;
         }
+
+        public async Task<int> GenerateSeats()
+        {
+            var aircrafts = await _unitOfWork.Aircrafts.GetAllAsync();
+            int count = 0;
+
+            foreach (var aircraft in aircrafts)
+            {
+                int totalRows = aircraft.NoOfSeats / 6;
+                string[] seatLetters = { "A", "B", "C", "D", "E", "F" };
+                int bsnSeats = 0;
+
+                if (aircraft.NoOfSeats < 200)
+                {
+                    bsnSeats = 36;
+                }
+                if (aircraft.NoOfSeats < 300 && aircraft.NoOfSeats > 200)
+                {
+                    bsnSeats = 48;
+                }
+                if (aircraft.NoOfSeats < 400 && aircraft.NoOfSeats > 300)
+                {
+                    bsnSeats = 60;
+                }
+                if (aircraft.NoOfSeats < 500 && aircraft.NoOfSeats > 400)
+                {
+                    bsnSeats = 72;
+                }
+
+                for (int i = 0; i < aircraft.NoOfSeats; i++)
+                {
+                    int logicalRowNumber = (i / 6) + 1;
+                    int actualRowNumber = logicalRowNumber >= 13 ? logicalRowNumber + 1 : logicalRowNumber;
+
+                    string seatPosition = $"{actualRowNumber}{seatLetters[i % 6]}";
+
+                    SeatClass seatClass = i < bsnSeats ? SeatClass.Business : SeatClass.Economy;
+
+                    var seat = new Seat
+                    {
+                        AircraftId = aircraft.Id,
+                        Number = i + 1,
+                        Position = seatPosition,
+                        Class = seatClass,
+                        IsAvaiable = true,
+                    };
+
+                    _unitOfWork.Seats.Add(seat);
+                    count++;
+                }
+            }
+
+            _unitOfWork.Commit(); 
+            return count;
+        }
+
+
+        //public async Task ResetRemainingSeats()
+        //{
+        //    var flights = await _unitOfWork.Flights.GetAllAsync();
+
+        //    foreach (var flight in flights)
+        //    {
+        //        var aircraft = _unitOfWork.Aircrafts.GetById(flight.AircraftId);
+        //        flight.RemainingSeats = aircraft.NoOfSeats;
+        //    }
+        //    _unitOfWork.Commit();
+        //}
     }
 }

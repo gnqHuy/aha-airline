@@ -12,6 +12,8 @@ namespace QAirlines.Repositories.Custom.Interfaces
     {
         Task<IEnumerable<Airport>>GetByCountryName(string countryName);
         Airport GetByIATA(string iata);
+        Task<IEnumerable<Airport>> GetByIATACodesAsync(IEnumerable<string> iataCodes);
+        Task<Airport> GetByIATAAsync(string iata);
         Task<IEnumerable<Airport>> GetAirports();
     }
 }
