@@ -8,7 +8,6 @@ import { getFlightPreview } from '../../api/flightAPI';
 import type { FlightPreviewType } from '../../object/flightPreview';
 import { Airport } from '../../object/airport';
 import { useFlightContext } from '../../context/FlightContext/FlightContext';
-import Spinner from '../Spinner/Spinner';
 
 import image1 from '../../assets-test/Images/cities/hanoi.jpg';
 import image2 from '../../assets-test/Images/cities/singapore.jpg';

@@ -18,30 +18,24 @@ const Example = () => {
         // {imgLink: url1, header: h1, content: c1}
     ];
 
-    const { newsList, setIndex} = useFlightContext();
-    
-
-    useEffect(() => {
-    }, [newsList]);
 
     useEffect(() => {
     }, [])
 
     return (
         <Slide>
-            {newsList.map((slide, index) => (
+            {slides.map((slide, index) => (
                 <div className="slide" key={index}>
                     <a href={slide.link} className="block h-full w-full">
                         <div
                             style={{
-                                backgroundImage: `url(${slide.imgLink})`,
+                                backgroundImage: image1,
                                 backgroundSize: "cover",
                                 backgroundPosition: "center",
                                 height: "500px",
                             }}
                             className="slide-image"
                             onClick={() => {
-                                setIndex(index);
                                 localStorage.setItem('news-index', index.toString());
                             }}
                         />

@@ -18,7 +18,6 @@ import Ticket from '../pages/TicketPage/TicketPage';
 import TicketCard from '../pages/TicketCart/TicketCart';
 import PassengerInfor from '../pages/PassengerInfo/PassengerInfor';
 import LoginPage from '../pages/LoginPage/LoginPage';
-import NewsPage from '../pages/NewsPage/NewsPage';
 import Register from '../pages/LoginPage/Register/Register';
 import Admin from '../pages/Admin/Admin';
 import Aircrafts from '../pages/Admin/Aircrafts/Aircrafts';
@@ -261,15 +260,6 @@ export const router = createBrowserRouter([
       <>
         <ScrollToTop />
         <CheckInManagement />
-      </>
-    )
-  }, 
-  {
-    path: "/news", 
-    element: (
-      <>
-        <ScrollToTop />
-        <NewsPage />
       </>
     )
   }, 

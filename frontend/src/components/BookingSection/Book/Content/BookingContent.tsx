@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { PiWarningCircle } from "react-icons/pi";
 import { IoIosArrowUp, IoMdClose } from "react-icons/io";
-import BookingFlightSuggestion from './FlightSuggestion/BookingFlightSuggestion';
 import './BookingContent.css';
-import BookingFlightSuggestionTo from './FlightSuggestion/BookingFlightSuggestionTo';
-import CalendarDepart from './Calendar/CalendarDepart';
-import PassengerInfo from './PassengerInfo/PassengerInfo';
 import GenericContent from './GenericContent/GenericContent';
-import CalendarReturn from './Calendar/CalendarReturn';
-import { getAllAirport } from '../../../../api/airportAPI';
 import { useFlightContext } from '../../../../context/FlightContext/FlightContext';
 import { getAllAircrafts } from '../../../../api/aircraftAPI';
 
@@ -49,7 +43,7 @@ const BookingContent: React.FC<Props> = ({sectionTab, handleChangeTab}) => {
     const [searchingAirportTo, setSearchingAirportTo] = useState<string>("");
 
     // airports array
-    const { airports, setAirports } = useFlightContext();
+    const { airports } = useFlightContext();
 
     // suggest airports array
     const [suggestAirports, setSuggestAirports] = useState<any[]>(airports);
