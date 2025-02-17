@@ -15,10 +15,8 @@ import TravelInfoCheckIn from '../pages/TravelInfo/CheckIn/TravelInfoCheckIn';
 import BaggageInfo from '../pages/TravelInfo/BaggageInfo/BaggageInfo';
 import TravelDocument from '../pages/TravelInfo/TravelDocument/TravelDocument';
 import Ticket from '../pages/TicketPage/TicketPage';
-import { SearchFlightStateProvider } from '../context/SearchFlightState/SearchFlightState';
 import TicketCard from '../pages/TicketCart/TicketCart';
 import PassengerInfor from '../pages/PassengerInfo/PassengerInfor';
-import Payment from '../pages/Payment/Payment';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import NewsPage from '../pages/NewsPage/NewsPage';
 import Register from '../pages/LoginPage/Register/Register';
@@ -32,16 +30,15 @@ import BookManagement from '../pages/BookManagement/BookManagement';
 import CheckInManagement from '../pages/CheckInManagement/CheckInManagement';
 import YourTicket from '../pages/YourTicket/YourTicket';
 import ProtectedRoute from './protectedRoute';
+import Payment from '../pages/Payment/Payment';
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <>
-      <SearchFlightStateProvider>
         <ScrollToTop />
         <HomePage />
-      </SearchFlightStateProvider>
       </>
     ),
   },
@@ -85,10 +82,8 @@ export const router = createBrowserRouter([
     path: "/explore/destination/:nameCity",
     element: (
       <>
-        <SearchFlightStateProvider>
-          <ScrollToTop />
-          <CityInfo />
-        </SearchFlightStateProvider>
+        <ScrollToTop />
+        <CityInfo />
       </>
     ),
   },

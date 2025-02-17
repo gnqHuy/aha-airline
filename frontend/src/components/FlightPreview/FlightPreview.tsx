@@ -3,7 +3,6 @@ import FlightCard from '../FlightCard/FlightCard';
 import './FlightPreview.css';
 import { GiWorld } from "react-icons/gi";
 import SearchFlight from '../SearchFlight/SearchFlight';
-import { useSearchFlightState } from '../../context/SearchFlightState/SearchFlightState';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { getFlightPreview } from '../../api/flightAPI';
 import type { FlightPreviewType } from '../../object/flightPreview';
@@ -26,6 +25,9 @@ import image12 from '../../assets-test/Images/cities/sydney.jpg';
 import image13 from '../../assets-test/Images/cities/melbourne.jpg';
 import image14 from '../../assets-test/Images/cities/istanbul.webp';
 import image15 from '../../assets-test/Images/cities/san-francisco.jpg';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSearchFlightState } from '../../redux/selector/searchFlightStateSelector';
+import { setSearchFlightState } from '../../redux/slice/searchFlightStateSlice';
 
 const images = [
   image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, 
@@ -41,9 +43,11 @@ const FlightPreview = (props: Props) => {
   const departureListRef = useRef<HTMLDivElement>(null);
   const [visibleCount, setVisibleCount] = useState(6);
   const [selectedFlight, setSelectedFlight] = useState<FlightPreviewType | null>(null);
-  const { searchFlightState, setSearchFlightState } = useSearchFlightState();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch();
+  const searchFlightState = useSelector(selectSearchFlightState);
 
   const fetchData = async (getFlight: Object) => {
     try {
@@ -67,7 +71,7 @@ const FlightPreview = (props: Props) => {
 
   const handleSelectedFlight = (flight: FlightPreviewType) => {
     setSelectedFlight(flight);
-    setSearchFlightState(true);
+    dispatch(setSearchFlightState(!searchFlightState))
   };
 
   const toggleDepartureList = () => {

@@ -26,10 +26,10 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
 
   const formatDate = (time: string): string => {
     const date = new Date(time);
-    return date.toLocaleString([], {
-      year: 'numeric',
-      day: 'numeric',
+    return date.toLocaleString('en-GB', {
+      day: '2-digit',
       month: 'long',
+      year: 'numeric',
     });
   };
 
@@ -50,10 +50,10 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
           <div className="flex items-center justify-between">
             <div className="text-left">
               <div className="text-2xl font-semibold text-gray-900 small:text-xl">
-                {formatDate(flight.departureTime)}
-              </div>
-              <div className="text-xl font-medium text-gray-900 small:text-lg">
                 {formatTime(flight.departureTime)}
+              </div>
+              <div className="text-xl font-normal text-gray-900 small:text-lg">
+                {formatDate(flight.departureTime)}
               </div>
               <div className="text-lg text-golden">
                 {flight.flightRoute.fromAirport.city.name}
@@ -68,10 +68,10 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
 
             <div className="text-right">
               <div className="text-2xl font-semibold text-gray-900 small:text-xl">
-                {formatDate(flight.arrivalTime)}
-              </div>
-              <div className="text-xl font-medium text-gray-900 small:text-lg">
                 {formatTime(flight.arrivalTime)}
+              </div>
+              <div className="text-xl font-normal text-gray-900 small:text-lg">
+                {formatDate(flight.arrivalTime)}
               </div>
               <div className="text-lg text-golden">
                 {flight.flightRoute.toAirport.city.name}

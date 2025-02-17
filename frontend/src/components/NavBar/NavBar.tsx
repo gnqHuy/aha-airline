@@ -67,7 +67,7 @@ const NavBar: React.FC<Props> = () => {
 
       <div className="grid grid-cols-3 text-center">
         <div
-          className="relative pb-[10px] mt-[10px] mx-6 small:mx-[0.5rem]"
+          className="relative pb-[30px] mt-[30px] mx-6 small:mx-[0.5rem]"
           onMouseEnter={() => handleMouseEnter("Explore")}
           onMouseLeave={() => handleMouseLeave("Explore")}
         >
@@ -91,7 +91,7 @@ const NavBar: React.FC<Props> = () => {
         </div>
 
         <div
-          className="relative pb-[10px] mt-[10px] mx-6"
+          className="relative pb-[30px] mt-[30px] mx-6 small:mx-[0.5rem]"
           onMouseEnter={() => handleMouseEnter("Booking")}
           onMouseLeave={() => handleMouseLeave("Booking")}
         >
@@ -115,7 +115,7 @@ const NavBar: React.FC<Props> = () => {
         </div>
 
         <div
-          className="relative pb-[10px] mt-[10px] mx-6 medium:mx-1"
+          className="relative pb-[30px] mt-[30px] mx-6 small:mx-[0.5rem]"
           onMouseEnter={() => handleMouseEnter("TravelInfo")}
           onMouseLeave={() => handleMouseLeave("TravelInfo")}
         >

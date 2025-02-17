@@ -6,12 +6,19 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import { SeatClass } from "../../object/enum/SeatClass";
 import { PassengerTitle } from "../../object/enum/PassengerTitle";
+import { selectIsRoundTrip, selectSelectedFlight, selectSelectedFlightClass } from "../../redux/selector/flightSelector";
+import { useDispatch, useSelector } from "react-redux";
+import { selectPassengers } from "../../redux/selector/passengerSelector";
+import { addFlightTicket, addFlightTicketRound } from "../../redux/slice/bookingSlice";
 
 type Props = {};
 
 const PassengerInfor: React.FC<Props> = () => {
-  const { selectedPassenger, selectedFlightClass, selectedFlight, addFlightTicket, flightTickets, flightTicketsRound, addFlightTicketRound } =
-    useFlightContext();
+  const dispatch = useDispatch();
+  const selectedFlight = useSelector(selectSelectedFlight);
+  const selectedFlightClass = useSelector(selectSelectedFlightClass);
+  const selectedPassenger = useSelector(selectPassengers);
+  const roundTrip = useSelector(selectIsRoundTrip);
   const { adults, children, infants } = selectedPassenger;
   const navigate = useNavigate();
 
@@ -76,7 +83,7 @@ const PassengerInfor: React.FC<Props> = () => {
         contactEmail: passenger.email,
         phoneNumber: passenger.phone,
       };
-      addFlightTicket(ticket);
+      dispatch(addFlightTicket(ticket));
     });
   };
 
@@ -111,13 +118,15 @@ const PassengerInfor: React.FC<Props> = () => {
         contactEmail: passenger.email,
         phoneNumber: passenger.phone,
       };
-      addFlightTicketRound(ticket);
+      dispatch(addFlightTicketRound(ticket));
     });
   };
 
   const handleConfirm = () => {
     handleUpdateTicket();
-    handleUpdateTicketRound();
+    if (roundTrip) {
+      handleUpdateTicketRound();
+    }
     alert("Tickets booked successfully!");
     navigate("payment");
   }

@@ -1,5 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore, Reducer } from "@reduxjs/toolkit";
 import authReducer from "./slice/authSlice";
+import searchFlightStateReducer from "./slice/searchFlightStateSlice";
+import flightReducer from "./slice/flightSlice";
+import passengerReducer from "./slice/passengerSlice";
+import bookingReducer from "./slice/bookingSlice"
+
 import {
     persistStore,
     persistReducer,
@@ -16,24 +21,31 @@ import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 const persistConfig = {
     key: "root",
     storage,
-    // whitelist: ["auth"]
+    stateReconciler: autoMergeLevel2,
+    whitelist: ["auth", "flight"]
 }
 
-const persistedAuthReducer = persistReducer(persistConfig, authReducer);
+const rootReducer = combineReducers({
+    auth: authReducer,
+    searchFlightState: searchFlightStateReducer,
+    flight: flightReducer,
+    passenger: passengerReducer,
+    booking: bookingReducer,
+});
+
+const persistedAuthReducer = persistReducer<RootState>(persistConfig, rootReducer);
 
 export const store = configureStore({
-    reducer: {
-        auth: persistedAuthReducer
-    },
+    reducer: persistedAuthReducer as unknown as Reducer<RootState>,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-    }),
+        }),
 });
 
 export const persistor = persistStore(store);
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;

@@ -10,10 +10,12 @@ type FlightCardProps = {
 const FlightCard: React.FC<FlightCardProps> = ({ flight, image }) => {
   const departureDate = new Date(flight.departureTime);
 
-  const formattedDate = departureDate.toLocaleDateString('en-US', {
-    year: 'numeric',
+  
+
+  const formattedDate = departureDate.toLocaleDateString('en-GB', {
+    day: '2-digit',
     month: 'long',
-    day: 'numeric',
+    year: 'numeric',
   });
 
   const formattedTime = departureDate.toLocaleTimeString('en-US', {

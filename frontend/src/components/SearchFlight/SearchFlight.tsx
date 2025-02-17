@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { useFlightContext } from "../../context/FlightContext/FlightContext";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useSearchFlightState } from "../../context/SearchFlightState/SearchFlightState";
 import { AiOutlineClose } from "react-icons/ai";
 import { FlightPreviewType } from "../../object/flightPreview";
+import { selectSearchFlightState } from "../../redux/selector/searchFlightStateSelector";
+import { setSearchFlightState } from "../../redux/slice/searchFlightStateSlice";
+import { setSelectedFlightPreview } from "../../redux/slice/flightSlice";
 
 type Props = {
   flightPreview: FlightPreviewType | null;
@@ -12,8 +14,8 @@ type Props = {
 const MAX_PASSENGERS = 9;
 
 const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
-  const { setSelectedFlightPreview, setSelectedPassenger } = useFlightContext();
-  const { setSearchFlightState } = useSearchFlightState();
+  const dispatch = useDispatch();
+  const searchFlightState = useSelector(selectSearchFlightState);
   const navigate = useNavigate();
 
   const [adults, setAdults] = useState(1);
@@ -44,8 +46,8 @@ const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
 
   const handleSearchFlight = () => {
     if (flightPreview) {
-      setSelectedFlightPreview(flightPreview);
-      setSelectedPassenger({ adults, children, infants });
+      dispatch(setSelectedFlightPreview(flightPreview));
+      dispatch(setSearchFlightState(!searchFlightState));
       navigate("/ticket");
     }
   };
@@ -64,7 +66,7 @@ const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
         <div className="flex flex-col lg:flex-row text-left px-6">
           <div className="flex-[1.7]">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Flight Details</h3>
-            <div className="">
+            <div>
               <p className="text-gray-700">
                 <strong>From:</strong> {flightPreview.fromAirport.name} ({flightPreview.fromAirport.iata}), {flightPreview.fromAirport.city.name}, {flightPreview.fromAirport.city.country}
               </p>
@@ -78,12 +80,12 @@ const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
                 <strong>Minimum Price:</strong> {flightPreview.minimumPrice.toLocaleString()} VND
               </p>
             </div>
-        </div>
+          </div>
 
           <div className="flex-1">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Passengers</h3>
             <div className="space-y-4">
-              {[ 
+              {[
                 { label: "Adults (12+ years)", type: "adult", count: adults },
                 { label: "Children (2-11 years)", type: "child", count: children },
                 { label: "Infants (under 2 years)", type: "infant", count: infants },
@@ -123,7 +125,7 @@ const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
             Search
           </button>
           <button
-            onClick={() => setSearchFlightState(false)}
+            onClick={() => dispatch(setSearchFlightState(!searchFlightState))}
             className="px-4 w-40 py-2 rounded hover:bg-golden-hover transition"
           >
             Close

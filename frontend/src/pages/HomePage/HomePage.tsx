@@ -5,12 +5,13 @@ import BookingSection from "../../components/BookingSection/BookingSection";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
 import Spinner from "../../components/Spinner/Spinner";
-import { useFlightContext } from "../../context/FlightContext/FlightContext";
+import { useDispatch } from "react-redux";
+import { setRoundTrip } from "../../redux/slice/flightSlice";
 
 const HomePage: React.FC = () => {
-  const {clearData} = useFlightContext()
+  const dispatch = useDispatch();
   useEffect (() => {
-    clearData();
+     dispatch(setRoundTrip(false));
   })
   return (
     <><NavBar /><NewsSection /><BookingSection /><FlightPreview /><Footer/></>

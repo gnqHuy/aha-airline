@@ -7,6 +7,9 @@ import FlightPreview from '../../../FlightPreview/FlightPreview';
 import { useFlightContext } from '../../../../context/FlightContext/FlightContext';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { setReturnDate, setRoundTrip, setSelectedFlightPreview } from '../../../../redux/slice/flightSlice';
+import { setPassengers } from '../../../../redux/slice/passengerSlice';
 
 interface Props {
     handleSetupDisplaySuggestion: () => void;
@@ -47,8 +50,7 @@ const BookingContentRoundTrip: React.FC<Props> = ({
     selectedDateReturn, 
     flightOption,
         }) => {
-    
-    const {setSelectedFlightPreview, setSelectedPassenger, setReturnDate, setRoundTrip} = useFlightContext();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     function parseAirportInfo(input: string): {
         iata: string;
@@ -92,9 +94,9 @@ const BookingContentRoundTrip: React.FC<Props> = ({
             const departureTime = convertToISO(selectedDateDepart, "00:00:01");
 
             if (flightOption === "roundTrip") {
-                setRoundTrip(true);
+                dispatch(setRoundTrip(true));
                 console.log(selectedDateReturn + " " + convertToISO(selectedDateReturn, "00:00:01")) 
-                setReturnDate(convertToISO(selectedDateReturn, "00:00:01"));
+                dispatch(setReturnDate(convertToISO(selectedDateReturn, "00:00:01")));
             }
     
             const flightPreview = {
@@ -118,12 +120,12 @@ const BookingContentRoundTrip: React.FC<Props> = ({
                 minimumPrice: 0,
             };
     
-            setSelectedFlightPreview(flightPreview);
-            setSelectedPassenger({
+            dispatch(setSelectedFlightPreview(flightPreview));
+            dispatch(setPassengers({
                 adults: adultPassengerQuantity,
                 children: childrenPassengerQuantity,
                 infants: infantPassengerQuantity,
-            });
+            }));
     
             navigate("ticket");
         } catch (error) {

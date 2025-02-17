@@ -7,14 +7,19 @@ import { useFlightContext } from "../../context/FlightContext/FlightContext";
 import image3 from "../../assets-test/Images/sunset4.jpg";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
+import { useSelector } from "react-redux";
+import { selectSelectedFlightPreview } from "../../redux/selector/flightSelector";
+import { selectPassengers } from "../../redux/selector/passengerSelector";
 
 type LayoutProps = {
   children: React.ReactNode;
   headerImage?: string;
 };
 
-const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
-  const { selectedFlightPreview, selectedPassenger } = useFlightContext();
+const Layout1: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
+  const selectedFlightPreview = useSelector(selectSelectedFlightPreview);
+  const selectedPassenger = useSelector(selectPassengers);
+  
   const currentPath = window.location.pathname;
   const pathSegments = currentPath.split('/').filter(Boolean);
 
@@ -120,4 +125,4 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
   );
 };
 
-export default Layout;
+export default Layout1;

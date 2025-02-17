@@ -8,9 +8,16 @@ import { Flight } from "../../object/flight";
 import { getFromRequest } from "../../api/flightAPI";
 import { SeatClass } from "../../object/enum/SeatClass";
 import { Link, useNavigate } from "react-router-dom";
+import { selectIsRoundTrip, selectReturnDate, selectSelectedFlightPreview } from "../../redux/selector/flightSelector";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedFlight, setSelectedFlightClass, setSelectedFlightRound, setSelectedFlightRoundClass } from "../../redux/slice/flightSlice";
 
 const TicketPage: React.FC = () => {
-  const { selectedFlightPreview, roundTrip, setRoundTrip, setSelectedFlight, returnDate, setSelectedFlightRoundClass, setSelectedFlightClass, setSelectedFlightRound } = useFlightContext();
+  const dispatch = useDispatch();
+  const selectedFlightPreview = useSelector(selectSelectedFlightPreview);
+  const roundTrip = useSelector(selectIsRoundTrip);
+  const returnDate = useSelector(selectReturnDate);
+
   const [flights, setFlights] = useState<Flight[]>([]);
   const [flightsRound, setFlightsRound] = useState<Flight[]>([]);
   const [loading, setLoading] = useState(true);
@@ -71,14 +78,14 @@ const TicketPage: React.FC = () => {
   }
 
   const handleSelectFlight = (flight: Flight, classType: SeatClass) => {
-    setSelectedFlight(flight);
-    setSelectedFlightClass(classType);
+    dispatch(setSelectedFlight(flight));
+    dispatch(setSelectedFlightClass(classType));
     setCheckFlight(true);
   };
 
   const handleSelectFlightRound = (flight: Flight, classType: SeatClass) => {
-    setSelectedFlightRound(flight);
-    setSelectedFlightRoundClass(classType);
+    dispatch(setSelectedFlightRound(flight));
+    dispatch(setSelectedFlightRoundClass(classType));
     setCheckFlightRound(true);
   };
 

@@ -1,61 +1,19 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { Flight } from "../../object/flight";
-import { FlightPreviewType } from "../../object/flightPreview";
-import { PassengerCount } from "../../object/passengerCount";
-import { FlightTickets, Ticket } from "../../object/ticket";
-import { SeatClass } from "../../object/enum/SeatClass";
 import { getAllAirport } from "../../api/airportAPI";
-import { FlightTicketResponse } from "../../object/reponseTicketData";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../redux/selector/authSelector";
+import { selectSelectedFlight, selectSelectedFlightRound } from "../../redux/selector/flightSelector";
 
 type FlightContextType = {
   // responseTicketData: FlightTicketResponse | null;
   // setResponseTicketData: (response: FlightTicketResponse) => void;
-
-  selectedFlight: Flight | null;
-  setSelectedFlight: (flight: Flight) => void;
-
-  selectedFlightRound: Flight | null;
-  setSelectedFlightRound: (flight: Flight) => void;
-
-  roundTrip: boolean;
-  setRoundTrip: (roundTrip: boolean) => void;
-
-  returnDate: string;
-  setReturnDate: (returnDate: string) => void;
-
-  selectedFlightClass: SeatClass;
-  setSelectedFlightClass: (flightClass: SeatClass) => void;
-
-  selectedFlightRoundClass: SeatClass;
-  setSelectedFlightRoundClass: (flightClass: SeatClass) => void;
-
-  selectedFlightPreview: FlightPreviewType | null;
-  setSelectedFlightPreview: (flightPreview: FlightPreviewType) => void;
-
-  selectedPassenger: PassengerCount;
-  setSelectedPassenger: (passengerCount: PassengerCount) => void;
-
-  flightTickets: FlightTickets;
-  addFlightTicket: (ticket: Ticket) => void;
-
-  flightTicketsRound: FlightTickets;
-  addFlightTicketRound: (ticket: Ticket) => void;
-
   airports: any[];
   setAirports: (flights: any[]) => void;
 
   newsList: any[];
   setNewsList: (news: any[]) => void;
 
-  news: any;
-  setNews: (news: any) => void;
-
   index: number;
   setIndex: (index: number) => void;
-  count: number;
-  setCount: (count: number) => void;
 
   manageBookingReservationCode: string;
   setManageBookingReservationCode: (reservationCode: string) => void;
@@ -68,8 +26,6 @@ type FlightContextType = {
 
   checkinOption: string;
   setCheckinOption: (option: string) => void;
-
-  clearData:()=>void;
 };
 
 type News = {
@@ -172,17 +128,9 @@ const NewSlide = [
 const FlightContext = createContext<FlightContextType | undefined>(undefined);
 
 export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
-  const [selectedFlightRound, setSelectedFlightRound] = useState<Flight | null>(null);
+  const selectedFlight = useSelector(selectSelectedFlight);
+  const selectedFlightRound = useSelector(selectSelectedFlightRound);
   // const [responseTicketData, setResponseTicketData] = useState<FlightTicketResponse | null>(null);
-  const [selectedFlightClass, setSelectedFlightClass] = useState<SeatClass>(SeatClass.Economy);
-  const [selectedFlightRoundClass, setSelectedFlightRoundClass] = useState<SeatClass>(SeatClass.Economy);
-  const [selectedFlightPreview, setSelectedFlightPreview] = useState<FlightPreviewType | null>(null);
-  const [selectedPassenger, setSelectedPassenger] = useState<PassengerCount>({
-    adults: 1,
-    children: 0,
-    infants: 0,
-  });
   const [newsList, setNewsList] = useState<News[]>([]);
   const [airports, setAirports] = useState<any[]>([]);
   const [news, setNews] = useState<any>(NewSlide[0]);
@@ -193,44 +141,6 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [checkinReservationCode, setCheckinReservationCode] = useState<string>(String(localStorage.getItem("checkinReservationCode")));
   const [checkinTicket, setCheckinTicket] = useState<string>(String(localStorage.getItem("checkinTicket")));
   const [checkinOption, setCheckinOption] = useState<string>(String(localStorage.getItem("checkinOption")));
-  const user = useSelector(selectUser);
-  const [roundTrip, setRoundTrip] = useState<boolean>(false);
-  const [returnDate, setReturnDate] = useState<string>("");
-
-  const [flightTickets, setFlightTickets] = useState<FlightTickets>({
-      flightId: "",
-      bookedId: user != null ? user.id : null,
-      tickets: [],
-  });
-
-  const addFlightTicket = (ticket: Ticket) => {
-    const flightId = selectedFlight ? selectedFlight.id : "defaultFlightId";
-    setFlightTickets((prevFlight) => ({
-      flightId,
-      bookedId: user != null ? user.id : null,
-      tickets: [...prevFlight.tickets, ticket],
-    }));
-
-  };
-  
-  const [flightTicketsRound, setFlightTicketsRound] = useState<FlightTickets>({
-    flightId: "",
-    bookedId: user != null ? user.id : null,
-    tickets: [],
-  });
-
-  const addFlightTicketRound = (ticket: Ticket) => {
-    const flightId = selectedFlightRound ? selectedFlightRound.id : "defaultFlightId";
-    setFlightTicketsRound((prevFlight) => ({
-      flightId,
-      bookedId: user != null ? user.id : null,
-      tickets: [...prevFlight.tickets, ticket],
-    }));
-  };
-
-  const clearData = () => {
-    setRoundTrip(false);
-  }
 
   useEffect(() => {
     setNewsList(NewSlide);
@@ -247,39 +157,14 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   return (
     <FlightContext.Provider
       value={{
-        clearData,
-        flightTicketsRound,
-        addFlightTicketRound,
-        selectedFlightRoundClass,
-        setSelectedFlightRoundClass,
-        selectedFlightRound,
-        setSelectedFlightRound,
-        returnDate,
-        setReturnDate,
-        setRoundTrip,
-        roundTrip,
         // responseTicketData,
         // setResponseTicketData,
-        flightTickets,
-        addFlightTicket,
-        selectedFlight,
-        setSelectedFlight,
-        selectedFlightClass,
-        setSelectedFlightClass,
-        selectedFlightPreview,
-        setSelectedFlightPreview,
-        selectedPassenger,
-        setSelectedPassenger,
         airports,
         setAirports,
         newsList,
         setNewsList,
-        news,
-        setNews,
         index,
         setIndex,
-        count,
-        setCount, 
         manageBookingReservationCode, 
         setManageBookingReservationCode, 
         checkinReservationCode, 

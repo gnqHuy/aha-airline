@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { FaPlane } from 'react-icons/fa';
-import { useSearchFlightState } from '../../context/SearchFlightState/SearchFlightState';
 import SearchFlight from '../SearchFlight/SearchFlight';
 import { FlightPreviewType } from '../../object/flightPreview';
 import { getFlightPreview } from '../../api/flightAPI';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSearchFlightState } from '../../redux/selector/searchFlightStateSelector';
+import { setSearchFlightState } from '../../redux/slice/searchFlightStateSlice';
 
 type FlightTableProps = {
   nameCity: string | undefined;
@@ -17,9 +19,11 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
   const [budgetValue, setBudgetValue] = useState('');
   const [budgetFocused, setBudgetFocused] = useState(false);
   const [selectedFlight, setSelectedFlight] = useState<FlightPreviewType | null>(null);
-  const { searchFlightState, setSearchFlightState } = useSearchFlightState();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch();
+  const searchFlightState = useSelector(selectSearchFlightState);
 
   const [flightPreview, setFlightPreview] = useState<FlightPreviewType[]>([]);
 
@@ -59,7 +63,7 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
 
   const handleSelectedFlight = (flight: FlightPreviewType) => {
     setSelectedFlight(flight);
-    setSearchFlightState(true);
+    dispatch(setSearchFlightState(!searchFlightState))
   };
 
   if (loading) return <div>Loading...</div>;
