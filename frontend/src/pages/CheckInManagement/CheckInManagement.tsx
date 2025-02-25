@@ -6,6 +6,7 @@ import { CancelTicketByCode, GetByReservationOrTicketCode, UpgradeSeatByCode } f
 import { useFlightContext } from '../../context/FlightContext/FlightContext';
 import { SeatClass } from '../../object/enum/SeatClass';
 import { Ticket } from '../../object/ticket';
+import { useSnackbar } from 'notistack';
 
 type Props = {}
 
@@ -13,6 +14,8 @@ const CheckInManagement = (props: Props) => {
     const [reservations, setReservations] = useState<Ticket[]>([]);
 
     const [displayOption, setDisplayOption] = useState<boolean>(false);
+
+    const { enqueueSnackbar } = useSnackbar();
 
     // context
     const {checkinReservationCode} = useFlightContext();
@@ -51,7 +54,7 @@ const CheckInManagement = (props: Props) => {
     const handleCancel = async (code: string) => {
         try {
             const response = await CancelTicketByCode(code);
-            alert(response.data);
+            enqueueSnackbar(response.data, {variant: "success"});
         } catch (err) {
             return <div className = "text-red-500 text-base">Failed to cancel!!</div>;
         } finally {
@@ -62,7 +65,7 @@ const CheckInManagement = (props: Props) => {
     const handleUpgrade = async (code: string) => {
         try {
             const response = await UpgradeSeatByCode(code);
-            alert(response.data);
+            enqueueSnackbar(response.data, {variant: "success"});
         } catch (err) {
             return <div className = "text-red-500 text-base">Failed to Upgrade!!</div>;
         } finally {

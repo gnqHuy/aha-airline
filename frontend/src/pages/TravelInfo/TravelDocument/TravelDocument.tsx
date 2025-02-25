@@ -6,7 +6,7 @@ type Props = {}
 const TravelDocument = (props: Props) => {
   return (
     <Layout>
-        <div className = "relative overflow-x-clip overflow-y-auto bottom-[0rem]">
+        <div className = "relative overflow-x-clip overflow-y-auto mb-20 bottom-[0rem]">
             <p className="text-3xl text-golden font-bold relative left-[12vw] top-[3rem] my-0">Travel Document</p>
             {/* identification documents */}
             <div className = "relative left-[12vw] top-[3rem] w-[75vw]">
@@ -39,7 +39,7 @@ const TravelDocument = (props: Props) => {
             </div>
 
             {/* health */}
-            <div className = "left-[12vw] w-[73vw] relative top-[5rem]">
+            <div className = "left-[12vw] w-[73vw] relative mb-20 top-[5rem]">
                 <p className = "text-3xl text-Green font-bold ">Health status confirmation requirements</p>
                 <div>
                     <div className = "flex bg-golden">

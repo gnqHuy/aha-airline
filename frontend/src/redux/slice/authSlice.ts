@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { UserStore } from "../../types/user";
+import { UserStore } from "../../object/user";
 
 export interface InitialAuthState {
     user: UserStore | null,

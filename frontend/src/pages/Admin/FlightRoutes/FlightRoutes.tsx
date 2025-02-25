@@ -3,8 +3,10 @@ import { addFlightRoute, getAllFlightRoutes } from "../../../api/flightRoutes";
 import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { FlightRoute } from "../../../object/flightRoute";
+import { useSnackbar } from "notistack";
 
 const FlightRoutes: React.FC = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const [flightRoutes, setFlightRoutes] = useState<FlightRoute[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -57,15 +59,15 @@ const FlightRoutes: React.FC = () => {
 
     try {
       const response = await addFlightRoute(newFlightRouteFromIATA, newFlightRouteToIATA);
-      alert('Flight route added successfully.');
-    } catch (error : any) {
-        if (error.response) {
-            alert('Server Error:' + error.response.data);
-        } else if (error.request) {
-            alert('Network Error:' + error.request);
-        } else {
-            alert('Error:' + error.message);
-        }
+      enqueueSnackbar('Flight route added successfully.', { variant: 'success' });
+    } catch (error: any) {
+      if (error.response) {
+        enqueueSnackbar(`Server Error: ${error.response.data}`, { variant: 'error' });
+      } else if (error.request) {
+        enqueueSnackbar('Network Error: Unable to reach server.', { variant: 'warning' });
+      } else {
+        enqueueSnackbar(`Error: ${error.message}`, { variant: 'error' });
+      }
     }
   };
   

@@ -15,9 +15,7 @@ import image10 from '../../assets-test/Images/cities/toronto.jpg';
 import image11 from '../../assets-test/Images/cities/mexico.jpg';
 import image12 from '../../assets-test/Images/cities/sydney.jpg';
 import image13 from '../../assets-test/Images/cities/melbourne.jpg';
-import image14 from '../../assets-test/Images/cities/istanbul.webp';
-import image15 from '../../assets-test/Images/cities/san-francisco.jpg';
-import Spinner from "../../components/Spinner/Spinner";
+
 
 const Destination: React.FC = () => {
   useEffect(() => {
@@ -31,7 +29,6 @@ const Destination: React.FC = () => {
   }, []);
   return (
     <Layout>
-      {/* <Spinner timeout={5} /> */}
       <div id="asia" className="pt-4">
         <div className="w-[1016px] mx-[16vw]">
           <p className="text-3xl text-golden font-bold">Asia</p>

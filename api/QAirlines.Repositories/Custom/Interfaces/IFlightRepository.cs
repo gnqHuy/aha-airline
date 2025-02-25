@@ -20,5 +20,7 @@ namespace QAirlines.Repositories.Custom.Interfaces
         Task<Flight> GetCheapestByRouteId(Guid routeId);
         Task<IEnumerable<Flight>> GetFromRequest(FlightRequest request);
         Task<IEnumerable<Flight>> GetFromAircraftAndRoute(Guid aircraftId, Guid routeId);
+        Task<IEnumerable<Flight>> GetExpiredFlights(DateTime now);
+
     }
 }

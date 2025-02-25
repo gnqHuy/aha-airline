@@ -29,10 +29,11 @@ const bookingSlice = createSlice({
     setFlightTicketsRoundId: (state, action: PayloadAction<{ flightId: string; bookedId: string }>) => {
         state.flightTicketsRound.flightId = action.payload.flightId;
         state.flightTicketsRound.bookedId = action.payload.bookedId;
-      },      
+      },
+    resetBooking: () => initialState,
   },
 });
 
-export const { addFlightTicket, setFlightTicketsId, addFlightTicketRound, setFlightTicketsRoundId } =
+export const { addFlightTicket, setFlightTicketsId, addFlightTicketRound, setFlightTicketsRoundId, resetBooking } =
   bookingSlice.actions;
 export default bookingSlice.reducer;

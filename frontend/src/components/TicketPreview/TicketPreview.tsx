@@ -3,9 +3,10 @@ import { FaPlane } from "react-icons/fa6";
 import { BsClock } from "react-icons/bs";
 import { Flight } from "../../object/flight";
 import { SeatClass } from "../../object/enum/SeatClass";
+import { useSnackbar } from "notistack";
 
 type Props = {
-  flight: Flight;
+  flight: Flight ;
   classType?: SeatClass;
   handleSelectedFlight? :  (flight: Flight, classType: SeatClass) => void;
 };

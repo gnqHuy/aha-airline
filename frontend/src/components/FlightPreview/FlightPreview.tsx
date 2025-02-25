@@ -116,8 +116,8 @@ const FlightPreview = (props: Props) => {
     airport.city.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (loading) return <div className='mx-auto mt-20'>Loading...</div>;
-  if (error) return <div className="mx-auto mt-20 text-red-600">Error: {error}</div>;
+  if (loading) return <div className='mx-auto text-xl text-center my-40'>Loading...</div>;
+  if (error) return <div className="mx-auto text-xl text-center my-40 text-red-600">Error: {error}</div>;
 
   return (
     <div className="w-[59vw] mx-auto text-center items-center p-4 mt-24 mb-12">

@@ -7,10 +7,12 @@ import { login } from "../../../redux/slice/authSlice";
 import { RootState } from "../../../redux/store";
 import { Link, useNavigate } from "react-router-dom";
 import { selectAccessToken } from "../../../redux/selector/authSelector";
+import { useSnackbar } from "notistack";
 
 interface Props {}
 
 const LoginForm: React.FC<Props> = ({}) => {
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +22,7 @@ const LoginForm: React.FC<Props> = ({}) => {
 
   const handleSubmit = () => {
     if (!username || !password) {
-      alert("Please fill in both fields");
+      enqueueSnackbar("Please fill in both fields", {variant: "warning"});
       return;
     }
 
@@ -42,7 +44,7 @@ const LoginForm: React.FC<Props> = ({}) => {
         navigate("/");
       }
     }).catch((error) => {
-        alert(error.response?.data?.message || "Failed to log in. Please try again.");
+      enqueueSnackbar(error.response?.data?.message || "Failed to log in. Please try again.", {variant: "error"});
     });
   };
 

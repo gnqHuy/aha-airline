@@ -23,3 +23,14 @@ export function getFromAircraftAndRoute(aircraftName: string, fromIATA: string, 
 export function generateFlights(days: number) {
     return API.post(`${URL_PREFIX}/AutoGenerate?days=${days}`);
 }
+
+
+export const deleteExpiredFlights = async (): Promise<{ message: string; count: number }> => {
+    try {
+        const response = await API.delete(`${URL_PREFIX}/expired`);
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting expired flights:", error);
+        throw error;
+    }
+};

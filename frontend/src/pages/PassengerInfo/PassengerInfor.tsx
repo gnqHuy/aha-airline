@@ -10,10 +10,12 @@ import { selectIsRoundTrip, selectSelectedFlight, selectSelectedFlightClass } fr
 import { useDispatch, useSelector } from "react-redux";
 import { selectPassengers } from "../../redux/selector/passengerSelector";
 import { addFlightTicket, addFlightTicketRound } from "../../redux/slice/bookingSlice";
+import { useSnackbar } from "notistack";
 
 type Props = {};
 
 const PassengerInfor: React.FC<Props> = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useDispatch();
   const selectedFlight = useSelector(selectSelectedFlight);
   const selectedFlightClass = useSelector(selectSelectedFlightClass);
@@ -64,7 +66,7 @@ const PassengerInfor: React.FC<Props> = () => {
     );
 
     if (!allFieldsFilled) {
-      alert("Please fill out all the fields before continuing.");
+      enqueueSnackbar("Please fill out all the fields before continuing.", {variant: "warning"});
       return;
     }
 
@@ -99,7 +101,7 @@ const PassengerInfor: React.FC<Props> = () => {
     );
 
     if (!allFieldsFilled) {
-      alert("Please fill out all the fields before continuing.");
+      enqueueSnackbar("Please fill out all the fields before continuing.", {variant: "warning"});
       return;
     }
 
@@ -127,7 +129,7 @@ const PassengerInfor: React.FC<Props> = () => {
     if (roundTrip) {
       handleUpdateTicketRound();
     }
-    alert("Tickets booked successfully!");
+    enqueueSnackbar("Tickets booked successfully!", {variant: "success"});
     navigate("payment");
   }
 

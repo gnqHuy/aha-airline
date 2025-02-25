@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 type CardProps = {
   image: string;
@@ -16,10 +18,10 @@ const CardComponent: React.FC<CardProps> = ({ image, title, link, width = "500px
       className="relative rounded-lg overflow-hidden shadow-lg h-[280px] group" 
       style={{ width }}
     >
-      <img
+      <LazyLoadImage
         src={image}
         alt={title}
-        loading="lazy"
+        effect="opacity"
         className="w-full h-full object-cover top-0 left-0 absolute transition-transform duration-300 group-hover:scale-105" 
       />
 

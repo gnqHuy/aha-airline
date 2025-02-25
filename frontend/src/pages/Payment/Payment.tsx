@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectIsRoundTrip, selectSelectedFlight, selectSelectedFlightRound } from "../../redux/selector/flightSelector";
 import { selectFlightTicketsRoundState, selectFlightTicketsState } from "../../redux/selector/bookingSelector";
 import { selectUser } from "../../redux/selector/authSelector";
-import { setFlightTicketsId, setFlightTicketsRoundId } from "../../redux/slice/bookingSlice";
+import { resetBooking, setFlightTicketsId, setFlightTicketsRoundId } from "../../redux/slice/bookingSlice";
 
 type Props = {};
 

@@ -5,8 +5,10 @@ import { MdDeleteForever } from "react-icons/md";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { Aircraft } from "../../../object/aircraft";
 import { AircraftStatus } from "../../../object/enum/AircraftStatus";
+import { useSnackbar } from "notistack";
 
 const Aircrafts: React.FC = () => {
+    const { enqueueSnackbar } = useSnackbar();
     const [aircrafts, setAircrafts] = useState<Aircraft[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -76,12 +78,11 @@ const Aircrafts: React.FC = () => {
   
     const handleAddAircraft = async () => {
       if (newAircraft.noOfSeats % 6 != 0) {
-        alert("Please enter a number that is divisible by 6.")
+        enqueueSnackbar("Please enter a number that is divisible by 6.", {variant: "warning"});
       } else {
         try {
           var res = await addAircrafts(newAircraft);
-          console.log(res);
-          alert(res.data);
+          enqueueSnackbar(res.data, {variant: "info"});
           setNewAircraft({
             name: "",
             model: "",
@@ -93,11 +94,11 @@ const Aircrafts: React.FC = () => {
           });
         } catch (error: any) {
             if (error.response) {
-                alert('Server Error:' + error.response.data);
+              enqueueSnackbar('Server Error:' + error.response.data, {variant: "error"});
             } else if (error.request) {
-                alert('Network Error:' + error.request);
+              enqueueSnackbar('Network Error:' + error.request, {variant: "error"});
             } else {
-                alert('Error:' + error.message);
+              enqueueSnackbar('Error:' + error.message, {variant: "error"});
             }
         }
       }
@@ -273,21 +274,21 @@ const Aircrafts: React.FC = () => {
                   </td>
                   <td className="border border-gray-300 px-2 py-2 text-sm">
                     <div className="flex justify-center items-center">
-                      {/* {editingAircraft ? (
+                      {editingAircraft ? (
                         <button
                           onClick={handleSaveEdit}
                           className="bg-green-600 hover:bg-green-400 border-none px-5 py-2 text-white rounded"
                         >
                           Save
                         </button>
-                      ) : ( */}
+                      ) : (
                         <button
                           onClick={handleAddAircraft}
                           className="bg-blue-600 hover:bg-blue-400 border-none px-6 py-2 text-white rounded"
                         >
                           Add
                         </button>
-                      {/* )} */}
+                      )}
                     </div>
                   </td>
               </tr>
@@ -295,7 +296,7 @@ const Aircrafts: React.FC = () => {
             <tbody>
                 {filteredAircrafts.map((aircraft, index) => (
                 <tr key={index} className={`${
-                  editingAircraft && aircraft.terminal === editingAircraft.terminal
+                  editingAircraft && aircraft.name === editingAircraft.name
                     ? "bg-golden-hover"
                     : index % 2 === 0
                     ? "bg-white"

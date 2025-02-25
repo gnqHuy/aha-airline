@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { signUp } from '../../../api/authAPI';
+import { useSnackbar } from 'notistack';
 
 interface Props {
 }
 
 const RegisterPage: React.FC<Props> = ({}) => {
+    const { enqueueSnackbar } = useSnackbar();
     const [firstname, setFirstname] = useState<string>("");
     const [lastname, setLastname] = useState<string>("");
     const [email, setEmail] = useState<string>("");
@@ -16,8 +18,8 @@ const RegisterPage: React.FC<Props> = ({}) => {
     
       const handleSubmit = () => {
         if (!username || !password || !firstname || !lastname || !email) {
-          alert("Please fill in both fields");
-          return;
+            enqueueSnackbar("Please fill in both fields", {variant: "warning"});
+            return;
         }
     
         signUp({
@@ -28,12 +30,11 @@ const RegisterPage: React.FC<Props> = ({}) => {
             password: password
         }).then((res) => {
           if (res.data) {
-            console.log(res.data);
-            alert(res.data);
+            enqueueSnackbar(res.data, {variant: "success"});
             navigate("/");
           }
         }).catch((error) => {
-            alert(error || "Failed to log in. Please try again.");
+            enqueueSnackbar(error || "Failed to log in. Please try again.", {variant: "error"});
         });
       };
 

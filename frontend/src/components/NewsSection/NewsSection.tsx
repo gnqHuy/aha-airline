@@ -1,49 +1,39 @@
-import React, { useEffect } from 'react';
-import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css';
+import React, { useEffect } from "react";
+import { Slide } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
 import "./NewsSection.css";
 
-import image1 from '../../assets-test/Images/coupon1.jpeg';
-import image2 from '../../assets-test/Images/cities/seoul.jpg';
-import image3 from '../../assets-test/Images/cities/tokyo.jpg';
-import { useFlightContext } from '../../context/FlightContext/FlightContext';
+import image1 from "../../assets-test/Images/green2.jpg";
+import image2 from "../../assets-test/Images/green4.jpg";
+import image3 from "../../assets-test/Images/green3.jpg";
 
 const Example = () => {
-    
-    const slides = [
-        { image: image1, link: "/explore/offer" },
-        { image: image2, link: "/explore/destination/seoul" },
-        { image: image3, link: "/explore/destination/tokyo" },
+  const slides = [
+    { image: image1},
+    { image: image2},
+    { image: image3},
+  ];
 
-        // {imgLink: url1, header: h1, content: c1}
-    ];
-
-
-    useEffect(() => {
-    }, [])
-
-    return (
-        <Slide>
-            {slides.map((slide, index) => (
-                <div className="slide" key={index}>
-                    <a href={slide.link} className="block h-full w-full">
-                        <div
-                            style={{
-                                backgroundImage: image1,
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                                height: "500px",
-                            }}
-                            className="slide-image"
-                            onClick={() => {
-                                localStorage.setItem('news-index', index.toString());
-                            }}
-                        />
-                    </a>
-                </div>
-            ))}
-        </Slide>
-    );
+  return (
+    <Slide>
+      {slides.map((slide, index) => (
+        <div className="slide" key={index}>
+            <div
+              style={{
+                backgroundImage: `url(${slide.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                height: "500px",
+              }}
+              className="slide-image"
+              onClick={() => {
+                localStorage.setItem("news-index", index.toString());
+              }}
+            />
+        </div>
+      ))}
+    </Slide>
+  );
 };
 
 export default Example;

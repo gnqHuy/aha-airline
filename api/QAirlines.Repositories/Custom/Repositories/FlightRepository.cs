@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QAirlines.DataAccess.DbContext;
 using QAirlines.Models;
+using QAirlines.Models.Enums;
 using QAirlines.Models.Request;
 using QAirlines.Models.Response;
 using QAirlines.Repositories.Custom.Interfaces;
@@ -47,6 +48,12 @@ namespace QAirlines.Repositories.Custom.Repositories
                 .ToListAsync();
 
             return flights;
+        }
+        public async Task<IEnumerable<Flight>> GetExpiredFlights(DateTime now)
+        {
+            return await _context.Flights
+                .Where(f => f.DepartureTime < now && f.Status != FlightStatus.Cancelled)
+                .ToListAsync();
         }
     }
 }

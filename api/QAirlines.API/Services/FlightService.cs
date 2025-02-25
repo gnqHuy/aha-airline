@@ -395,5 +395,23 @@ namespace QAirlines.API.Services
         //    }
         //    _unitOfWork.Commit();
         //}
+        public async Task<int> DeleteExpiredFlights()
+        {
+            var now = DateTime.UtcNow;
+            var expiredFlights = await _unitOfWork.Flights.GetExpiredFlights(now);
+
+            if (!expiredFlights.Any())
+            {
+                return 0;
+            }
+
+            foreach (var flight in expiredFlights)
+            {
+                _unitOfWork.Flights.Remove(flight.Id);
+            }
+
+            return _unitOfWork.Commit();
+        }
+
     }
 }

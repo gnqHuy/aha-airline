@@ -1,6 +1,8 @@
 import React from 'react';
 import './FlightCard.css';
 import { FlightPreviewType } from '../../object/flightPreview';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css'; // Hiệu ứng mờ khi tải ảnh
 
 type FlightCardProps = {
   flight: FlightPreviewType;
@@ -9,8 +11,6 @@ type FlightCardProps = {
 
 const FlightCard: React.FC<FlightCardProps> = ({ flight, image }) => {
   const departureDate = new Date(flight.departureTime);
-
-  
 
   const formattedDate = departureDate.toLocaleDateString('en-GB', {
     day: '2-digit',
@@ -26,13 +26,19 @@ const FlightCard: React.FC<FlightCardProps> = ({ flight, image }) => {
 
   return (
     <div className="flight-card-container">
-      <img src={image} loading='lazy' alt={`Flight to ${flight.toAirport.city.name}`} />
+      <LazyLoadImage
+        src={image}
+        alt={`Flight to ${flight.toAirport.city.name}`}
+        effect="opacity" 
+        placeholderSrc="https://via.placeholder.com/400x250"
+        className="flight-image"
+      />
       <div className="flight-info">
         <p className="city-name">
           {flight.fromAirport.city.name} <br /> to {flight.toAirport.city.name}
         </p>
         <p className="depart">
-          <b>Departure Time:</b> <br/> {formattedDate}
+          <b>Departure Time:</b> <br /> {formattedDate}
         </p>
         <p className="price">
           From: {flight.minimumPrice.toLocaleString()} VND

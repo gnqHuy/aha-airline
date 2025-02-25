@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import { FaArrowRight, FaCalendarAlt, FaGift } from 'react-icons/fa'
 import { FaArrowRightArrowLeft } from 'react-icons/fa6'
 import { RiExpandUpDownFill } from 'react-icons/ri'
-import CalendarDepart from './Calendar/CalendarDepart';
-import FlightPreview from '../../../FlightPreview/FlightPreview';
-import { useFlightContext } from '../../../../context/FlightContext/FlightContext';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { setReturnDate, setRoundTrip, setSelectedFlightPreview } from '../../../../redux/slice/flightSlice';
 import { setPassengers } from '../../../../redux/slice/passengerSlice';
+import { useSnackbar } from 'notistack';
 
 interface Props {
     handleSetupDisplaySuggestion: () => void;
@@ -52,6 +50,7 @@ const BookingContentRoundTrip: React.FC<Props> = ({
         }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
     function parseAirportInfo(input: string): {
         iata: string;
         cityName: string;
@@ -129,7 +128,7 @@ const BookingContentRoundTrip: React.FC<Props> = ({
     
             navigate("ticket");
         } catch (error) {
-            alert("An error occurred while processing your request. Please check your inputs and try again.");
+            enqueueSnackbar("An error occurred while processing your request. Please check your inputs and try again.", {variant: "error"});
             console.error(error);
         }
     };    
@@ -137,7 +136,7 @@ const BookingContentRoundTrip: React.FC<Props> = ({
   return (
     <div className = "flex">
         {/* flight from */}
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <div className = "absolute top-[2.5rem] hover:cursor-pointer" onClick = {handleSetupDisplaySuggestion}>
             <p className = " text-gray-500 absolute top-[1rem] left-[2.2rem]" style = {{fontSize: "12px"}}>From</p>
             {displaySuggestion === true ? 

@@ -162,5 +162,13 @@ namespace QAirlines.API.Controllers
             _unitOfWork.Flights.Remove(Id);
             _unitOfWork.Commit();
         }
+
+        [HttpDelete("expired")]
+        public async Task<IActionResult> DeleteExpiredFlights()
+        {
+            var deletedCount = await _flightService.DeleteExpiredFlights();
+            return Ok(new { Message = "Deleted expired flights", Count = deletedCount });
+        }
+
     }
 }

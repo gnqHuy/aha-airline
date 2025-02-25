@@ -48,9 +48,7 @@ const flightSlice = createSlice({
     setReturnDate: (state, action: PayloadAction<string>) => {
       state.returnDate = action.payload;
     },
-    clearFlightData: (state) => {
-      return initialState;
-    }
+    resetFlightData: () => initialState,
   },
 });
 
@@ -62,7 +60,7 @@ export const {
     setSelectedFlightRoundClass,
     setRoundTrip,
     setReturnDate,
-    clearFlightData
+    resetFlightData
 } = flightSlice.actions;
 
 export default flightSlice.reducer;

@@ -40,6 +40,6 @@ module.exports = {
   },
   plugins: [],
   corePlugins: {
-    preflight: false, // Tắt reset styles
+    preflight: false, 
   },
 }

@@ -25,7 +25,7 @@ const Footer = (props: Props) => {
                         <li>
                             <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Contact And Feedback: </h2>
                             <p className='flex items-center gap-1 ml-4 text-white'>
-                                <MdEmail /> Email: 22021145@vnu.edu.vn 
+                                <MdEmail /> Email: 22021142@vnu.edu.vn 
                             </p>
                             <p className='flex items-center gap-1 ml-4 text-white'>
                                 <FaPhoneAlt /> Phone number: 0941562004
@@ -86,10 +86,10 @@ const Footer = (props: Props) => {
                 <span className="text-sm sm:text-center">© 2024 <a href="/" className="hover:underline text-golden no-underline">AHA AIRLINE™</a>. All Rights Reserved.</span>
                 <div className="flex items-center">
                     <p className='mr-4 text-golden'>Follow Us:</p>
-                    <a href="https://www.facebook.com/nguyen.ducanh.180625" className="flex items-center hover:text-[#D4A422] text-white">
+                    <a href="https://www.facebook.com/quang.huy.423712/" className="flex items-center hover:text-[#D4A422] text-white">
                         <FaFacebook />
                     </a>
-                    <a href="https://github.com/dwcsnh/QAirline" className="flex items-center hover:text-[#D4A422] ms-5 text-white">
+                    <a href="https://github.com/gnqHuy/aha-airline" className="flex items-center hover:text-[#D4A422] ms-5 text-white">
                         <FaGithub />
                     </a>
                     <a href="https://www.instagram.com/gnq_huy/" className="flex items-center hover:text-[#D4A422] ms-5 text-white">

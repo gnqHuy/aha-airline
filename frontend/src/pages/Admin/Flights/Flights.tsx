@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
-import { generateFlights, getFromAircraftAndRoute, getFromRequest, getPagedFlightDTO } from "../../../api/flightAPI";
+import { deleteExpiredFlights, generateFlights, getFromAircraftAndRoute, getFromRequest, getPagedFlightDTO } from "../../../api/flightAPI";
 import { EnumDeclaration } from "typescript";
 import { AxiosResponse } from "axios";
 import Pagination from "../Pagination/Pagination";
@@ -213,6 +213,16 @@ const Flights: React.FC = () => {
       setLoading(false);
     }
   }
+
+  const handleDeleteExpiredFlights = async () => {
+    try {
+        const result = await deleteExpiredFlights();
+        postMessage(result.message);
+    } catch (error) {
+        postMessage("Failed to delete expired flights.");
+    }
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
   
@@ -303,7 +313,7 @@ const Flights: React.FC = () => {
 
   return (
     <>
-      <div className="text-4xl pb-6 pt-4 font-bold text-center text-golden capitalize">Flights</div>
+      <div className="text-4xl pb-6 pt-[0,9rem] font-bold text-center text-golden capitalize">Flights</div>
       <div className="mb-4 flex space-x-4">
         <input
           type="text"
@@ -351,12 +361,18 @@ const Flights: React.FC = () => {
         >
           Auto Generate
         </button>
+        <button
+          onClick={handleDeleteExpiredFlights}
+          className="bg-red-500 ml-5 hover:bg-blue-400 border-none px-5 py-2 text-white rounded"
+        >
+          Delete Expired Flights
+        </button>
       </div>
       {searchError && <p style={{ color: 'red' }}>{searchError}</p>}
       {loading && <p>Loading...</p>}
       {error && <p>{error}</p>}
 
-      <div className="overflow-y-auto h-[76%]">
+      <div className="overflow-y-auto h-[73%]">
         <table className="min-w-full border-collapse border border-gray-300">
           <thead className="bg-golden-hover sticky top-0 z-10">
             <tr>
