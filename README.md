@@ -1,54 +1,45 @@
-# QAirlines
+# 🛫 AHA AIRLINE
 
-## Server Project Setup Guide
-### Navigate to this directory:
+## Introduction
+The **AHA AIRLINE** is a web-based platform that allows customers to search, book, and manage their flight tickets seamlessly. It also provides an admin panel to manage flights, aircraft, and related data efficiently.
 
-`your_directory\QAirline\api\QAirlines.API`
+## Technologies Used
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Backend**: .NET Core, ASP.NET Web API
+- **Database**: SQL Server
+- **State Management**: React Context API / Redux
+- **Authentication**: JWT (JSON Web Token) Authentication
+- **API Handling**: Axios / Fetch API
 
-### Install .NET Tools
+## Features
 
-Open the terminal and run the following command:
+### Customer Features
+- **View General Information & Flight Details**: Browse flight schedules, available routes, and airline details.
+- **Search for Flights**: Find flights based on departure/arrival locations, date, and class type.
+- **Book Tickets**: Securely reserve and purchase tickets for available flights.
+- **Cancel Tickets**: Cancel bookings within the allowed timeframe for a refund (if applicable).
+- **Track Booked Flights**: View past and upcoming bookings, including boarding details and flight status updates.
 
-```cli
-dotnet tool install --global dotnet-ef
-```
+### Admin Features
+- **Manage Aircraft**: Add, edit, or delete aircraft details (name, model, manufacturer, status, etc.).
+- **Manage Flights**: View, update, or remove flight information such as schedules, prices, and available seats.
 
-### Set up database connection
+## Demo
 
-Create `appsettings.Development.json` file with the following content:
-```json
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "ConnectionStrings": {
-    "Default": "server=localhost;userid=;password=;database=qairlines;"
-  }
-}
-```
-<br/>
+## Future Development Plans
+### Upcoming Features
+   - Implement a feature for admins to post updates about discounts and important notices.
+   - Currently, all images are stored manually within the project. Plan to migrate to cloud storage (e.g., AWS S3, Firebase Storage) for better scalability and performance.
 
-Enter your MySQL username and password in the `userid` and `password` field, respectively.
+### Improvements
+- **Enhancing Search & Filtering**: Improve the search functionality by adding filters such as flexible dates, multi-city flights, and airline preferences.
+- **Seat Selection Feature**: Allow users to select seats during the booking process.
+- **Loyalty & Rewards System**: Introduce a frequent flyer program to reward returning customers.
+- **Real-Time Flight Updates**: Integrate real-time flight status tracking for better user experience.
+- **Multi-Language Support**: Add support for multiple languages to reach a broader audience.
+- **Payment Gateway Integration**: Expand payment options with PayPal, Stripe, and other popular services.
 
-![alt text](image.png)
+## Contributing
+Contributions are welcome! Please submit a pull request or open an issue to suggest improvements.
 
-
-### Create and apply migration
-
-Add new migration ( if there's not a Migration folder inside `QAirlines.Migrations` folder )
-
-```cli
-dotnet ef migrations add <migration_name> --project ../QAirlines.Migrations
-```
-
-Update the database ( if you don't have one )
-
-```cli
-dotnet ef database update
-```
-
-### Import data
-https://drive.google.com/drive/folders/1MVT-qAwLlEF9fFAnOh51N-VMzm5xMlQo?usp=sharing
+---
