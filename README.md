@@ -1,4 +1,4 @@
-![Ảnh chụp màn hình 2025-03-09 224124](https://github.com/user-attachments/assets/cec1b5bc-b48c-4314-9da4-0eab7e49b4e8)# 🛫 AHA AIRLINE
+# 🛫 AHA AIRLINE
 
 ## Introduction
 The **AHA AIRLINE** is a web-based platform that allows customers to search, book, and manage their flight tickets seamlessly. It also provides an admin panel to manage flights, aircraft, and related data efficiently.
