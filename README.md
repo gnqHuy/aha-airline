@@ -39,11 +39,18 @@ The **AHA AIRLINE** is a web-based platform that allows customers to search, boo
 ![Ảnh chụp màn hình 2025-03-09 223120](https://github.com/user-attachments/assets/b9332bf8-849a-4c32-829d-79a15152ea77)
 
 ### Other Page
-![Ảnh chụp màn hình 2025-03-09 223103](https://github.com/user-attachments/assets/931a83ef-9efe-43a0-b2f9-ce5cef34ba34)
-![Ảnh chụp màn hình 2025-03-09 223438](https://github.com/user-attachments/assets/7c0e0851-0df9-4a98-8903-2e08d05642e1)
-![Ảnh chụp màn hình 2025-03-09 223515](https://github.com/user-attachments/assets/1846b27c-6b1e-4ab8-8b86-8f91c426497e)
-![Ảnh chụp màn hình 2025-03-09 223534](https://github.com/user-attachments/assets/aee21038-855c-41e3-97c4-d6e4570c18e3)
-![Ảnh chụp màn hình 2025-03-09 223549](https://github.com/user-attachments/assets/4852b2c1-1a85-4323-a686-1b7d356750f1)
+![Ảnh chụp màn hình 2025-03-09 224501](https://github.com/user-attachments/assets/dacfd0f3-c925-4b1a-866b-0493ec597dde)
+![Ảnh chụp màn hình 2025-03-09 224509](https://github.com/user-attachments/assets/4576eef8-f7a1-4c6d-b248-b1d464e3d470)
+
+![Ảnh chụp màn hình 2025-03-09 224611](https://github.com/user-attachments/assets/4849eb3b-dec6-4eae-af1d-ab146ef752b0)
+![Ảnh chụp màn hình 2025-03-09 224625](https://github.com/user-attachments/assets/d4c11d62-db65-4ad8-a60d-b24616c9d7c0)
+![Ảnh chụp màn hình 2025-03-09 224635](https://github.com/user-attachments/assets/df496135-1ee0-4a92-980b-75b15891b229)
+![Ảnh chụp màn hình 2025-03-09 224647](https://github.com/user-attachments/assets/38c29344-07a5-4809-881e-27e8b01b088e)
+![Ảnh chụp màn hình 2025-03-09 224656](https://github.com/user-attachments/assets/c62883c3-04c0-4a6a-b352-8d3fd7e94337)
+
+![Ảnh chụp màn hình 2025-03-09 224755](https://github.com/user-attachments/assets/67e257c0-1bea-4d4e-99d2-d8a72d60412a)
+![Ảnh chụp màn hình 2025-03-09 224804](https://github.com/user-attachments/assets/a4e3f219-65e9-4b71-8ab5-523bc763d4e0)
+![Ảnh chụp màn hình 2025-03-09 224810](https://github.com/user-attachments/assets/981cc97e-2746-48c1-ac8c-739fb1fd07a7)
 
 ## Future Development Plans
 ### Upcoming Features
