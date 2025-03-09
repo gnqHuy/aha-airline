@@ -28,7 +28,7 @@ The **AHA AIRLINE** is a web-based platform that allows customers to search, boo
 ### HomePage
 ![Ảnh chụp màn hình 2025-03-09 223855](https://github.com/user-attachments/assets/b43770ad-8e5a-41c2-b230-680ee9908f11)
 ![Ảnh chụp màn hình 2025-03-09 223910](https://github.com/user-attachments/assets/fc45d908-a8f1-4c81-8c6d-bb229b92c671)
-![Ảnh chụp màn hình 2025-03-09 223935](https://github.com/user-attachments/assets/36495b88-61a0-47c5-b2a7-f2dc201b0731)
+![image](https://github.com/user-attachments/assets/1c84b1a2-ff53-4e2c-b354-a63b62c35ee3)
 
 ### TicketPage
 ![Ảnh chụp màn hình 2025-03-09 222934](https://github.com/user-attachments/assets/7280c053-cb63-4d7f-9e2b-41545c20f8d1)
