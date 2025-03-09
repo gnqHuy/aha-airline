@@ -81,6 +81,13 @@ Cancel Flight
 ![Ảnh chụp màn hình 2025-03-09 223120](https://github.com/user-attachments/assets/b9332bf8-849a-4c32-829d-79a15152ea77)
 
 ### Other Page
+
+Login 
+![Ảnh chụp màn hình 2025-03-09 233418](https://github.com/user-attachments/assets/9b1c14fe-d958-46d8-816e-7261e48445ef)
+
+Register
+![Uploading Ảnh chụp màn hình 2025-03-09 233427.png…]()
+
 ![Ảnh chụp màn hình 2025-03-09 224501](https://github.com/user-attachments/assets/dacfd0f3-c925-4b1a-866b-0493ec597dde)
 ![Ảnh chụp màn hình 2025-03-09 224509](https://github.com/user-attachments/assets/4576eef8-f7a1-4c6d-b248-b1d464e3d470)
 
