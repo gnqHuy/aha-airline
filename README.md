@@ -14,18 +14,18 @@ The **AHA AIRLINE** is a web-based platform that allows customers to search, boo
 ## Features
 
 ### Customer Features
-- **View Flight Information: Browse available flights, routes, schedules, and airline details.
-- **Search Flights: Find flights based on departure and arrival locations, dates, and class types.
-- **Book Tickets: Securely book one-way or round-trip tickets.
-- **Cancel Tickets: Cancel bookings within the allowed timeframe and request refunds if applicable.
-- **Manage Bookings: View and track past and upcoming flight reservations.
-- **User Authentication: Register and log in to manage bookings and access personalized services.
+- **View Flight Information**: Browse available flights, routes, schedules, and airline details.
+- **Search Flights**: Find flights based on departure and arrival locations, dates, and class types.
+- **Book Tickets**: Securely book one-way or round-trip tickets.
+- **Cancel Tickets**: Cancel bookings within the allowed timeframe and request refunds if applicable.
+- **Manage Bookings**: View and track past and upcoming flight reservations.
+- **User Authentication**: Register and log in to manage bookings and access personalized services.
 - 
 ### Admin Features
-- **Manage Aircraft: Add, edit, or delete aircraft details, including model, manufacturer, and status.
-- **Manage Flights: Create, update, and remove flight schedules, pricing, and seat availability.
-- **Manage Flight Routes: Add and modify flight routes between airports.
-- **Manage Airports and Cities: Maintain a database of airports and cities for flight operations.
+- **Manage Aircraft**: Add, edit, or delete aircraft details, including model, manufacturer, and status.
+- **Manage Flights**: Create, update, and remove flight schedules, pricing, and seat availability.
+- **Manage Flight Routes**: Add and modify flight routes between airports.
+- **Manage Airports and Cities**: Maintain a database of airports and cities for flight operations.
   
 ## Demo
 ### HomePage
