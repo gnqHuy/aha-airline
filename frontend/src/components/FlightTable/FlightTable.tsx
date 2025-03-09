@@ -66,8 +66,8 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
     dispatch(setSearchFlightState(!searchFlightState))
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div className="text-red-600">Error: {error}</div>;
+  if (loading) return <div className='mx-auto text-xl text-center my-40'>Loading...</div>;
+  if (error) return <div className="mx-auto text-xl text-center my-40 text-red-600">Error: {error}</div>;
 
   return (
     <div className="w-full max-w-6xl mx-auto text-center p-4">

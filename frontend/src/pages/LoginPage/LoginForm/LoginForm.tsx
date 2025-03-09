@@ -49,7 +49,7 @@ const LoginForm: React.FC<Props> = ({}) => {
   };
 
   return (
-    <div className="h-[100%] w-[50%] relative flex flex-col items-center justify-center">
+    <div className="h-[100%] w-[80%] relative flex flex-col items-center mt-32 pb-24 justify-center">
       {/* Login to AHA */}
       <div className="flex items-center mb-6">
         <p className="text-center text-3xl font-bold text-lime-800">
@@ -104,7 +104,7 @@ const LoginForm: React.FC<Props> = ({}) => {
       </div>
 
       {/* Submit button */}
-      <div className="mt-8">
+      <div className="mt-14">
         <button
           className="cursor-pointer px-6 py-1 bg-golden text-[#FCF9F2] border-none outline-none text-lg font-normal rounded-[12px]"
           onClick={handleSubmit}
@@ -114,9 +114,9 @@ const LoginForm: React.FC<Props> = ({}) => {
       </div>
 
       {/* register suggest */}
-      <div className="absolute left-[25%] bottom-[2rem]">
+      <div className="pb-20">
         <p className="text-golden">
-          Doesn't have an account?
+          Doesn't have an account?&nbsp;
           <Link to="/sign-up">
             <span className="underline hover:cursor-pointer text-golden">
               Register

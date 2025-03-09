@@ -68,7 +68,7 @@ const AboutUs = (props: Props) => {
             Have questions or need assistance? Feel free to reach out to us:
           </p>
           <ul className="list-none text-gray-700 leading-relaxed mt-4">
-            <li><strong>Email:</strong> 22021145@vnu.edu.vn</li>
+            <li><strong>Email:</strong> 22021142@vnu.edu.vn</li>
             <li><strong>Phone:</strong> 0941562004</li>
             <li><strong>Office:</strong> 144 Xuan Thuy, Cau Giay, Hanoi</li>
           </ul>

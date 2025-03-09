@@ -118,8 +118,8 @@ const TicketPage: React.FC = () => {
     }
   };
   
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div className="text-red-600">Error: {error}</div>;
+  if (loading) return <div className='mx-auto text-xl text-center my-40'>Loading...</div>;
+  if (error) return <div className="mx-auto text-xl text-center my-40 text-red-600">Error: {error}</div>;
 
   return (
     <Layout1 headerImage={headerImage}>

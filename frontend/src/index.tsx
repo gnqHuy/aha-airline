@@ -16,7 +16,7 @@ setupAxios(store);
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <SnackbarProvider anchorOrigin={{vertical: "top", horizontal: "right"}} autoHideDuration={2000}>
+      <SnackbarProvider anchorOrigin={{vertical: "top", horizontal: "right"}} autoHideDuration={3000}>
         <App></App>
       </SnackbarProvider>
     </PersistGate>

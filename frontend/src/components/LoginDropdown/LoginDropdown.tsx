@@ -49,7 +49,7 @@ const LoginDropdown: React.FC<Props> = ({ username, roles, handleLogout }) => {
 
                 {/* Admin Panel (Chỉ hiển thị nếu là admin) */}
                 {isAdmin && (
-                    <Link to="/admin" className="no-underline">
+                    <Link to="/admin/aircrafts" className="no-underline">
                         <div className="flex ml-[1.5rem] mt-[-1rem] relative bottom-[1rem] hover:cursor-pointer">
                             <IoPerson style={{ color: "#1A4532" }} className="w-[1.8rem] h-[1.8rem]" />
                             <p className="text-base ml-[1rem] relative bottom-[0.9rem] text-Green font-bold">Admin Page</p>
