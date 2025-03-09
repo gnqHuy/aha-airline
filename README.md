@@ -25,6 +25,23 @@ The **AHA AIRLINE** is a web-based platform that allows customers to search, boo
 - **Manage Flights**: View, update, or remove flight information such as schedules, prices, and available seats.
 
 ## Demo
+HomePage
+![Ảnh chụp màn hình 2025-03-09 222804](https://github.com/user-attachments/assets/a5060442-9789-4031-aa68-1285e63fbce6)
+![Ảnh chụp màn hình 2025-03-09 222840](https://github.com/user-attachments/assets/974007f4-0590-4142-a9e1-eaf7247d52d9)
+![Ảnh chụp màn hình 2025-03-09 222848](https://github.com/user-attachments/assets/feead852-9eff-4661-bbbf-18da24110c56)
+![Ảnh chụp màn hình 2025-03-09 222902](https://github.com/user-attachments/assets/7ff61c6b-66e6-4fdc-99f8-25fa17b36e0e)
+TicketPage
+![Ảnh chụp màn hình 2025-03-09 222934](https://github.com/user-attachments/assets/7280c053-cb63-4d7f-9e2b-41545c20f8d1)
+![Ảnh chụp màn hình 2025-03-09 223000](https://github.com/user-attachments/assets/44dd781e-d29b-473a-89cc-3829e92a8011)
+![Ảnh chụp màn hình 2025-03-09 223013](https://github.com/user-attachments/assets/4293cf7d-8c62-4381-920a-d3c45f2a187a)
+AdminPage
+![Ảnh chụp màn hình 2025-03-09 223120](https://github.com/user-attachments/assets/b9332bf8-849a-4c32-829d-79a15152ea77)
+OtherPage
+![Ảnh chụp màn hình 2025-03-09 223103](https://github.com/user-attachments/assets/931a83ef-9efe-43a0-b2f9-ce5cef34ba34)
+![Ảnh chụp màn hình 2025-03-09 223438](https://github.com/user-attachments/assets/7c0e0851-0df9-4a98-8903-2e08d05642e1)
+![Ảnh chụp màn hình 2025-03-09 223515](https://github.com/user-attachments/assets/1846b27c-6b1e-4ab8-8b86-8f91c426497e)
+![Ảnh chụp màn hình 2025-03-09 223534](https://github.com/user-attachments/assets/aee21038-855c-41e3-97c4-d6e4570c18e3)
+![Ảnh chụp màn hình 2025-03-09 223549](https://github.com/user-attachments/assets/4852b2c1-1a85-4323-a686-1b7d356750f1)
 
 ## Future Development Plans
 ### Upcoming Features
