@@ -52,6 +52,28 @@ Print Ticket
 ![Ảnh chụp màn hình 2025-03-09 225532](https://github.com/user-attachments/assets/e1cb9912-415a-42fe-bad8-8c2cd81458e5)
 ![Ảnh chụp màn hình 2025-03-09 225539](https://github.com/user-attachments/assets/0d4bd896-f5c6-4751-974f-661d3c141040)
 
+### Booking Section
+![Ảnh chụp màn hình 2025-03-09 225820](https://github.com/user-attachments/assets/bbb9c21d-0529-4af6-9f3b-665f154f5682)
+![Ảnh chụp màn hình 2025-03-09 230442](https://github.com/user-attachments/assets/29349cc7-b755-4f7e-892d-2411af026ea8)
+![Ảnh chụp màn hình 2025-03-09 230504](https://github.com/user-attachments/assets/6e99dbbb-35a3-4ff6-a2e3-da06517ad966)
+![Ảnh chụp màn hình 2025-03-09 230515](https://github.com/user-attachments/assets/abe78a58-904e-4ea5-b26d-71ef86b59aa9)
+
+### Manage Booking Section
+![Ảnh chụp màn hình 2025-03-09 225913](https://github.com/user-attachments/assets/fa74d6fd-0282-4d40-a0c9-1598d006bc27)
+![Ảnh chụp màn hình 2025-03-09 225931](https://github.com/user-attachments/assets/c0dc6b68-7fb9-42d5-9b5b-1e7ab6887795)
+![Ảnh chụp màn hình 2025-03-09 230207](https://github.com/user-attachments/assets/2885f05d-087f-40c2-b384-7b39a4a7f784)
+![Ảnh chụp màn hình 2025-03-09 230223](https://github.com/user-attachments/assets/7dba509c-683d-4a06-9439-98d3b716b84f)
+
+### CheckIn Section
+![Ảnh chụp màn hình 2025-03-09 230250](https://github.com/user-attachments/assets/966c578a-00bb-4618-9d25-5dd93d708efa)
+![Ảnh chụp màn hình 2025-03-09 230308](https://github.com/user-attachments/assets/3ed81e3e-81bd-47d6-912d-ebaa72a3b336)
+![Ảnh chụp màn hình 2025-03-09 230319](https://github.com/user-attachments/assets/ab191b74-ab84-4408-965a-b9aa35965511)
+
+Upgrade Seat
+![Ảnh chụp màn hình 2025-03-09 230329](https://github.com/user-attachments/assets/1d4d2a43-9fa8-4b8e-9c7c-3831b046c6e0)
+
+Cancel Flight
+![Ảnh chụp màn hình 2025-03-09 230340](https://github.com/user-attachments/assets/3e827336-97c5-484c-9915-b221324bf943)
 
 ### AdminPage
 ![Ảnh chụp màn hình 2025-03-09 223120](https://github.com/user-attachments/assets/b9332bf8-849a-4c32-829d-79a15152ea77)
