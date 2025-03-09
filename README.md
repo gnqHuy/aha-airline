@@ -105,7 +105,4 @@ Cancel Flight
 - **Multi-Language Support**: Add support for multiple languages to reach a broader audience.
 - **Payment Gateway Integration**: Expand payment options with PayPal, Stripe, and other popular services.
 
-## Contributing
-Contributions are welcome! Please submit a pull request or open an issue to suggest improvements.
-
 ---
