@@ -20,7 +20,6 @@ The **AHA AIRLINE** is a web-based platform that allows customers to search, boo
 - **Cancel Tickets**: Cancel bookings within the allowed timeframe and request refunds if applicable.
 - **Manage Bookings**: View and track past and upcoming flight reservations.
 - **User Authentication**: Register and log in to manage bookings and access personalized services.
-- 
 ### Admin Features
 - **Manage Aircraft**: Add, edit, or delete aircraft details, including model, manufacturer, and status.
 - **Manage Flights**: Create, update, and remove flight schedules, pricing, and seat availability.
