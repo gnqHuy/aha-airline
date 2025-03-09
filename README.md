@@ -35,6 +35,23 @@ The **AHA AIRLINE** is a web-based platform that allows customers to search, boo
 ![Ảnh chụp màn hình 2025-03-09 224149](https://github.com/user-attachments/assets/09b35e22-b194-47ae-8216-25f5c4060fd9)
 ![Ảnh chụp màn hình 2025-03-09 224210](https://github.com/user-attachments/assets/eea5db6a-124a-47ca-8e92-38e220520573)
 
+### TicketCart
+![Ảnh chụp màn hình 2025-03-09 225120](https://github.com/user-attachments/assets/8ff8de8c-1226-4de7-a21a-3bf809fc9bb6)
+![Ảnh chụp màn hình 2025-03-09 225148](https://github.com/user-attachments/assets/a2ee6a34-75e8-4524-98d6-154fd600094a)
+
+### Information Form
+![Ảnh chụp màn hình 2025-03-09 225255](https://github.com/user-attachments/assets/09b3a86e-a7fc-44c0-a4bb-4f0f0c52413c)
+![Ảnh chụp màn hình 2025-03-09 225313](https://github.com/user-attachments/assets/3e8aafda-218f-4ba4-8a74-5f4f82009eea)
+
+### Show Ticket 
+![Ảnh chụp màn hình 2025-03-09 225407](https://github.com/user-attachments/assets/eafa6595-831a-4464-9f95-0269275b696c)
+![Ảnh chụp màn hình 2025-03-09 225419](https://github.com/user-attachments/assets/e70381e7-f80b-4fbb-b38e-181364a2a57e)
+
+Print Ticket
+![Ảnh chụp màn hình 2025-03-09 225532](https://github.com/user-attachments/assets/e1cb9912-415a-42fe-bad8-8c2cd81458e5)
+![Ảnh chụp màn hình 2025-03-09 225539](https://github.com/user-attachments/assets/0d4bd896-f5c6-4751-974f-661d3c141040)
+
+
 ### AdminPage
 ![Ảnh chụp màn hình 2025-03-09 223120](https://github.com/user-attachments/assets/b9332bf8-849a-4c32-829d-79a15152ea77)
 
