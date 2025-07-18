@@ -8,30 +8,9 @@ import { getFlightPreview } from '../../api/flightAPI';
 import type { FlightPreviewType } from '../../object/flightPreview';
 import { Airport } from '../../object/airport';
 import { useFlightContext } from '../../context/FlightContext/FlightContext';
-
-import image1 from '../../assets-test/Images/cities/hanoi.jpg';
-import image2 from '../../assets-test/Images/cities/singapore.jpg';
-import image3 from '../../assets-test/Images/cities/seoul.jpg';
-import image4 from '../../assets-test/Images/cities/paris.jpg';
-import image5 from '../../assets-test/Images/cities/rome.jpg';
-import image6 from '../../assets-test/Images/cities/london.jpg';
-import image7 from '../../assets-test/Images/cities/cairo.jpg';
-import image8 from '../../assets-test/Images/cities/marrakech.jpg';
-import image9 from '../../assets-test/Images/cities/newyork.jpg';
-import image10 from '../../assets-test/Images/cities/toronto.jpg';
-import image11 from '../../assets-test/Images/cities/mexico.jpg';
-import image12 from '../../assets-test/Images/cities/sydney.jpg';
-import image13 from '../../assets-test/Images/cities/melbourne.jpg';
-import image14 from '../../assets-test/Images/cities/istanbul.webp';
-import image15 from '../../assets-test/Images/cities/san-francisco.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSearchFlightState } from '../../redux/selector/searchFlightStateSelector';
 import { setSearchFlightState } from '../../redux/slice/searchFlightStateSlice';
-
-const images = [
-  image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, 
-  image11, image12, image13, image14, image15
-];
 
 type Props = {};
 const FlightPreview = (props: Props) => {
@@ -175,7 +154,7 @@ const FlightPreview = (props: Props) => {
             <div onClick={() => handleSelectedFlight(flight)} key={flight.departureTime}>
               <FlightCard 
                 flight={flight} 
-                image={images[index % images.length]}
+                image={flight.toAirport.city.imageUrl}
               />
             </div>
           ))

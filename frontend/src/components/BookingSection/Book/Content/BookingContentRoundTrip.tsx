@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setReturnDate, setRoundTrip, setSelectedFlightPreview } from '../../../../redux/slice/flightSlice';
 import { setPassengers } from '../../../../redux/slice/passengerSlice';
 import { useSnackbar } from 'notistack';
+import { image } from 'html2canvas/dist/types/css/types/image';
 
 interface Props {
     handleSetupDisplaySuggestion: () => void;
@@ -105,6 +106,7 @@ const BookingContentRoundTrip: React.FC<Props> = ({
                     city: {
                         name: fromInput.cityName,
                         country: fromInput.country,
+                        imageUrl: ""
                     },
                 },
                 toAirport: {
@@ -113,6 +115,7 @@ const BookingContentRoundTrip: React.FC<Props> = ({
                     city: {
                         name: toInput.cityName,
                         country: toInput.country,
+                        imageUrl: ""
                     },
                 },
                 departureTime: departureTime,

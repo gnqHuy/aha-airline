@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from "../../components/Layout/Layout";
 import GenericCard from "../../components/GenericCard/GenericCard";
-import image1 from '../../assets-test/Images/cities/london.jpg';
-import image2 from '../../assets-test/Images/cities/newyork.jpg';
-import image3 from '../../assets-test/Images/cities/singapore.jpg';
+import image1 from '../../assets-test/Images/plane2.jpg';
+import image2 from '../../assets-test/Images/sunset4.jpg';
+import image3 from '../../assets-test/Images/sunrise5.jpg';
 
 const HomePage: React.FC = () => {
   

@@ -12,8 +12,8 @@ import { resetPassengers } from "../../redux/slice/passengerSlice";
 const HomePage: React.FC = () => {
   const dispatch = useDispatch();
   useEffect (() => {
-     dispatch(setRoundTrip(false));
-     dispatch(resetBooking());
+      dispatch(setRoundTrip(false));
+      dispatch(resetBooking());
       dispatch(resetFlightData());
       dispatch(resetPassengers())
   })

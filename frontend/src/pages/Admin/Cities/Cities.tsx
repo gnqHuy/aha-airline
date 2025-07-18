@@ -11,6 +11,7 @@ const Cities: React.FC = () => {
   const [newCity, setNewCity] = useState<City>({
     name: "",
     country: "",
+    imageUrl: "",
   });
 
   const [editingCity, setEditingCity] = useState<City | null>(null);
@@ -26,6 +27,7 @@ const Cities: React.FC = () => {
         const response = await getAllCities();
         // (response);
         setCities(response.data);
+        console.log(response.data);
       } catch (err) {
         setError("Failed to load city data.");
       } finally {
@@ -61,7 +63,7 @@ const Cities: React.FC = () => {
 
   const handleAddCity = () => {
     setCities((prev) => [...prev, newCity]);
-    setNewCity({ name: "", country: "" });
+    setNewCity({ name: "", country: "" , imageUrl: ""});
   };
 
   const handleDeleteCity = (cityToDelete: City) => {
@@ -80,7 +82,7 @@ const Cities: React.FC = () => {
       )
     );
     setEditingCity(null);
-    setNewCity({ name: "", country: "" });
+    setNewCity({ name: "", country: "", imageUrl: ""});
   };
 
   if (loading) return <div className='mx-auto text-xl text-center my-40'>Loading...</div>;
@@ -120,6 +122,9 @@ const Cities: React.FC = () => {
               <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">
                 Country
               </th>
+              <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">
+                ImageUrl
+              </th>
               <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold"></th>
             </tr>
             <tr className="bg-gray-100 sticky">
@@ -137,6 +142,15 @@ const Cities: React.FC = () => {
                   type="text"
                   name="country"
                   value={newCity.country}
+                  onChange={handleInputChange}
+                  className="w-full px-2 py-1 border rounded"
+                />
+              </td>
+              <td className="border border-gray-300 px-4 py-2">
+                <input
+                  type="text"
+                  name="country"
+                  value={newCity.imageUrl}
                   onChange={handleInputChange}
                   className="w-full px-2 py-1 border rounded"
                 />
@@ -179,6 +193,9 @@ const Cities: React.FC = () => {
                 </td>
                 <td className="border border-gray-300 px-4 py-2 text-base">
                   {city.country}
+                </td>
+                <td className="border border-gray-300 px-4 py-2 text-base">
+                  {city.imageUrl == null ? "hello" : city.imageUrl}
                 </td>
                 <td className="border border-gray-300 px-2 py-2">
                   <div className="flex justify-center items-center space-x-2">

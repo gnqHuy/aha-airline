@@ -55,13 +55,7 @@ const Layout1: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
     month: "short",
     year: "numeric",
   });
-
-  const formattedTime = departureDate.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
-
+  
   return (
     <>
       <NavBar />

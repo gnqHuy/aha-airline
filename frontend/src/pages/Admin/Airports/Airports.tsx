@@ -11,7 +11,7 @@ const Airports: React.FC = () => {
   const [newAirport, setNewAirport] = useState<Airport>({
     iata: "",
     name: "",
-    city: {name: "", country: "" },
+    city: {name: "", country: "" , imageUrl: ""},
   });
 
   const [search, setSearch] = useState({
@@ -107,7 +107,7 @@ const Airports: React.FC = () => {
     setNewAirport({
       iata: "",
       name: "",
-      city: { name: "", country: "" },
+      city: { name: "", country: "", imageUrl: ""},
     });
   };
 

@@ -13,8 +13,8 @@ const FlightRoutes: React.FC = () => {
   const [newFlightRoute, setNewFlightRoute] = useState<FlightRoute>({
     fromAirportIATA: "",
     toAirportIATA: "",
-    fromAirport: { iata: "", name: "", city: { name: "", country: "" } },
-    toAirport: { iata: "", name: "", city: { name: "", country: "" } },
+    fromAirport: { iata: "", name: "", city: { name: "", country: "" , imageUrl: ""} },
+    toAirport: { iata: "", name: "", city: { name: "", country: "" , imageUrl: ""} },
     noOfFlights: 0,
     distance: 0,
   });
@@ -91,8 +91,8 @@ const FlightRoutes: React.FC = () => {
     setNewFlightRoute({
       fromAirportIATA: "",
       toAirportIATA: "",
-      fromAirport: { iata: "", name: "", city: { name: "", country: "" } },
-      toAirport: { iata: "", name: "", city: { name: "", country: "" } },
+      fromAirport: { iata: "", name: "", city: { name: "", country: "" , imageUrl: ""} },
+      toAirport: { iata: "", name: "", city: { name: "", country: "" , imageUrl: ""} },
       noOfFlights: 0,
       distance: 0,
     });

@@ -20,7 +20,7 @@ const Example = () => {
         <div className="slide" key={index}>
             <div
               style={{
-                backgroundImage: `url(${slide.image})`,
+                backgroundImage: `url("https://aha-airline.s3.ap-southeast-2.amazonaws.com/beijing.jpg")`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 height: "500px",
