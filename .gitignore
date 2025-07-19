@@ -31,3 +31,4 @@ QAirlines.Migrations/
 
 # appsettings
 appsettings.*.json
+api/QAirlines.API/appsettings.json

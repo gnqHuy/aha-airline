@@ -19,4 +19,8 @@
 		<ProjectReference Include="..\QAirlines.DataAccess\QAirlines.DataAccess.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
+
 </Project>

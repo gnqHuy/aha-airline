@@ -6,7 +6,6 @@ using QAirlines.Repositories.Generic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace QAirlines.Repositories.Custom.Repositories
@@ -22,5 +21,23 @@ namespace QAirlines.Repositories.Custom.Repositories
                 .ToListAsync();
             return cities;
         }
+
+        public async Task<City?> GetCityByIdAsync(Guid id)
+        {
+            return await _context.Cities.FirstOrDefaultAsync(c => c.Id == id);
+        }
+        public async Task<bool> UpdateImageUrlAsync(Guid cityId, string imageUrl)
+        {
+            var city = await _context.Cities.FindAsync(cityId);
+            if (city == null)
+                return false;
+
+            city.ImageUrl = imageUrl;
+            _context.Cities.Update(city);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
+            
     }
 }

@@ -22,6 +22,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
+using QAirlines.Models.Data_Transfer_Objects.S3DTO;
 
 
 namespace QAirlines.API
@@ -158,6 +159,9 @@ namespace QAirlines.API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                 };
             });
+            services.Configure<AwsCredentials>(Configuration.GetSection("AwsCredentials"));
+            services.Configure<S3BucketProperties>(Configuration.GetSection("S3BucketProperties"));
+            services.AddSingleton<S3Service>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

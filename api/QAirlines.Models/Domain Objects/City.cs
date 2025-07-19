@@ -19,5 +19,7 @@ namespace QAirlines.Models
         public string Country { get; set; }
 
         public virtual ICollection<Airport> Airports { get; set; } = new List<Airport>();
+
+        public string? ImageUrl { get; set; }
     }
 }
