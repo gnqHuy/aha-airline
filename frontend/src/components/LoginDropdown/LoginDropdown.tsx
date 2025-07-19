@@ -17,12 +17,12 @@ const LoginDropdown: React.FC<Props> = ({ username, roles, handleLogout }) => {
         <div className="w-[20vw] bg-[#faf9f7] rounded-[5px] small:w-[40vw] medium:w-[40vw]">
             {/* Username and roles */}
             <div className="w-full flex">
-                <img src={LoginAvatar} className="rounded-[50%] w-[2.4rem] h-[2.4rem] border-solid border-[2px] border-Green ml-[1rem] mt-[1.8rem]" alt="User Avatar" />
+                <img src={LoginAvatar} className="rounded-[50%] w-[2.4rem] h-[2.4rem] border-solid border-[2px] border-ahaGreen-0 ml-[1rem] mt-[1.8rem]" alt="User Avatar" />
                 <div className="ml-[1rem] relative bottom-[0.5rem]">
-                    <p className="text-[20px] font-bold text-Green">{username}</p>
+                    <p className="text-[20px] font-bold text-ahaGreen-0">{username}</p>
                     <div className="flex">
                         {roles.map((role, index) => (
-                            <div key={index} className="bg-Green text-white rounded-[15px] text-center mr-[0.5rem] h-[2rem]">
+                            <div key={index} className="bg-ahaGreen-0 text-white rounded-[15px] text-center mr-[0.5rem] h-[2rem]">
                                 <p className="text-sm px-[0.5rem] relative bottom-[0.6rem]">{role}</p>
                             </div>
                         ))}
@@ -43,7 +43,7 @@ const LoginDropdown: React.FC<Props> = ({ username, roles, handleLogout }) => {
                 <Link to="/your-ticket" className="no-underline">
                     <div className="flex ml-[1.5rem] mt-[0rem] relative bottom-[1rem] hover:cursor-pointer">
                         <IoTicket style={{ color: "#1A4532" }} className="w-[1.8rem] h-[1.8rem]" />
-                        <p className="text-base ml-[1rem] relative bottom-[0.9rem] text-Green">Your tickets</p>
+                        <p className="text-base ml-[1rem] relative bottom-[0.9rem] text-ahaGreen-0">Your tickets</p>
                     </div>
                 </Link>
 
@@ -52,7 +52,7 @@ const LoginDropdown: React.FC<Props> = ({ username, roles, handleLogout }) => {
                     <Link to="/admin/aircrafts" className="no-underline">
                         <div className="flex ml-[1.5rem] mt-[-1rem] relative bottom-[1rem] hover:cursor-pointer">
                             <IoPerson style={{ color: "#1A4532" }} className="w-[1.8rem] h-[1.8rem]" />
-                            <p className="text-base ml-[1rem] relative bottom-[0.9rem] text-Green font-bold">Admin Page</p>
+                            <p className="text-base ml-[1rem] relative bottom-[0.9rem] text-ahaGreen-0 font-bold">Admin Page</p>
                         </div>
                     </Link>
                 )}

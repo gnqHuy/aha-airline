@@ -97,7 +97,7 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
 
   return (
     <div className="w-[50%] mx-auto p-8 bg-white rounded-lg shadow-lg my-6">
-      <h2 className="text-xl font-semibold text-golden text-center mb-8">
+      <h2 className="text-xl font-semibold text-ahaAmber-2 text-center mb-8">
         1 {passengerType.charAt(0).toUpperCase() + passengerType.slice(1)} ({passengerType})
       </h2>
       <form className="space-y-8 w-full">
@@ -110,7 +110,7 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
             name="title"
             value={title}
             onChange={handleTitleChange}
-            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-golden-hover focus:outline-none"
+            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-ahaAmber-4 focus:outline-none"
           >
             <option value="">Select title</option>
             {Object.keys(PassengerTitle)
@@ -153,7 +153,7 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
             value={firstName}
             onChange={handleFirstNameChange}
             placeholder="Enter first name"
-            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-golden-hover focus:outline-none"
+            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-ahaAmber-4 focus:outline-none"
           />
         </div>
 
@@ -168,7 +168,7 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
             value={lastName}
             onChange={handleLastNameChange}
             placeholder="Enter last name"
-            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-golden-hover focus:outline-none"
+            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-ahaAmber-4 focus:outline-none"
           />
         </div>
 
@@ -182,13 +182,13 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
             name="dob"
             value={dob}
             onChange={handleDobChange}
-            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-golden-hover focus:outline-none"
+            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-ahaAmber-4 focus:outline-none"
           />
           <p className="mt-1 text-sm text-gray-500">The format is Month / Day / Year</p>
           {errorMessage && <p className="mt-2 text-sm text-red-500">{errorMessage}</p>}
         </div>
 
-        <h2 className="text-xl font-semibold text-golden text-center mb-8">
+        <h2 className="text-xl font-semibold text-ahaAmber-2 text-center mb-8">
           Contact
         </h2>
 
@@ -201,7 +201,7 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
             id="email"
             name="email"
             placeholder="Enter your email"
-            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-golden-hover focus:outline-none"
+            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-ahaAmber-4 focus:outline-none"
             value={email}
             onChange={handleEmailChange}
             required
@@ -217,7 +217,7 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
             id="phoneNumber"
             name="phoneNumber"
             placeholder="Enter your phone number"
-            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-golden-hover focus:outline-none"
+            className="bg-transparent border border-gray-300 rounded-md p-2 w-full text-gray-700 text-base focus:ring-2 focus:ring-ahaAmber-4 focus:outline-none"
             value={phoneNumber}
             onChange={handlePhoneChange}
             required

@@ -38,15 +38,15 @@ const RegisterPage: React.FC<Props> = ({}) => {
     <div className="h-[100%] w-[80%] relative flex flex-col items-center mt-7 justify-center">
       <div className="flex items-center">
         <p className="text-center text-3xl font-bold text-lime-800">Register to&nbsp;</p>
-        <p className="text-center text-3xl font-bold text-golden-ramsay">AHA</p>
+        <p className="text-center text-3xl font-bold text-ahaAmber-1">AHA</p>
       </div>
 
       <div className="w-full">
         <div className="">
-          <p className="text-[15px] text-left text-golden-ramsay ml-[20%]">First Name</p>
+          <p className="text-[15px] text-left text-ahaAmber-1 ml-[20%]">First Name</p>
           <input
             type="text"
-            className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[20%] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]"
+            className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[20%] rounded-[15px] border-orange-200 outline-none text-ahaGreen-0-950 pl-[2%]"
             placeholder="First Name"
             value={firstname}
             onChange={(e) => setFirstname(e.target.value)}
@@ -54,10 +54,10 @@ const RegisterPage: React.FC<Props> = ({}) => {
         </div>
 
         <div className="mt-4">
-          <p className="text-[15px] text-left text-golden-ramsay ml-[20%]">Last Name</p>
+          <p className="text-[15px] text-left text-ahaAmber-1 ml-[20%]">Last Name</p>
           <input
             type="text"
-            className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[20%] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]"
+            className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[20%] rounded-[15px] border-orange-200 outline-none text-ahaGreen-0-950 pl-[2%]"
             placeholder="Last Name"
             value={lastname}
             onChange={(e) => setLastname(e.target.value)}
@@ -65,10 +65,10 @@ const RegisterPage: React.FC<Props> = ({}) => {
         </div>
 
         <div className="mt-4">
-          <p className="text-[15px] text-left text-golden-ramsay ml-[20%]">E-mail</p>
+          <p className="text-[15px] text-left text-ahaAmber-1 ml-[20%]">E-mail</p>
           <input
             type="email"
-            className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[20%] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]"
+            className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[20%] rounded-[15px] border-orange-200 outline-none text-ahaGreen-0-950 pl-[2%]"
             placeholder="E-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -76,10 +76,10 @@ const RegisterPage: React.FC<Props> = ({}) => {
         </div>
 
         <div className="mt-4">
-          <p className="text-[15px] text-left text-golden-ramsay ml-[20%]">Username</p>
+          <p className="text-[15px] text-left text-ahaAmber-1 ml-[20%]">Username</p>
           <input
             type="text"
-            className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[20%] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]"
+            className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[20%] rounded-[15px] border-orange-200 outline-none text-ahaGreen-0-950 pl-[2%]"
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -87,10 +87,10 @@ const RegisterPage: React.FC<Props> = ({}) => {
         </div>
 
         <div className="mt-4">
-          <p className="text-[15px] text-left text-golden-ramsay ml-[20%]">Password</p>
+          <p className="text-[15px] text-left text-ahaAmber-1 ml-[20%]">Password</p>
           <input
             type="password"
-            className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[20%] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]"
+            className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[20%] rounded-[15px] border-orange-200 outline-none text-ahaGreen-0-950 pl-[2%]"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -100,7 +100,7 @@ const RegisterPage: React.FC<Props> = ({}) => {
 
       <div className="mt-8">
         <button
-          className="cursor-pointer px-6 py-1 bg-golden text-[#FCF9F2] border-none outline-none text-lg font-normal rounded-[12px]"
+          className="cursor-pointer px-6 py-1 bg-ahaAmber-2 text-[#FCF9F2] border-none outline-none text-lg font-normal rounded-[12px]"
           onClick={handleSubmit}
         >
           Register
@@ -108,10 +108,10 @@ const RegisterPage: React.FC<Props> = ({}) => {
       </div>
 
       <div className="">
-        <p className="text-golden">
+        <p className="text-ahaAmber-2">
           Already have an account?&nbsp;
           <Link to="/login">
-            <span className="underline hover:cursor-pointer text-golden">Login</span>
+            <span className="underline hover:cursor-pointer text-ahaAmber-2">Login</span>
           </Link>
         </p>
       </div>

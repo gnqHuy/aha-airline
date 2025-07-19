@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
-import image3 from "../../assets-test/Images/sunset4.jpg";
+import image3 from "../../assets-test/Images/green4.jpg";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
     return (
       <React.Fragment key={segment}>
         {!isLast ? (
-          <Link to={segmentPath} className="text-golden no-underline capitalize">
+          <Link to={segmentPath} className="text-ahaAmber-2 no-underline capitalize">
             {segment}
           </Link>
         ) : (
@@ -40,7 +40,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
         <img src={headerImage} alt="Header" className="w-full h-[300px] object-cover object-center" />
 
         <div className="flex items-center w-[1100px] mx-auto p-3 text-lg">
-          <Link to="/" className="flex items-center text-golden no-underline">
+          <Link to="/" className="flex items-center text-ahaAmber-2 no-underline">
             <FaHome className="mr-2" />
           </Link>
           <IoIosArrowForward className="mr-2" />
@@ -50,7 +50,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
 
       <main className="min-h-screen bg-slate-50">{children}</main>
       <div className="flex items-center w-[1100px] mx-auto p-3 text-lg">
-          <Link to="/" className="flex items-center text-golden no-underline">
+          <Link to="/" className="flex items-center text-ahaAmber-2 no-underline">
             <FaHome className="mr-2" />
           </Link>
           <IoIosArrowForward className="mr-2" />

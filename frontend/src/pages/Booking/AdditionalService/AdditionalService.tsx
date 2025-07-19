@@ -20,7 +20,7 @@ const AdditionalService = (props: Props) => {
     <Layout>
         <div className = "relative h-full overflow-x-clip overflow-y-auto bg-slate-50 bottom-[0rem]">
             <div className = "relative left-[12vw] top-[1rem]">
-                <p className="text-3xl text-golden font-bold">Additional Services</p>
+                <p className="text-3xl text-ahaAmber-2 font-bold">Additional Services</p>
                 <div className = "relative top-[2rem]">
                     <section id = "seat-selection">
                         <SeatSelection />

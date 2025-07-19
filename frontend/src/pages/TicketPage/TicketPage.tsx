@@ -138,7 +138,7 @@ const TicketPage: React.FC = () => {
               <p className="mx-auto text-2xl text-center">
                 Currently, there are no flights available for your selected route.<br /> 
                 Please consider choosing an alternative option or adjusting your search criteria. <br />
-                <Link to={"/"} className="no-underline text-xl text-golden">Back to HomePage</Link>
+                <Link to={"/"} className="no-underline text-xl text-ahaAmber-2">Back to HomePage</Link>
               </p> 
             ) : (
               flights.map((flight) => (
@@ -180,7 +180,7 @@ const TicketPage: React.FC = () => {
               <div className="flex items-center justify-center p-4">
                 <button
                   onClick={handleConfirmButton} 
-                  className="my-auto px-6 py-2 text-golden text-base cursor-pointer border-golden font-semibold hover:bg-golden hover:text-white rounded-md">
+                  className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md">
                   Confirm and continue
                 </button>
               </div>   

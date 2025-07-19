@@ -170,7 +170,7 @@ const PassengerInfor: React.FC<Props> = () => {
           <div className="w-[70%] mx-auto text-center mt-4 pb-10">
             <button
               onClick={handleConfirm}
-              className="my-auto px-6 py-2 text-golden text-base cursor-pointer border-golden font-semibold hover:bg-golden hover:text-white rounded-md"
+              className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md"
             >
               Confirm and continue
             </button>

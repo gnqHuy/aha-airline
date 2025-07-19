@@ -116,7 +116,7 @@ const Airports: React.FC = () => {
 
   return (
     <>
-      <div className="text-4xl pb-6 pt-4 font-bold text-center text-golden capitalize">Airports</div>
+      <div className="text-4xl pb-6 pt-4 font-bold text-center text-ahaAmber-2 capitalize">Airports</div>
       <div className="mb-6 flex space-x-4">
         <input
           type="text"
@@ -154,7 +154,7 @@ const Airports: React.FC = () => {
 
       <div className="overflow-y-auto h-[80%]">
         <table className="min-w-full border-collapse border border-gray-300">
-          <thead className="bg-golden-hover sticky top-0 z-10">
+          <thead className="bg-ahaAmber-4 sticky top-0 z-10">
             <tr>
               <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">IATA</th>
               <th className="border border-gray-300 px-4 py-2 text-left text-base font-semibold">Name</th>
@@ -204,7 +204,7 @@ const Airports: React.FC = () => {
                   {editingAirport ? (
                     <button
                       onClick={handleSaveEdit}
-                      className="bg-green-600 hover:bg-green-400 border-none px-5 py-2 text-white rounded"
+                      className="bg-ahaGreen-0-600 hover:bg-ahaGreen-0-400 border-none px-5 py-2 text-white rounded"
                     >
                       Save
                     </button>
@@ -224,7 +224,7 @@ const Airports: React.FC = () => {
             {filteredAirports.map((airport, index) => (
               <tr key={index} className={`${
                 editingAirport && editingAirport.name === airport.name
-                  ? "bg-golden-hover"
+                  ? "bg-ahaAmber-4"
                   : index % 2 === 0
                   ? "bg-white"
                   : "bg-gray-100"
@@ -237,7 +237,7 @@ const Airports: React.FC = () => {
                     <div className="flex justify-center items-center space-x-2">
                     <button
                       onClick={() => handleEditAirport(airport)}
-                      className="bg-green-600 border-none text-sm rounded px-2 pt-1 hover:bg-green-400 transition duration-200"
+                      className="bg-ahaGreen-0-600 border-none text-sm rounded px-2 pt-1 hover:bg-ahaGreen-0-400 transition duration-200"
                     >
                       <FaWrench color="white"/>
                     </button>

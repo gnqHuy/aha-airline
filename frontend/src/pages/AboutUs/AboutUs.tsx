@@ -7,10 +7,10 @@ const AboutUs = (props: Props) => {
   return (
     <Layout>
       <div className="max-w-screen-lg mx-auto p-6">
-        <h1 className="text-4xl font-bold text-center text-golden mb-8">About Us</h1>
+        <h1 className="text-4xl font-bold text-center text-ahaAmber-2 mb-8">About Us</h1>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-golden mb-4">Welcome to AHA Airline</h2>
+          <h2 className="text-2xl font-semibold text-ahaAmber-2 mb-4">Welcome to AHA Airline</h2>
           <p className="text-gray-700 leading-relaxed">We are thrilled to present <strong>AHA Airline</strong>, a brand dedicated to connecting the world and igniting dreams. 
             Our slogan, <strong>"Flying Without Wings,"</strong> encapsulates our commitment to not merely transporting you from one destination to another but rather guiding you toward new horizons filled with opportunities and extraordinary experiences.
              This concept of "flying without wings" represents the boundless determination and aspirations inherent in humanity. 
@@ -28,7 +28,7 @@ const AboutUs = (props: Props) => {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-golden mb-4">Meet the Development Team</h2>
+          <h2 className="text-2xl font-semibold text-ahaAmber-2 mb-4">Meet the Development Team</h2>
           <p className="text-gray-700 leading-relaxed">
             The <strong>AHA Airline</strong> website is proudly developed by a team of three dedicated members:
           </p>
@@ -43,7 +43,7 @@ const AboutUs = (props: Props) => {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-golden mb-4">Why Fly with AHA Airline?</h2>
+          <h2 className="text-2xl font-semibold text-ahaAmber-2 mb-4">Why Fly with AHA Airline?</h2>
           <p className="text-gray-700 leading-relaxed">
             Our airline stands out for its exceptional services and innovative approach to air travel. Here’s what you can expect when you choose AHA Airline:
           </p>
@@ -56,19 +56,19 @@ const AboutUs = (props: Props) => {
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold text-golden mb-4">Our Vision and Mission</h2>
+          <h2 className="text-2xl font-semibold text-ahaAmber-2 mb-4">Our Vision and Mission</h2>
           <p className="text-gray-700 leading-relaxed">
             At AHA Airline, our vision is to be the preferred choice for travelers worldwide, delivering excellence in every aspect of air travel. Our mission is to connect people and cultures through safe, reliable, and innovative air transportation services.
           </p>
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-golden mb-4">Contact Us</h2>
+          <h2 className="text-2xl font-semibold text-ahaAmber-2 mb-4">Contact Us</h2>
           <p className="text-gray-700 leading-relaxed">
             Have questions or need assistance? Feel free to reach out to us:
           </p>
           <ul className="list-none text-gray-700 leading-relaxed mt-4">
-            <li><strong>Email:</strong> 22021142@vnu.edu.vn</li>
+            <li><strong>Email:</strong> mequanghuy.dev@gmail.com</li>
             <li><strong>Phone:</strong> 0941562004</li>
             <li><strong>Office:</strong> 144 Xuan Thuy, Cau Giay, Hanoi</li>
           </ul>

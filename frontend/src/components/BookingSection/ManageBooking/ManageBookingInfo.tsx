@@ -17,12 +17,12 @@ const ManageBookingInfo:React.FC<Props> = ({handleDisplayInfo, reservations, sto
         {/* box info */}
         <div className = "w-[95%] bg-[#edd798]">
             <div className = "w-[100%] h-[2.5rem] bg-white">
-                <span className = "text-lg pl-[1rem] relative top-[0.5rem] font-bold text-Green">Reservation Code: {storeReservationCode}</span>
+                <span className = "text-lg pl-[1rem] relative top-[0.5rem] font-bold text-ahaGreen-0">Reservation Code: {storeReservationCode}</span>
             </div>
             <div className = "flex">
                 <div className = "ml-[1rem]">
-                    <p className = "text-Green font-bold text-lg">Journey info:</p>
-                    <ul id = "journey-list" className = "mb-[1rem] text-base relative bottom-[1.5rem] right-[1rem] font-bold text-Green">
+                    <p className = "text-ahaGreen-0 font-bold text-lg">Journey info:</p>
+                    <ul id = "journey-list" className = "mb-[1rem] text-base relative bottom-[1.5rem] right-[1rem] font-bold text-ahaGreen-0">
                         <li>
                             <div className = "flex">
                                 <p>{`${reservations[0]?.flightInfo?.fromAirport?.city?.name} (${reservations[0]?.flightInfo?.fromAirport?.iata}), ${reservations[0]?.flightInfo?.fromAirport?.city?.country}`}</p>
@@ -54,7 +54,7 @@ const ManageBookingInfo:React.FC<Props> = ({handleDisplayInfo, reservations, sto
 
                 <div className = "w-[0.01rem] h-[20vw] bg-gray-500 rounded-[8px] mt-[1rem] ml-[1%]"></div>
                 <div className = "ml-[1rem]">
-                    <p className = "text-Green font-bold text-lg">Customer info:</p>
+                    <p className = "text-ahaGreen-0 font-bold text-lg">Customer info:</p>
                     {reservations.map((reservation, index) => {
                         return (
                             <div className = "text-base relative bottom-[1rem] ml-[0]">
@@ -71,9 +71,9 @@ const ManageBookingInfo:React.FC<Props> = ({handleDisplayInfo, reservations, sto
 
         {/* buttons */}
         <div className = "flex mt-[1.5rem]">
-            <button className = "w-[8rem] h-[2.5rem] bg-white text-Green border-[2px] border-Green border-solid rounded-[8px] font-bold text-base absolute right-[15rem] hover:cursor-pointer" onClick = {handleDisplayInfo}>Close</button>
+            <button className = "w-[8rem] h-[2.5rem] bg-white text-ahaGreen-0 border-[2px] border-ahaGreen-0 border-solid rounded-[8px] font-bold text-base absolute right-[15rem] hover:cursor-pointer" onClick = {handleDisplayInfo}>Close</button>
             <Link to = "/book-management">
-                <button className = "w-[8rem] h-[2.5rem] bg-golden-ramsay text-white border-[2px] border-none rounded-[8px] font-bold text-base absolute right-[5rem] hover:cursor-pointer">Services</button>
+                <button className = "w-[8rem] h-[2.5rem] bg-ahaAmber-1 text-white border-[2px] border-none rounded-[8px] font-bold text-base absolute right-[5rem] hover:cursor-pointer">Services</button>
             </Link>
         </div>
     </div>

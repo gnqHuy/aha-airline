@@ -102,7 +102,7 @@ const CurrencyConverter: React.FC = () => {
 
   return (
     <div className="currency-converter p-4 my-10 max-w-3xl bg-gray-100 shadow rounded">
-      <p className="text-2xl font-semibold m-0 mb-4 text-golden">Currency Conversation</p>
+      <p className="text-2xl font-semibold m-0 mb-4 text-ahaAmber-2">Currency Conversation</p>
       {loading ? (
         <p>Loading exchange rates...</p>
       ) : error ? (
@@ -122,7 +122,7 @@ const CurrencyConverter: React.FC = () => {
 
           <MdOutlineCurrencyExchange
             onClick={handleReverse}
-            className="text-3xl text-golden hover:text-golden-ramsay py-2 px-4 w-1/4"
+            className="text-3xl text-ahaAmber-2 hover:text-ahaAmber-1 py-2 px-4 w-1/4"
           />
 
           <div className="flex items-center w-full bg-white">

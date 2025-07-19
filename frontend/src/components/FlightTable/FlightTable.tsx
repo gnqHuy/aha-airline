@@ -71,7 +71,7 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
 
   return (
     <div className="w-full max-w-6xl mx-auto text-center p-4">
-      <h2 className="text-2xl text-golden font-semibold mb-6">Best Flight Tickets to {nameCity}</h2>
+      <h2 className="text-2xl text-ahaAmber-2 font-semibold mb-6">Best Flight Tickets to {nameCity}</h2>
       <div className="flex text-left justify-between gap-4">
         <div className="relative flex items-center shadow-sm bg-gray-100 w-2/3 pt-2 pl-4">
           <div className="relative flex flex-col w-full">
@@ -90,15 +90,15 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
               htmlFor="from-input"
               className={`absolute left-0 ${
                 fromValue || fromFocused
-                  ? 'top-1 text-sm text-golden font-semibold mt-1'
-                  : 'top-5 text-base text-golden'
+                  ? 'top-1 text-sm text-ahaAmber-2 font-semibold mt-1'
+                  : 'top-5 text-base text-ahaAmber-2'
               } transform -translate-y-1/2 transition-all`}
             >
               FROM
             </label>
           </div>
 
-          <div className="text-golden text-2xl mx-5 small:absolute small:left-[0vw] small:ml-[18vw]">
+          <div className="text-ahaAmber-2 text-2xl mx-5 small:absolute small:left-[0vw] small:ml-[18vw]">
             <FaPlane />
           </div>
 
@@ -108,7 +108,7 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
             </div>
             <label
               htmlFor="to-input"
-              className="absolute left-0 top-1 text-sm text-golden font-semibold mt-1 transform -translate-y-1/2 transition-all pointer-events-none"
+              className="absolute left-0 top-1 text-sm text-ahaAmber-2 font-semibold mt-1 transform -translate-y-1/2 transition-all pointer-events-none"
             >
               TO
             </label>
@@ -131,8 +131,8 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
               htmlFor="budget-input"
               className={`absolute left-0 ${
                 budgetValue || budgetFocused
-                  ? 'top-1 text-sm text-golden font-semibold mt-1'
-                  : 'top-5 text-base text-golden'
+                  ? 'top-1 text-sm text-ahaAmber-2 font-semibold mt-1'
+                  : 'top-5 text-base text-ahaAmber-2'
               } transform -translate-y-1/2 transition-all`}
             >
               INPUT MAX BUDGET
@@ -142,12 +142,12 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
       </div>
       <div className="overflow-y-auto h-[500px] mt-4">
         <table className="min-w-full text-left border-collapse">
-          <thead className="bg-Green text-golden sticky top-0 z-10 text-[17px]">
+          <thead className="bg-ahaGreen-0 text-ahaAmber-2 sticky top-0 z-10 text-[17px]">
             <tr>
-              <th className="border-b-2 border-golden p-3">From</th>
-              <th className="border-b-2 border-golden p-3">To</th>
-              <th className="border-b-2 border-golden p-3">Departure Time</th>
-              <th className="border-b-2 border-golden p-3">Price</th>
+              <th className="border-b-2 border-ahaAmber-2 p-3">From</th>
+              <th className="border-b-2 border-ahaAmber-2 p-3">To</th>
+              <th className="border-b-2 border-ahaAmber-2 p-3">Departure Time</th>
+              <th className="border-b-2 border-ahaAmber-2 p-3">Price</th>
             </tr>
           </thead>
           <tbody>
@@ -155,7 +155,7 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
               filteredFlights.map((flight, index) => (
                 <tr
                   key={index}
-                  className="even:bg-gray-100 hover:bg-golden-hover cursor-pointer"
+                  className="even:bg-gray-100 hover:bg-ahaAmber-4 cursor-pointer"
                   onClick={() => handleSelectedFlight(flight)}
                 >
                   <td className="p-3">{flight.fromAirport.city.name}</td>

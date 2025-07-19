@@ -11,7 +11,7 @@ const Explore: React.FC<Props> = () => {
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/travel-info/check-in"
-            className="text-golden no-underline hover:opacity-80 transition-opacity"
+            className="text-ahaAmber-2 no-underline hover:opacity-80 transition-opacity"
           >
             Check-In
           </a>
@@ -49,7 +49,7 @@ const Explore: React.FC<Props> = () => {
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/travel-info/baggageinfo"
-            className="text-golden no-underline hover:opacity-80 transition-opacity"
+            className="text-ahaAmber-2 no-underline hover:opacity-80 transition-opacity"
           >
             Baggage Info
           </a>
@@ -87,7 +87,7 @@ const Explore: React.FC<Props> = () => {
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
             href="/travel-info/traveldocument"
-            className="text-golden no-underline hover:opacity-80 transition-opacity"
+            className="text-ahaAmber-2 no-underline hover:opacity-80 transition-opacity"
           >
             Travel Document
           </a>

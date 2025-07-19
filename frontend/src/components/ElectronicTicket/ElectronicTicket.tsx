@@ -28,7 +28,7 @@ const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticketSummary, flig
 
   return (
     <div className="w-[70%] mx-auto border border-gray-300 rounded-lg p-6 shadow-sm bg-white my-4">
-      <div className="text-3xl font-bold text-golden">AHA AIRLINE</div>
+      <div className="text-3xl font-bold text-ahaAmber-2">AHA AIRLINE</div>
       <div className="flex pl-4 gap-44">
         <div>
           <div><p><strong>Reservation Code:</strong> {reservation}</p></div>
@@ -55,19 +55,19 @@ const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticketSummary, flig
       </div>
 
       <div className="p-2">
-        <div className="text-golden text-lg font-semibold p-4 bg-Green">
+        <div className="text-ahaAmber-2 text-lg font-semibold p-4 bg-ahaGreen-0">
           ELECTRONIC TICKET RECEIPT
         </div>
         <table className="w-[90%] mx-auto my-3 text-left border-collapse">
-          <thead className="bg-Green text-golden text-base">
+          <thead className="bg-ahaGreen-0 text-ahaAmber-2 text-base">
             <tr>
-              <th className="border-b-2 border-golden p-3">From</th>
-              <th className="border-b-2 border-golden p-3">To</th>
-              <th className="border-b-2 border-golden p-3">Departure</th>
-              <th className="border-b-2 border-golden p-3">Arrival</th>
+              <th className="border-b-2 border-ahaAmber-2 p-3">From</th>
+              <th className="border-b-2 border-ahaAmber-2 p-3">To</th>
+              <th className="border-b-2 border-ahaAmber-2 p-3">Departure</th>
+              <th className="border-b-2 border-ahaAmber-2 p-3">Arrival</th>
             </tr>
           </thead>
-          <tbody className="bg-golden-hover">
+          <tbody className="bg-ahaAmber-4">
             <tr>
               <td className="p-3">
                 <strong>{flightInfo.fromAirport.name}</strong> <br /> {flightInfo.fromAirport.iata}
@@ -90,7 +90,7 @@ const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticketSummary, flig
           <div className="flex flex-col items-start">
             <div className="font-medium">Class: {SeatClass[ticketSummary.class]}</div>
             <div className="flex items-center mt-1">
-              <BsClock className="mr-2 text-golden" />
+              <BsClock className="mr-2 text-ahaAmber-2" />
               Duration:{" "}
               <span className="ml-1 font-semibold">
                 {calculateDuration(flightInfo.departureTime, flightInfo.arrivalTime)}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import AirplaneIcon from './airplaneIcon.png';
+import AirplaneIcon from '../../../../../assets-test/Images/airplaneIcon.png';
 
 interface Props {
     handleSetupDisplaySuggestionTo: () => void;

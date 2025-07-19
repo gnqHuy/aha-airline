@@ -313,7 +313,7 @@ const Flights: React.FC = () => {
 
   return (
     <>
-      <div className="text-4xl pb-6 pt-[0,9rem] font-bold text-center text-golden capitalize">Flights</div>
+      <div className="text-4xl pb-6 pt-[0,9rem] font-bold text-center text-ahaAmber-2 capitalize">Flights</div>
       <div className="mb-4 flex space-x-4">
         <input
           type="text"
@@ -374,7 +374,7 @@ const Flights: React.FC = () => {
 
       <div className="overflow-y-auto h-[73%]">
         <table className="min-w-full border-collapse border border-gray-300">
-          <thead className="bg-golden-hover sticky top-0 z-10">
+          <thead className="bg-ahaAmber-4 sticky top-0 z-10">
             <tr>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Id</th>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Aircraft</th>
@@ -539,7 +539,7 @@ const Flights: React.FC = () => {
                   {editingFlight ? (
                     <button
                       onClick={handleSaveEdit}
-                      className="bg-green-600 hover:bg-green-400 border-none px-5 py-2 text-white rounded"
+                      className="bg-ahaGreen-0-600 hover:bg-ahaGreen-0-400 border-none px-5 py-2 text-white rounded"
                     >
                       Save
                     </button>
@@ -558,7 +558,7 @@ const Flights: React.FC = () => {
           <tbody>
             {flights.map((flight, index) => (
               <tr 
-              className={`${editingFlight && editingFlight === flight? "bg-golden-hover": index % 2 === 0? "bg-white" : "bg-gray-100"}`}
+              className={`${editingFlight && editingFlight === flight? "bg-ahaAmber-4": index % 2 === 0? "bg-white" : "bg-gray-100"}`}
               >
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.id}</td>
                 <td className="border border-gray-300 px-4 py-2 text-sm">{flight.aircraft.name}</td>
@@ -579,7 +579,7 @@ const Flights: React.FC = () => {
                   <div className="flex justify-center items-center space-x-2">
                     <button
                       onClick={() => handleEditFlight(flight)}
-                      className="bg-green-600 border-none rounded text-sm px-2 pt-1 hover:bg-green-400 transition duration-200"
+                      className="bg-ahaGreen-0-600 border-none rounded text-sm px-2 pt-1 hover:bg-ahaGreen-0-400 transition duration-200"
                     >
                       <FaWrench color="white"/>
                     </button>

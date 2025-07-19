@@ -59,7 +59,7 @@ const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
       <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-3xl">
-        <h2 className="text-2xl font-bold mb-6 text-center text-golden">
+        <h2 className="text-2xl font-bold mb-6 text-center text-ahaAmber-2">
           Search Flight
         </h2>
 
@@ -95,14 +95,14 @@ const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => handleDecrement(type as "adult" | "child" | "infant")}
-                      className="px-3 py-1 rounded hover:bg-golden-hover transition"
+                      className="px-3 py-1 rounded hover:bg-ahaAmber-4 transition"
                     >
                       -
                     </button>
                     <span className="font-semibold">{count}</span>
                     <button
                       onClick={() => handleIncrement(type as "adult" | "child" | "infant")}
-                      className="px-3 py-1 rounded hover:bg-golden-hover transition"
+                      className="px-3 py-1 rounded hover:bg-ahaAmber-4 transition"
                     >
                       +
                     </button>
@@ -120,13 +120,13 @@ const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
         <div className="mt-6 flex justify-center space-x-4">
           <button
             onClick={handleSearchFlight}
-            className="px-4 w-40 py-2 rounded hover:bg-golden-hover transition"
+            className="px-4 w-40 py-2 rounded hover:bg-ahaAmber-4 transition"
           >
             Search
           </button>
           <button
             onClick={() => dispatch(setSearchFlightState(!searchFlightState))}
-            className="px-4 w-40 py-2 rounded hover:bg-golden-hover transition"
+            className="px-4 w-40 py-2 rounded hover:bg-ahaAmber-4 transition"
           >
             Close
           </button>

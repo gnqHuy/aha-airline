@@ -17,10 +17,10 @@ const BaggageInfo = (props: Props) => {
   return (
     <Layout>
         <div className="overflow-x-clip overflow-y-auto bg-slate-50">
-            <p className="text-3xl text-golden font-bold ml-[12vw] mt-[1rem]">Baggage Info</p>
+            <p className="text-3xl text-ahaAmber-2 font-bold ml-[12vw] mt-[1rem]">Baggage Info</p>
             {/* carry-on baggage */}
             <div className="ml-[12vw] mt-[3rem] w-[75vw]" id="carry-on">
-                <p className="text-3xl text-Green font-bold">Carry-on Baggage</p>
+                <p className="text-3xl text-ahaGreen-0 font-bold">Carry-on Baggage</p>
                 <p className="text-lg">Each passenger (except for infants under 2 years old) is allowed the following standard free carry-on baggage on BAV flights: </p>
                 <ul className="mb-[0.5rem]">
                     <li><b>For Economy Class:</b> 01 main piece and/or 01 small handbag/personal item*, with a total maximum weight of 07kg, and the dimensions of the main piece not exceeding 115cm (56 x 36 x 23cm) </li>

@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { setReturnDate, setRoundTrip, setSelectedFlightPreview } from '../../../../redux/slice/flightSlice';
 import { setPassengers } from '../../../../redux/slice/passengerSlice';
 import { useSnackbar } from 'notistack';
-import { image } from 'html2canvas/dist/types/css/types/image';
 
 interface Props {
     handleSetupDisplaySuggestion: () => void;
@@ -137,85 +136,98 @@ const BookingContentRoundTrip: React.FC<Props> = ({
     };    
         
   return (
-    <div className = "flex">
-        {/* flight from */}
-        {/* <ToastContainer /> */}
-        <div className = "absolute top-[2.5rem] hover:cursor-pointer" onClick = {handleSetupDisplaySuggestion}>
-            <p className = " text-gray-500 absolute top-[1rem] left-[2.2rem]" style = {{fontSize: "12px"}}>From</p>
-            {displaySuggestion === true ? 
-                <div className = "w-[15rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex medium:w-[21vw] small:w-[35vw]" style = {{borderBottom: "1px solid black"}}>
-                    <input type = "text" className = "absolute top-[-0.3rem] left-[0rem] w-[14.55rem] bg-transparent border-none focus:border-none outline-none" autoFocus onChange = {(e) => handleChangeSearchingAirport(e.target.value)}/>
-                    <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[13.5rem] bottom-[0.3rem] medium:left-[19vw] small:left-[32vw]" style = {{color: "gray"}}/></span>
-                </div> : 
-                <div className = "w-[15rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex medium:w-[21vw] small:w-[35vw]" style = {{borderBottom: "1px solid black"}}>
-                    <span className = " absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "13px"}}>{selectedAirport}</span>
-                    <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[13.5rem] bottom-[0.3rem] medium:left-[19vw] small:left-[32vw]" style = {{color: "gray"}}/></span>
+    <div className="flex flex-col gap-6">
+        <div className="flex flex-wrap gap-4 items-end">
+            <div onClick={handleSetupDisplaySuggestion} className="flex-1 cursor-pointer">
+                <label className="text-gray-500 text-sm">From</label>
+                {displaySuggestion ? (
+                    <div className="relative border-b border-black">
+                    <input
+                        type="text"
+                        className="w-full bg-transparent outline-none"
+                        autoFocus
+                        onChange={(e) => handleChangeSearchingAirport(e.target.value)}
+                    />
+                    <RiExpandUpDownFill className="absolute right-1 bottom-1 text-gray-500" />
+                    </div>
+                ) : (
+                    <div className="relative border-b border-black py-1">
+                    <span className="text-sm">{selectedAirport}</span>
+                    <RiExpandUpDownFill className="absolute right-1 bottom-1 text-gray-500" />
+                    </div>
+                )}
                 </div>
-            } 
-        </div>
-        
-        {/* icon arrow */}
-        <div className = "relative top-[3.2rem]">
-            {flightOption === "roundTrip" ? 
-                <FaArrowRightArrowLeft className = "w-[1.5rem] h-[1.5rem] absolute left-[18rem] medium:left-[26.5vw] small:left-[43vw]" style = {{color: "#1A4532"}}/> : 
-                <FaArrowRight className = "w-[1.5rem] h-[1.5rem] absolute left-[18rem] medium:left-[26.5vw] small:left-[43vw]" style = {{color: "#1A4532"}}/>
-            }
-        </div>
-        
-        {/* flight to */}
-        <div className = "absolute top-[2.5rem] left-[18.5rem] hover:cursor-pointer medium:left-[27vw] small:left-[45vw]" onClick = {handleSetupDisplaySuggestionTo}>
-            {displaySuggestionTo === true ? 
-                <div className = "w-[15rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex medium:w-[21vw] small:w-[35vw]" style = {{borderBottom: "1px solid black"}}>
-                    <input type = "text" className = "absolute top-[-0.3rem] left-[0rem] w-[14.55rem] bg-transparent border-none focus:border-none outline-none" autoFocus onChange = {(e) => handleChangeSearchingAirportTo(e.target.value)}/>
-                    <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[13.5rem] bottom-[0.3rem] medium:left-[19vw]" style = {{color: "gray"}}/></span>
-                </div> : 
-                <div className = "w-[15rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex medium:w-[21vw]" style = {{borderBottom: "1px solid black"}}>
-                    <span className = " absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "13px"}}>{selectedAirportTo}</span>
-                    <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[13.5rem] bottom-[0.3rem] medium:left-[19vw]" style = {{color: "gray"}}/></span>
-                </div>
-            }
-        </div>
 
-        {/* calendar depart */}
-        <div className = "absolute top-[2.5rem] left-[34.5rem] hover:cursor-pointer medium:left-[50vw] small:top-[7rem] small:left-[0rem]" onClick = {handleSetupDisplayCalendarDepart}>
-            <div className = "w-[11rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex medium:w-[16vw] small:w-[35vw]" style = {{borderBottom: "1px solid black"}}>
-                <span className = " absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "16px"}}>{selectedDateDepart}</span>
-                <span><FaCalendarAlt className = "w-[1.3rem] h-[1.3rem] absolute left-[9.5rem] bottom-[0.3rem] medium:left-[13vw] small:left-[32vw]" style = {{color: "gray"}}/></span>
-                <span className = "absolute text-gray-500 top-[1.2rem]" style = {{fontSize: "13px"}}>(DD/MM/YYYY)</span>
+                <div className="self-center">
+                {flightOption === "roundTrip" ? (
+                    <FaArrowRightArrowLeft className="text-ahaGreen" />
+                ) : (
+                    <FaArrowRight className="text-ahaGreen" />
+                )}
             </div>
-        </div>
-        
-        {/* calendar return */}
-        {flightOption === "roundTrip" && 
-            <div className = "absolute top-[2.5rem] left-[46.2rem] hover:cursor-pointer medium:left-[68vw] small:top-[7rem] small:left-[45vw]" onClick = {handleSetupDisplayCalendarReturn}>
-                <div className = "w-[11rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex medium:w-[16vw] small:w-[35vw]" style = {{borderBottom: "1px solid black"}}>
-                    <span className = " absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "16px"}}>{selectedDateReturn}</span>
-                    <span><FaCalendarAlt className = "w-[1.3rem] h-[1.3rem] absolute left-[9.5rem] bottom-[0.3rem] medium:left-[13vw] small:left-[32vw]" style = {{color: "gray"}}/></span>
-                    <span className = "absolute text-gray-500 top-[1.2rem]" style = {{fontSize: "13px"}}>(DD/MM/YYYY)</span>
-                </div>
-            </div>
-        }
 
-        {/* passenger quantity */}
-        <div className = "absolute top-[7rem] hover:cursor-pointer small:top-[13rem]" onClick = {handleSetupDisplayPassengerInfo}>
-            <p className = " text-gray-500 absolute top-[1rem] left-[2.2rem]" style = {{fontSize: "12px"}}>Passenger</p>
-            <div className = "w-[18rem] h-[1rem] text-left absolute left-[2rem] top-[3.5rem] flex" style = {{borderBottom: "1px solid black"}}>
-                <span className = " absolute bottom-[0.3rem] left-[0.2rem]" style = {{fontSize: "16px"}}>{`${adultPassengerQuantity + childrenPassengerQuantity + infantPassengerQuantity} Passenger(s)`}</span>
-                <span><RiExpandUpDownFill className = "w-[1.3rem] h-[1.3rem] absolute left-[16.5rem] bottom-[0.3rem]" style = {{color: "gray"}}/></span>
+            {/* To */}
+            <div onClick={handleSetupDisplaySuggestionTo} className="flex-1 cursor-pointer">
+                <label className="text-gray-500 text-sm">To</label>
+                {displaySuggestionTo ? (
+                    <div className="relative border-b border-black">
+                    <input
+                        type="text"
+                        className="w-full bg-transparent outline-none"
+                        autoFocus
+                        onChange={(e) => handleChangeSearchingAirportTo(e.target.value)}
+                    />
+                    <RiExpandUpDownFill className="absolute right-1 bottom-1 text-gray-500" />
+                    </div>
+                ) : (
+                    <div className="relative border-b border-black py-1">
+                    <span className="text-sm">{selectedAirportTo}</span>
+                    <RiExpandUpDownFill className="absolute right-1 bottom-1 text-gray-500" />
+                    </div>
+                )}
             </div>
         </div>
 
-        {/* promotion code */}
-        <div className = "absolute top-[10rem] left-[3rem] flex small:top-[16rem]">
-            <FaGift className = "w-[1.7rem] h-[1.7rem] absolute left-[19rem] top-[0rem]" style = {{color: "#1A4532"}}/>
-            <p className = "absolute left-[22rem] w-[10rem] top-[-0.7rem]  text-[#1A4532]" style = {{fontSize: "16px"}}>PROMOTION CODE</p>
+        <div className="flex flex-wrap gap-4">
+            <div onClick={handleSetupDisplayCalendarDepart} className="flex-1 cursor-pointer">
+            <label className="text-gray-500 text-sm">Departure Date</label>
+            <div className="relative border-b border-black py-1">
+                <span>{selectedDateDepart}</span>
+                <FaCalendarAlt className="absolute right-1 bottom-1 text-gray-500" />
+            </div>
+            <p className="text-xs text-gray-500 mt-1">(DD/MM/YYYY)</p>
+            </div>
+
+            {flightOption === "roundTrip" && (
+            <div onClick={handleSetupDisplayCalendarReturn} className="flex-1 cursor-pointer">
+                <label className="text-gray-500 text-sm">Return Date</label>
+                <div className="relative border-b border-black py-1">
+                <span>{selectedDateReturn}</span>
+                <FaCalendarAlt className="absolute right-1 bottom-1 text-gray-500" />
+                </div>
+                <p className="text-xs text-gray-500 mt-1">(DD/MM/YYYY)</p>
+            </div>
+            )}
         </div>
 
-        {/* find flight button */}
-        <div className = "absolute top-[12rem] right-[5rem] medium:right-[5vw] small:top-[20rem]">
-            <button onClick={handleFindFlightClick} className = "w-[10rem] h-[2.5rem] cursor-pointer border-none hover:bg-golden-hover  font-bold bg-golden" style = {{fontSize: "15px", borderRadius: "10px"}}>FIND FLIGHT</button>
+        <div onClick={handleSetupDisplayPassengerInfo} className="cursor-pointer">
+            <label className="text-gray-500 text-sm">Passenger</label>
+            <div className="relative border-b border-black py-1 w-full">
+            <span>{`${adultPassengerQuantity + childrenPassengerQuantity + infantPassengerQuantity} Passenger(s)`}</span>
+            <RiExpandUpDownFill className="absolute right-1 bottom-1 text-gray-500" />
+            </div>
+        </div>
+
+        <div className="text-right">
+            <button
+            onClick={handleFindFlightClick}
+            className="bg-ahaAmber-2 hover:bg-ahaAmber-4 px-6 py-2 rounded-lg font-bold"
+            >
+            FIND FLIGHT
+            </button>
         </div>
     </div>
+
   )
 }
 

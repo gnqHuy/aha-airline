@@ -17,7 +17,7 @@ const Experience = (props: Props) => {
     <Layout>
       <div className="experience-page p-6 max-w-[70%] mx-auto">
         {/* Heading */}
-        <h1 className="text-4xl font-bold mb-8 text-center text-golden">Experience Our Airline</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center text-ahaAmber-2">Experience Our Airline</h1>
 
         {/* Cabin Classes */}
         <section id="cabin-classes" className="mb-10">

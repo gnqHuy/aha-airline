@@ -20,7 +20,7 @@ const Destination: React.FC = () => {
     <Layout>
       <div id="asia" className="pt-4">
         <div className="w-[1016px] mx-[16vw]">
-          <p className="text-3xl text-golden font-bold">Asia</p>
+          <p className="text-3xl text-ahaAmber-2 font-bold">Asia</p>
         </div>
         <div className="flex flex-col items-center mt-4">
           <GenericCard image={getImage("hanoi")} title="Hanoi" link="hanoi" width="66.3vw" />
@@ -33,7 +33,7 @@ const Destination: React.FC = () => {
 
       <div id="europe" className="mt-14">
         <div className="w-[1016px] mx-[16vw]">
-          <p className="text-3xl text-golden font-bold">Europe</p>
+          <p className="text-3xl text-ahaAmber-2 font-bold">Europe</p>
         </div>
         <div className="flex flex-col items-center mt-4">
           <div className="flex justify-center items-center mb-4 gap-4">
@@ -46,7 +46,7 @@ const Destination: React.FC = () => {
 
       <div id="africa" className="mt-14">
         <div className="w-[1016px] mx-[16vw]">
-          <p className="text-3xl text-golden font-bold">Africa</p>
+          <p className="text-3xl text-ahaAmber-2 font-bold">Africa</p>
         </div>
         <div className="flex flex-col items-center mt-4">
           <div className="flex justify-center items-center gap-4">
@@ -58,7 +58,7 @@ const Destination: React.FC = () => {
 
       <div id="north-america" className="mt-14">
         <div className="w-[1016px] mx-[16vw]">
-          <p className="text-3xl text-golden font-bold">North America</p>
+          <p className="text-3xl text-ahaAmber-2 font-bold">North America</p>
         </div>
         <div className="flex flex-col items-center mt-4">
           <GenericCard image={getImage("new york")} title="New York" link="new york" width="66.3vw" />
@@ -71,7 +71,7 @@ const Destination: React.FC = () => {
 
       <div id="oceania" className="mt-14 mb-14">
         <div className="w-[1016px] mx-[16vw]">
-          <p className="text-3xl text-golden font-bold">Oceania</p>
+          <p className="text-3xl text-ahaAmber-2 font-bold">Oceania</p>
         </div>
         <div className="flex flex-col items-center mt-4">
           <div className="flex justify-center items-center gap-4">

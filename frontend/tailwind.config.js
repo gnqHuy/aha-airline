@@ -5,11 +5,30 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'golden': '#D4A422',
-        'golden-hover': '#F2E0A6',
-        'golden-ramsay': '#B88A19',
-        'Green':'#1A4532',
-        'bgGreen': 'rgba(26, 69, 50, 0.666)',
+        ahaGreen: {
+          0: '#1c4a35',
+          1: '#235c45',
+          2: '#2a6f52',
+          3: '#318160',
+          4: '#38946e',
+          5: '#3fa67b',
+          6: '#6bc7a1',
+          7: '#90d5b8',
+          8: '#b5e3d0',
+          9: '#daf1e7',
+          'opacity-0': 'rgba(28, 74, 53, 0.666)',
+          'opacity-1': 'rgba(35, 92, 69, 0.666)',
+          'opacity-2': 'rgba(42, 111, 82, 0.666)',
+          'opacity-3': 'rgba(49, 129, 96, 0.666)',
+          'opacity-4': 'rgba(56, 148, 110, 0.666)',
+        },
+        'ahaAmber-0': '#9e7215',
+        'ahaAmber-1': '#b58317',
+        'ahaAmber-2': '#e2a31d',
+        'ahaAmber-3': '#e8b64a',
+        'ahaAmber-4': '#edc878',
+        'ahaAmber-5': '#f3daa5',
+        'ahaAmber-6': '#f9edd2'
       },
       transitionProperty: {
         'fontSize': ''

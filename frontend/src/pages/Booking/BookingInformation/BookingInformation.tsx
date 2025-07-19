@@ -24,7 +24,7 @@ const BookingInformation = (props: Props) => {
     <Layout>
         <div className = "h-[260rem] relative overflow-x-clip overflow-y-auto bottom-[0rem] bg-slate-50">
             <div className = "relative left-[12vw] top-[1rem]">
-                <p className="text-3xl text-golden font-bold">Booking information</p>
+                <p className="text-3xl text-ahaAmber-2 font-bold">Booking information</p>
             </div>
             <div className = "relative left-[12vw] top-[2rem]">
                 <section id = "fare-rules">

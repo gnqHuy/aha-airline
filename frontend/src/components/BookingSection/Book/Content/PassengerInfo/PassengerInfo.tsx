@@ -1,54 +1,73 @@
 import React from 'react'
-import { CiCircleMinus } from "react-icons/ci";
-import { CiCirclePlus } from "react-icons/ci";
+import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci'
 
 interface Props {
-    handleIncreaseAdultPassenger: () => void;
-    handleDecreaseAdultPassenger: () => void;
-    handleIncreaseChildrenPassenger: () => void;
-    handleDecreaseChildrenPassenger: () => void;
-    handleIncreaseInfantPassenger: () => void;
-    handleDecreaseInfantPassenger: () => void;
-    adultPassengerQuantity: number;
-    childrenPassengerQuantity: number;
-    infantPassengerQuantity: number;
+  handleIncreaseAdultPassenger: () => void
+  handleDecreaseAdultPassenger: () => void
+  handleIncreaseChildrenPassenger: () => void
+  handleDecreaseChildrenPassenger: () => void
+  handleIncreaseInfantPassenger: () => void
+  handleDecreaseInfantPassenger: () => void
+  adultPassengerQuantity: number
+  childrenPassengerQuantity: number
+  infantPassengerQuantity: number
 }
 
-const PassengerInfo: React.FC<Props> = ({handleIncreaseAdultPassenger, handleDecreaseAdultPassenger, handleIncreaseChildrenPassenger, handleDecreaseChildrenPassenger, handleIncreaseInfantPassenger, handleDecreaseInfantPassenger, adultPassengerQuantity, childrenPassengerQuantity, infantPassengerQuantity}) => {
+const PassengerInfo: React.FC<Props> = ({
+  handleIncreaseAdultPassenger,
+  handleDecreaseAdultPassenger,
+  handleIncreaseChildrenPassenger,
+  handleDecreaseChildrenPassenger,
+  handleIncreaseInfantPassenger,
+  handleDecreaseInfantPassenger,
+  adultPassengerQuantity,
+  childrenPassengerQuantity,
+  infantPassengerQuantity
+}) => {
   return (
-    <div className = "w-[18rem] h-[12rem] bg-white z-[100]">
-        {/* adult */}
-        <div className = "absolute top-[0rem] w-[20rem] h-[4rem]" style = {{borderBottom: "1px solid #c9c9c7"}}>
-            <p className = " absolute left-[0.8rem]" style = {{fontSize: "15px"}}>Adults</p>
-            <p className = " absolute left-[0.8rem] top-[1.5rem] text-[#1A4532]" style = {{fontSize: "11px"}}>Adults (from 12 years)</p>
-            <CiCircleMinus className = {adultPassengerQuantity === 1 ? "w-[2.5rem] h-[2.5rem] absolute left-[10rem] top-[0.8rem]" : "w-[2.5rem] h-[2.5rem] absolute left-[10rem] top-[0.8rem] hover:cursor-pointer"} style = {{color: adultPassengerQuantity === 1 ? "#cfcfca" : "#1A4532"}} onClick = {handleDecreaseAdultPassenger}/>
-
-            <CiCirclePlus className = {(adultPassengerQuantity >= 1 && adultPassengerQuantity < 6) ? "w-[2.5rem] h-[2.5rem] absolute left-[15rem] top-[0.8rem] hover:cursor-pointer" : "w-[2.5rem] h-[2.5rem] absolute left-[15rem] top-[0.8rem]"} style = {{color: (adultPassengerQuantity >= 1 && adultPassengerQuantity < 6) ? "#1A4532" : "#cfcfca"}} onClick={handleIncreaseAdultPassenger}/>
-
-            <p className = " absolute left-[13.3rem] top-[-0.7rem]" style = {{fontSize: "27px"}}>{adultPassengerQuantity}</p>
+    <div className="w-[18rem] bg-white p-4 space-y-4 rounded shadow z-[100]">
+      {/* Row Template */}
+      {[{
+        label: 'Adults',
+        subLabel: 'Adults (from 12 years)',
+        value: adultPassengerQuantity,
+        min: 1,
+        max: 6,
+        onInc: handleIncreaseAdultPassenger,
+        onDec: handleDecreaseAdultPassenger,
+      }, {
+        label: 'Children',
+        subLabel: 'Children (2-12 years)',
+        value: childrenPassengerQuantity,
+        min: 0,
+        max: 2,
+        onInc: handleIncreaseChildrenPassenger,
+        onDec: handleDecreaseChildrenPassenger,
+      }, {
+        label: 'Infant',
+        subLabel: 'Infant (under 2 years)',
+        value: infantPassengerQuantity,
+        min: 0,
+        max: 1,
+        onInc: handleIncreaseInfantPassenger,
+        onDec: handleDecreaseInfantPassenger,
+      }].map(({ label, subLabel, value, min, max, onInc, onDec }) => (
+        <div key={label} className="border-b border-gray-300 pb-2">
+          <p className="text-sm font-medium">{label}</p>
+          <p className="text-xs text-[#1A4532]">{subLabel}</p>
+          <div className="flex items-center justify-between mt-2">
+            <CiCircleMinus
+              className={`w-8 h-8 ${value <= min ? 'text-gray-300' : 'text-[#1A4532] hover:cursor-pointer'}`}
+              onClick={value > min ? onDec : undefined}
+            />
+            <p className="text-xl font-semibold text-center">{value}</p>
+            <CiCirclePlus
+              className={`w-8 h-8 ${value < max ? 'text-[#1A4532] hover:cursor-pointer' : 'text-gray-300'}`}
+              onClick={value < max ? onInc : undefined}
+            />
+          </div>
         </div>
-
-        {/* children */}
-        <div className = "absolute top-[4rem] w-[20rem] h-[4rem]" style = {{borderBottom: "1px solid #c9c9c7"}}>
-            <p className = " absolute left-[0.8rem]" style = {{fontSize: "15px"}}>Children</p>
-            <p className = " absolute left-[0.8rem] top-[1.5rem] text-[#1A4532]" style = {{fontSize: "11px"}}>Children (2-12 years)</p>
-            <CiCircleMinus className = {childrenPassengerQuantity === 0 ? "w-[2.5rem] h-[2.5rem] absolute left-[10rem] top-[0.8rem]" : "w-[2.5rem] h-[2.5rem] absolute left-[10rem] top-[0.8rem] hover:cursor-pointer"} style = {{color: childrenPassengerQuantity === 0 ? "#cfcfca" : "#1A4532"}} onClick = {handleDecreaseChildrenPassenger}/>
-
-            <CiCirclePlus className = {(childrenPassengerQuantity >= 0 && childrenPassengerQuantity < 2) ? "w-[2.5rem] h-[2.5rem] absolute left-[15rem] top-[0.8rem] hover:cursor-pointer" : "w-[2.5rem] h-[2.5rem] absolute left-[15rem] top-[0.8rem]"} style = {{color: (childrenPassengerQuantity >= 0 && childrenPassengerQuantity < 2) ? "#1A4532" : "#cfcfca"}} onClick={handleIncreaseChildrenPassenger}/>
-
-            <p className = " absolute left-[13.3rem] top-[-0.7rem]" style = {{fontSize: "27px"}}>{childrenPassengerQuantity}</p>
-        </div>
-
-        {/* infant */}
-        <div className = "absolute top-[8rem] w-[20rem] h-[4rem]" style = {{borderBottom: "1px solid #c9c9c7"}}>
-            <p className = " absolute left-[0.8rem]" style = {{fontSize: "15px"}}>Infant</p>
-            <p className = " absolute left-[0.8rem] top-[1.5rem] text-[#1A4532]" style = {{fontSize: "11px"}}>Infant (under 2 years)</p>
-            <CiCircleMinus className = {infantPassengerQuantity === 0 ? "w-[2.5rem] h-[2.5rem] absolute left-[10rem] top-[0.8rem]" : "w-[2.5rem] h-[2.5rem] absolute left-[10rem] top-[0.8rem] hover:cursor-pointer"} style = {{color: infantPassengerQuantity === 0 ? "#cfcfca" : "#1A4532"}} onClick = {handleDecreaseInfantPassenger}/>
-
-            <CiCirclePlus className = {(infantPassengerQuantity >= 0 && infantPassengerQuantity < 1) ? "w-[2.5rem] h-[2.5rem] absolute left-[15rem] top-[0.8rem] hover:cursor-pointer" : "w-[2.5rem] h-[2.5rem] absolute left-[15rem] top-[0.8rem]"} style = {{color: (infantPassengerQuantity >= 0 && infantPassengerQuantity < 1) ? "#1A4532" : "#cfcfca"}} onClick={handleIncreaseInfantPassenger}/>
-
-            <p className = " absolute left-[13.3rem] top-[-0.7rem]" style = {{fontSize: "27px"}}>{infantPassengerQuantity}</p>
-        </div>
+      ))}
     </div>
   )
 }

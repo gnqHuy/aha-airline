@@ -45,7 +45,7 @@ const CityInfo: React.FC = () => {
       <div className="w-[70%] mx-auto pt-10 pb-16">
         {cityInfo ? (
           <>
-            <p className="text-4xl font-bold text-center text-golden capitalize">
+            <p className="text-4xl font-bold text-center text-ahaAmber-2 capitalize">
               {cityInfo.name}
             </p>
             {/* <img
@@ -63,7 +63,7 @@ const CityInfo: React.FC = () => {
         )}
         <CurrencyExchange />
         <div>
-          <p className="text-3xl font-semibold m-0 mb-4 text-golden">More Destination</p>
+          <p className="text-3xl font-semibold m-0 mb-4 text-ahaAmber-2">More Destination</p>
           <div className="flex items-center gap-5 mt-4">
             {randomCities.map((city) => (
               <GenericCard

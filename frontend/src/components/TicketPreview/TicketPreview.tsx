@@ -56,12 +56,12 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
               <div className="text-xl font-normal text-gray-900 small:text-lg">
                 {formatDate(flight.departureTime)}
               </div>
-              <div className="text-lg text-golden">
+              <div className="text-lg text-ahaAmber-2">
                 {flight.flightRoute.fromAirport.city.name}
               </div>
             </div>
 
-            <div className="flex items-center text-golden">
+            <div className="flex items-center text-ahaAmber-2">
               <div className="h-0.5 w-28 bg-gray-300"></div>
               <FaPlane className="mx-2 text-xl" />
               <div className="h-0.5 w-28 bg-gray-300"></div>
@@ -74,7 +74,7 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
               <div className="text-xl font-normal text-gray-900 small:text-lg">
                 {formatDate(flight.arrivalTime)}
               </div>
-              <div className="text-lg text-golden">
+              <div className="text-lg text-ahaAmber-2">
                 {flight.flightRoute.toAirport.city.name}
               </div>
             </div>
@@ -82,7 +82,7 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
 
           <div className="flex items-center justify-between mt-4 text-base text-gray-700">
             <div className="flex items-center">
-              <BsClock className="mr-2 text-golden" />
+              <BsClock className="mr-2 text-ahaAmber-2" />
               Duration:{" "}
               <span className="ml-1 font-semibold">
                 {calculateDuration(
@@ -100,36 +100,36 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
         {classType === SeatClass.None ? (
           <div className="w-72 grid grid-cols-2 border-l divide-x divide-gray-300">
             <div
-              className="p-4 text-center text-xl bg-Green"
+              className="p-4 text-center text-xl bg-ahaGreen-0"
               onClick={() => handleSelectClassType(SeatClass.Economy)}
             >
-              <div className="font-semibold mb-10 text-golden">Economy</div>
-              <div className="font-bold text-golden">
+              <div className="font-semibold mb-10 text-ahaAmber-2">Economy</div>
+              <div className="font-bold text-ahaAmber-2">
                 {flight.economyPrice.toLocaleString()} VND
               </div>
             </div>
 
             <div
-              className="p-4 text-center text-xl bg-golden"
+              className="p-4 text-center text-xl bg-ahaAmber-2"
               onClick={() => handleSelectClassType(SeatClass.Business)}
             >
-              <div className="font-semibold mb-10 text-Green">Business</div>
-              <div className="font-bold text-Green">
+              <div className="font-semibold mb-10 text-ahaGreen-0">Business</div>
+              <div className="font-bold text-ahaGreen-0">
                 {flight.businessPrice.toLocaleString()} VND
               </div>
             </div>
           </div>
         ) : classType === SeatClass.Economy ? (
-          <div className="p-4 px-8 text-center text-xl bg-Green">
-            <div className="font-semibold mb-10 text-golden">Economy</div>
-            <div className="font-bold text-golden">
+          <div className="p-4 px-8 text-center text-xl bg-ahaGreen-0">
+            <div className="font-semibold mb-10 text-ahaAmber-2">Economy</div>
+            <div className="font-bold text-ahaAmber-2">
               {flight.economyPrice.toLocaleString()} <br/>VND
             </div>
           </div>
         ) : (
-          <div className="p-4 px-8 text-center text-xl bg-golden">
-            <div className="font-semibold mb-10 text-Green">Business</div>
-            <div className="font-bold text-Green">
+          <div className="p-4 px-8 text-center text-xl bg-ahaAmber-2">
+            <div className="font-semibold mb-10 text-ahaGreen-0">Business</div>
+            <div className="font-bold text-ahaGreen-0">
               {flight.businessPrice.toLocaleString()} <br/> VND
             </div>
           </div>
@@ -140,7 +140,7 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
         <div className="flex w-[80%] mx-auto flex-row border shadow-md overflow-hidden bg-white">
           <div className="p-4 ml-auto">
             <div className="font-bold text-2xl">Business</div>
-            <div className="text-xl font-semibold text-golden">
+            <div className="text-xl font-semibold text-ahaAmber-2">
               {flight.businessPrice.toLocaleString()} VND
             </div>
             <div className="text-lg"><span className="font-semibold">Remaining Seat: </span> {flight.remainingBsnSeats}</div>
@@ -149,7 +149,7 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
           <div className="flex items-center justify-center p-4">
             <button 
               onClick={() => handleSelectedFlight?.(flight, SeatClass.Business)}
-              className="my-auto px-6 py-2 text-golden text-base cursor-pointer border-golden font-semibold hover:bg-golden hover:text-white rounded-md">
+              className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md">
               Choose Class
             </button>
           </div>
@@ -158,7 +158,7 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
         <div className="flex w-[80%] mx-auto flex-row border shadow-md overflow-hidden bg-white">
           <div className="p-4 ml-auto">
             <div className="font-bold text-2xl">Economy</div>
-            <div className="text-xl font-semibold text-golden">
+            <div className="text-xl font-semibold text-ahaAmber-2">
               {flight.economyPrice.toLocaleString()} VND
             </div>
             <div className="text-lg"><span className="font-semibold">Remaining Seat: </span> {flight.remainingEcoSeats}</div>
@@ -167,7 +167,7 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
           <div className="flex items-center justify-center p-4">
             <button
               onClick={() => handleSelectedFlight?.(flight, SeatClass.Economy)} 
-             className="my-auto px-6 py-2 text-golden text-base cursor-pointer border-golden font-semibold hover:bg-golden hover:text-white rounded-md">
+             className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md">
               Choose Class
             </button>
           </div>

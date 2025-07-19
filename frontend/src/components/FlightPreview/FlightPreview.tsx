@@ -100,7 +100,7 @@ const FlightPreview = (props: Props) => {
 
   return (
     <div className="w-[59vw] mx-auto text-center items-center p-4 mt-24 mb-12">
-      <div className="h-px w-full bg-golden mb-5"></div>
+      <div className="h-px w-full bg-ahaAmber-2 mb-5"></div>
       <div className="relative">
         <div className="flex justify-center items-center gap-2 text-xl">
           Popular flights from{' '}
@@ -124,7 +124,7 @@ const FlightPreview = (props: Props) => {
             <div className="flex items-center gap-2 p-2 text-base">
               <GiWorld /> All locations
             </div>
-            <div className="h-px w-full bg-golden"></div>
+            <div className="h-px w-full bg-ahaAmber-2"></div>
             <input
               type="text"
               placeholder="Search cities..."
@@ -186,7 +186,7 @@ const FlightPreview = (props: Props) => {
           Hide
         </button>
       )}
-      <div className="h-px w-full bg-golden mt-5"></div>
+      <div className="h-px w-full bg-ahaAmber-2 mt-5"></div>
     </div>
   );
 };

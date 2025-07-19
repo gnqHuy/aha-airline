@@ -11,11 +11,11 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer className="footer-text bg-Green">
+    <footer className="footer-text bg-gradient-to-r from-ahaGreen-0 to-ahaGreen-2">
         <div className="mx-auto w-full max-w-screen-xl lg:py-6">
             <div className="md:flex md:justify-between mb-4">
                 <div className="mb-6 ml-10 md:mb-0">
-                    <Link to="/" className="flex items-center no-underline text-golden hover:opacity-80">
+                    <Link to="/" className="flex items-center no-underline text-ahaAmber-2 hover:opacity-80">
                         <span className="self-center text-3xl font-semibold whitespace-nowrap small:relative small:top-[1vw]">AHA AIRLINE</span>
                     </Link>
                     <ul className="font-medium text-sm list-none p-0 ml-6">
@@ -23,9 +23,9 @@ const Footer = (props: Props) => {
                             <a href="/about us" className="text-white no-underline hover:opacity-80">About Us</a>
                         </li>
                         <li>
-                            <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Contact And Feedback: </h2>
+                            <h2 className="mb-6 text-sm font-semibold uppercase text-ahaAmber-2">Contact And Feedback: </h2>
                             <p className='flex items-center gap-1 ml-4 text-white'>
-                                <MdEmail /> Email: 22021142@vnu.edu.vn 
+                                <MdEmail /> Email: mequanghuy.dev@gmail.com 
                             </p>
                             <p className='flex items-center gap-1 ml-4 text-white'>
                                 <FaPhoneAlt /> Phone number: 0941562004
@@ -35,7 +35,7 @@ const Footer = (props: Props) => {
                 </div>
                 <div className="mr-5 grid grid-cols-2 gap-8 sm:gap-20 sm:grid-cols-3 small:relative small:left-[5vw]">
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Resources</h2>
+                        <h2 className="mb-6 text-sm font-semibold uppercase text-ahaAmber-2">Resources</h2>
                         <ul className="font-medium text-sm list-none p-0">
                             <li className="mb-4">
                                 <a href="/explore" className="text-white no-underline hover:opacity-80">Explore</a>
@@ -52,7 +52,7 @@ const Footer = (props: Props) => {
                         </ul>
                     </div>
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Destination</h2>
+                        <h2 className="mb-6 text-sm font-semibold uppercase text-ahaAmber-2">Destination</h2>
                         <ul className="font-medium text-sm list-none p-0">
                             <li className="mb-4">
                                 <a href="/explore/destination/hanoi" className="text-white no-underline hover:opacity-80">Hanoi</a>
@@ -69,7 +69,7 @@ const Footer = (props: Props) => {
                         </ul>
                     </div>
                     <div>
-                        <h2 className="mb-6 text-sm font-semibold uppercase text-golden">Legal</h2>
+                        <h2 className="mb-6 text-sm font-semibold uppercase text-ahaAmber-2">Legal</h2>
                         <ul className="font-medium text-sm list-none p-0">
                             <li className="mb-4">
                                 <a href="/explore/experience#privacy-policy" className="text-white no-underline hover:opacity-80">Privacy Policy</a>
@@ -83,9 +83,9 @@ const Footer = (props: Props) => {
             </div>
             <hr className="border-gray-200 " />
             <div className="pl-4 pr-4 sm:flex sm:items-center sm:justify-between text-white">
-                <span className="text-sm sm:text-center">© 2024 <a href="/" className="hover:underline text-golden no-underline">AHA AIRLINE™</a>. All Rights Reserved.</span>
+                <span className="text-sm sm:text-center">© 2024 <a href="/" className="hover:underline text-ahaAmber-2 no-underline">AHA AIRLINE™</a>. All Rights Reserved.</span>
                 <div className="flex items-center">
-                    <p className='mr-4 text-golden'>Follow Us:</p>
+                    <p className='mr-4 text-ahaAmber-2'>Follow Us:</p>
                     <a href="https://www.facebook.com/quang.huy.423712/" className="flex items-center hover:text-[#D4A422] text-white">
                         <FaFacebook />
                     </a>

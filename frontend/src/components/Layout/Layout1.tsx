@@ -30,7 +30,7 @@ const Layout1: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
     return (
       <React.Fragment key={segment}>
         {!isLast ? (
-          <Link to={segmentPath} className="text-golden no-underline capitalize">
+          <Link to={segmentPath} className="text-ahaAmber-2 no-underline capitalize">
             {segment}
           </Link>
         ) : (
@@ -68,7 +68,7 @@ const Layout1: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
         />
         <div className="bg-white">
           <div className="flex items-center w-[1100px] mx-auto p-3 text-lg">
-            <Link to="/" className="flex items-center text-golden no-underline">
+            <Link to="/" className="flex items-center text-ahaAmber-2 no-underline">
               <FaHome className="mr-2" />
             </Link>
             <IoIosArrowForward className="mr-2" />
@@ -84,7 +84,7 @@ const Layout1: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
               </div>
               <div className="flex items-center text-gray-500">
                 <div className="h-0.5 w-36 bg-gray-300"></div>
-                <FaPlaneDeparture className="mx-2 text-xl text-golden" />
+                <FaPlaneDeparture className="mx-2 text-xl text-ahaAmber-2" />
               </div>
               <div className="text-right">
                 <div className="text-xl font-semibold text-gray-900">{selectedFlightPreview.toAirport.iata}</div>
@@ -92,7 +92,7 @@ const Layout1: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
               </div>
             </div>
           </div>
-          <div className="h-14 w-px bg-golden mx-4"></div>
+          <div className="h-14 w-px bg-ahaAmber-2 mx-4"></div>
           <div className="flex items-center justify-center w-38 font-semibold">
             <div>
               Depart<br />
@@ -101,12 +101,12 @@ const Layout1: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
               </span>
             </div>
           </div>
-          <div className="h-14 w-px bg-golden mx-4"></div>
+          <div className="h-14 w-px bg-ahaAmber-2 mx-4"></div>
           <div className="flex items-center justify-center w-32 font-semibold">
             <div>
               Passengers<br />
               <div className="flex items-center mt-2">
-                <IoPerson className="text-golden mr-1" />
+                <IoPerson className="text-ahaAmber-2 mr-1" />
                 <span className="font-semibold">{totalPassengers}</span>
               </div>
             </div>

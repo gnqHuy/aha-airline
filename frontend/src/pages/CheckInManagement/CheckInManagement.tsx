@@ -76,13 +76,13 @@ const CheckInManagement = (props: Props) => {
     <Layout headerImage = {headerImage}>
         <div className = "ml-[12vw]">
             <div className = "pt-[1rem]">
-                <p className = "text-2xl font-bold text-Green">Check-in management</p>
+                <p className = "text-2xl font-bold text-ahaGreen-0">Check-in management</p>
             </div>
 
             {/* title */}
             <div className = "flex w-[80%] mt-[3rem]">
                 <div className = "bg-gray-500 w-[40%] h-[0.01rem]"></div>
-                <p className = "text-Green text-lg font-bold relative bottom-[2rem] ml-[2.8rem] w-[20%]">Check-in information</p>
+                <p className = "text-ahaGreen-0 text-lg font-bold relative bottom-[2rem] ml-[2.8rem] w-[20%]">Check-in information</p>
                 <div className = "bg-gray-500 w-[40%] h-[0.01rem] ml-[1.5rem]"></div>
             </div>
 
@@ -90,10 +90,10 @@ const CheckInManagement = (props: Props) => {
             {reservations.map((reservation: any) => {
                 return (
                     <>
-                        <div className = "w-[80%] mt-[1rem] bg-white border-[2px] border-Green border-solid rounded-[8px] flex hover:cursor-pointer" onClick = {() => displayOption === true ? setDisplayOption(false) : setDisplayOption(true)}>
+                        <div className = "w-[80%] mt-[1rem] bg-white border-[2px] border-ahaGreen-0 border-solid rounded-[8px] flex hover:cursor-pointer" onClick = {() => displayOption === true ? setDisplayOption(false) : setDisplayOption(true)}>
                             {/* customer info */}
                             <div className = "ml-[1rem] w-[30%]">
-                                <p className = "text-base text-Green font-bold">Customer information</p>
+                                <p className = "text-base text-ahaGreen-0 font-bold">Customer information</p>
                                 <p className = "text-base">Customer name: {reservation?.passengerTitle === 0 ? `Mr. ${reservation?.firstName} ${reservation?.lastName}` : `Ms. ${reservation?.firstName} ${reservation?.lastName}`}</p>
                                 <p className = "text-base">Date of birth: {reservation?.passengerDOB.substring(0,10)}</p>
                                 <p className = "text-base">Email: {reservation?.contactEmail}</p>
@@ -105,11 +105,11 @@ const CheckInManagement = (props: Props) => {
 
                             {/* journey info */}
                             <div className = "">
-                                <p className = "text-base text-Green font-bold ml-[1.5rem]">Journey information</p>
+                                <p className = "text-base text-ahaGreen-0 font-bold ml-[1.5rem]">Journey information</p>
                                 <div className = "flex relative bottom-[1rem] ml-[1.5rem]">
                                     {/* from flight */}
                                     <div>
-                                        <p className = "text-sm text-Green font-bold">{`${reservation.flightInfo.fromAirport.city.name} (${reservation.flightInfo.fromAirport.iata}), ${reservation.flightInfo.fromAirport.city.country}`}</p>
+                                        <p className = "text-sm text-ahaGreen-0 font-bold">{`${reservation.flightInfo.fromAirport.city.name} (${reservation.flightInfo.fromAirport.iata}), ${reservation.flightInfo.fromAirport.city.country}`}</p>
                                         <p className = "text-sm relative bottom-[1rem] ml-[3rem]">{`${reservation.flightInfo.fromAirport.name}`}</p>
                                     </div>
 
@@ -122,7 +122,7 @@ const CheckInManagement = (props: Props) => {
 
                                     {/* to flight */}
                                     <div className = "ml-[0.5rem]">
-                                        <p className = "text-sm text-Green font-bold">{`${reservation.flightInfo.toAirport.city.name} (${reservation.flightInfo.toAirport.iata}), ${reservation.flightInfo.toAirport.city.country}`}</p>
+                                        <p className = "text-sm text-ahaGreen-0 font-bold">{`${reservation.flightInfo.toAirport.city.name} (${reservation.flightInfo.toAirport.iata}), ${reservation.flightInfo.toAirport.city.country}`}</p>
                                         <p className = "text-sm relative bottom-[1rem] ml-[3rem]">{`${reservation.flightInfo.toAirport.name}`}</p>
                                     </div>
                                 </div>
@@ -141,10 +141,10 @@ const CheckInManagement = (props: Props) => {
 
                                     {/* seat position */}
                                     <div className = "ml-[8.5rem] relative bottom-[1rem]">
-                                        <p className = {reservation.seatClass == SeatClass.Economy ? "text-[60px] text-Green font-bold text-center" : "text-[60px] text-golden font-bold text-center"}>{reservation?.seatNumber}</p>
+                                        <p className = {reservation.seatClass == SeatClass.Economy ? "text-[60px] text-ahaGreen-0 font-bold text-center" : "text-[60px] text-ahaAmber-2 font-bold text-center"}>{reservation?.seatNumber}</p>
                                         {reservation?.seatClass == SeatClass.Economy ? 
-                                            <p className = "text-4xl text-Green font-bold relative bottom-[3rem] right-[0rem]">Economy</p> : 
-                                            <p className = "text-4xl text-golden font-bold relative bottom-[3rem] right-[0rem]">Business</p>
+                                            <p className = "text-4xl text-ahaGreen-0 font-bold relative bottom-[3rem] right-[0rem]">Economy</p> : 
+                                            <p className = "text-4xl text-ahaAmber-2 font-bold relative bottom-[3rem] right-[0rem]">Business</p>
                                         }
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@ const CheckInManagement = (props: Props) => {
                         {displayOption === true && 
                             <div className = "flex mt-[0.5rem] ml-[43vw]">
                                 <button onClick={() => handleCancel(reservation.ticketCode)} className = "bg-red-500 text-white w-[8vw] h-[2.5rem] rounded-[7px] text-base font-bold border-white hover:cursor-pointer">Cancel</button>
-                                <button onClick={() => handleUpgrade(reservation.ticketCode)} className = "bg-golden text-white w-[8vw] h-[2.5rem] rounded-[7px] text-base font-bold border-white ml-[1rem] hover:cursor-pointer">Upgrade seat</button>
+                                <button onClick={() => handleUpgrade(reservation.ticketCode)} className = "bg-ahaAmber-2 text-white w-[8vw] h-[2.5rem] rounded-[7px] text-base font-bold border-white ml-[1rem] hover:cursor-pointer">Upgrade seat</button>
                             </div>
                         }
                     </>

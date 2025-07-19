@@ -55,13 +55,13 @@ const LoginForm: React.FC<Props> = ({}) => {
         <p className="text-center text-3xl font-bold text-lime-800">
           Login to&nbsp;
         </p>
-        <p className="text-center text-3xl font-bold text-golden-ramsay">AHA</p>
+        <p className="text-center text-3xl font-bold text-ahaAmber-1">AHA</p>
       </div>
 
       <div className="mt-0 w-full">
         {/* Username input */}
         <div className="mt-4">
-          <p className="text-[15px] text-left text-golden-ramsay ml-[20%]">
+          <p className="text-[15px] text-left text-ahaAmber-1 ml-[20%]">
             Username
           </p>
           <div className="flex items-center">
@@ -72,7 +72,7 @@ const LoginForm: React.FC<Props> = ({}) => {
             <input
               id="username-input"
               type="text"
-              className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[2%] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]"
+              className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[2%] rounded-[15px] border-orange-200 outline-none text-ahaGreen-0-950 pl-[2%]"
               placeholder="Username"
               autoFocus
               value={username}
@@ -83,7 +83,7 @@ const LoginForm: React.FC<Props> = ({}) => {
 
         {/* Password input */}
         <div className="mt-4">
-          <p className="text-[15px] text-left text-golden-ramsay ml-[20%]">
+          <p className="text-[15px] text-left text-ahaAmber-1 ml-[20%]">
             Password
           </p>
           <div className="flex items-center">
@@ -94,7 +94,7 @@ const LoginForm: React.FC<Props> = ({}) => {
             <input
               id="password-input"
               type="password"
-              className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[2%] rounded-[15px] border-orange-200 outline-none text-green-950 pl-[2%]"
+              className="w-[60%] h-[2rem] bg-[#FCF9F2] ml-[2%] rounded-[15px] border-orange-200 outline-none text-ahaGreen-0-950 pl-[2%]"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -106,7 +106,7 @@ const LoginForm: React.FC<Props> = ({}) => {
       {/* Submit button */}
       <div className="mt-14">
         <button
-          className="cursor-pointer px-6 py-1 bg-golden text-[#FCF9F2] border-none outline-none text-lg font-normal rounded-[12px]"
+          className="cursor-pointer px-6 py-1 bg-ahaAmber-2 text-[#FCF9F2] border-none outline-none text-lg font-normal rounded-[12px]"
           onClick={handleSubmit}
         >
           Login
@@ -115,10 +115,10 @@ const LoginForm: React.FC<Props> = ({}) => {
 
       {/* register suggest */}
       <div className="pb-20">
-        <p className="text-golden">
+        <p className="text-ahaAmber-2">
           Doesn't have an account?&nbsp;
           <Link to="/sign-up">
-            <span className="underline hover:cursor-pointer text-golden">
+            <span className="underline hover:cursor-pointer text-ahaAmber-2">
               Register
             </span>
           </Link>

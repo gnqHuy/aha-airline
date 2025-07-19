@@ -16,7 +16,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ onContactInfoSubmit }) => {
 
   return (
     <div className="w-[50%] mx-auto mt-12 p-8 bg-white rounded-lg shadow-lg">
-      <h2 className="text-lg font-semibold text-golden text-center mb-6">
+      <h2 className="text-lg font-semibold text-ahaAmber-2 text-center mb-6">
         Contact Information
       </h2>
       <p className="text-sm text-gray-600 text-center mb-8">
@@ -62,7 +62,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ onContactInfoSubmit }) => {
         <div className="w-full text-center">
           <button
             type="submit"
-            className="my-auto px-6 py-2 text-golden text-base cursor-pointer border-golden font-semibold hover:bg-golden hover:text-white rounded-md"
+            className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md"
           >
             Submit
           </button>

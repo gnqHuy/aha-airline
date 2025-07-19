@@ -9,7 +9,7 @@ type Props = {};
 const SideBar: React.FC<Props> = () => {
   return (
     <nav className="h-full w-50 bg-white shadow-lg flex flex-col">
-      <NavLink to={"/"} className="text-3xl font-bold text-golden p-5 no-underline">
+      <NavLink to={"/"} className="text-3xl font-bold text-ahaAmber-2 p-5 no-underline">
         AHA Airline
       </NavLink>
       <ul className="flex-1 space-y-4 list-none">
@@ -18,7 +18,7 @@ const SideBar: React.FC<Props> = () => {
             to="aircrafts"
             className={({ isActive }) =>
               `flex items-center transition-colors duration-200 no-underline ${
-                isActive ? "text-golden font-bold" : "text-gray-700 hover:text-golden"
+                isActive ? "text-ahaAmber-2 font-bold" : "text-gray-700 hover:text-ahaAmber-2"
               }`
             }
           >
@@ -31,7 +31,7 @@ const SideBar: React.FC<Props> = () => {
             to="airports"
             className={({ isActive }) =>
               `flex items-center transition-colors duration-200 no-underline ${
-                isActive ? "text-golden font-bold" : "text-gray-700 hover:text-golden"
+                isActive ? "text-ahaAmber-2 font-bold" : "text-gray-700 hover:text-ahaAmber-2"
               }`
             }
           >
@@ -44,7 +44,7 @@ const SideBar: React.FC<Props> = () => {
             to="cities"
             className={({ isActive }) =>
               `flex items-center transition-colors duration-200 no-underline ${
-                isActive ? "text-golden font-bold" : "text-gray-700 hover:text-golden"
+                isActive ? "text-ahaAmber-2 font-bold" : "text-gray-700 hover:text-ahaAmber-2"
               }`
             }
           >
@@ -57,7 +57,7 @@ const SideBar: React.FC<Props> = () => {
             to="flight-routes"
             className={({ isActive }) =>
               `flex items-center transition-colors duration-200 no-underline ${
-                isActive ? "text-golden font-bold" : "text-gray-700 hover:text-golden"
+                isActive ? "text-ahaAmber-2 font-bold" : "text-gray-700 hover:text-ahaAmber-2"
               }`
             }
           >
@@ -70,7 +70,7 @@ const SideBar: React.FC<Props> = () => {
             to="flights"
             className={({ isActive }) =>
               `flex items-center transition-colors duration-200 no-underline ${
-                isActive ? "text-golden font-bold" : "text-gray-700 hover:text-golden"
+                isActive ? "text-ahaAmber-2 font-bold" : "text-gray-700 hover:text-ahaAmber-2"
               }`
             }
           >
