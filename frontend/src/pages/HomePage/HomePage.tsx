@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
   })
   return (
     <><NavBar /><NewsSection /><BookingSection /><FlightPreview /><Footer/></>
-  );
+ );
 };
 
 export default HomePage;

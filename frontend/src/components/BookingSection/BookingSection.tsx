@@ -5,7 +5,6 @@ import BookingSectionBook from './Book/BookingSectionBook';
 import BookingSectionManageBooking from './ManageBooking/BookingSectionManageBooking';
 import BookingSectionCheckIn from './CheckIn/BookingSectionCheckIn';
 import BookingContent from './Book/Content/BookingContent';
-
 type Props = {}
 
 const  BookingSection= (props: Props) => {
