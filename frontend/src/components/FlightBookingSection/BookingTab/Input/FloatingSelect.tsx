@@ -43,7 +43,7 @@ const FloatingSelect: React.FC<FloatingSelectProps> = ({
         className={`absolute left-0 ${
           value || isFocused
             ? 'top-1 text-sm text-ahaAmber-2 font-bold mt-1'
-            : 'top-6 text-base text-ahaAmber-2'
+            : 'top-5 text-base text-ahaAmber-2 font-bold'
         } transform -translate-y-1/2 transition-all`}
       >
         {label}

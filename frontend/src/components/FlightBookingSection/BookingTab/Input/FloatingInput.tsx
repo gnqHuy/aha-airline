@@ -38,14 +38,14 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
         placeholder=" "
         readOnly={readOnly}
         autoComplete="off"
-        className="bg-transparent border-none outline-none text-gray-700 text-base pt-5 pb-1 cursor-pointer"
+        className="bg-transparent border-none outline-none text-gray-700 text-base pt-4 cursor-pointer"
       />
       <label
         htmlFor={id}
         className={`absolute left-0 ${
           value || isFocused
-            ? 'top-1 text-sm text-ahaAmber-2 font-bold mt-1'
-            : 'top-6 text-base text-ahaAmber-2 font-semibold'
+            ? 'top-1 text-sm text-ahaAmber-2 font-bold mt-[1px]'
+            : 'top-5 text-base text-ahaAmber-2 font-bold'
         } transform -translate-y-1/2 transition-all`}
       >
         {label}

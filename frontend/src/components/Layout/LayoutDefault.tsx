@@ -7,9 +7,14 @@ type Props = {
     children: React.ReactNode;
 }
 
-const LayoutDefault: React.FC<Props> = ({ children}) => {
+const LayoutDefault: React.FC<Props> = ({ children }) => {
   return (
-    <div style={{ backgroundImage: `url(${image1})` }}>
+    <div
+      style={{
+        backgroundImage: `url(${image1})`,
+        backgroundSize:'cover'
+      }}
+    >
       <NavBar />
       <main className="min-h-screen w-[80%] mx-auto">{children}</main>
       <Footer />

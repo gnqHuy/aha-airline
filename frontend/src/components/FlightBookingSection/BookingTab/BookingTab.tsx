@@ -177,9 +177,9 @@ const BookingContent = () => {
   return (
     <div className="flex justify-center">
       <div className="z-0 w-full h-full rounded-xl shadow-lg transition-all duration-300 overflow-visible">
-        <div className="flex flex-col gap-4 px-4 py-6">
+        <div className="flex flex-col gap-5 px-2 py-4">
           {/* FLIGHT TYPE + PASSENGERS */}
-          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-lg gap-6">
+          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-2xl gap-6">
             <FloatingSelect
               id="flight-type"
               label="FLIGHT TYPE"
@@ -224,7 +224,7 @@ const BookingContent = () => {
           </div>
 
           {/* FROM - TO */}
-          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-lg gap-6 relative">
+          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-2xl gap-6 relative">
             <FloatingInput
               id="from"
               label="DEPARTURE"
@@ -244,7 +244,7 @@ const BookingContent = () => {
             <FloatingInput
               id="to"
               label="DESTINATION"
-              value={selectedAirports.to == '' ? inputAirports.to : selectedAirports.to}
+              value={toFocused ? inputAirports.to : selectedAirports.to}
               onChange={(e) => {
                 const val = e.target.value;
                 setInputAirports((prev) => ({ ...prev, to: val }));
@@ -276,7 +276,7 @@ const BookingContent = () => {
           )}
 
           {/* DEPART / RETURN */}
-          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-lg gap-6">
+          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-2xl gap-6">
             <div className="relative w-full">
               <FloatingInput
                 id="depart"

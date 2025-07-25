@@ -1,0 +1,67 @@
+.flight-carousel-container {
+  max-width: 80vw;
+  margin: 0 auto;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.shadow-left,
+.shadow-right {
+  position: absolute;
+  top: 15%;
+  width: 60px;
+  height: 70%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.shadow-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(237, 200, 120, 0.3), rgba(237, 200, 120, 0.1));
+}
+
+.shadow-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(237, 200, 120, 0.4), rgba(237, 200, 120, 0.1));
+}
+
+/* 
+.swiper_container {
+  padding: 2rem 0;
+  position: relative;
+} */
+
+.swiper-slide {
+  width: 300px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+}
+
+.slider-controler {
+  color: #edc878;
+  background-color: #edc878;
+}
+
+.slider-controler .swiper-button-next,
+.slider-controler .swiper-button-prev {
+  background: #edc878;
+  opacity: 0.8;
+  color: white;
+  width: 4%;
+  height: 19%; 
+  top: 40%;
+  border-radius: 0.5rem;
+  /* padding-top: 8rem;
+  padding-bottom: 8rem; */
+  font-size: large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.slider-controler .swiper-button-next:hover,
+.slider-controler .swiper-button-prev:hover {
+  opacity: 0.6;
+}

@@ -6,7 +6,7 @@ import { resetBooking } from "../../redux/slice/bookingSlice";
 import { resetPassengers } from "../../redux/slice/passengerSlice";
 import LayoutDefault from "../../components/Layout/LayoutDefault";
 import FlightBookingSection from "../../components/FlightBookingSection/FlightBookingSection";
-
+// In your main layout or App.jsx
 
 const HomePage: React.FC = () => {
   const dispatch = useDispatch();
