@@ -58,7 +58,7 @@ const NavBar: React.FC<Props> = () => {
   }
 
   return (
-    <section className="relative w-full h-screen bg-cover bg-center bg-no-repeat pt-[6px]" style={{ backgroundImage: `url(${image1})` }}>
+    <section className="relative w-full h-screen bg-cover bg-center bg-no-repeat pt-[6px]">
       <nav className="grid grid-cols-[2fr_3fr_1fr] w-full text-white">
         <div className="text-center py-4 small:relative small:right-[2rem]">
           <Link to="/" className="block no-underline text-white font-bold">

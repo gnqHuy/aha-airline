@@ -8,13 +8,7 @@ import ManageBookingInfo from './ManageBookingInfo';
 import { GetByReservationOrTicketCode } from '../../../api/ticket';
 import { useFlightContext } from '../../../context/FlightContext/FlightContext';
 
-interface Props {
-    sectionTab: string;
-    handleChangeTab: (tabName: string) => void;
-    prevTab: string;
-}
-
-const BookingSectionManageBooking: React.FC<Props> = ({ sectionTab, handleChangeTab, prevTab }) => {
+const BookingSectionManageBooking = () => {
     const [isFocusReservation, setIsFocusReservation] = useState<boolean>(false);
     const [reservationCode, setReservationCode] = useState<string>("");
     const [displayInfo, setDisplayInfo] = useState<boolean>(false);
@@ -89,30 +83,6 @@ const BookingSectionManageBooking: React.FC<Props> = ({ sectionTab, handleChange
                     />
                 </div>
             )}
-
-            <div className="mt-12">
-                <p className="text-lg font-bold mb-4">Customize your flight with our wide range of options:</p>
-                <div className="flex flex-wrap gap-6">
-                    {[{
-                        icon: <IoTimer className="text-yellow-400 w-8 h-8" />, text: "Secure my fare"
-                    }, {
-                        icon: <RiLuggageCartFill className="text-yellow-400 w-8 h-8" />, text: "Baggage Information"
-                    }, {
-                        icon: <PiSeatFill className="text-yellow-400 w-8 h-8" />, text: "Seat options"
-                    }, {
-                        icon: <FaCirclePlus className="text-yellow-400 w-8 h-8" />, text: "Add ancillaries"
-                    }, {
-                        icon: <FaPlaneCircleCheck className="text-yellow-400 w-8 h-8" />, text: "Upgrade flights"
-                    }, {
-                        icon: <IoTicket className="text-yellow-400 w-8 h-8" />, text: "Exchange flights"
-                    }].map((item, index) => (
-                        <div key={index} className="flex items-center gap-2">
-                            {item.icon}
-                            <span className="text-sm">{item.text}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
         </div>
     );
 };

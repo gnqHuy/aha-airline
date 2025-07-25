@@ -1,7 +1,4 @@
 import React from "react";
-import NewsSection from "../../components/FlightBookingSection/FlightBookingSection";
-import FlightPreview from "../../components/FlightPreview/FlightPreview";
-import BookingSection from "../../components/BookingSection/BookingSection";
 import Layout from "../../components/Layout/Layout";
 import GenericCard from "../../components/GenericCard/GenericCard";
 

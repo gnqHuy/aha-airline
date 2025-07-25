@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import BookingSectionManageBooking from "../BookingSection/ManageBooking/BookingSectionManageBooking";
-import BookingSectionCheckIn from "../BookingSection/CheckIn/BookingSectionCheckIn";
-import BookingContent from "../BookingSection/Book/Content/BookingContent";
+import BookingSectionManageBooking from "./ManageBookingTab/BookingSectionManageBooking";
+import BookingSectionCheckIn from "./CheckInTab/BookingSectionCheckIn";
+import BookingContent from "./BookingTab/BookingTab";
 
 const FlightBookingSection = () => {
   const [activeTab, setActiveTab] = useState("book");
@@ -10,26 +10,15 @@ const FlightBookingSection = () => {
     switch (activeTab) {
       case "book":
         return (
-          <BookingContent
-            sectionTab={activeTab}
-            handleChangeTab={setActiveTab}
-          />
+          <BookingContent />
         );
       case "manage":
         return (
-          <BookingSectionManageBooking
-            sectionTab={activeTab}
-            handleChangeTab={setActiveTab}
-            prevTab={activeTab}
-          />
+          <BookingSectionManageBooking />
         );
       case "checkIn":
         return (
-          <BookingSectionCheckIn
-            sectionTab={activeTab}
-            handleChangeTab={setActiveTab}
-            prevTab={activeTab}
-          />
+          <BookingSectionCheckIn />
         );
       default:
         return null;
@@ -39,11 +28,11 @@ const FlightBookingSection = () => {
   const buttonClass = (
     tab: string,
     textColor: string = "text-white",
-    bgColor: string = "bg-ahaGreen-opacity-0" 
+    bgColor: string = "bg-ahaGreen-1" 
   ) => {
     const isActive = activeTab === tab;
 
-    const base = `w-full h-[50px] px-6 py-2 font-semibold text-base border-none transition-colors`;
+    const base = `w-full h-[50px] px-6 py-2 font-semibold text-base rounded-full border-none transition-colors`;
     const activeStyle = `${bgColor} ${textColor}`;
     const inactiveStyle = `bg-white/40 text-ahaGreen-0`;
 
@@ -51,8 +40,8 @@ const FlightBookingSection = () => {
   };
 
   return (
-    <div className="absolute bg-ahaGreen-opacity-3 left-[25%] w-[50%] top-[80%] rounded-2xl mx-auto -translate-y-full overflow-hidden backdrop-blur-sm shadow-lg">
-      <div className="flex justify-center">
+    <div className="absolute bg-white left-[30%] w-[40%] h-[45%] top-[70%] rounded-3xl mx-auto -translate-y-full overflow-visible backdrop-blur-sm shadow-lg">
+      <div className="flex justify-center bg-white p-1 mb-3 rounded-full">
         <button className={buttonClass("book")} onClick={() => setActiveTab("book")}>
           Book Flight
         </button>

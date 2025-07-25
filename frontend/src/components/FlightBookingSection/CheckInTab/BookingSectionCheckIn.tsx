@@ -3,16 +3,9 @@ import { IoIosArrowUp } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { useFlightContext } from '../../../context/FlightContext/FlightContext'
 
-interface Props {
-  sectionTab: string
-  handleChangeTab: (tabName: string) => void
-  prevTab: string
-}
-
-const BookingSectionCheckIn: React.FC<Props> = ({ sectionTab, handleChangeTab }) => {
+const BookingSectionCheckIn = () => {
   const [activeOption, setActiveOption] = useState<'reservationCode' | 'eTicket' | 'flyerNumber'>('reservationCode')
   const [focusReservationCode, setFocusReservationCode] = useState(false)
-  const [focusEticket, setFocusEticket] = useState(false)
   const [reservationCode, setReservationCode] = useState('')
   const [eTicket, setETicket] = useState('')
 
@@ -37,18 +30,16 @@ const BookingSectionCheckIn: React.FC<Props> = ({ sectionTab, handleChangeTab })
       ? 'bg-[#1a4532] text-[#ebc94e]'
       : 'hover:bg-[#1a4532] hover:text-[#ebc94e] transition duration-500'
 
-  if (sectionTab !== 'checkIn') return null
-
   return (
     <section className=" shadow-md rounded-xl p-6 mx-auto mb-12">
-      <p className="text-[16px] font-bold text-[#1a4532] mb-2">
+      {/* <p className="text-[16px] font-bold text-[#1a4532] mb-2">
         Web Checkin is available 24 to 1 hour before flight departure
       </p>
       <p className="text-[16px] mb-6">
         Please ensure you input the family name as it appears in your ticket
-      </p>
+      </p> */}
 
-      <div className="flex flex-wrap gap-4 mb-6">
+      {/* <div className="flex flex-wrap gap-4 mb-6">
         <button
           className={`w-[15rem] h-[2.5rem] rounded-[12px] text-[16px] ${isActive('reservationCode')}`}
           onClick={() => {
@@ -76,7 +67,7 @@ const BookingSectionCheckIn: React.FC<Props> = ({ sectionTab, handleChangeTab })
         >
           Frequent Flyer Number
         </button>
-      </div>
+      </div> */}
 
       {activeOption === 'reservationCode' && (
         <div className="flex flex-wrap gap-6 items-start">
@@ -108,65 +99,65 @@ const BookingSectionCheckIn: React.FC<Props> = ({ sectionTab, handleChangeTab })
         </div>
       )}
 
-      {activeOption === 'eTicket' && (
-        <div className="flex flex-wrap gap-6 items-start">
-          <div className="flex flex-col">
-            <label
-              className={`transition-all duration-300 text-sm ${
-                focusEticket ? 'text-[#1a4532] -mb-2' : 'text-gray-500'
-              }`}
-            >
-              eTicket
-            </label>
-            <input
-              type="text"
-              className="w-[18rem] border-b border-black bg-transparent outline-none text-sm py-1"
-              onFocus={() => setFocusEticket(true)}
-              onBlur={() => eTicket.length === 0 && setFocusEticket(false)}
-              value={eTicket}
-              onChange={(e) => setETicket(e.target.value)}
-            />
+        {/* {activeOption === 'eTicket' && (
+          <div className="flex flex-wrap gap-6 items-start">
+            <div className="flex flex-col">
+              <label
+                className={`transition-all duration-300 text-sm ${
+                  focusEticket ? 'text-[#1a4532] -mb-2' : 'text-gray-500'
+                }`}
+              >
+                eTicket
+              </label>
+              <input
+                type="text"
+                className="w-[18rem] border-b border-black bg-transparent outline-none text-sm py-1"
+                onFocus={() => setFocusEticket(true)}
+                onBlur={() => eTicket.length === 0 && setFocusEticket(false)}
+                value={eTicket}
+                onChange={(e) => setETicket(e.target.value)}
+              />
+            </div>
+            <Link to="/checkin-management">
+              <button
+                className="w-[9rem] h-[3rem] text-[18px] bg-[#ebc94e] rounded-md"
+                onClick={setupCheckinTicket}
+              >
+                CHECK IN
+              </button>
+            </Link>
           </div>
-          <Link to="/checkin-management">
-            <button
-              className="w-[9rem] h-[3rem] text-[18px] bg-[#ebc94e] rounded-md"
-              onClick={setupCheckinTicket}
-            >
-              CHECK IN
-            </button>
-          </Link>
-        </div>
-      )}
+        )}
 
-      {activeOption === 'flyerNumber' && (
-        <div className="flex flex-wrap gap-6 items-start">
-          <div className="flex flex-col">
-            <label
-              className={`transition-all duration-300 text-sm ${
-                focusReservationCode ? 'text-[#1a4532] -mb-2' : 'text-gray-500'
-              }`}
-            >
-              Reservation Code
-            </label>
-            <input
-              type="text"
-              className="w-[18rem] border-b border-black bg-transparent outline-none text-sm py-1"
-              onFocus={() => setFocusReservationCode(true)}
-              onBlur={() => reservationCode.length === 0 && setFocusReservationCode(false)}
-              value={reservationCode}
-              onChange={(e) => setReservationCode(e.target.value)}
-            />
+        {activeOption === 'flyerNumber' && (
+          <div className="flex flex-wrap gap-6 items-start">
+            <div className="flex flex-col">
+              <label
+                className={`transition-all duration-300 text-sm ${
+                  focusReservationCode ? 'text-[#1a4532] -mb-2' : 'text-gray-500'
+                }`}
+              >
+                Reservation Code
+              </label>
+              <input
+                type="text"
+                className="w-[18rem] border-b border-black bg-transparent outline-none text-sm py-1"
+                onFocus={() => setFocusReservationCode(true)}
+                onBlur={() => reservationCode.length === 0 && setFocusReservationCode(false)}
+                value={reservationCode}
+                onChange={(e) => setReservationCode(e.target.value)}
+              />
+            </div>
+            <Link to="/checkin-management">
+              <button
+                className="w-[9rem] h-[3rem] text-[18px] bg-[#ebc94e] rounded-md"
+                onClick={setupCheckinReservationCode}
+              >
+                CHECK IN
+              </button>
+            </Link>
           </div>
-          <Link to="/checkin-management">
-            <button
-              className="w-[9rem] h-[3rem] text-[18px] bg-[#ebc94e] rounded-md"
-              onClick={setupCheckinReservationCode}
-            >
-              CHECK IN
-            </button>
-          </Link>
-        </div>
-      )}
+        )} */}
     </section>
   )
 }

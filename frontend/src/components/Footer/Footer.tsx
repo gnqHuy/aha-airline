@@ -11,7 +11,7 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer className="footer-text bg-gradient-to-r from-ahaGreen-0 to-ahaGreen-2">
+    <footer className="footer-text bg-ahaGreen-opacity-0">
         <div className="mx-auto w-full max-w-screen-xl lg:py-6">
             <div className="md:flex md:justify-between mb-4">
                 <div className="mb-6 ml-10 md:mb-0">

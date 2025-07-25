@@ -16,7 +16,7 @@ module.exports = {
           7: '#90d5b8',
           8: '#b5e3d0',
           9: '#daf1e7',
-          'opacity-0': 'rgba(28, 74, 53, 0.666)',
+          'opacity-0': 'rgba(28, 74, 53, 0.333  )',
           'opacity-1': 'rgba(35, 92, 69, 0.666)',
           'opacity-2': 'rgba(42, 111, 82, 0.666)',
           'opacity-3': 'rgba(49, 129, 96, 0.666)',
