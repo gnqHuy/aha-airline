@@ -175,11 +175,11 @@ const BookingContent = () => {
   );
 
   return (
-    <div className="flex justify-center">
-      <div className="z-0 w-full h-full rounded-xl shadow-lg transition-all duration-300 overflow-visible">
-        <div className="flex flex-col gap-5 px-2 py-4">
-          {/* FLIGHT TYPE + PASSENGERS */}
-          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-2xl gap-6">
+    <div className="w-full h-full">
+      <div className="flex flex-col gap-4 sm:gap-5 py-2 sm:py-4">
+        {/* FLIGHT TYPE + PASSENGERS */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center bg-gray-100 px-3 sm:px-4 py-3 sm:py-2 rounded-2xl gap-4 sm:gap-6">
+          <div className="flex-1">
             <FloatingSelect
               id="flight-type"
               label="FLIGHT TYPE"
@@ -192,39 +192,41 @@ const BookingContent = () => {
                 { value: 'oneWay', label: 'One way' },
               ]}
             />
-
-            <div className="text-ahaAmber-2 text-2xl">
-              {flightOption === 'roundTrip' ? <FaArrowRightArrowLeft /> : <FaArrowRight />}
-            </div>
-
-            <div className="relative w-full">
-              <FloatingInput
-                id="passengers"
-                label="PASSENGERS"
-                value={`${passengerQuantities.adult + passengerQuantities.children + passengerQuantities.infant} Passenger(s)`}
-                isFocused={passengerFocused}
-                setFocused={setPassengerFocused}
-                onClick={() => handleDisplayToggle('passengerInfo')}
-                readOnly
-              />
-              {displayStates.passengerInfo && (
-                <PassengerInfo
-                  handleIncreaseAdultPassenger={() => handlePassengerQuantity('adult', 'increase')}
-                  handleDecreaseAdultPassenger={() => handlePassengerQuantity('adult', 'decrease')}
-                  handleIncreaseChildrenPassenger={() => handlePassengerQuantity('children', 'increase')}
-                  handleDecreaseChildrenPassenger={() => handlePassengerQuantity('children', 'decrease')}
-                  handleIncreaseInfantPassenger={() => handlePassengerQuantity('infant', 'increase')}
-                  handleDecreaseInfantPassenger={() => handlePassengerQuantity('infant', 'decrease')}
-                  adultPassengerQuantity={passengerQuantities.adult}
-                  childrenPassengerQuantity={passengerQuantities.children}
-                  infantPassengerQuantity={passengerQuantities.infant}
-                />
-              )}
-            </div>
           </div>
 
-          {/* FROM - TO */}
-          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-2xl gap-6 relative">
+          <div className="text-ahaAmber-2 text-xl sm:text-2xl self-center">
+            {flightOption === 'roundTrip' ? <FaArrowRightArrowLeft /> : <FaArrowRight />}
+          </div>
+
+          <div className="relative flex-1">
+            <FloatingInput
+              id="passengers"
+              label="PASSENGERS"
+              value={`${passengerQuantities.adult + passengerQuantities.children + passengerQuantities.infant} Passenger(s)`}
+              isFocused={passengerFocused}
+              setFocused={setPassengerFocused}
+              onClick={() => handleDisplayToggle('passengerInfo')}
+              readOnly
+            />
+            {displayStates.passengerInfo && (
+              <PassengerInfo
+                handleIncreaseAdultPassenger={() => handlePassengerQuantity('adult', 'increase')}
+                handleDecreaseAdultPassenger={() => handlePassengerQuantity('adult', 'decrease')}
+                handleIncreaseChildrenPassenger={() => handlePassengerQuantity('children', 'increase')}
+                handleDecreaseChildrenPassenger={() => handlePassengerQuantity('children', 'decrease')}
+                handleIncreaseInfantPassenger={() => handlePassengerQuantity('infant', 'increase')}
+                handleDecreaseInfantPassenger={() => handlePassengerQuantity('infant', 'decrease')}
+                adultPassengerQuantity={passengerQuantities.adult}
+                childrenPassengerQuantity={passengerQuantities.children}
+                infantPassengerQuantity={passengerQuantities.infant}
+              />
+            )}
+          </div>
+        </div>
+
+        {/* FROM - TO */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center bg-gray-100 px-3 sm:px-4 py-3 sm:py-2 rounded-2xl gap-4 sm:gap-6 relative">
+          <div className="flex-1">
             <FloatingInput
               id="from"
               label="DEPARTURE"
@@ -238,9 +240,11 @@ const BookingContent = () => {
               setFocused={setFromFocused}
               onClick={() => handleDisplayToggle('suggestion')}
             />
-            <div className="text-ahaAmber-2 text-2xl">
-              {flightOption === 'roundTrip' ? <FaArrowRightArrowLeft /> : <FaArrowRight />}
-            </div>
+          </div>
+          <div className="text-ahaAmber-2 text-xl sm:text-2xl self-center">
+            {flightOption === 'roundTrip' ? <FaArrowRightArrowLeft /> : <FaArrowRight />}
+          </div>
+          <div className="flex-1">
             <FloatingInput
               id="to"
               label="DESTINATION"
@@ -255,69 +259,69 @@ const BookingContent = () => {
               onClick={() => handleDisplayToggle('suggestionTo')}
             />
           </div>
+        </div>
 
-          {displayStates.suggestion && (
-            <div className='absolute top-[60%] left-[5%] w-[50%] z-50' ref={suggestionRefs.suggestion}>
-              <BookingFlightSuggestion
-                suggestAirports={suggestAirports}
-                handleSetupSelectedAirport={(airport) => handleAirportSelect(airport, 'from')}
-                handleSetupDisplaySuggestion={() => handleDisplayToggle('suggestion')}
-              />
-            </div>
-          )}
-          {displayStates.suggestionTo && (
-            <div className='absolute top-[60%] left-[50%] w-[50%] z-50' ref={suggestionRefs.suggestionTo}>
-              <BookingFlightSuggestionTo
-                suggestAirportsTo={suggestAirportsTo}
-                handleSetupSelectedAirportTo={(airport) => handleAirportSelect(airport, 'to')}
-                handleSetupDisplaySuggestionTo={() => handleDisplayToggle('suggestionTo')}
-              />
-            </div>
-          )}
+        {displayStates.suggestion && (
+          <div className='absolute top-[60%] left-[5%] w-[90%] sm:w-[50%] z-50' ref={suggestionRefs.suggestion}>
+            <BookingFlightSuggestion
+              suggestAirports={suggestAirports}
+              handleSetupSelectedAirport={(airport) => handleAirportSelect(airport, 'from')}
+              handleSetupDisplaySuggestion={() => handleDisplayToggle('suggestion')}
+            />
+          </div>
+        )}
+        {displayStates.suggestionTo && (
+          <div className='absolute top-[60%] left-[5%] sm:left-[50%] w-[90%] sm:w-[50%] z-50' ref={suggestionRefs.suggestionTo}>
+            <BookingFlightSuggestionTo
+              suggestAirportsTo={suggestAirportsTo}
+              handleSetupSelectedAirportTo={(airport) => handleAirportSelect(airport, 'to')}
+              handleSetupDisplaySuggestionTo={() => handleDisplayToggle('suggestionTo')}
+            />
+          </div>
+        )}
 
-          {/* DEPART / RETURN */}
-          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-2xl gap-6">
-            <div className="relative w-full">
+        {/* DEPART / RETURN */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center bg-gray-100 px-3 sm:px-4 py-3 sm:py-2 rounded-2xl gap-4 sm:gap-6">
+          <div className="relative flex-1">
+            <FloatingInput
+              id="depart"
+              label="DEPARTURE DATE"
+              value={selectedDates.depart}
+              isFocused={departFocused}
+              setFocused={setDepartFocused}
+              onClick={() => handleDisplayToggle('calendarDepart')}
+              readOnly
+            />
+            {displayStates.calendarDepart && renderCalendar('depart')}
+          </div>
+
+          <div className="text-ahaAmber-2 text-xl sm:text-2xl self-center">
+            {flightOption === 'roundTrip' && <FaArrowRightArrowLeft />}
+          </div>
+
+          {flightOption === 'roundTrip' && (
+            <div className="relative flex-1">
               <FloatingInput
-                id="depart"
-                label="DEPARTURE DATE"
-                value={selectedDates.depart}
-                isFocused={departFocused}
-                setFocused={setDepartFocused}
-                onClick={() => handleDisplayToggle('calendarDepart')}
+                id="return"
+                label="RETURN DATE"
+                value={selectedDates.return}
+                isFocused={returnFocused}
+                setFocused={setReturnFocused}
+                onClick={() => handleDisplayToggle('calendarReturn')}
                 readOnly
               />
-              {displayStates.calendarDepart && renderCalendar('depart')}
+              {displayStates.calendarReturn && renderCalendar('return')}
             </div>
+          )}
+        </div>
 
-            <div className="text-ahaAmber-2 text-2xl">
-              {flightOption === 'roundTrip' && <FaArrowRightArrowLeft />}
-            </div>
-
-            {flightOption === 'roundTrip' && (
-              <div className="relative w-full">
-                <FloatingInput
-                  id="return"
-                  label="RETURN DATE"
-                  value={selectedDates.return}
-                  isFocused={returnFocused}
-                  setFocused={setReturnFocused}
-                  onClick={() => handleDisplayToggle('calendarReturn')}
-                  readOnly
-                />
-                {displayStates.calendarReturn && renderCalendar('return')}
-              </div>
-            )}
-          </div>
-
-          <div className="text-center mt-4">
-            <button
-              onClick={handleFindFlightClick}
-              className="bg-ahaAmber-2 text-white border-none text-base hover:bg-ahaAmber-3 px-6 py-2 rounded-full font-bold"
-            >
-              FIND FLIGHT
-            </button>
-          </div>
+        <div className="text-center mt-2 sm:mt-4">
+          <button
+            onClick={handleFindFlightClick}
+            className="bg-ahaAmber-2 text-white border-none text-sm sm:text-base hover:bg-ahaAmber-3 px-6 py-2 sm:py-3 rounded-full font-bold transition-colors w-full sm:w-auto min-w-[140px]"
+          >
+            FIND FLIGHT
+          </button>
         </div>
       </div>
     </div>

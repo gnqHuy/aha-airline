@@ -9,51 +9,77 @@ const FlightBookingSection = () => {
   const renderTabContent = () => {
     switch (activeTab) {
       case "book":
-        return (
-          <BookingContent />
-        );
+        return <BookingContent />;
       case "manage":
-        return (
-          <BookingSectionManageBooking />
-        );
+        return <BookingSectionManageBooking />;
       case "checkIn":
-        return (
-          <BookingSectionCheckIn />
-        );
+        return <BookingSectionCheckIn />;
       default:
         return null;
     }
   };
 
-  const buttonClass = (
-    tab: string,
-    textColor: string = "text-white",
-    bgColor: string = "bg-ahaGreen-1" 
-  ) => {
+  const buttonClass = (tab: string) => {
     const isActive = activeTab === tab;
-
-    const base = `w-full h-[50px] px-6 py-2 font-semibold text-base rounded-full border-none transition-colors`;
-    const activeStyle = `${bgColor} ${textColor}`;
-    const inactiveStyle = `bg-white/40 text-ahaGreen-0`;
+    const base = `
+      flex-1 h-12 px-4 py-2 font-semibold text-sm sm:text-base 
+      rounded-full border-none transition-all duration-300 
+      hover:shadow-md focus:outline-none focus:ring-2 focus:ring-ahaGreen-1/50
+    `;
+    const activeStyle = `bg-ahaGreen-1 text-white shadow-lg`;
+    const inactiveStyle = `bg-white/60 text-ahaGreen-0 hover:bg-white/80`;
 
     return `${base} ${isActive ? activeStyle : inactiveStyle}`;
   };
 
   return (
-    <div className="absolute bg-white bg-opacity-50 left-[30%] w-[40%] h-[48%] top-[75%] rounded-3xl mx-auto -translate-y-full overflow-visible backdrop-blur-sm shadow-lg">
-      <div className="flex justify-center bg-white p-1 mb-3 rounded-full">
-        <button className={buttonClass("book")} onClick={() => setActiveTab("book")}>
-          Book Flight
-        </button>
-        <button className={buttonClass("manage")} onClick={() => setActiveTab("manage")}>
-          Manage Booking
-        </button>
-        <button className={buttonClass("checkIn")} onClick={() => setActiveTab("checkIn")}>
-          Check-In
-        </button>
-      </div>
-      <div className="mx-auto px-5">
-        {renderTabContent()}
+    <div className="
+      fixed inset-0 z-50 flex items-center justify-center p-4
+      lg:absolute lg:inset-auto lg:left-[30%] lg:top-[75%] lg:-translate-y-full 
+      lg:w-[40%] lg:h-[48%] lg:p-0
+    ">
+      <div className="
+        w-full max-w-2xl h-full max-h-[90vh] 
+        lg:w-full lg:h-full lg:max-w-none lg:max-h-none
+        bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl 
+        overflow-hidden flex flex-col
+        min-w-[320px]
+      ">
+        {/* Tab Navigation */}
+        <div className="flex-shrink-0 p-3 lg:p-2">
+          <div className="flex bg-white/80 p-1 rounded-full gap-1">
+            <button 
+              className={buttonClass("book")} 
+              onClick={() => setActiveTab("book")}
+            >
+              <span className="hidden sm:inline">Book Flight</span>
+              <span className="sm:hidden">Book</span>
+            </button>
+            <button 
+              className={buttonClass("manage")} 
+              onClick={() => setActiveTab("manage")}
+            >
+              <span className="hidden sm:inline">Manage Booking</span>
+              <span className="sm:hidden">Manage</span>
+            </button>
+            <button 
+              className={buttonClass("checkIn")} 
+              onClick={() => setActiveTab("checkIn")}
+            >
+              <span className="hidden sm:inline">Check-In</span>
+              <span className="sm:hidden">Check-In</span>
+            </button>
+          </div>
+        </div>
+        
+        {/* Content Area */}
+        <div className="flex-1 overflow-hidden">
+          <div className="h-full overflow-y-auto px-3 lg:px-4 pb-4">
+            <div className="min-h-full">
+              {renderTabContent()}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
