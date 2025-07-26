@@ -3,58 +3,93 @@ import BookingSectionManageBooking from "./ManageBookingTab/BookingSectionManage
 import BookingSectionCheckIn from "./CheckInTab/BookingSectionCheckIn";
 import BookingContent from "./BookingTab/BookingTab";
 
+// Tab configuration để tránh trùng lặp
+const TAB_CONFIG = [
+  { id: "book", label: "Book Flight", component: BookingContent },
+  { id: "manage", label: "Manage Booking", component: BookingSectionManageBooking },
+  { id: "checkIn", label: "Check-In", component: BookingSectionCheckIn },
+] as const;
+
+type TabId = typeof TAB_CONFIG[number]["id"];
+
+// Tab Button Component để tái sử dụng
+interface TabButtonProps {
+  tab: TabId;
+  label: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+const TabButton: React.FC<TabButtonProps> = ({ tab, label, isActive, onClick }) => {
+  const baseClasses = "flex-1 h-12 px-4 py-2 font-semibold text-sm md:text-base rounded-full border-none transition-all duration-300 ease-in-out transform hover:scale-105";
+  const activeClasses = "bg-ahaGreen-1 text-white shadow-md";
+  const inactiveClasses = "bg-white/40 text-ahaGreen-0 hover:bg-white/60";
+
+  return (
+    <button
+      className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses}`}
+      onClick={onClick}
+      type="button"
+      aria-pressed={isActive}
+      aria-label={`Switch to ${label} tab`}
+    >
+      {label}
+    </button>
+  );
+};
+
+// Content Container Component
+interface ContentContainerProps {
+  children: React.ReactNode;
+}
+
+const ContentContainer: React.FC<ContentContainerProps> = ({ children }) => (
+  <div className="flex-1 min-h-0 overflow-hidden">
+    <div className="h-full px-3 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+      {children}
+    </div>
+  </div>
+);
+
 const FlightBookingSection = () => {
-  const [activeTab, setActiveTab] = useState("book");
+  const [activeTab, setActiveTab] = useState<TabId>("book");
 
   const renderTabContent = () => {
-    switch (activeTab) {
-      case "book":
-        return (
-          <BookingContent />
-        );
-      case "manage":
-        return (
-          <BookingSectionManageBooking />
-        );
-      case "checkIn":
-        return (
-          <BookingSectionCheckIn />
-        );
-      default:
-        return null;
-    }
-  };
-
-  const buttonClass = (
-    tab: string,
-    textColor: string = "text-white",
-    bgColor: string = "bg-ahaGreen-1" 
-  ) => {
-    const isActive = activeTab === tab;
-
-    const base = `w-full h-[50px] px-6 py-2 font-semibold text-base rounded-full border-none transition-colors`;
-    const activeStyle = `${bgColor} ${textColor}`;
-    const inactiveStyle = `bg-white/40 text-ahaGreen-0`;
-
-    return `${base} ${isActive ? activeStyle : inactiveStyle}`;
+    const currentTab = TAB_CONFIG.find(tab => tab.id === activeTab);
+    if (!currentTab) return null;
+    
+    const Component = currentTab.component;
+    return <Component />;
   };
 
   return (
-    <div className="absolute bg-white bg-opacity-50 left-[30%] w-[40%] h-[48%] top-[75%] rounded-3xl mx-auto -translate-y-full overflow-visible backdrop-blur-sm shadow-lg">
-      <div className="flex justify-center bg-white p-1 mb-3 rounded-full">
-        <button className={buttonClass("book")} onClick={() => setActiveTab("book")}>
-          Book Flight
-        </button>
-        <button className={buttonClass("manage")} onClick={() => setActiveTab("manage")}>
-          Manage Booking
-        </button>
-        <button className={buttonClass("checkIn")} onClick={() => setActiveTab("checkIn")}>
-          Check-In
-        </button>
+    <div className="
+      fixed left-1/2 top-3/4 -translate-x-1/2 -translate-y-full z-50
+      w-[95vw] max-w-2xl h-[85vh] max-h-[600px]
+      lg:absolute lg:left-[30%] lg:top-[75%] lg:w-[40%] lg:min-w-[400px] lg:max-w-[600px] lg:h-[48%]
+      bg-white/50 backdrop-blur-md rounded-3xl shadow-xl
+      flex flex-col overflow-hidden
+      transition-all duration-300 ease-in-out
+    ">
+      {/* Tab Navigation */}
+      <div className="flex-shrink-0 p-2">
+        <div className="flex bg-white/80 backdrop-blur-sm p-1 rounded-full shadow-inner">
+          {TAB_CONFIG.map(({ id, label }) => (
+            <TabButton
+              key={id}
+              tab={id}
+              label={label}
+              isActive={activeTab === id}
+              onClick={() => setActiveTab(id)}
+            />
+          ))}
+        </div>
       </div>
-      <div className="mx-auto px-5">
+      
+      {/* Content Area */}
+      <ContentContainer>
         {renderTabContent()}
-      </div>
+      </ContentContainer>
     </div>
   );
 };
