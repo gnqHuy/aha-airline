@@ -47,15 +47,21 @@ const BookingSectionManageBooking = () => {
     };
 
     return (
-        <div className="max-w-6xl mx-auto p-6 rounded-lg shadow-md">
-            <div className="flex flex-col md:flex-row items-center gap-4">
-                <div className="relative w-full md:w-1/2">
-                    <label className={`block text-sm font-medium transition-all ${isFocusReservation ? "-translate-y-5 text-gray-500" : "text-black"}`}>
+        <div className="w-full h-full py-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-4 bg-gray-100 px-4 py-4 rounded-2xl">
+                <div className="relative flex-1">
+                    <label className={`
+                        absolute left-0 transition-all duration-300 pointer-events-none text-sm font-medium
+                        ${isFocusReservation || reservationCode 
+                            ? '-top-2 text-ahaGreen-0 text-xs' 
+                            : 'top-2 text-gray-500'
+                        }
+                    `}>
                         Reservation Code/Ticket Number
                     </label>
                     <input
                         type="text"
-                        className="w-full border-b-2 border-black outline-none bg-transparent py-1"
+                        className="w-full border-b-2 border-ahaGreen-0 outline-none bg-transparent py-2 pt-4 text-base focus:border-ahaGreen-1 transition-colors"
                         onFocus={() => setIsFocusReservation(true)}
                         onBlur={() => {
                             if (reservationCode.length === 0) setIsFocusReservation(false);
@@ -64,9 +70,9 @@ const BookingSectionManageBooking = () => {
                         value={reservationCode}
                     />
                 </div>
-                <div className="w-full md:w-auto">
+                <div className="flex-shrink-0">
                     <button
-                        className="bg-yellow-400 text-black font-bold py-2 px-4 rounded hover:opacity-90"
+                        className="bg-ahaAmber-2 text-white font-bold py-2 px-6 rounded-full hover:bg-ahaAmber-3 transition-colors w-full sm:w-auto min-w-[120px]"
                         onClick={handleSearch}
                     >
                         Search
@@ -75,7 +81,7 @@ const BookingSectionManageBooking = () => {
             </div>
 
             {displayInfo && (
-                <div className="mt-8">
+                <div className="mt-6">
                     <ManageBookingInfo
                         handleDisplayInfo={handleDisplayInfo}
                         reservations={reservations}
