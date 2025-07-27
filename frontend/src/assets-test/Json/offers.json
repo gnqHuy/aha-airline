@@ -70,14 +70,6 @@
       "validUntil": "2025-01-31",
       "code": "EURO150",
       "conditions": "Valid on economy class only. Taxes included."
-    },
-    {
-      "id": 10,
-      "title": "20% Off on Early Bookings",
-      "description": "Book at least 60 days in advance to save 20%.",
-      "validUntil": "2025-04-30",
-      "code": "EARLY20",
-      "conditions": "Minimum booking amount $250."
     }
   ]
   

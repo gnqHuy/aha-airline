@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BookingSectionManageBooking from "./ManageBookingTab/BookingSectionManageBooking";
 import BookingSectionCheckIn from "./CheckInTab/BookingSectionCheckIn";
-import BookingContent from "./BookingTab/BookingTab";
+import BookingTab from "./BookingTab/BookingTab";
 
 const FlightBookingSection = () => {
   const [activeTab, setActiveTab] = useState("book");
@@ -10,7 +10,7 @@ const FlightBookingSection = () => {
     switch (activeTab) {
       case "book":
         return (
-          <BookingContent />
+          <BookingTab />
         );
       case "manage":
         return (
@@ -32,7 +32,7 @@ const FlightBookingSection = () => {
   ) => {
     const isActive = activeTab === tab;
 
-    const base = `w-full h-[50px] px-6 py-2 font-semibold text-base rounded-full border-none transition-colors`;
+    const base = `w-full h-[45px] font-semibold text-sm rounded-full border-none transition-colors`;
     const activeStyle = `${bgColor} ${textColor}`;
     const inactiveStyle = `bg-white/40 text-ahaGreen-0`;
 
@@ -40,22 +40,24 @@ const FlightBookingSection = () => {
   };
 
   return (
-    <div className="absolute bg-white bg-opacity-50 left-[30%] w-[40%] h-[48%] top-[75%] rounded-3xl mx-auto -translate-y-full overflow-visible backdrop-blur-sm shadow-lg">
-      <div className="flex justify-center bg-white p-1 mb-3 rounded-full">
-        <button className={buttonClass("book")} onClick={() => setActiveTab("book")}>
-          Book Flight
-        </button>
-        <button className={buttonClass("manage")} onClick={() => setActiveTab("manage")}>
-          Manage Booking
-        </button>
-        <button className={buttonClass("checkIn")} onClick={() => setActiveTab("checkIn")}>
-          Check-In
-        </button>
+    <>
+      <div className="absolute bg-white bg-opacity-50 left-[34%] w-[32%] h-[39%] top-[76%] rounded-3xl mx-auto -translate-y-full overflow-visible backdrop-blur-sm shadow-lg">
+        <div className="flex justify-center bg-white p-1 mb-3 rounded-full">
+          <button className={buttonClass("book")} onClick={() => setActiveTab("book")}>
+            Book Flight
+          </button>
+          <button className={buttonClass("manage")} onClick={() => setActiveTab("manage")}>
+            Manage Booking
+          </button>
+          <button className={buttonClass("checkIn")} onClick={() => setActiveTab("checkIn")}>
+            Check-In
+          </button>
+        </div>
+        <div className="mx-auto px-5">
+          {renderTabContent()}
+        </div>
       </div>
-      <div className="mx-auto px-5">
-        {renderTabContent()}
-      </div>
-    </div>
+    </>
   );
 };
 

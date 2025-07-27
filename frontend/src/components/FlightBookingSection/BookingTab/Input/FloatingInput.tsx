@@ -26,7 +26,7 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
   className = '',
 }) => {
   return (
-    <div className={`relative flex flex-col w-full ${className}`}>
+    <div className={`relative flex flex-col min-w-0 ${className}`}>
       <input
         type={type}
         id={id}
@@ -38,14 +38,14 @@ const FloatingInput: React.FC<FloatingInputProps> = ({
         placeholder=" "
         readOnly={readOnly}
         autoComplete="off"
-        className="bg-transparent border-none outline-none text-gray-700 text-base pt-4 cursor-pointer"
+        className="bg-transparent border-none outline-none text-gray-700 text-sm pt-4 cursor-pointer"
       />
       <label
         htmlFor={id}
         className={`absolute left-0 ${
           value || isFocused
-            ? 'top-1 text-sm text-ahaAmber-2 font-bold mt-[1px]'
-            : 'top-5 text-base text-ahaAmber-2 font-bold'
+            ? 'top-1 text-xs text-ahaAmber-2 font-bold mt-[1px]'
+            : 'top-4 text-sm text-ahaAmber-2 font-bold'
         } transform -translate-y-1/2 transition-all`}
       >
         {label}

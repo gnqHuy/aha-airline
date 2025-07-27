@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import type { Swiper as SwiperClass } from "swiper"; // 👈 Import type
+
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -17,11 +19,18 @@ type Props = {
 };
 
 const FlightCarouselSwiper: React.FC<Props> = ({ flights, onSelect }) => {
+  const swiperRef = useRef<SwiperClass | null>(null); // 👈 Đúng type
+
+  useEffect(() => {
+    if (swiperRef.current && flights.length > 0) {
+      swiperRef.current.slideToLoop(0);
+    }
+  }, [flights]);
+
   return (
     <div className="flight-carousel-container">
-      {/* <div className="shadow-left" />
-      <div className="shadow-right" /> */}
       <Swiper
+        onSwiper={(swiper: SwiperClass) => (swiperRef.current = swiper)} // 👈 Khai báo rõ kiểu
         effect="coverflow"
         grabCursor={true}
         centeredSlides={true}
@@ -51,15 +60,11 @@ const FlightCarouselSwiper: React.FC<Props> = ({ flights, onSelect }) => {
             </div>
           </SwiperSlide>
         ))}
-
-        <div className="slider-controler">
-          <div className="swiper-button-prev slider-arrow">
-          </div>
-          <div className="swiper-button-next slider-arrow">
-          </div>
-          {/* <div className="swiper-pagination"></div> */}
-        </div>
       </Swiper>
+      <div className="slider-controler">
+          <div className="swiper-button-prev slider-arrow" />
+          <div className="swiper-button-next slider-arrow" />
+        </div>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <LayoutDefault>
-        <FlightBookingSection/>
+        <FlightBookingSection/> 
         <FlightPreview />
       </LayoutDefault>
     </>

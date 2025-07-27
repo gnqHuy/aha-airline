@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
-import image3 from "../../assets-test/Images/green4.jpg";
+import image3 from "../../assets-test/Images/sunset4.jpg";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -35,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
 
   return (
     <>
-      <NavBar />
+      <NavBar isDarkText={true}/>
       <div className="bg-white">
         <img src={headerImage} alt="Header" className="w-full h-[300px] object-cover object-center" />
 
@@ -56,7 +56,7 @@ const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
           <IoIosArrowForward className="mr-2" />
           {breadcrumbs}
         </div>
-      <Footer />
+      <Footer isLandingPage={false}/>
     </>
   );
 };

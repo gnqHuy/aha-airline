@@ -58,7 +58,7 @@ const Layout1: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
   
   return (
     <>
-      <NavBar />
+      <NavBar  isDarkText={true}/>
       <div className="relative">
         <img
           src={headerImage}
@@ -114,7 +114,7 @@ const Layout1: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
         </div>
       </div>
       <main className="min-h-screen bg-slate-50">{children}</main>
-      <Footer />
+      <Footer isLandingPage={false}/>
     </>
   );
 };

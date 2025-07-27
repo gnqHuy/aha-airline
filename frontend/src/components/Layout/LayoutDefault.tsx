@@ -15,9 +15,17 @@ const LayoutDefault: React.FC<Props> = ({ children }) => {
         backgroundSize:'cover'
       }}
     >
-      <NavBar />
+      <section
+          className="relative w-full h-screen bg-cover"
+        >
+          <NavBar />
+          <div className="text-white text-center font-semibold text-3xl my-20">
+            Hello!  
+          </div>
+      </section>
+      {/* <NavBar /> */}
       <main className="min-h-screen w-[80%] mx-auto">{children}</main>
-      <Footer />
+      <Footer isLandingPage={true}/>
     </div>
   )
 }

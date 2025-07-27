@@ -7,11 +7,13 @@ import { MdEmail } from "react-icons/md";
 
 import { Link } from 'react-router-dom';
 
-type Props = {};
+type Props = {
+    isLandingPage?: boolean;
+};
 
-const Footer = (props: Props) => {
+const Footer = ({isLandingPage}: Props) => {
   return (
-    <footer className="footer-text bg-ahaGreen-opacity-0">
+    <footer className={`footer-text ${!isLandingPage ? 'bg-ahaGreen-1' : 'bg-ahaGreen-opacity-0'}`}>
         <div className="mx-auto w-full max-w-screen-xl lg:py-6">
             <div className="md:flex md:justify-between mb-4">
                 <div className="mb-6 ml-10 md:mb-0">

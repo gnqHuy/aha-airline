@@ -9,11 +9,12 @@ import { selectUser } from "../../redux/selector/authSelector";
 import { logout } from "../../redux/slice/authSlice";
 import LoginAvatar from '../../assets-test/Images/sunset3.jpg';
 import LoginDropdown from "../LoginDropdown/LoginDropdown";
-import image1 from "../../assets-test/Images/green2.jpg";
 
-type Props = {};
+type Props = {
+  isDarkText?: boolean; // optional, mặc định là false (tức trắng)
+};
 
-const NavBar: React.FC<Props> = () => {
+const NavBar: React.FC<Props> = ({ isDarkText = false }) => {
   const [dropdownState, setDropdownState] = useState<{ [key: string]: boolean }>(
     {
       Explore: false,
@@ -58,15 +59,15 @@ const NavBar: React.FC<Props> = () => {
   }
 
   return (
-    <section className="relative w-full h-screen bg-cover bg-center bg-no-repeat pt-[6px]">
+    <section className="relative w-full bg-cover bg-center bg-no-repeat pt-[6px]">
       <nav className="grid grid-cols-[2fr_3fr_1fr] w-full text-white">
         <div className="text-center py-4 small:relative small:right-[2rem]">
-          <Link to="/" className="block no-underline text-white font-bold">
+          <Link to="/" className={`block no-underline font-bold ${isDarkText ? "text-black" : "text-white"}`}>
             <span className="text-xl font-bold">AHA AIRLINE</span> <br />
             <span className="text-sm">FLYING WITHOUT WINGS</span>
           </Link>
-        </div>
 
+        </div>  
         <div className="grid grid-cols-3 text-center">
           <div
             className="relative pb-[30px] mt-[30px] mx-6 small:mx-[0.5rem]"
@@ -76,13 +77,17 @@ const NavBar: React.FC<Props> = () => {
             <Link
               to="/explore"
               className={`block font-bold no-underline ${
-                dropdownState.Explore ? "text-ahaAmber-2" : "text-white hover:text-ahaAmber-2"
+                dropdownState.Explore
+                  ? "text-ahaAmber-2"
+                  : isDarkText
+                  ? "text-black hover:text-ahaAmber-2"
+                  : "text-white hover:text-ahaAmber-2"
               } text-base medium:text-sm small:text-sm`}
             >
               Explore
             </Link>
             <div
-              className={`absolute top-[3.1rem] text-left left-[80%] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
+              className={`absolute top-[3.1rem] text-left left-[120%] z-10 w-[800px] bg-white transform -translate-x-1/2 transition-transform duration-500 ease-in-out ${
                 dropdownState.Explore
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-5 pointer-events-none"
@@ -100,13 +105,17 @@ const NavBar: React.FC<Props> = () => {
             <Link
               to="/booking"
               className={`block font-bold no-underline ${
-                dropdownState.Booking ? "text-ahaAmber-2" : "text-white hover:text-ahaAmber-2"
+                dropdownState.Booking
+                  ? "text-ahaAmber-2"
+                  : isDarkText
+                  ? "text-black hover:text-ahaAmber-2"
+                  : "text-white hover:text-ahaAmber-2"
               } text-base medium:text-sm small:text-sm`}
             >
               Booking
             </Link>
             <div
-              className={`absolute top-[3.1rem] text-left left-[-71px] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
+              className={`absolute top-[3.1rem] text-left left-[-10%] z-10 w-[800px] bg-white transform -translate-x-1/2 transition-transform duration-500 ease-in-out ${
                 dropdownState.Booking
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-5 pointer-events-none"
@@ -124,13 +133,17 @@ const NavBar: React.FC<Props> = () => {
             <Link
               to="/travel-info"
               className={`block font-bold no-underline ${
-                dropdownState.TravelInfo ? "text-ahaAmber-2" : "text-white hover:text-ahaAmber-2"
-              } text-base medium:text-sm medium:w-[6rem] w-[6rem] small:text-sm`}
+                dropdownState.TravelInfo
+                  ? "text-ahaAmber-2"
+                  : isDarkText
+                  ? "text-black hover:text-ahaAmber-2"
+                  : "text-white hover:text-ahaAmber-2"
+              } text-base medium:text-sm small:text-sm`}
             >
               Travel Info
             </Link>
             <div
-              className={`absolute top-[3.1rem] text-left left-[-235px] z-10 w-[1000px] bg-white transform -translate-x-1/2 transition-transform transition-opacity duration-500 ease-in-out ${
+              className={`absolute top-[3.1rem] text-left left-[-130%] z-10 w-[800px] bg-white transform -translate-x-1/2 transition-transform duration-500 ease-in-out ${
                 dropdownState.TravelInfo
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-5 pointer-events-none"

@@ -3,7 +3,7 @@ import offersData from "../../../assets-test/Json/offers.json";
 
 
 const Explore: React.FC = () => {
-    const offers = offersData.slice(0, 5);
+    const offers = offersData.slice(0, 4);
 
   return (
     <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[5vw] medium:grid-cols-3 small:relative small:grid-cols-3 small:left-[30vw]">

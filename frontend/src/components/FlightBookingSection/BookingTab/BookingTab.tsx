@@ -19,7 +19,7 @@ import PassengerInfo from './PassengerInfo/PassengerInfo';
 import FloatingInput from './Input/FloatingInput';
 import FloatingSelect from './Input/FloatingSelect';
 
-const BookingContent = () => {
+const BookingTab = () => {
   const {
     passengerQuantities,
     selectedAirports,
@@ -176,10 +176,10 @@ const BookingContent = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="z-0 w-full h-full rounded-xl shadow-lg transition-all duration-300 overflow-visible">
-        <div className="flex flex-col gap-5 px-2 py-4">
+      <div className="z-0 max-w-full h-full rounded-xl shadow-lg transition-all duration-300 overflow-visible">
+        <div className="flex flex-col gap-4 px-1 py-2">
           {/* FLIGHT TYPE + PASSENGERS */}
-          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-2xl gap-6">
+          <div className="flex items-center bg-gray-100 px-4 pt-2 pb-1 rounded-2xl gap-4">
             <FloatingSelect
               id="flight-type"
               label="FLIGHT TYPE"
@@ -197,7 +197,7 @@ const BookingContent = () => {
               {flightOption === 'roundTrip' ? <FaArrowRightArrowLeft /> : <FaArrowRight />}
             </div>
 
-            <div className="relative w-full">
+            <div className="relative w-full  min-w-0">
               <FloatingInput
                 id="passengers"
                 label="PASSENGERS"
@@ -224,7 +224,7 @@ const BookingContent = () => {
           </div>
 
           {/* FROM - TO */}
-          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-2xl gap-6 relative">
+          <div className="flex items-center bg-gray-100 px-4 pt-2 pb-1 rounded-2xl gap-4 relative">
             <FloatingInput
               id="from"
               label="DEPARTURE"
@@ -276,8 +276,8 @@ const BookingContent = () => {
           )}
 
           {/* DEPART / RETURN */}
-          <div className="flex items-center bg-gray-100 px-4 py-2 rounded-2xl gap-6">
-            <div className="relative w-full">
+          <div className="flex items-center bg-gray-100 px-4 pt-2 pb-1 rounded-2xl gap-4">
+            <div className="relative min-w-0">
               <FloatingInput
                 id="depart"
                 label="DEPARTURE DATE"
@@ -295,7 +295,7 @@ const BookingContent = () => {
             </div>
 
             {flightOption === 'roundTrip' && (
-              <div className="relative w-full">
+              <div className="relative  min-w-0">
                 <FloatingInput
                   id="return"
                   label="RETURN DATE"
@@ -310,12 +310,12 @@ const BookingContent = () => {
             )}
           </div>
 
-          <div className="text-center mt-4">
+          <div className="text-center">
             <button
               onClick={handleFindFlightClick}
-              className="bg-ahaAmber-2 text-white border-none text-base hover:bg-ahaAmber-3 px-6 py-2 rounded-full font-bold"
+              className="hover:bg-slate-50 hover:text-ahaAmber-2  hover:border-ahaAmber-2 text-sm bg-ahaAmber-3 text-white border-none px-5 py-2 rounded-full font-bold"
             >
-              FIND FLIGHT
+              Find Experiences
             </button>
           </div>
         </div>
@@ -324,4 +324,4 @@ const BookingContent = () => {
   );
 };
 
-export default BookingContent;
+export default BookingTab;

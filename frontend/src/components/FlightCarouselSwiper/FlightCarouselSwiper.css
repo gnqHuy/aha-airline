@@ -39,29 +39,45 @@
 }
 
 .slider-controler {
-  color: #edc878;
-  background-color: #edc878;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 20;
 }
 
-.slider-controler .swiper-button-next,
-.slider-controler .swiper-button-prev {
-  background: #edc878;
-  opacity: 0.8;
-  color: white;
+.slider-controler .swiper-button-prev,
+.slider-controler .swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   width: 4%;
-  height: 19%; 
-  top: 40%;
-  border-radius: 0.5rem;
-  /* padding-top: 8rem;
-  padding-bottom: 8rem; */
-  font-size: large;
+  height: 15%;
+  background: #edc878;
+  color: white;
+  border-radius: 10%;
+  opacity: 0.9;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s ease;
+  z-index: 30;
+  pointer-events: auto;
+  transition: opacity 0.3s ease;
 }
 
-.slider-controler .swiper-button-next:hover,
-.slider-controler .swiper-button-prev:hover {
+.slider-controler .swiper-button-prev {
+  left: -60px;
+}
+
+.slider-controler .swiper-button-next {
+  right: -60px;
+}
+
+.slider-controler .swiper-button-prev:hover,
+.slider-controler .swiper-button-next:hover {
   opacity: 0.6;
 }
+
