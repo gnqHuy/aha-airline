@@ -29,6 +29,15 @@ const TicketPage: React.FC = () => {
             </Layout>
           </div>;
   }
+  if ( flightsRound == null && roundTrip ) {
+    return <div>
+            <Layout>
+                <div className="text-center text-red-500 text-2xl pt-4">
+                    No flight has been selected, or the flight details are incomplete. <br/> Please return to select your flight.
+                </div>
+            </Layout>
+          </div>;
+  }
 
   if (!isFlightSelected) {
     return (

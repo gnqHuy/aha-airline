@@ -33,3 +33,6 @@ export const selectRoundTripDetails = createSelector(
     isRoundTrip,
   })
 );
+
+export const selectFlights = (state: RootState) => state.flight.flights;
+export const selectFlightsRound = (state: RootState) => state.flight.flightsRound;

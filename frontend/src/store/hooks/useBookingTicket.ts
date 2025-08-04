@@ -3,18 +3,14 @@ import { RootState } from "../store";
 import { loginRequest, logout, registerRequest } from "../slice/authSlice";
 import { selectSearchFlightState } from "../selector/searchFlightStateSelector";
 import { FlightPreviewType } from "../../object/flightPreview";
-import { setReturnDate, setRoundTrip, setSelectedFlight, setSelectedFlightClass, setSelectedFlightPreview, setSelectedFlightRound, setSelectedFlightRoundClass } from "../slice/flightSlice";
+import { fetchFlightsRequest, setReturnDate, setRoundTrip, setSelectedFlight, setSelectedFlightClass, setSelectedFlightPreview, setSelectedFlightRound, setSelectedFlightRoundClass } from "../slice/flightSlice";
 import { setSearchFlightState } from "../slice/searchFlightStateSlice";
 import { PassengerState, setPassengers } from "../slice/passengerSlice";
-import { selectIsRoundTrip, selectReturnDate, selectSelectedFlight, selectSelectedFlightClass, selectSelectedFlightPreview, selectSelectedFlightRound, selectSelectedFlightRoundClass } from "../selector/flightSelector";
+import { selectFlights, selectFlightsRound, selectIsRoundTrip, selectReturnDate, selectSelectedFlight, selectSelectedFlightClass, selectSelectedFlightPreview, selectSelectedFlightRound, selectSelectedFlightRoundClass } from "../selector/flightSelector";
 import { selectPassengers } from "../selector/passengerSelector";
-import { addFlightTicket, addFlightTicketRound, setFlightTicketsId, setFlightTicketsRoundId } from "../slice/bookingSlice";
-import { selectFlightTicketsRoundState, selectFlightTicketsState } from "../selector/bookingSelector";
+import { addFlightTicket, addFlightTicketRound, createTicketsSagaRequest, setFlightTicketsId, setFlightTicketsRoundId } from "../slice/bookingSlice";
+import { selectFlightTicketsRoundState, selectFlightTicketsState, selectResponseTicketData, selectResponseTicketData1 } from "../selector/bookingSelector";
 import { useEffect, useState } from "react";
-import { getFromRequest } from "../../api/flightAPI";
-import { Flight } from "../../object/flight";
-import { AddTickets } from "../../api/ticket";
-import { FlightTicketResponse } from "../../object/reponseTicketData";
 
 export const useBookingTicket = () => {
     const dispatch = useDispatch();
@@ -29,62 +25,28 @@ export const useBookingTicket = () => {
     const selectedPassenger = useSelector(selectPassengers);
     const flightTickets = useSelector(selectFlightTicketsState);
     const flightTicketsRound = useSelector(selectFlightTicketsRoundState);
+    const responseTicketData = useSelector(selectResponseTicketData);
+    const responseTicketData1 = useSelector(selectResponseTicketData1);
 
-    const [flights, setFlights] = useState<Flight[]>([]);
-    const [flightsRound, setFlightsRound] = useState<Flight[]>([]);
-    
+
     const isFlightSelected =
-    selectedFlightPreview &&
-    selectedFlightPreview.fromAirport.city.name &&
-    selectedFlightPreview.toAirport.city.name;
+        selectedFlightPreview?.fromAirport?.city?.name &&
+        selectedFlightPreview?.toAirport?.city?.name;
+
+    const flights = useSelector(selectFlights);
+    const flightsRound = useSelector(selectFlightsRound);
 
     useEffect(() => {
-        if (isFlightSelected) {
-        const fetchData = async () => {
-            try {
-            const response = await getFromRequest(
-            selectedFlightPreview.fromAirport.iata,
-            selectedFlightPreview.toAirport.iata,
-            selectedFlightPreview.departureTime);
-            setFlights(response.data);
-            if (roundTrip) {
-                const response1 = await getFromRequest(
-                selectedFlightPreview.toAirport.iata,
-                selectedFlightPreview.fromAirport.iata,
-                returnDate);
-                setFlightsRound(response1.data);
-            }
-            } catch (err) {
-
-            }
-        };
-        fetchData();
-        }
+    if (isFlightSelected) {
+        dispatch(fetchFlightsRequest({
+        fromIATA: selectedFlightPreview.fromAirport.iata,
+        toIATA: selectedFlightPreview.toAirport.iata,
+        departureTime: selectedFlightPreview.departureTime,
+        isRoundTrip: roundTrip,
+        returnDate: returnDate,
+        }));
+    }
     }, [isFlightSelected, selectedFlightPreview]);
-
-    const [responseTicketData, setResponseTicketData] = useState<FlightTicketResponse | null>(null);
-    const [responseTicketData1, setResponseTicketData1] = useState<FlightTicketResponse | null>(null);
-
-    const createTickets = async (userId: string | undefined) => {
-        if (!userId) return;
-
-        try {
-            dispatch(setFlightTicketsId({ flightId: selectedFlight?.id || "", bookedId: userId }));
-            const response = await AddTickets(flightTickets);
-            setResponseTicketData(response.data);
-
-            if (roundTrip) {
-            dispatch(setFlightTicketsRoundId({ flightId: selectedFlightRound?.id || "", bookedId: userId }));
-            const response1 = await AddTickets(flightTicketsRound);
-            setResponseTicketData1(response1.data);
-            }
-        } catch (err) {
-
-        } finally {
-
-        }
-    };
-    
     
   return {
     responseTicketData, responseTicketData1, isFlightSelected, flights, flightsRound, searchFlightState, flightTickets, flightTicketsRound, selectedFlightPreview, roundTrip, returnDate, selectedFlight, selectedFlightRound, selectedFlightClass, selectedFlightRoundClass, selectedPassenger,
@@ -101,6 +63,6 @@ export const useBookingTicket = () => {
     addFlightTicketRound: (ticket: any) => dispatch(addFlightTicketRound(ticket)),
     setFlightTicketsId: (object: any) => dispatch(setFlightTicketsId(object)),
     setFlightTicketsRoundId: (object: any) => dispatch(setFlightTicketsRoundId(object)),
-    createTickets
+    createTickets: (id: any) => dispatch(createTicketsSagaRequest({ userId: id }))
   };
 };

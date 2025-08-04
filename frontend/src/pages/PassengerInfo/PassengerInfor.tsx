@@ -8,10 +8,12 @@ import { PassengerTitle } from "../../object/enum/PassengerTitle";
 import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
 import { useBookingTicket } from "../../store/hooks/useBookingTicket";
+import { useAuth } from "../../store/hooks/useAuth";
 
 const PassengerInfor = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const { selectedPassenger, roundTrip, selectedFlight, selectedFlightClass, addFlightTicket, addFlightTicketRound } = useBookingTicket();
+  const {user} = useAuth();
+  const { selectedPassenger, roundTrip, selectedFlight, selectedFlightClass, createTickets, addFlightTicket, addFlightTicketRound } = useBookingTicket();
   const { adults, children, infants } = selectedPassenger;
   const navigate = useNavigate();
 
@@ -120,6 +122,7 @@ const PassengerInfor = () => {
     if (roundTrip) {
       handleUpdateTicketRound();
     }
+    createTickets(user?.id);
     enqueueSnackbar("Tickets booked successfully!", {variant: "success"});
     navigate("payment");
   }

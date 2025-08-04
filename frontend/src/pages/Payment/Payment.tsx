@@ -6,21 +6,13 @@ import ElectronicTicket from "../../components/ElectronicTicket/ElectronicTicket
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../layout/Layout";
-import { AddTickets } from "../../api/ticket";
-import { FlightTicketResponse } from "../../object/reponseTicketData";
 import { useBookingTicket } from "../../store/hooks/useBookingTicket";
-import { useAuth } from "../../store/hooks/useAuth";
 
 type Props = {};
 
 const Payment: React.FC<Props> = () => {
-  const {user} = useAuth();
-  const { responseTicketData, responseTicketData1, flightTickets, roundTrip, selectedFlight, flightTicketsRound, selectedFlightRound, setFlightTicketsId, createTickets } = useBookingTicket();
+  const { responseTicketData, responseTicketData1, flightTickets, roundTrip, flightTicketsRound, createTickets } = useBookingTicket();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    createTickets(user?.id);
-  }, [flightTickets, flightTicketsRound]);
 
   if (!flightTickets || flightTickets.tickets.length === 0) {
     return (

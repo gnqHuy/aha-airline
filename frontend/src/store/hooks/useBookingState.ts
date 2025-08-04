@@ -1,5 +1,4 @@
-// hooks/useBookingState.ts
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAirports } from './useAirports';
 
 
