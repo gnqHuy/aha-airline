@@ -1,14 +1,14 @@
 import React from "react";
-import NavBar from "../NavBar/NavBar";
-import Footer from "../Footer/Footer";
-import { FaHome } from "react-icons/fa";
+import NavBar from "../components/NavBar/NavBar";
+import Footer from "../components/Footer/Footer";   
+import { FaHome } from "react-icons/fa";      
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
-import image3 from "../../assets-test/Images/sunset4.jpg";
+import image3 from "../assets-test/Images/sunset4.jpg";
 
 type LayoutProps = {
   children: React.ReactNode;
-  headerImage?: string;
+  headerImage?: string; 
 };
 
 const Layout: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => { 

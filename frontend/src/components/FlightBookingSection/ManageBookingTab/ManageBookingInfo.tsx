@@ -3,7 +3,7 @@ import './ManageBookingInfo.css';
 import { Link } from 'react-router-dom';
 import { IoIosAirplane } from 'react-icons/io';
 import { BsLightbulb } from 'react-icons/bs';
-import { useFlightContext } from '../../../context/FlightContext/FlightContext';
+import { useFlightContext } from '../../../store/context/FlightContext';
 
 interface Props {
     reservations: any[];

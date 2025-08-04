@@ -1,7 +1,7 @@
 import React from 'react'
-import NavBar from '../NavBar/NavBar'
-import Footer from '../Footer/Footer'
-import image1 from "../../assets-test/Images/green2-long.jpg";
+import NavBar from '../components/NavBar/NavBar'
+import Footer from '../components/Footer/Footer'
+import image1 from "../assets-test/Images/green2-long.jpg";
 
 type Props = {
     children: React.ReactNode;

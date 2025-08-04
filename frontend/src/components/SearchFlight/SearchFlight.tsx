@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AiOutlineClose } from "react-icons/ai";
 import { FlightPreviewType } from "../../object/flightPreview";
-import { selectSearchFlightState } from "../../redux/selector/searchFlightStateSelector";
-import { setSearchFlightState } from "../../redux/slice/searchFlightStateSlice";
-import { setSelectedFlightPreview } from "../../redux/slice/flightSlice";
+import { useBookingTicket } from "../../store/hooks/useBookingTicket";
 
 type Props = {
   flightPreview: FlightPreviewType | null;
@@ -14,9 +10,8 @@ type Props = {
 const MAX_PASSENGERS = 9;
 
 const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
-  const dispatch = useDispatch();
-  const searchFlightState = useSelector(selectSearchFlightState);
   const navigate = useNavigate();
+  const {setSelectedFlightPreview, setSearchFlightState, setSelectedPassengers} = useBookingTicket();
 
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
@@ -46,8 +41,13 @@ const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
 
   const handleSearchFlight = () => {
     if (flightPreview) {
-      dispatch(setSelectedFlightPreview(flightPreview));
-      dispatch(setSearchFlightState(!searchFlightState));
+      setSelectedFlightPreview(flightPreview);
+      setSearchFlightState();
+      setSelectedPassengers({
+        adults: adults,
+        children: children,
+        infants: infants
+      });
       navigate("/ticket");
     }
   };
@@ -125,7 +125,7 @@ const SearchFlight: React.FC<Props> = ({ flightPreview }) => {
             Search
           </button>
           <button
-            onClick={() => dispatch(setSearchFlightState(!searchFlightState))}
+            onClick={setSearchFlightState}
             className="px-4 w-40 py-2 rounded hover:bg-ahaAmber-4 transition"
           >
             Close

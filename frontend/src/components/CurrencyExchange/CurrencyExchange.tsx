@@ -1,104 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { MdOutlineCurrencyExchange } from "react-icons/md";
+import { useCurrencyConverter } from "../../store/hooks/useCurrencyConverter";
 
 const CurrencyConverter: React.FC = () => {
-  const [amount, setAmount] = useState<number | string>("");
-  const [currency, setCurrency] = useState("USD");
-  const [convertedAmount, setConvertedAmount] = useState<number | string>("");
-  const [exchangeRates, setExchangeRates] = useState<{ [key: string]: number }>({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [isReversed, setIsReversed] = useState(false); 
+  const {
+    amount,
+    currency,
+    convertedAmount,
+    exchangeRates,
+    loading,
+    error,
+    isReversed,
+    handleAmountChange,
+    handleCurrencyChange,
+    handleReverse,
+  } = useCurrencyConverter();
 
-  useEffect(() => {
-    const fetchExchangeRates = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch("https://v6.exchangerate-api.com/v6/2db1473f36cb4db8815a577c/latest/VND");
-        if (!response.ok) {
-          throw new Error("Failed to fetch exchange rates");
-        }
-
-        const data = await response.json();
-        if (data.result !== "success") {
-          throw new Error("Invalid API response");
-        }
-        setExchangeRates(data.conversion_rates);
-      } catch (err: any) {
-        setError(err.message || "Failed to load exchange rates. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchExchangeRates();
-  }, []);
-
-  const handleAmountChange = (value: string) => {
-    setAmount(value);
-
-    const rate = exchangeRates[currency];
-    const numericValue = parseFloat(value);
-
-    if (!isNaN(numericValue) && rate) {
-      setConvertedAmount(
-        isReversed
-          ? (numericValue * rate).toFixed(2) 
-          : (numericValue / rate).toFixed(2)
-      );
-    } else {
-      setConvertedAmount("");
-    }
-  };
-
-  const handleCurrencyChange = (newCurrency: string) => {
-    setCurrency(newCurrency);
-
-    const rate = exchangeRates[newCurrency];
-    const numericValue = parseFloat(amount.toString());
-
-    if (!isNaN(numericValue) && rate) {
-      setConvertedAmount(
-        isReversed
-          ? (numericValue * rate).toFixed(2)
-          : (numericValue / rate).toFixed(2)
-      );
-    } else {
-      setConvertedAmount("");
-    }
-  };
-
-  const handleReverse = () => {
-    setIsReversed((prev) => !prev); 
-    setAmount(0);
-    setConvertedAmount(0);
-  };
-
-  const renderSelect = (isForCurrency: boolean) => {
-    if (isForCurrency) {
-      return (
-        <select
-          value={currency}
-          onChange={(e) => handleCurrencyChange(e.target.value)}
-          className="p-2 text-lg border-none focus:outline-none"
-        >
-          {Object.keys(exchangeRates).map((key) => (
+  const renderSelect = (isForCurrency: boolean) => (
+    <select
+      value={isForCurrency ? currency : "VND"}
+      onChange={(e) => isForCurrency && handleCurrencyChange(e.target.value)}
+      className="p-2 text-lg border-none focus:outline-none"
+    >
+      {isForCurrency
+        ? Object.keys(exchangeRates).map((key) => (
             <option key={key} value={key}>
               {key}
             </option>
-          ))}
-        </select>
-      );
-    } else {
-      return (
-        <select className="p-2 text-lg border-none focus:outline-none">
-          <option>VND</option>
-        </select>
-      );
-    }
-  };
+          ))
+        : <option>VND</option>}
+    </select>
+  );
 
   return (
     <div className="currency-converter p-4 my-10 max-w-3xl bg-gray-100 shadow rounded">

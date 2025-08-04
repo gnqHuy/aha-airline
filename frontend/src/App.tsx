@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { FlightProvider } from './context/FlightContext/FlightContext';
+import { FlightProvider } from './store/context/FlightContext';
 import { router } from './routes/routes';
 import { RouterProvider } from 'react-router-dom';
 

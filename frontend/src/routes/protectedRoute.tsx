@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
-import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { selectUser } from "../redux/selector/authSelector";
+import { useAuth } from "../store/hooks/useAuth";
 
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -9,7 +8,7 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, requiredRoles }) => {
-  const user = useSelector(selectUser);
+  const { user } = useAuth();
 
   const hasAccess = user?.roles?.some((role: string) => requiredRoles.includes(role));
 

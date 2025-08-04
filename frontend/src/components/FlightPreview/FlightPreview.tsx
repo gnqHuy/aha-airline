@@ -1,77 +1,27 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { GiWorld } from "react-icons/gi";
 import SearchFlight from '../SearchFlight/SearchFlight';
-import { getFlightPreview } from '../../api/flightAPI';
-import { useFlightContext } from '../../context/FlightContext/FlightContext';
-import { selectSearchFlightState } from '../../redux/selector/searchFlightStateSelector';
-import { setSearchFlightState } from '../../redux/slice/searchFlightStateSlice';
 
-import type { Airport } from '../../object/airport';
-import type { FlightPreviewType } from '../../object/flightPreview';
-import './FlightPreview.css';
 import FlightCarouselSwiper from '../FlightCarouselSwiper/FlightCarouselSwiper';
+import { useFlightPreview } from '../../store/hooks/useFlightPreview';
 
-type Props = {};
+const FlightPreview = () => {
+  const {
+    flightsPreview,
+    departureCity,
+    isDepartureListOpen,
+    selectedFlight,
+    searchQuery,
+    error,
+    loading,
+    searchFlightState,
+    filteredAirport,
+    departureListRef,
+    setSearchQuery,
+    toggleDepartureList,
+    handleSelectedCity,
+    handleSelectedFlight,
+  } = useFlightPreview();
 
-const FlightPreview: React.FC<Props> = () => {
-  const [flights, setFlights] = useState<FlightPreviewType[]>([]);
-  const [departureCity, setDepartureCity] = useState('Hanoi');
-  const [isDepartureListOpen, setIsDepartureListOpen] = useState(false);
-  const [selectedFlight, setSelectedFlight] = useState<FlightPreviewType | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
-
-  const dispatch = useDispatch();
-  const searchFlightState = useSelector(selectSearchFlightState);
-  const { airports } = useFlightContext();
-  const departureListRef = useRef<HTMLDivElement>(null);
-
-  // Fetch flights from API
-  const fetchData = async (params: Object) => {
-    try {
-      const response = await getFlightPreview(params);
-      setFlights(response.data);
-    } catch (err) {
-      setError('Failed to load flight route data.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData({ FromAirportIATA: "HAN" });
-  }, []);
-
-  // Dropdown outside click
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (departureListRef.current && !departureListRef.current.contains(event.target as Node)) {
-        setIsDepartureListOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleSelectedFlight = (flight: FlightPreviewType) => {
-    setSelectedFlight(flight);
-    dispatch(setSearchFlightState(!searchFlightState));
-  };
-
-  const toggleDepartureList = () => setIsDepartureListOpen((prev) => !prev);
-
-  const handleSelectedCity = (airport: Airport) => {
-    setDepartureCity(airport.city.name);
-    setIsDepartureListOpen(false);
-    fetchData({ FromAirportIATA: airport.iata });
-  };
-
-  const filteredAirport = airports.filter((airport) =>
-    airport.city.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
   const dropdownMenu = isDepartureListOpen && (
     <div
       className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-left bg-white border border-gray-300 rounded-lg w-auto max-h-96 overflow-y-auto shadow-lg z-10 p-2"
@@ -130,9 +80,9 @@ const FlightPreview: React.FC<Props> = () => {
       </div>
 
       {/* Carousel */}
-      {flights.length > 0 ? (
+      {flightsPreview.length > 0 ? (
         <FlightCarouselSwiper
-          flights={flights}
+          flights={flightsPreview}
           onSelect={handleSelectedFlight}
         />
 

@@ -2,11 +2,9 @@ import React from 'react'
 import RegisterPage from './RegisterPage'
 import { Link } from 'react-router-dom'
 import { FaLongArrowAltRight } from 'react-icons/fa'
-import bg from '../../../assets-test/Images/sunset4.jpg'
+import bg from '../../assets-test/Images/sunset4.jpg'
 
-type Props = {}
-
-const Register = (props: Props) => {
+const Register = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Background image */}

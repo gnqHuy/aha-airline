@@ -4,17 +4,16 @@ import "../../index.css";
 import Explore from "./Explore/Explore";
 import Booking from "./Booking/Booking";
 import TravelInfo from "./TravelInfo/TravelInfo";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../../redux/selector/authSelector";
-import { logout } from "../../redux/slice/authSlice";
 import LoginAvatar from '../../assets-test/Images/sunset3.jpg';
 import LoginDropdown from "../LoginDropdown/LoginDropdown";
+import { useAuth } from "../../store/hooks/useAuth";
 
 type Props = {
   isDarkText?: boolean; // optional, mặc định là false (tức trắng)
 };
 
 const NavBar: React.FC<Props> = ({ isDarkText = false }) => {
+  const {logout, user} = useAuth();
   const [dropdownState, setDropdownState] = useState<{ [key: string]: boolean }>(
     {
       Explore: false,
@@ -30,10 +29,7 @@ const NavBar: React.FC<Props> = ({ isDarkText = false }) => {
   const handleMouseLeave = (key: string) => {
     setDropdownState((prev) => ({ ...prev, [key]: false }));
   };
-
-  const user = useSelector(selectUser);
-  const dispatch = useDispatch();
-
+  
   // check dropdown logout
   const [loginDropdown, setLoginDropdown] = useState<boolean>(false);
 
@@ -55,7 +51,7 @@ const NavBar: React.FC<Props> = ({ isDarkText = false }) => {
 
   // logout
   const handleLogout = () => {
-    dispatch(logout());
+    logout();
   }
 
   return (

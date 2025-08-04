@@ -1,12 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { getAllAirport } from "../../api/airportAPI";
-import { useSelector } from "react-redux";
-import { selectSelectedFlight, selectSelectedFlightRound } from "../../redux/selector/flightSelector";
 
 type FlightContextType = {
-  airports: any[];
-  setAirports: (flights: any[]) => void;
-
   manageBookingReservationCode: string;
   setManageBookingReservationCode: (reservationCode: string) => void;
 
@@ -23,16 +17,12 @@ type FlightContextType = {
 const FlightContext = createContext<FlightContextType | undefined>(undefined);
 
 export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [airports, setAirports] = useState<any[]>([]);
   const [manageBookingReservationCode, setManageBookingReservationCode] = useState<string>(String(localStorage.getItem("manageBookingReservationCode")));
   const [checkinReservationCode, setCheckinReservationCode] = useState<string>(String(localStorage.getItem("checkinReservationCode")));
   const [checkinTicket, setCheckinTicket] = useState<string>(String(localStorage.getItem("checkinTicket")));
   const [checkinOption, setCheckinOption] = useState<string>(String(localStorage.getItem("checkinOption")));
 
   useEffect(() => {
-    getAllAirport().then((res) => {
-      setAirports(res.data);
-    });
     localStorage.setItem('manageBookingReservationCode', manageBookingReservationCode);
     localStorage.setItem('checkinReservationCode', checkinReservationCode);
     localStorage.setItem('checkinTicket', checkinTicket);
@@ -42,8 +32,6 @@ export const FlightProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   return (
     <FlightContext.Provider
       value={{
-        airports,
-        setAirports,
         manageBookingReservationCode, 
         setManageBookingReservationCode, 
         checkinReservationCode, 

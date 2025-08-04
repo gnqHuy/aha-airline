@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { FaPlane } from 'react-icons/fa';
 import SearchFlight from '../SearchFlight/SearchFlight';
 import { FlightPreviewType } from '../../object/flightPreview';
-import { getFlightPreview } from '../../api/flightAPI';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectSearchFlightState } from '../../redux/selector/searchFlightStateSelector';
-import { setSearchFlightState } from '../../redux/slice/searchFlightStateSlice';
+import { useFlightPreview } from '../../store/hooks/useFlightPreview';
+import { useBookingTicket } from '../../store/hooks/useBookingTicket';
 
 type FlightTableProps = {
   nameCity: string | undefined;
@@ -22,34 +20,26 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const dispatch = useDispatch();
-  const searchFlightState = useSelector(selectSearchFlightState);
+  const { searchFlightState, setSearchFlightState } = useBookingTicket();
+  const {flightsPreview, getFlightPreviewByDestination} = useFlightPreview();
 
-  const [flightPreview, setFlightPreview] = useState<FlightPreviewType[]>([]);
-
-  const fetchData = async () => {
-    try {
-      const response = await getFlightPreview({
+  useEffect(() => {
+     try {
+      getFlightPreviewByDestination({
         // FromAirportIATA: "",
         ToAirportIATA: iata,
         // pageSize: 20,
         // pageNumber: 0,
-      });
-      setFlightPreview(response.data);
-      setFilteredFlights(response.data); 
+      })
     } catch (err) {
       setError('Failed to load flight route data.');
     } finally {
       setLoading(false);
     }
-  };
-
-  useEffect(() => {
-    fetchData();
   }, []);
 
   useEffect(() => {
-    const filtered = flightPreview.filter((flight) => {
+    const filtered = flightsPreview.filter((flight) => {
       const matchesFrom = fromValue
         ? flight.fromAirport.city.name.toLowerCase().includes(fromValue.toLowerCase())
         : true;
@@ -59,15 +49,15 @@ const FlightTable: React.FC<FlightTableProps> = ({ nameCity, iata }) => {
       return matchesFrom && matchesBudget;
     });
     setFilteredFlights(filtered);
-  }, [fromValue, budgetValue, flightPreview]);
+  }, [fromValue, budgetValue, flightsPreview]);
 
   const handleSelectedFlight = (flight: FlightPreviewType) => {
     setSelectedFlight(flight);
-    dispatch(setSearchFlightState(!searchFlightState))
+    setSearchFlightState();
   };
 
-  if (loading) return <div className='mx-auto text-xl text-center my-40'>Loading...</div>;
-  if (error) return <div className="mx-auto text-xl text-center my-40 text-red-600">Error: {error}</div>;
+  if (loading) return <div className='mx-auto text-xl text-center my-32'>Loading...</div>;
+  if (error) return <div className="mx-auto text-xl text-center my-32 text-red-600">Error: {error}</div>;
 
   return (
     <div className="w-full max-w-6xl mx-auto text-center p-4">

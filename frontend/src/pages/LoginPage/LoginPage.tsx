@@ -3,8 +3,8 @@ import './LoginPage.css';
 import bg from '../../assets-test/Images/sunset4.jpg';
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import LoginForm from './LoginForm/LoginForm';
-import RegisterPage from './Register/RegisterPage';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import RegisterPage from '../RegisterPage/RegisterPage';
 
 type Props = {}
 

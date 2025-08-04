@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import headerImage from "../../assets-test/Images/sunset4.jpg";
 import { IoIosAirplane } from "react-icons/io";
-import Layout from '../../components/Layout/Layout';
-import { useFlightContext } from '../../context/FlightContext/FlightContext';
+import Layout from '../../layout/Layout';
+import { useFlightContext } from '../../store/context/FlightContext';
 import { GetByReservationOrTicketCode } from '../../api/ticket';
 
 type Props = {}

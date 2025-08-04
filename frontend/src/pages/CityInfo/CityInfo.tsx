@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../layout/Layout";
 import citiesData from "../../assets-test/Json/cities.json";
 import FlightTable from "../../components/FlightTable/FlightTable";
 import CurrencyExchange from "../../components/CurrencyExchange/CurrencyExchange";

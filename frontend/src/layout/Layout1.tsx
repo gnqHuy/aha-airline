@@ -1,15 +1,12 @@
 import React from "react";
-import NavBar from "../NavBar/NavBar";
-import Footer from "../Footer/Footer";
+import NavBar from "../components/NavBar/NavBar";
+import Footer from "../components/Footer/Footer";
 import { FaHome, FaPlaneDeparture } from "react-icons/fa";
 import { IoPerson } from "react-icons/io5";
-import { useFlightContext } from "../../context/FlightContext/FlightContext";
-import image3 from "../../assets-test/Images/sunset4.jpg";
+import image3 from "../assets-test/Images/sunset4.jpg";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
-import { useSelector } from "react-redux";
-import { selectSelectedFlightPreview } from "../../redux/selector/flightSelector";
-import { selectPassengers } from "../../redux/selector/passengerSelector";
+import { useBookingTicket } from "../store/hooks/useBookingTicket";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -17,9 +14,7 @@ type LayoutProps = {
 };
 
 const Layout1: React.FC<LayoutProps> = ({ children, headerImage = image3 }) => {
-  const selectedFlightPreview = useSelector(selectSelectedFlightPreview);
-  const selectedPassenger = useSelector(selectPassengers);
-  
+  const {selectedFlightPreview, selectedPassenger} = useBookingTicket();
   const currentPath = window.location.pathname;
   const pathSegments = currentPath.split('/').filter(Boolean);
 

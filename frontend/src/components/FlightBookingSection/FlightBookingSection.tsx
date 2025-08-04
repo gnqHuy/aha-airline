@@ -41,7 +41,7 @@ const FlightBookingSection = () => {
 
   return (
     <>
-      <div className="absolute bg-white bg-opacity-50 left-[34%] w-[32%] h-[39%] top-[76%] rounded-3xl mx-auto -translate-y-full overflow-visible backdrop-blur-sm shadow-lg">
+      <div className="absolute bg-white bg-opacity-50 left-[35%] top-[75%] rounded-3xl mx-auto -translate-y-full overflow-visible backdrop-blur-sm shadow-lg">
         <div className="flex justify-center bg-white p-1 mb-3 rounded-full">
           <button className={buttonClass("book")} onClick={() => setActiveTab("book")}>
             Book Flight

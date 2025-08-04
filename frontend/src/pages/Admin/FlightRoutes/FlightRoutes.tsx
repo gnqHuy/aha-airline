@@ -4,189 +4,26 @@ import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { FlightRoute } from "../../../object/flightRoute";
 import { useSnackbar } from "notistack";
+import useFlightRoutes from "../../../store/hooks/useFlightRoutes";
 
 const FlightRoutes: React.FC = () => {
-  const { enqueueSnackbar } = useSnackbar();
-  const [flightRoutes, setFlightRoutes] = useState<FlightRoute[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [newFlightRoute, setNewFlightRoute] = useState<FlightRoute>({
-    fromAirportIATA: "",
-    toAirportIATA: "",
-    fromAirport: { iata: "", name: "", city: { name: "", country: "" , imageUrl: ""} },
-    toAirport: { iata: "", name: "", city: { name: "", country: "" , imageUrl: ""} },
-    noOfFlights: 0,
-    distance: 0,
-  });
-  const [editingRoute, setEditingRoute] = useState<FlightRoute | null>(null);
+  const {
+    loading,
+    error,
+    filteredFlightRoutes,
+    newFlightRoute,
+    editingRoute,
+    search,
+    handleSearchChange,
+    handleInputChange,
+    handleAddFlightRoute,
+    handleDelete,
+    handleEdit,
+    handleSave,
+  } = useFlightRoutes();
 
-  const [search, setSearch] = useState({
-    fromIATA: "",
-    toIATA: "",
-    fromAirportName: "",
-    toAirportName: "",
-    fromCityName: "",
-    toCityName: "",
-    fromCountry: "",
-    toCountry: "",
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getAllFlightRoutes();
-        setFlightRoutes(response.data);
-      } catch (err) {
-        setError("Failed to load flight route data.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setSearch((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-  const handleAddFlightRoute = async () => {
-    var newFlightRouteFromIATA = newFlightRoute.fromAirportIATA.toUpperCase();
-    var newFlightRouteToIATA = newFlightRoute.toAirportIATA.toUpperCase();
-
-    try {
-      const response = await addFlightRoute(newFlightRouteFromIATA, newFlightRouteToIATA);
-      enqueueSnackbar('Flight route added successfully.', { variant: 'success' });
-    } catch (error: any) {
-      if (error.response) {
-        enqueueSnackbar(`Server Error: ${error.response.data}`, { variant: 'error' });
-      } else if (error.request) {
-        enqueueSnackbar('Network Error: Unable to reach server.', { variant: 'warning' });
-      } else {
-        enqueueSnackbar(`Error: ${error.message}`, { variant: 'error' });
-      }
-    }
-  };
-  
-  const handleDeleteAirCraft = (flightRouteDelete: FlightRoute) => {
-    const update = flightRoutes.filter((flightRoute) => flightRoute !== flightRouteDelete);
-    setFlightRoutes(update);
-  }
-
-  const handleEditAircraft = (flightRoute: FlightRoute) => {
-    setEditingRoute(flightRoute);
-    setNewFlightRoute({ ...flightRoute });
-  };
-
-  const handleSaveEdit = () => {
-    setFlightRoutes((prev) =>
-      prev.map((item) =>
-        item === editingRoute ? newFlightRoute : item
-      )
-    );
-    setEditingRoute(null);
-    setNewFlightRoute({
-      fromAirportIATA: "",
-      toAirportIATA: "",
-      fromAirport: { iata: "", name: "", city: { name: "", country: "" , imageUrl: ""} },
-      toAirport: { iata: "", name: "", city: { name: "", country: "" , imageUrl: ""} },
-      noOfFlights: 0,
-      distance: 0,
-    });
-  };
-
-  const filteredFlightRoutes = flightRoutes.filter((route) => {
-    return (
-      (search.fromIATA === "" || route.fromAirportIATA.toLowerCase().includes(search.fromIATA.toLowerCase())) &&
-      (search.toIATA === "" || route.toAirportIATA.toLowerCase().includes(search.toIATA.toLowerCase())) &&
-      (search.fromAirportName === "" || route.fromAirport.name.toLowerCase().includes(search.fromAirportName.toLowerCase())) &&
-      (search.toAirportName === "" || route.toAirport.name.toLowerCase().includes(search.toAirportName.toLowerCase())) &&
-      (search.fromCityName === "" || route.fromAirport.city.name.toLowerCase().includes(search.fromCityName.toLowerCase())) &&
-      (search.toCityName === "" || route.toAirport.city.name.toLowerCase().includes(search.toCityName.toLowerCase())) &&
-      (search.fromCountry === "" || route.fromAirport.city.country.toLowerCase().includes(search.fromCountry.toLowerCase())) &&
-      (search.toCountry === "" || route.toAirport.city.country.toLowerCase().includes(search.toCountry.toLowerCase()))
-    );
-  });
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-  
-    setNewFlightRoute((prev) => {
-      if (name === "fromCityName") {
-        return {
-          ...prev,
-          fromAirport: {
-            ...prev.fromAirport,
-            city: {
-              ...prev.fromAirport.city,
-              name: value,
-            },
-          },
-        };
-      } else if (name === "toCityName") {
-        return {
-          ...prev,
-          toAirport: {
-            ...prev.toAirport,
-            city: {
-              ...prev.toAirport.city,
-              name: value,
-            },
-          },
-        };
-      } else if (name === "fromCountry") {
-        return {
-          ...prev,
-          fromAirport: {
-            ...prev.fromAirport,
-            city: {
-              ...prev.fromAirport.city,
-              country: value,
-            },
-          },
-        };
-      } else if (name === "toCountry") {
-        return {
-          ...prev,
-          toAirport: {
-            ...prev.toAirport,
-            city: {
-              ...prev.toAirport.city,
-              country: value,
-            },
-          },
-        };
-      } else if (name === "fromAirportName") {
-        return {
-          ...prev,
-          fromAirport: {
-            ...prev.fromAirport,
-            name: value,
-          },
-        };
-      } else if (name === "toAirportName") {
-        return {
-          ...prev,
-          toAirport: {
-            ...prev.toAirport,
-            name: value,
-          },
-        };
-      } else {
-        return {
-          ...prev,
-          [name]: name === "fromAirportIATA" || name === "toAirportIATA" ? value.toUpperCase() : value,
-        };
-      }
-    });
-  };  
-
-  if (loading) return <div className='mx-auto text-xl text-center my-40'>Loading...</div>;
-  if (error) return <div className="mx-auto text-xl text-center my-40 text-red-600">Error: {error}</div>;
-
+  if (loading) return <div className="text-center my-40 text-xl">Loading...</div>;
+  if (error) return <div className="text-center my-40 text-xl text-red-600">{error}</div>;
   return (
     <>
       <div className="text-4xl pb-6 pt-4 font-bold text-center text-ahaAmber-2 capitalize">Flight Routes</div>
@@ -361,8 +198,8 @@ const FlightRoutes: React.FC = () => {
                 <div className="flex justify-center items-center">
                   {editingRoute ? (
                     <button
-                      onClick={handleSaveEdit}
-                      className="bg-ahaGreen-0-600 hover:bg-ahaGreen-0-400 border-none px-5 py-2 text-white rounded"
+                      onClick={handleSave}
+                      className="bg-ahaGreen-3 hover:bg-ahaGreen-0-400 border-none px-5 py-2 text-white rounded"
                     >
                       Save
                     </button>
@@ -399,13 +236,13 @@ const FlightRoutes: React.FC = () => {
                 <td className="border border-gray-300 px-2 py-2">
                   <div className="flex justify-center items-center space-x-2">
                     <button
-                      onClick={() => handleEditAircraft(route)}
-                      className="bg-ahaGreen-0-600 border-none rounded text-sm px-2 pt-1 hover:bg-ahaGreen-0-400 transition duration-200"
+                      onClick={() => handleEdit(route)}
+                      className="bg-ahaGreen-3 border-none rounded text-sm px-2 pt-1 hover:bg-ahaGreen-0-400 transition duration-200"
                     >
                       <FaWrench color="white"/>
                     </button>
                     <button
-                      onClick={() => handleDeleteAirCraft(route)}
+                      onClick={() => handleDelete(route)}
                       className="bg-red-600 border-none rounded text-sm px-2 pt-1 hover:bg-red-400 transition duration-200"
                     >
                       <FaDeleteLeft color="white"/>

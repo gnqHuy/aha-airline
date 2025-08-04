@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import HeaderImage from '../../assets-test/Images/sunset4.jpg';
-import Layout from '../../components/Layout/Layout';
+import Layout from '../../layout/Layout';
 import { IoIosAirplane } from 'react-icons/io';
 
 type Props = {}

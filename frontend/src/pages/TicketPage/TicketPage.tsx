@@ -1,76 +1,34 @@
 import React, { useEffect, useState } from "react";
 import TicketPreview from "../../components/TicketPreview/TicketPreview";
 import headerImage from "../../assets-test/Images/sunset4.jpg";
-import Layout1 from "../../components/Layout/Layout1";
-import Layout from "../../components/Layout/Layout";
+import Layout1 from "../../layout/Layout1";
+import Layout from "../../layout/Layout";
 import { Flight } from "../../object/flight";
 import { getFromRequest } from "../../api/flightAPI";
 import { SeatClass } from "../../object/enum/SeatClass";
 import { Link, useNavigate } from "react-router-dom";
-import { selectIsRoundTrip, selectReturnDate, selectSelectedFlight, selectSelectedFlightClass, selectSelectedFlightPreview, selectSelectedFlightRound, selectSelectedFlightRoundClass } from "../../redux/selector/flightSelector";
-import { useDispatch, useSelector } from "react-redux";
-import { setSelectedFlight, setSelectedFlightClass, setSelectedFlightRound, setSelectedFlightRoundClass } from "../../redux/slice/flightSlice";
 import { useSnackbar } from "notistack";
+import { useBookingTicket } from "../../store/hooks/useBookingTicket";
 
 const TicketPage: React.FC = () => {
-  const dispatch = useDispatch();
-  const selectedFlightPreview = useSelector(selectSelectedFlightPreview);
-  const roundTrip = useSelector(selectIsRoundTrip);
-  const returnDate = useSelector(selectReturnDate);
-  const selectedFlight = useSelector(selectSelectedFlight);
-  const selectedFlightRound = useSelector(selectSelectedFlightRound);
-  const selectedFlightClass = useSelector(selectSelectedFlightClass);
-  const selectedFlightRoundClass = useSelector(selectSelectedFlightRoundClass);
-
-  const [flights, setFlights] = useState<Flight[]>([]);
-  const [flightsRound, setFlightsRound] = useState<Flight[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const { isFlightSelected, flights, flightsRound, roundTrip, selectedFlight, 
+    selectedFlightRound, selectedFlightClass, selectedFlightRoundClass, 
+    setSelectedFlightRound, setSelectedFlightRoundClass, setSelectedFlight, setSelectedFlightClass} = useBookingTicket();
   const navigate = useNavigate();
   const [checkFlight, setCheckFlight] = useState<boolean>(false);
   const [checkFlightRound, setCheckFlightRound] = useState<boolean>(false);
 
   const { enqueueSnackbar } = useSnackbar();
 
-
-  const isFlightSelected =
-    selectedFlightPreview &&
-    selectedFlightPreview.fromAirport.city.name &&
-    selectedFlightPreview.toAirport.city.name;
-
-  useEffect(() => {
-    if (isFlightSelected) {
-      const fetchData = async () => {
-        try {
-          const response = await getFromRequest(
-          selectedFlightPreview.fromAirport.iata,
-          selectedFlightPreview.toAirport.iata,
-          selectedFlightPreview.departureTime);
-          setFlights(response.data);
-          if (roundTrip) {
-            const response1 = await getFromRequest(
-              selectedFlightPreview.toAirport.iata,
-              selectedFlightPreview.fromAirport.iata,
-              returnDate);
-            setFlightsRound(response1.data);
-          }
-        } catch (err) {
-          return <div>
+  if (flights == null) {
+    return <div>
             <Layout>
                 <div className="text-center text-red-500 text-2xl pt-4">
                     No flight has been selected, or the flight details are incomplete. <br/> Please return to select your flight.
                 </div>
             </Layout>
           </div>;
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchData();
-    } else {
-      setLoading(false);
-    }
-  }, [isFlightSelected, selectedFlightPreview]);
+  }
 
   if (!isFlightSelected) {
     return (
@@ -84,8 +42,8 @@ const TicketPage: React.FC = () => {
   }
 
   const handleSelectFlight = (flight: Flight, classType: SeatClass) => {
-    dispatch(setSelectedFlight(flight));
-    dispatch(setSelectedFlightClass(classType));
+    setSelectedFlight(flight);
+    setSelectedFlightClass(classType);
     setCheckFlight(true);
     if (classType == SeatClass.Economy) {
       enqueueSnackbar( "Economy class selected successfully for your departure!", {variant: "success"});
@@ -96,8 +54,8 @@ const TicketPage: React.FC = () => {
   };
 
   const handleSelectFlightRound = (flight: Flight, classType: SeatClass) => {
-    dispatch(setSelectedFlightRound(flight));
-    dispatch(setSelectedFlightRoundClass(classType));
+    setSelectedFlightRound(flight);
+    setSelectedFlightRoundClass(classType);
     setCheckFlightRound(true);
     if (classType == SeatClass.Economy) {
       enqueueSnackbar( "Economy class selected successfully for your retun flight!", {variant: "success"});
@@ -117,9 +75,6 @@ const TicketPage: React.FC = () => {
       enqueueSnackbar(roundTrip ? "Please choose both outbound and return flights." : "Please choose a flight.", {variant: "error"});
     }
   };
-  
-  if (loading) return <div className='mx-auto text-xl text-center my-40'>Loading...</div>;
-  if (error) return <div className="mx-auto text-xl text-center my-40 text-red-600">Error: {error}</div>;
 
   return (
     <Layout1 headerImage={headerImage}>

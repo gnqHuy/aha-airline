@@ -1,17 +1,15 @@
 import React, { useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
-import type { Swiper as SwiperClass } from "swiper"; // 👈 Import type
+import type { Swiper as SwiperClass } from "swiper";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import "./FlightCarouselSwiper.css";
 import { FlightPreviewType } from "../../object/flightPreview";
 import FlightCard from "../FlightCard/FlightCard";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 type Props = {
   flights: FlightPreviewType[];
@@ -19,7 +17,7 @@ type Props = {
 };
 
 const FlightCarouselSwiper: React.FC<Props> = ({ flights, onSelect }) => {
-  const swiperRef = useRef<SwiperClass | null>(null); // 👈 Đúng type
+  const swiperRef = useRef<SwiperClass | null>(null); 
 
   useEffect(() => {
     if (swiperRef.current && flights.length > 0) {

@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { persistor, store } from './redux/store';
+import { persistor, store } from './store/store';
 import { setupAxios } from './utils/api';
 import App from './App';
 import { SnackbarProvider } from 'notistack';

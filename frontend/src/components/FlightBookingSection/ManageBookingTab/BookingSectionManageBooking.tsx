@@ -6,7 +6,7 @@ import { FaCirclePlus, FaPlaneCircleCheck } from "react-icons/fa6";
 import { IoTicket } from "react-icons/io5";
 import ManageBookingInfo from './ManageBookingInfo';
 import { GetByReservationOrTicketCode } from '../../../api/ticket';
-import { useFlightContext } from '../../../context/FlightContext/FlightContext';
+import { useFlightContext } from '../../../store/context/FlightContext';
 
 const BookingSectionManageBooking = () => {
     const [isFocusReservation, setIsFocusReservation] = useState<boolean>(false);

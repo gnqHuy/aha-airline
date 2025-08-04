@@ -1,92 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { getAllCities } from "../../../api/cities.API";
+import React from "react";
 import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
-import { City } from "../../../object/city";
+import { useCities } from "../../../store/hooks/useCities";
 
 const Cities: React.FC = () => {
-  const [cities, setCities] = useState<City[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [newCity, setNewCity] = useState<City>({
-    name: "",
-    country: "",
-    imageUrl: "",
-  });
-
-  const [editingCity, setEditingCity] = useState<City | null>(null);
-
-  const [search, setSearch] = useState({
-    name: "",
-    country: "",
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getAllCities();
-        // (response);
-        setCities(response.data);
-        console.log(response.data);
-      } catch (err) {
-        setError("Failed to load city data.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setSearch((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setNewCity((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const filteredCities = cities.filter((city) => {
-    return (
-      (search.name === "" || city.name.toLowerCase().includes(search.name.toLowerCase())) &&
-      (search.country === "" || city.country.toLowerCase().includes(search.country.toLowerCase()))
-    );
-  });
-
-  const handleAddCity = () => {
-    setCities((prev) => [...prev, newCity]);
-    setNewCity({ name: "", country: "" , imageUrl: ""});
-  };
-
-  const handleDeleteCity = (cityToDelete: City) => {
-    setCities((prev) => prev.filter((city) => city !== cityToDelete));
-  };
-
-  const handleEditCity = (city: City) => {
-    setEditingCity(city);
-    setNewCity({ ...city });
-  };
-
-  const handleSaveEdit = () => {
-    setCities((prev) =>
-      prev.map((city) =>
-        city === editingCity ? newCity : city
-      )
-    );
-    setEditingCity(null);
-    setNewCity({ name: "", country: "", imageUrl: ""});
-  };
+  const {
+    cities,
+    loading,
+    error,
+    newCity,
+    editingCity,
+    search,
+    handleInputChange,
+    handleSearchChange,
+    handleAddCity,
+    handleEditCity,
+    handleSaveEdit,
+    handleDeleteCity,
+  } = useCities();
 
   if (loading) return <div className='mx-auto text-xl text-center my-40'>Loading...</div>;
-  if (error) return <div className="mx-auto text-xl text-center my-40 text-red-600">Error: {error}</div>;
+  if (error) return <div className='mx-auto text-xl text-center my-40 text-red-600'>Error: {error}</div>;
 
   return (
     <>
@@ -160,7 +94,7 @@ const Cities: React.FC = () => {
                   {editingCity ? (
                     <button
                       onClick={handleSaveEdit}
-                      className="bg-ahaGreen-0-600 hover:bg-ahaGreen-0-400 border-none px-5 py-2 text-white rounded"
+                      className="bg-ahaGreen-3 hover:bg-ahaGreen-0-400 border-none px-5 py-2 text-white rounded"
                     >
                       Save
                     </button>
@@ -177,7 +111,7 @@ const Cities: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredCities.map((city, index) => (
+            {cities.map((city, index) => (
               <tr
                 key={index}
                 className={`${
@@ -201,7 +135,7 @@ const Cities: React.FC = () => {
                   <div className="flex justify-center items-center space-x-2">
                     <button
                       onClick={() => handleEditCity(city)}
-                      className="bg-ahaGreen-0-600 border-none rounded px-2 pt-1 hover:bg-ahaGreen-0-400 transition duration-200"
+                      className="bg-ahaGreen-3 border-none rounded px-2 pt-1 hover:bg-ahaGreen-0-400 transition duration-200"
                     >
                       <FaWrench color="white" />
                     </button>

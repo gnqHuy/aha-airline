@@ -3,10 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
-
-import { setReturnDate, setRoundTrip, setSelectedFlightPreview } from '../../../redux/slice/flightSlice';
-import { setPassengers } from '../../../redux/slice/passengerSlice';
-import { useBookingState } from '../../../hooks/useBookingState';
+import { setPassengers } from '../../../store/slice/passengerSlice';
+import { useBookingState } from '../../../store/hooks/useBookingState';
 
 import { FaArrowRight } from 'react-icons/fa';
 import { FaArrowRightArrowLeft } from 'react-icons/fa6';
@@ -18,6 +16,7 @@ import PassengerInfo from './PassengerInfo/PassengerInfo';
 
 import FloatingInput from './Input/FloatingInput';
 import FloatingSelect from './Input/FloatingSelect';
+import { useBookingTicket } from '../../../store/hooks/useBookingTicket';
 
 const BookingTab = () => {
   const {
@@ -37,7 +36,8 @@ const BookingTab = () => {
     setInputAirports,
   } = useBookingState();
 
-  const dispatch = useDispatch();
+  const { setIsRoundTrip, setReturnDate, setSelectedPassengers, setSelectedFlightPreview } = useBookingTicket();
+
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -118,11 +118,11 @@ const BookingTab = () => {
       const departureTime = convertToISO(selectedDates.depart, '00:00:01');
 
       if (flightOption === 'roundTrip') {
-        dispatch(setRoundTrip(true));
-        dispatch(setReturnDate(convertToISO(selectedDates.return, '00:00:01')));
+        setIsRoundTrip(true);
+        setReturnDate(convertToISO(selectedDates.return, '00:00:01'));
       } else {
-        dispatch(setRoundTrip(false));
-        dispatch(setReturnDate(''));
+        setIsRoundTrip(true);
+        setReturnDate('');
       }
 
       const flightPreview = {
@@ -140,12 +140,12 @@ const BookingTab = () => {
         minimumPrice: 0,
       };
 
-      dispatch(setSelectedFlightPreview(flightPreview));
-      dispatch(setPassengers({
+      setSelectedFlightPreview(flightPreview);
+      setSelectedPassengers({
         adults: passengerQuantities.adult,
         children: passengerQuantities.children,
         infants: passengerQuantities.infant,
-      }));
+      });
 
       navigate('ticket');
     } catch (error) {
@@ -274,7 +274,7 @@ const BookingTab = () => {
               />
             </div>
           )}
-
+  
           {/* DEPART / RETURN */}
           <div className="flex items-center bg-gray-100 px-4 pt-2 pb-1 rounded-2xl gap-4">
             <div className="relative min-w-0">
@@ -313,7 +313,7 @@ const BookingTab = () => {
           <div className="text-center">
             <button
               onClick={handleFindFlightClick}
-              className="hover:bg-slate-50 hover:text-ahaAmber-2  hover:border-ahaAmber-2 text-sm bg-ahaAmber-3 text-white border-none px-5 py-2 rounded-full font-bold"
+              className="hover:bg-slate-50 hover:text-ahaAmber-2  hover:border-ahaAmber-2 text-sm bg-ahaAmber-3 text-white border-none px-5 py-2 mb-3 mt-1 rounded-full font-bold"
             >
               Find Experiences
             </button>

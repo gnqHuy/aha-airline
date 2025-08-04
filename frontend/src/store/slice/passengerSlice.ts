@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface PassengerState {
+export interface PassengerState {
     adults: number;
     children: number;
     infants: number;

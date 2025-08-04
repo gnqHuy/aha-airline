@@ -1,24 +1,17 @@
 // hooks/useBookingState.ts
 import { useState, useEffect } from 'react';
-import { useFlightContext } from '../context/FlightContext/FlightContext';
-import { getAllAircrafts } from '../api/aircraftAPI';
+import { useAirports } from './useAirports';
 
 
 export const useBookingState = () => {
-  // Display states
   const [activeDisplay, setActiveDisplay] = useState<string | null>(null);
-
   const [inputAirports, setInputAirports] = useState({ from: '', to: '' });
-  
-  // Passenger quantities
   const [passengerQuantities, setPassengerQuantities] = useState({
     adult: 1,
     children: 0,
     infant: 0
   });
-
-  // Airport selection
-  const { airports } = useFlightContext();
+  const { airports } = useAirports();
   const [suggestAirports, setSuggestAirports] = useState<any[]>(airports);
   const [suggestAirportsTo, setSuggestAirportsTo] = useState<any[]>([]);
   const [selectedAirports, setSelectedAirports] = useState({
@@ -26,22 +19,16 @@ export const useBookingState = () => {
     to: ''
   });
 
-  // Date selection
   const [selectedDates, setSelectedDates] = useState({
     depart: '',
     return: ''
   });
-
-  useEffect(() => {
-    getAllAircrafts().then(() => {});
-  }, []);
 
   const convertToDate = (dateString: string) => {
     const [day, month, year] = dateString.split('/').map(Number);
     return new Date(year, month, day);
   };
 
-  // Display handlers
   const handleDisplayToggle = (displayType: string) => {
     setActiveDisplay(activeDisplay === displayType ? null : displayType);
     
@@ -57,8 +44,6 @@ export const useBookingState = () => {
   };
 
   const resetAllDisplays = () => setActiveDisplay(null);
-
-  // Airport handlers
   const handleAirportSearch = (airport: string, type: 'from' | 'to') => {
     const searchItem = airport.toLowerCase();
     const excludeCity = type === 'from' ? selectedAirports.to : selectedAirports.from;
@@ -78,7 +63,6 @@ export const useBookingState = () => {
     setSelectedAirports(prev => ({ ...prev, [type]: airport }));
   };
 
-  // Date handlers
   const handleDateSelect = (date: string, type: 'depart' | 'return') => {
     console.log(date, type);
     setSelectedDates(prev => ({ ...prev, [type]: date }));
@@ -100,7 +84,6 @@ export const useBookingState = () => {
     }
   };
 
-  // Passenger handlers
   const handlePassengerQuantity = (type: 'adult' | 'children' | 'infant', action: 'increase' | 'decrease') => {
     setPassengerQuantities(prev => {
       const newValue = action === 'increase' ? prev[type] + 1 : prev[type] - 1;
@@ -110,7 +93,6 @@ export const useBookingState = () => {
   };
 
   return {
-    // States
     activeDisplay,
     passengerQuantities,
     selectedAirports,
@@ -119,23 +101,18 @@ export const useBookingState = () => {
     suggestAirportsTo,
     inputAirports,
     
-    // Display handlers
     handleDisplayToggle,
     resetAllDisplays,
 
     setInputAirports,
     
-    // Airport handlers
     handleAirportSearch,
     handleAirportSelect,
-    
-    // Date handlers
+
     handleDateSelect,
-    
-    // Passenger handlers
+
     handlePassengerQuantity,
     
-    // Computed values
     displayStates: {
       suggestion: activeDisplay === 'suggestion',
       suggestionTo: activeDisplay === 'suggestionTo',

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IoIosArrowUp } from 'react-icons/io'
 import { Link } from 'react-router-dom'
-import { useFlightContext } from '../../../context/FlightContext/FlightContext'
+import { useFlightContext } from '../../../store/context/FlightContext'
 
 const BookingSectionCheckIn = () => {
   const [activeOption, setActiveOption] = useState<'reservationCode' | 'eTicket' | 'flyerNumber'>('reservationCode')

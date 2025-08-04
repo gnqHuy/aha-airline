@@ -1,26 +1,17 @@
 import React, { useState } from "react";
-import { useFlightContext } from "../../context/FlightContext/FlightContext";
 import PassengerForm from "../../components/PassengerForm/PassengerForm";
-import Layout1 from "../../components/Layout/Layout1";
+import Layout1 from "../../layout/Layout1";
 import { useNavigate } from "react-router-dom";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../layout/Layout";
 import { SeatClass } from "../../object/enum/SeatClass";
 import { PassengerTitle } from "../../object/enum/PassengerTitle";
-import { selectIsRoundTrip, selectSelectedFlight, selectSelectedFlightClass } from "../../redux/selector/flightSelector";
-import { useDispatch, useSelector } from "react-redux";
-import { selectPassengers } from "../../redux/selector/passengerSelector";
-import { addFlightTicket, addFlightTicketRound } from "../../redux/slice/bookingSlice";
+import { useDispatch } from "react-redux";
 import { useSnackbar } from "notistack";
+import { useBookingTicket } from "../../store/hooks/useBookingTicket";
 
-type Props = {};
-
-const PassengerInfor: React.FC<Props> = () => {
+const PassengerInfor = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const dispatch = useDispatch();
-  const selectedFlight = useSelector(selectSelectedFlight);
-  const selectedFlightClass = useSelector(selectSelectedFlightClass);
-  const selectedPassenger = useSelector(selectPassengers);
-  const roundTrip = useSelector(selectIsRoundTrip);
+  const { selectedPassenger, roundTrip, selectedFlight, selectedFlightClass, addFlightTicket, addFlightTicketRound } = useBookingTicket();
   const { adults, children, infants } = selectedPassenger;
   const navigate = useNavigate();
 
@@ -85,7 +76,7 @@ const PassengerInfor: React.FC<Props> = () => {
         contactEmail: passenger.email,
         phoneNumber: passenger.phone,
       };
-      dispatch(addFlightTicket(ticket));
+      addFlightTicket(ticket);
     });
   };
 
@@ -120,7 +111,7 @@ const PassengerInfor: React.FC<Props> = () => {
         contactEmail: passenger.email,
         phoneNumber: passenger.phone,
       };
-      dispatch(addFlightTicketRound(ticket));
+      addFlightTicketRound(ticket);
     });
   };
 

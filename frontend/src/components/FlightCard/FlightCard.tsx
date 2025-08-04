@@ -7,7 +7,6 @@ type FlightCardProps = {
 };
 
 const FlightCard: React.FC<FlightCardProps> = ({ flight, image }) => {
-  // Date formatting logic
   const formatFlightDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-GB', {
@@ -17,13 +16,7 @@ const FlightCard: React.FC<FlightCardProps> = ({ flight, image }) => {
     });
   };
 
-  // Price conversion utility
-  const convertToUSD = (vndPrice: number): number => {
-    return Math.round(vndPrice / 24000);
-  };
-
   const formattedDate = formatFlightDate(flight.departureTime);
-  const usdPrice = convertToUSD(flight.minimumPrice);
 
   return (
     <article 

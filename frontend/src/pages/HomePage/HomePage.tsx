@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import FlightPreview from "../../components/FlightPreview/FlightPreview";
 import { useDispatch } from "react-redux";
-import { resetFlightData, setRoundTrip } from "../../redux/slice/flightSlice";
-import { resetBooking } from "../../redux/slice/bookingSlice";
-import { resetPassengers } from "../../redux/slice/passengerSlice";
-import LayoutDefault from "../../components/Layout/LayoutDefault";
+import { resetFlightData, setRoundTrip } from "../../store/slice/flightSlice";
+import { resetBooking } from "../../store/slice/bookingSlice";
+import { resetPassengers } from "../../store/slice/passengerSlice";
+import LayoutDefault from "../../layout/LayoutDefault";
 import FlightBookingSection from "../../components/FlightBookingSection/FlightBookingSection";
 // In your main layout or App.jsx
 

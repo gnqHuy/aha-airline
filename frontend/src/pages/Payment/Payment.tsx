@@ -1,64 +1,25 @@
 import React, { useEffect, useState } from "react";
-import Layout1 from "../../components/Layout/Layout1";
+import Layout1 from "../../layout/Layout1";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import ElectronicTicket from "../../components/ElectronicTicket/ElectronicTicket";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../layout/Layout";
 import { AddTickets } from "../../api/ticket";
 import { FlightTicketResponse } from "../../object/reponseTicketData";
-import { useDispatch, useSelector } from "react-redux";
-import { selectIsRoundTrip, selectSelectedFlight, selectSelectedFlightRound } from "../../redux/selector/flightSelector";
-import { selectFlightTicketsRoundState, selectFlightTicketsState } from "../../redux/selector/bookingSelector";
-import { selectUser } from "../../redux/selector/authSelector";
-import { resetBooking, setFlightTicketsId, setFlightTicketsRoundId } from "../../redux/slice/bookingSlice";
+import { useBookingTicket } from "../../store/hooks/useBookingTicket";
+import { useAuth } from "../../store/hooks/useAuth";
 
 type Props = {};
 
 const Payment: React.FC<Props> = () => {
-  const dispatch = useDispatch();
-  const user = useSelector(selectUser);
-  const selectedFlight = useSelector(selectSelectedFlight);
-  const selectedFlightRound = useSelector(selectSelectedFlightRound);
-  const roundTrip = useSelector(selectIsRoundTrip);
-  const flightTickets = useSelector(selectFlightTicketsState);
-  const flightTicketsRound = useSelector(selectFlightTicketsRoundState);
-
-  const [responseTicketData, setResponseTicketData] = useState<FlightTicketResponse | null>(null);
-  const [responseTicketData1, setResponseTicketData1] = useState<FlightTicketResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const {user} = useAuth();
+  const { responseTicketData, responseTicketData1, flightTickets, roundTrip, selectedFlight, flightTicketsRound, selectedFlightRound, setFlightTicketsId, createTickets } = useBookingTicket();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch(setFlightTicketsId({
-          flightId: selectedFlight?.id || "",
-          bookedId: user?.id || "",
-        }))
-        console.log(selectedFlight);
-        const response = await AddTickets(flightTickets);
-        setResponseTicketData(response.data);   
-
-        if (roundTrip) {
-          dispatch(setFlightTicketsRoundId({
-            flightId: selectedFlightRound?.id || "",
-            bookedId: user?.id || "",
-          }))
-          console.log(selectedFlightRound);
-          const response1 = await AddTickets(flightTicketsRound);
-          setResponseTicketData1(response1.data);
-        }    
-      } catch (err) {
-        setError("Failed to load response data.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
+    createTickets(user?.id);
   }, [flightTickets, flightTicketsRound]);
 
   if (!flightTickets || flightTickets.tickets.length === 0) {
@@ -77,8 +38,7 @@ const Payment: React.FC<Props> = () => {
       const ticketElement = document.createElement("div");
       ticketElement.id = `ticket-${index}`;
       document.body.appendChild(ticketElement);
-
-      // Render both tickets for round trip or just one ticket if it's one way
+      
       if (roundTrip) {
         ReactDOM.render(
           <>

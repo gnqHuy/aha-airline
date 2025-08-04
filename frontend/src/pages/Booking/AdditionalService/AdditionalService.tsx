@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Layout from '../../../components/Layout/Layout'
+import Layout from '../../../layout/Layout'
 import SeatSelection from './SeatSelection/SeatSelection'
 import ExcessBaggage from './ExcessBaggage/ExcessBaggage'
 import BusinessLounge from './BusinessLounge/BusinessLounge'

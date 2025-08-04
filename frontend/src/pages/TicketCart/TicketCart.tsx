@@ -1,23 +1,13 @@
-import React from 'react';
-import { useFlightContext } from '../../context/FlightContext/FlightContext';
 import TicketPreview from '../../components/TicketPreview/TicketPreview';
 import { useNavigate } from 'react-router-dom';
-import Layout1 from '../../components/Layout/Layout1';
+import Layout1 from '../../layout/Layout1';
 import { SeatClass } from '../../object/enum/SeatClass';
-import Layout from '../../components/Layout/Layout';
-import { useSelector } from 'react-redux';
-import { selectIsRoundTrip, selectSelectedFlight, selectSelectedFlightClass, selectSelectedFlightRound, selectSelectedFlightRoundClass } from '../../redux/selector/flightSelector';
-import { selectPassengers } from '../../redux/selector/passengerSelector';
+import Layout from '../../layout/Layout';
+import { useBookingTicket } from '../../store/hooks/useBookingTicket';
 
-type Props = {};
-
-const TicketCard: React.FC<Props> = () => {
-  const selectedFlight = useSelector(selectSelectedFlight);
-  const selectedFlightRound = useSelector(selectSelectedFlightRound);
-  const selectedFlightClass = useSelector(selectSelectedFlightClass);
-  const selectedFlightRoundClass = useSelector(selectSelectedFlightRoundClass);
-  const roundTrip = useSelector(selectIsRoundTrip);
-  const selectedPassenger = useSelector(selectPassengers);
+const TicketCard = () => {
+  const { selectedPassenger, roundTrip, selectedFlight, 
+      selectedFlightRound, selectedFlightClass, selectedFlightRoundClass } = useBookingTicket();
   
   const navigate = useNavigate();
 

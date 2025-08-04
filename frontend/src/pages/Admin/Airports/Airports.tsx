@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { getAllAirport, getAllAirports } from "../../../api/airportAPI";
+import React, { useState } from "react";
 import { FaWrench } from "react-icons/fa";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { Airport } from "../../../object/airport";
+import { useAirports } from "../../../store/hooks/useAirports";
 
 const Airports: React.FC = () => {
-  const [airports, setAirports] = useState<Airport[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const { airports, loading, error, refetch, setAirports } = useAirports();
+
   const [newAirport, setNewAirport] = useState<Airport>({
     iata: "",
     name: "",
-    city: {name: "", country: "" , imageUrl: ""},
+    city: { name: "", country: "", imageUrl: "" },
   });
 
   const [search, setSearch] = useState({
@@ -22,22 +21,6 @@ const Airports: React.FC = () => {
   });
 
   const [editingAirport, setEditingAirport] = useState<Airport | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getAllAirport();
-        // (response);
-        setAirports(response.data);
-      } catch (err) {
-        setError("Failed to load airport data.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -58,57 +41,35 @@ const Airports: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-  
     setNewAirport((prev) => {
       if (name === "cityName") {
-        return {
-          ...prev,
-          city: {
-            ...prev.city,
-            name: value,
-          },
-        };
+        return { ...prev, city: { ...prev.city, name: value } };
       } else if (name === "country") {
-        return {
-          ...prev,
-          city: {
-            ...prev.city,
-            country: value,
-          },
-        };
+        return { ...prev, city: { ...prev.city, country: value } };
       } else {
-        return {
-          ...prev,
-          [name]: name === "iata" ? value.toUpperCase() : value,
-        };
+        return { ...prev, [name]: name === "iata" ? value.toUpperCase() : value };
       }
     });
-  };  
+  };
 
   const handleAddAirport = async () => {
+    // implement thêm API nếu cần
   };
 
   const handleDeleteAirport = (airportDelete: Airport) => {
     const update = airports.filter((airport) => airport !== airportDelete);
     setAirports(update);
-  }
+  };
 
   const handleEditAirport = (airport: Airport) => {
     setEditingAirport(airport);
     setNewAirport({ ...airport });
   };
+
   const handleSaveEdit = () => {
-    setAirports((prev) =>
-      prev.map((item) =>
-        item === editingAirport ? newAirport : item
-      )
-    );
+    setAirports((prev) => prev.map((item) => (item === editingAirport ? newAirport : item)));
     setEditingAirport(null);
-    setNewAirport({
-      iata: "",
-      name: "",
-      city: { name: "", country: "", imageUrl: ""},
-    });
+    setNewAirport({ iata: "", name: "", city: { name: "", country: "", imageUrl: "" } });
   };
 
   if (loading) return <div className='mx-auto text-xl text-center my-40'>Loading...</div>;
@@ -204,7 +165,7 @@ const Airports: React.FC = () => {
                   {editingAirport ? (
                     <button
                       onClick={handleSaveEdit}
-                      className="bg-ahaGreen-0-600 hover:bg-ahaGreen-0-400 border-none px-5 py-2 text-white rounded"
+                      className="bg-ahaGreen-3 hover:bg-ahaGreen-0-400 border-none px-5 py-2 text-white rounded"
                     >
                       Save
                     </button>
@@ -237,7 +198,7 @@ const Airports: React.FC = () => {
                     <div className="flex justify-center items-center space-x-2">
                     <button
                       onClick={() => handleEditAirport(airport)}
-                      className="bg-ahaGreen-0-600 border-none text-sm rounded px-2 pt-1 hover:bg-ahaGreen-0-400 transition duration-200"
+                      className="bg-ahaGreen-3 border-none text-sm rounded px-2 pt-1 hover:bg-ahaGreen-0-400 transition duration-200"
                     >
                       <FaWrench color="white"/>
                     </button>

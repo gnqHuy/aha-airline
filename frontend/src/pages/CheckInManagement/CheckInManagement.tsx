@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import headerImage from "../../assets-test/Images/sunset4.jpg";
 import { IoIosAirplane } from "react-icons/io";
-import Layout from '../../components/Layout/Layout';
+import Layout from '../../layout/Layout';
 import { CancelTicketByCode, GetByReservationOrTicketCode, UpgradeSeatByCode } from '../../api/ticket';
-import { useFlightContext } from '../../context/FlightContext/FlightContext';
+import { useFlightContext } from '../../store/context/FlightContext';
 import { SeatClass } from '../../object/enum/SeatClass';
 import { Ticket } from '../../object/ticket';
 import { useSnackbar } from 'notistack';

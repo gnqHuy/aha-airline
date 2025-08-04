@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../layout/Layout";
 import GenericCard from "../../components/GenericCard/GenericCard";
 
 const getImage = (city: string) =>

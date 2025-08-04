@@ -1,52 +1,37 @@
-import React, { useState } from "react";
-import { FaUser } from "react-icons/fa";
-import { MdLock } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../../../api/authAPI";
-import { login } from "../../../redux/slice/authSlice";
-import { RootState } from "../../../redux/store";
-import { Link, useNavigate } from "react-router-dom";
-import { selectAccessToken } from "../../../redux/selector/authSelector";
+import React, { useState, useEffect } from "react";
 import { useSnackbar } from "notistack";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../store/hooks/useAuth";
+import { MdLock } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
 
-interface Props {}
-
-const LoginForm: React.FC<Props> = ({}) => {
-  const { enqueueSnackbar } = useSnackbar();
-  const dispatch = useDispatch();
+const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const token = useSelector(selectAccessToken);
-  const user = useSelector((state: RootState) => state.auth.user);
+  const { login, error, accessToken } = useAuth();
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = () => {
     if (!username || !password) {
-      enqueueSnackbar("Please fill in both fields", {variant: "warning"});
+      enqueueSnackbar("Please fill in both fields", { variant: "warning" });
       return;
     }
-
-    logIn({
-      usernameOrEmail: username,
-      password: password,
-    }).then((res) => {
-      if (res.data.isSuccess) {
-        dispatch(
-          login({
-            accessToken: res.data.token,
-            user: {
-                id: res.data.user.id,
-                username: res.data.user.username,
-                roles: res.data.user.roles,
-            },
-          })
-        );
-        navigate("/");
-      }
-    }).catch((error) => {
-      enqueueSnackbar(error.response?.data?.message || "Failed to log in. Please try again.", {variant: "error"});
-    });
+    login(username, password);
   };
+
+  useEffect(() => {
+    if (accessToken) {
+      enqueueSnackbar("Logged in!", { variant: "success" });
+      navigate("/");
+    }
+  }, [accessToken]);
+
+  useEffect(() => {
+    if (error) {
+      enqueueSnackbar(error, { variant: "error" });
+    }
+  }, [error]);
 
   return (
     <div className="h-[100%] w-[80%] relative flex flex-col items-center mt-32 pb-24 justify-center">
@@ -59,7 +44,7 @@ const LoginForm: React.FC<Props> = ({}) => {
       </div>
 
       <div className="mt-0 w-full">
-        {/* Username input */}
+
         <div className="mt-4">
           <p className="text-[15px] text-left text-ahaAmber-1 ml-[20%]">
             Username

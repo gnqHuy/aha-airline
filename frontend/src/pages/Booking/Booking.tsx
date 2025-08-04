@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../../components/Layout/Layout";
+import Layout from "../../layout/Layout";
 import GenericCard from "../../components/GenericCard/GenericCard";
 import image1 from '../../assets-test/Images/green3.jpg';
 import image2 from '../../assets-test/Images/green4.jpg';
