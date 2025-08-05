@@ -24,7 +24,7 @@ const FlightPreview = () => {
 
   const dropdownMenu = isDepartureListOpen && (
     <div
-      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-left bg-white border border-gray-300 rounded-lg w-auto max-h-96 overflow-y-auto shadow-lg z-10 p-2"
+      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 text-left bg-white border border-gray-300 rounded-lg w-auto max-h-96 overflow-y-auto overflow-x-hidden shadow-lg z-10 p-2"
       ref={departureListRef}
     >
       <div className="flex items-center gap-2 p-2 text-base font-semibold text-gray-700">
@@ -36,13 +36,13 @@ const FlightPreview = () => {
         placeholder="Search cities..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="w-64 py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-ahaAmber-3"
+        className="w-64 py-2 px-3 border border-gray-300 text-black text-base rounded-md focus:outline-none focus:ring focus:ring-ahaAmber-3"
       />
       <div className="border-t-[1.5px] border-[#d4a422] mt-2">
         {filteredAirport.map((airport) => (
           <div
             key={airport.iata}
-            className="p-2 cursor-pointer hover:bg-gray-100 rounded text-ahaAmber-3 font-semibold text-xl"
+            className="p-2 cursor-pointer hover:bg-gray-100 rounded text-ahaAmber-3 font-semibold text-lg"
             onClick={() => handleSelectedCity(airport)}
           >
             <b>{airport.city.name}, </b>{airport.city.country}
@@ -87,7 +87,7 @@ const FlightPreview = () => {
         />
 
       ) : (
-        <p>No destinations available for <b>{departureCity}</b>.</p>
+        <p className="text-white text-lg my-28">No destinations available for <b>{departureCity}</b>.</p>
       )}
 
       {/* SearchFlight */}

@@ -10,7 +10,7 @@ type Props = {
 
 const Footer = ({isLandingPage}: Props) => {
   return (
-    <footer className={`footer-text ${!isLandingPage ? 'bg-ahaGreen-1' : 'bg-ahaGreen-opacity-0'}`}>
+    <footer className={`footer-text ${!isLandingPage ? 'bg-ahaGreen-0' : 'bg-ahaGreen-opacity-0'}`}>
         <div className="mx-auto w-full max-w-screen-xl lg:py-6">
             <div className="md:flex md:justify-between mb-4">
                 <div className="mb-6 ml-10 md:mb-0">
@@ -18,7 +18,7 @@ const Footer = ({isLandingPage}: Props) => {
                         <span className="self-center text-3xl font-semibold whitespace-nowrap small:relative small:top-[1vw]">AHA AIRLINE</span>
                     </Link>
                     <ul className="font-medium text-sm list-none p-0 ml-6">
-                        <li className="mb-4">
+                        <li className="mb-4 mt-3">
                             <a href="/about us" className="text-white no-underline hover:opacity-80">About Us</a>
                         </li>
                         <li>
@@ -80,7 +80,7 @@ const Footer = ({isLandingPage}: Props) => {
                     </div>
                 </div>
             </div>
-            <hr className="border-gray-200 " />
+            <hr className="border-gray-200 mb-2" />
             <div className="pl-4 pr-4 sm:flex sm:items-center sm:justify-between text-white">
                 <span className="text-sm sm:text-center">© 2024 <a href="/" className="hover:underline text-ahaAmber-2 no-underline">AHA AIRLINE™</a>. All Rights Reserved.</span>
                 <div className="flex items-center">

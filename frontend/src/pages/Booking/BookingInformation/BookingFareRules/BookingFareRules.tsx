@@ -1,31 +1,34 @@
 import React from 'react'
 import BookingFareRuleTable from './BookingFareRuleTable'
 
-type Props = {}
-
-const BookingFareRules = (props: Props) => {
+const BookingFareRules = () => {
   return (
-    <div className = "w-[75vw]">
-        <p className = " text-3xl text-[#1A4532] font-bold">Fare Rules</p>
-        <div>
-            <div className = "">
-                <p className = "text-2xl font-bold">Group 1:</p>
-                <ul className = "text-lg">
-                    <li>AHA Domestic flights in Vietnam</li>
-                    <li>Other AHA International direct and connecting flights, excluding flights in Group 2</li>
-                </ul>
-            </div>
-            <div className = " relative top-[2rem]">
-                <p className = "text-2xl font-bold">Group 2:</p>
-                <ul className = "text-lg">
-                    <li>AHA International flights between Kazakhstan/ Australia (BNE, MEL, SYD, PER, ADL) and Vietnam</li>
-                    <li>AHA International connecting flights from/to Australia (BNE, MEL, SYD, PER, ADL)</li>
-                </ul>
-            </div>
-            <div className = "relative top-[3rem]">
-                <BookingFareRuleTable />
-            </div>
-        </div>
+    <div className="w-full max-w-[75vw] mx-auto space-y-10">
+      {/* Title */}
+      <h1 className="text-3xl text-[#1A4532] font-bold">Fare Rules</h1>
+
+      {/* Group 1 */}
+      <section className="space-y-2">
+        <h2 className="text-2xl font-bold">Group 1:</h2>
+        <ul className="text-lg list-disc list-inside">
+          <li>AHA Domestic flights in Vietnam</li>
+          <li>Other AHA International direct and connecting flights, excluding flights in Group 2</li>
+        </ul>
+      </section>
+
+      {/* Group 2 */}
+      <section className="space-y-2">
+        <h2 className="text-2xl font-bold">Group 2:</h2>
+        <ul className="text-lg list-disc list-inside">
+          <li>AHA International flights between Kazakhstan/ Australia (BNE, MEL, SYD, PER, ADL) and Vietnam</li>
+          <li>AHA International connecting flights from/to Australia (BNE, MEL, SYD, PER, ADL)</li>
+        </ul>
+      </section>
+
+      {/* Table */}
+      <section>
+        <BookingFareRuleTable />
+      </section>
     </div>
   )
 }

@@ -1,85 +1,129 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
-
-const BookingTax = (props: Props) => {
+const BookingTax = () => {
   return (
-    <div className = "">
-        <p className = " text-3xl text-[#1A4532] font-bold">Tax, Fee & Surcharge</p>
-        <div className = "w-[75vw]">
-            <p className = " text-2xl text-[#1A4532] font-bold">What is an airline ticket?</p>
-            <p className = "text-lg">An airline ticket is a contract for transportation services between an airline and a passenger, represented in the form of an electronic ticket (All passenger and itinerary information is stored electronically).</p>
-            <p className = "text-lg">Information displayed on the electronic ticket includes:</p>
-            <ul>
-                <li className = "mb-[0.5rem]">PNR code</li>
-                <li className = "mb-[0.5rem]">Passenger information: Passenger name, electronic ticket number, invoice number</li>
-                <li className = "mb-[0.5rem]">Itinerary information: Departure flight, return flight, date and time of flights, flight number, baggage allowancec</li>
-                <li className = "mb-[0.5rem]">Payment details: Price of the outbound flight ticket, price of the return flight ticket, total taxes and fees</li>
-                <li>Important passenger-related information regarding the regulations, rules, and terms of the airline</li>
-            </ul>
-            <p className = "text-lg relative top-[1rem]">Passengers can store the PNR code in various forms, such as text messages, images, handwritten notes, emails, etc. When checking in at the airport, passengers provide the matching booking code with the ticket number stored in the system. Bamboo Airways will then print and deliver the boarding pass to the customer.</p>
-        </div>
-        <div className = "w-[75vw] h-[0.05rem] bg-[gray] relative top-[2rem]"></div>
-        <div className = "w-[75vw]">
-            <p className = " text-2xl text-[#1A4532] font-bold relative top-[1.5rem]">What is a boarding pass?</p>
-            <p className = "text-lg">A boarding pass consists of two parts, one of which is detached by the airline staff during the boarding process. The remaining part is retained by the passenger so that when boarding the aircraft, the flight attendants can guide passengers to their assigned seats as indicated on the pass.</p>
-            <p className = "text-lg">Information on the boarding pass includes: Passenger name, flight number, departure and arrival points, seat number, seat class, date and time of the flight, and the departure gate.</p>
-        </div>
-        <div className = "w-[75vw] h-[0.05rem] bg-[gray] relative top-[1.5rem]"></div>
-        <div className = "w-[75vw]">
-            <p className = " text-2xl text-[#1A4532] font-bold relative top-[1rem]">How is the airfare calculated?</p>
-            <p className = "text-lg">Bamboo Airways' airfare <b>(applicable only for domestic routes)</b> consists of the following components:</p>
-            <div>
-                <p className = "text-xl font-bold">1.Base fare</p>
-                <p className = "text-lg relative bottom-[0.5rem]">Base fare is the fare applied by Bamboo Airways for the transportation of passengers from departure airport to the final destination, excluding taxes, fees and surcharges. Base fare is determined by your particular itinerary.</p>
-            </div>
-            <div className = "relative top-[1rem]">
-                <p className = "text-xl font-bold">2. Ticketing fee <i>(applicable for adults, children - per ticket)</i></p>
-                <p className = "text-lg relative bottom-[0.5rem]">Ticketing fee (OB fee) is based on Point of Departure.</p>
-                <p className = "text-lg relative bottom-[1.5rem]">For domestic flights originating in Vietnam (VN), there is a ticketing fee of <b>55,000</b> VND, applicable to tickets issued/exchanged from August 30, 2023, and for journeys commencing from August 30, 2023.</p>
-            </div>
-            <div className = "relative top-[1rem]">
-                <p className = "text-xl font-bold">3. Admin surcharge <i>(applicable for adults, children - per segment)</i></p>
-                <p className = "text-lg relative bottom-[0.5rem]">Admin surcharge covers the costs of maintaining the data administration system depending on your itinerary.</p>
-                <p className = "text-lg relative bottom-[1.5rem]">Bamboo Airways charges a fee of <b>430,000 VND</b> for admin surcharge, applicable to all Bamboo Airways sales channels, including the official website, mobile application, agents and ticket offices.</p>
-            </div>
-            <div className = "relative top-[1rem]">
-                <p className = "text-xl font-bold">4. Airport tax <i>(applicable for adults, children - per segment)</i></p>
-                <p className = "text-lg relative bottom-[0.5rem]">Airport taxes are applied based on the regulations at each airport, as detailed below:</p>
-                <p className = "text-lg relative bottom-[0.5rem] font-bold">4.1. Passenger service charge</p>
-                <ul>
-                    <li className = "text-lg">For airports with the following IATA: <b><i>HAN, SGN, DAD, CXR, HPH, VII, VCA, PQC, DLI, HUI, BMV, VDO</i></b></li>
-                    <div>
-                        <p className = "text-lg relative bottom-[0.5rem]">+Adult: <b>100,000VND</b></p>
-                        <p className = "text-lg relative bottom-[1.5rem]">+Children: <b>50,000VND</b></p>
-                    </div>
-                    <li className = "text-lg relative bottom-[1rem]">For airports with the following IATA: <b><i>THD, VDH, PXU, TBB, VCL, UIH</i></b></li>
-                    <div className = "relative bottom-[1rem]">
-                        <p className = "text-lg relative bottom-[0.5rem]">+Adult: <b>80,000VND</b></p>
-                        <p className = "text-lg relative bottom-[1.5rem]">+Children: <b>40,000VND</b></p>
-                    </div>
-                    <li className = "text-lg relative bottom-[2rem]">For airports with the following IATA: <b><i>VCS, DIN, CAH, VKG</i></b></li>
-                    <div className = "relative bottom-[2rem]">
-                        <p className = "text-lg relative bottom-[0.5rem]">+Adult: <b>60,000VND</b></p>
-                        <p className = "text-lg relative bottom-[1.5rem]">+Children: <b>30,000VND</b></p>
-                    </div>
-                </ul>
+    <div className="text-[#1A4532] px-4 md:px-0 max-w-[75vw] mx-auto space-y-10">
+      {/* Title */}
+      <h2 className="text-3xl font-bold">Tax, Fee & Surcharge</h2>
 
-                <p className = "text-lg relative bottom-[3rem] font-bold">4.2. Passenger and Baggage Security Screening Service Charge</p>
-                <p className = "text-lg relative bottom-[3rem]">Security Screening Service Charge in Vietnam:</p>
-                <ul className = "relative bottom-[3.5rem]">
-                    <li>Adult (above 12 years old): <b>20,000 VND</b></li>
-                    <li>Children (from 2 to 12 years old): <b>10,000 VND</b></li>
-                </ul>
-            </div>
-            <div className = "relative bottom-[1rem]">
-                <p className = "text-xl font-bold">5. Value added tax - VAT <i>(applicable for adults, children - per segment)</i></p>
-                <p className = "text-lg relative bottom-[0.5rem]">Value added tax (VAT) is applied for Bamboo Airways’ domestic flights. This is a tax regulated by the Vietnamese Government. The VAT is <b>10%</b> since 01/01/2024</p>
-                <p className = "text-lg relative bottom-[1rem]">Airfare depends on the time that you book your flight. Any changes requested from you on your itinerary may result in changing price and other surcharges. </p>
-            </div>
+      {/* What is an airline ticket */}
+      <section className="space-y-4">
+        <h3 className="text-2xl font-bold">What is an airline ticket?</h3>
+        <p className="text-lg">
+          An airline ticket is a contract for transportation services between an airline and a passenger, represented in the form of an electronic ticket (all passenger and itinerary information is stored electronically).
+        </p>
+        <p className="text-lg">Information displayed on the electronic ticket includes:</p>
+        <ul className="list-disc pl-6 space-y-1 text-lg">
+          <li>PNR code</li>
+          <li>Passenger information: Passenger name, electronic ticket number, invoice number</li>
+          <li>Itinerary: Departure & return flights, date/time, flight number, baggage allowance</li>
+          <li>Payment: Outbound & return fare, total taxes and fees</li>
+          <li>Important passenger-related airline rules and terms</li>
+        </ul>
+        <p className="text-lg">
+          Passengers can store the PNR code in various forms (text, image, note, email...). At the airport, passengers present the matching booking code with the system’s ticket number. Bamboo Airways will print and deliver the boarding pass.
+        </p>
+      </section>
+
+      {/* Divider */}
+      <hr className="border border-gray-400" />
+
+      {/* What is a boarding pass */}
+      <section className="space-y-4">
+        <h3 className="text-2xl font-bold">What is a boarding pass?</h3>
+        <p className="text-lg">
+          A boarding pass has two parts. One is detached by staff, the other retained by the passenger so the flight attendants can guide them to their seat.
+        </p>
+        <p className="text-lg">
+          It includes: Passenger name, flight number, departure/arrival points, seat number, seat class, date/time, departure gate.
+        </p>
+      </section>
+
+      {/* Divider */}
+      <hr className="border border-gray-400" />
+
+      {/* How is airfare calculated */}
+      <section className="space-y-6">
+        <h3 className="text-2xl font-bold">How is the airfare calculated?</h3>
+        <p className="text-lg">
+          Bamboo Airways' airfare <strong>(domestic routes only)</strong> includes:
+        </p>
+
+        {/* 1. Base fare */}
+        <div className="space-y-2">
+          <h4 className="text-xl font-bold">1. Base fare</h4>
+          <p className="text-lg">
+            Base fare is the charge for transporting passengers between airports, excluding taxes and fees. It depends on your itinerary.
+          </p>
         </div>
+
+        {/* 2. Ticketing fee */}
+        <div className="space-y-2">
+          <h4 className="text-xl font-bold">
+            2. Ticketing fee <i>(per adult/child ticket)</i>
+          </h4>
+          <p className="text-lg">Based on point of departure.</p>
+          <p className="text-lg">
+            For domestic flights from Vietnam, ticketing fee is <strong>55,000 VND</strong> for tickets issued/exchanged from Aug 30, 2023.
+          </p>
+        </div>
+
+        {/* 3. Admin surcharge */}
+        <div className="space-y-2">
+          <h4 className="text-xl font-bold">
+            3. Admin surcharge <i>(per adult/child segment)</i>
+          </h4>
+          <p className="text-lg">Covers admin system costs based on itinerary.</p>
+          <p className="text-lg">
+            Fee: <strong>430,000 VND</strong> — applicable across all sales channels.
+          </p>
+        </div>
+
+        {/* 4. Airport tax */}
+        <div className="space-y-4">
+          <h4 className="text-xl font-bold">
+            4. Airport tax <i>(per adult/child segment)</i>
+          </h4>
+          <p className="text-lg">Applied based on airport regulations:</p>
+
+          <h5 className="font-bold">4.1. Passenger service charge</h5>
+          <ul className="list-disc pl-6 space-y-1 text-lg">
+            <li>
+              <b>IATA: HAN, SGN, DAD, etc.</b><br />
+              Adult: <strong>100,000 VND</strong>, Child: <strong>50,000 VND</strong>
+            </li>
+            <li>
+              <b>IATA: THD, VDH, PXU, etc.</b><br />
+              Adult: <strong>80,000 VND</strong>, Child: <strong>40,000 VND</strong>
+            </li>
+            <li>
+              <b>IATA: VCS, DIN, CAH, etc.</b><br />
+              Adult: <strong>60,000 VND</strong>, Child: <strong>30,000 VND</strong>
+            </li>
+          </ul>
+
+          <h5 className="font-bold mt-4">4.2. Passenger & Baggage Security Screening</h5>
+          <ul className="list-disc pl-6 space-y-1 text-lg">
+            <li>Adult (12+): <strong>20,000 VND</strong></li>
+            <li>Child (2–12): <strong>10,000 VND</strong></li>
+          </ul>
+        </div>
+
+        {/* 5. VAT */}
+        <div className="space-y-2">
+          <h4 className="text-xl font-bold">
+            5. Value Added Tax (VAT) <i>(per adult/child segment)</i>
+          </h4>
+          <p className="text-lg">
+            Domestic flights are subject to VAT as regulated by the Vietnamese government. Current VAT rate is <strong>10%</strong> since Jan 1, 2024.
+          </p>
+          <p className="text-lg">
+            Airfare varies based on booking time. Changes to itinerary may affect total price and surcharges.
+          </p>
+        </div>
+      </section>
     </div>
-  )
-}
+  );
+};
 
-export default BookingTax
+export default BookingTax;

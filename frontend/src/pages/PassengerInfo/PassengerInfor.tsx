@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PassengerForm from "../../components/PassengerForm/PassengerForm";
-import Layout1 from "../../layout/Layout1";
+import LayoutBooking from "../../layout/LayoutBooking";
 import { useNavigate } from "react-router-dom";
-import Layout from "../../layout/Layout";
+import LayoutDefault from "../../layout/LayoutDefault";
 import { SeatClass } from "../../object/enum/SeatClass";
 import { PassengerTitle } from "../../object/enum/PassengerTitle";
 import { useDispatch } from "react-redux";
@@ -31,12 +31,12 @@ const PassengerInfor = () => {
   if (!selectedFlight) {
     return (
       <div>
-        <Layout>
+        <LayoutDefault>
           <div className="text-center text-red-500 text-2xl pt-4">
             No flight has been selected, or the flight details are incomplete.
             <br /> Kindly return and choose your flight to proceed.
           </div>
-        </Layout>
+        </LayoutDefault>
       </div>
     );
   }
@@ -129,7 +129,7 @@ const PassengerInfor = () => {
 
   return (
     <>
-      <Layout1>
+      <LayoutBooking>
         <div className="text-2xl font-bold text-center text-gray-800 mb-6 pt-6">
           Enter Your Information
         </div>
@@ -170,7 +170,7 @@ const PassengerInfor = () => {
             </button>
           </div>
         </div>
-      </Layout1>
+      </LayoutBooking>
     </>
   );
 };

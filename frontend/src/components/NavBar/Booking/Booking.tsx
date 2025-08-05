@@ -1,11 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom"; // Thay <a> bằng Link
 
-type Props = {};
+;
 
-const Explore: React.FC<Props> = () => {
+const Explore = () => {
   return (
-    <div className="relative grid grid-cols-3 pl-8 medium:left-[5vw] medium:grid-cols-3 bg-white small:relative small:grid-cols-3 small:left-[35vw]">
+    <div className="relative grid grid-cols-3 pl-12 medium:left-[5vw] p-4 medium:grid-cols-3 small:relative small:grid-cols-3 small:left-[35vw]">
       {/* Online Booking */}
       <div className = "medium:relative medium:left-[5vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">

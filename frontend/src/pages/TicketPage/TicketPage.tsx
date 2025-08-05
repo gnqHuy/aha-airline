@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import TicketPreview from "../../components/TicketPreview/TicketPreview";
-import headerImage from "../../assets-test/Images/sunset4.jpg";
-import Layout1 from "../../layout/Layout1";
-import Layout from "../../layout/Layout";
+
+import LayoutBooking from "../../layout/LayoutBooking";
+import LayoutDefault from "../../layout/LayoutDefault";
 import { Flight } from "../../object/flight";
-import { getFromRequest } from "../../api/flightAPI";
 import { SeatClass } from "../../object/enum/SeatClass";
 import { Link, useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
@@ -22,31 +21,31 @@ const TicketPage: React.FC = () => {
 
   if (flights == null) {
     return <div>
-            <Layout>
+            <LayoutDefault>
                 <div className="text-center text-red-500 text-2xl pt-4">
                     No flight has been selected, or the flight details are incomplete. <br/> Please return to select your flight.
                 </div>
-            </Layout>
+            </LayoutDefault>
           </div>;
   }
   if ( flightsRound == null && roundTrip ) {
     return <div>
-            <Layout>
+            <LayoutDefault>
                 <div className="text-center text-red-500 text-2xl pt-4">
                     No flight has been selected, or the flight details are incomplete. <br/> Please return to select your flight.
                 </div>
-            </Layout>
+            </LayoutDefault>
           </div>;
   }
 
   if (!isFlightSelected) {
     return (
-      <Layout>
+      <LayoutDefault>
         <div className="text-center text-red-500 text-2xl pt-4">
           No flight has been selected, or the flight details are incomplete.
           <br /> Please return to select your flight.
         </div>
-      </Layout>
+      </LayoutDefault>
     );
   }
 
@@ -86,7 +85,7 @@ const TicketPage: React.FC = () => {
   };
 
   return (
-    <Layout1 headerImage={headerImage}>
+    <LayoutBooking>
       <div className="min-h-screen bg-gray-100">
         <div className="container mx-auto py-6">
           <h1 className="text-3xl font-bold text-center mb-6 ">
@@ -150,7 +149,7 @@ const TicketPage: React.FC = () => {
               </div>   
             )}
       </div>
-    </Layout1>
+    </LayoutBooking>
 
   );
 };

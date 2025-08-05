@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import headerImage from "../../assets-test/Images/sunset4.jpg";
+import { useEffect, useState } from 'react'
+
 import { IoIosAirplane } from "react-icons/io";
-import Layout from '../../layout/Layout';
+import LayoutDefault from '../../layout/LayoutDefault';
 import { useFlightContext } from '../../store/context/FlightContext';
 import { GetByReservationOrTicketCode } from '../../api/ticket';
 
-type Props = {}
-
-const BookManagement = (props: Props) => {
+const BookManagement = () => {
     const [reservations, setReservations] = useState<any[]>([]);
 
     const {manageBookingReservationCode} = useFlightContext();
@@ -27,7 +25,7 @@ const BookManagement = (props: Props) => {
         fetchData();
     }, []);
   return (
-    <Layout headerImage = {headerImage}>
+    <LayoutDefault >
         <div className = "ml-[12vw]">
             <div className = "pt-[1rem]">
                 <p className = "text-ahaGreen-0 font-bold text-2xl">Booking Management</p>
@@ -70,7 +68,7 @@ const BookManagement = (props: Props) => {
                 )
             })}
         </div>
-    </Layout>
+    </LayoutDefault>
   )
 }
 

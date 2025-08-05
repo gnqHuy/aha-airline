@@ -1,164 +1,56 @@
 import React, { useState } from 'react'
-import { IoIosArrowUp } from 'react-icons/io'
 import { Link } from 'react-router-dom'
 import { useFlightContext } from '../../../store/context/FlightContext'
 
 const BookingSectionCheckIn = () => {
-  const [activeOption, setActiveOption] = useState<'reservationCode' | 'eTicket' | 'flyerNumber'>('reservationCode')
-  const [focusReservationCode, setFocusReservationCode] = useState(false)
   const [reservationCode, setReservationCode] = useState('')
-  const [eTicket, setETicket] = useState('')
+  const [isFocused, setIsFocused] = useState(false)
 
-  const { setCheckinReservationCode, setCheckinTicket, setCheckinOption } = useFlightContext()
+  const { setCheckinReservationCode, setCheckinOption } = useFlightContext()
 
-  const setupCheckinReservationCode = () => {
+  const handleCheckIn = () => {
+    if (!reservationCode.trim()) return
+
     setCheckinReservationCode(reservationCode)
-    localStorage.setItem('checkinReservationCode', reservationCode)
     setCheckinOption('reservation')
+    localStorage.setItem('checkinReservationCode', reservationCode)
     localStorage.setItem('checkinOption', 'reservation')
   }
 
-  const setupCheckinTicket = () => {
-    setCheckinTicket(eTicket)
-    localStorage.setItem('checkinTicket', eTicket)
-    setCheckinOption('ticket')
-    localStorage.setItem('checkinOption', 'ticket')
-  }
-
-  const isActive = (option: string) =>
-    activeOption === option
-      ? 'bg-[#1a4532] text-[#ebc94e]'
-      : 'hover:bg-[#1a4532] hover:text-[#ebc94e] transition duration-500'
-
   return (
-    <section className=" shadow-md rounded-xl p-6 mx-auto mb-12">
-      {/* <p className="text-[16px] font-bold text-[#1a4532] mb-2">
-        Web Checkin is available 24 to 1 hour before flight departure
-      </p>
-      <p className="text-[16px] mb-6">
-        Please ensure you input the family name as it appears in your ticket
-      </p> */}
-
-      {/* <div className="flex flex-wrap gap-4 mb-6">
-        <button
-          className={`w-[15rem] h-[2.5rem] rounded-[12px] text-[16px] ${isActive('reservationCode')}`}
-          onClick={() => {
-            setActiveOption('reservationCode')
-            setReservationCode('')
-          }}
-        >
-          Enter your reservation Code
-        </button>
-        <button
-          className={`w-[15rem] h-[2.5rem] rounded-[12px] text-[16px] ${isActive('eTicket')}`}
-          onClick={() => {
-            setActiveOption('eTicket')
-            setETicket('')
-          }}
-        >
-          eTicket Number
-        </button>
-        <button
-          className={`w-[15rem] h-[2.5rem] rounded-[12px] text-[16px] ${isActive('flyerNumber')}`}
-          onClick={() => {
-            setActiveOption('flyerNumber')
-            setReservationCode('')
-          }}
-        >
-          Frequent Flyer Number
-        </button>
-      </div> */}
-
-      {activeOption === 'reservationCode' && (
-        <div className="flex flex-wrap gap-6 items-start">
-          <div className="flex flex-col">
-            <label
-              className={`transition-all duration-300 text-sm ${
-                focusReservationCode ? 'text-[#1a4532] -mb-2' : 'text-gray-500'
-              }`}
-            >
-              Reservation Code
-            </label>
-            <input
-              type="text"
-              className="w-[18rem] border-b border-black bg-transparent outline-none text-sm py-1"
-              onFocus={() => setFocusReservationCode(true)}
-              onBlur={() => reservationCode.length === 0 && setFocusReservationCode(false)}
-              value={reservationCode}
-              onChange={(e) => setReservationCode(e.target.value)}
-            />
-          </div>
-          <Link to="/checkin-management">
-            <button
-              className="w-[9rem] h-[3rem] text-[18px] bg-[#ebc94e] rounded-md"
-              onClick={setupCheckinReservationCode}
-            >
-              CHECK IN
-            </button>
-          </Link>
+    <div className="max-w-2xl mx-auto p-6 rounded-lg shadow-md">
+      <div className="flex flex-col md:flex-row items-end gap-3">
+        <div className="relative w-full md:flex-1">
+          <input
+            type="text"
+            value={reservationCode}
+            onChange={(e) => setReservationCode(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => !reservationCode && setIsFocused(false)}
+            className="w-full border border-gray-300 rounded-2xl px-4 pt-5 pb-2 focus:outline-none"
+          />
+          <label
+            htmlFor="reservationCode"
+            className={`absolute left-3 transition-all pointer-events-none ${
+              isFocused
+                ? 'top-0 text-sm text-ahaAmber-2 font-bold mt-[1px] ml-[1px]'
+                : 'top-3 text-base text-ahaAmber-2 font-bold'
+            }`}
+          >
+            Reservation Code
+          </label>
         </div>
-      )}
 
-        {/* {activeOption === 'eTicket' && (
-          <div className="flex flex-wrap gap-6 items-start">
-            <div className="flex flex-col">
-              <label
-                className={`transition-all duration-300 text-sm ${
-                  focusEticket ? 'text-[#1a4532] -mb-2' : 'text-gray-500'
-                }`}
-              >
-                eTicket
-              </label>
-              <input
-                type="text"
-                className="w-[18rem] border-b border-black bg-transparent outline-none text-sm py-1"
-                onFocus={() => setFocusEticket(true)}
-                onBlur={() => eTicket.length === 0 && setFocusEticket(false)}
-                value={eTicket}
-                onChange={(e) => setETicket(e.target.value)}
-              />
-            </div>
-            <Link to="/checkin-management">
-              <button
-                className="w-[9rem] h-[3rem] text-[18px] bg-[#ebc94e] rounded-md"
-                onClick={setupCheckinTicket}
-              >
-                CHECK IN
-              </button>
-            </Link>
-          </div>
-        )}
-
-        {activeOption === 'flyerNumber' && (
-          <div className="flex flex-wrap gap-6 items-start">
-            <div className="flex flex-col">
-              <label
-                className={`transition-all duration-300 text-sm ${
-                  focusReservationCode ? 'text-[#1a4532] -mb-2' : 'text-gray-500'
-                }`}
-              >
-                Reservation Code
-              </label>
-              <input
-                type="text"
-                className="w-[18rem] border-b border-black bg-transparent outline-none text-sm py-1"
-                onFocus={() => setFocusReservationCode(true)}
-                onBlur={() => reservationCode.length === 0 && setFocusReservationCode(false)}
-                value={reservationCode}
-                onChange={(e) => setReservationCode(e.target.value)}
-              />
-            </div>
-            <Link to="/checkin-management">
-              <button
-                className="w-[9rem] h-[3rem] text-[18px] bg-[#ebc94e] rounded-md"
-                onClick={setupCheckinReservationCode}
-              >
-                CHECK IN
-              </button>
-            </Link>
-          </div>
-        )} */}
-    </section>
+        <Link to="/checkin-management" className="w-full md:w-auto my-auto">
+          <button
+            onClick={handleCheckIn}
+            className="hover:bg-slate-50 hover:text-ahaAmber-2  hover:border-ahaAmber-2 text-sm bg-ahaAmber-2 text-white border-none px-5 py-2 rounded-2xl font-bold" 
+          >
+            Check In
+          </button>
+        </Link>
+      </div>
+    </div>
   )
 }
 

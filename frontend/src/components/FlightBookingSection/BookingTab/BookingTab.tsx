@@ -313,7 +313,7 @@ const BookingTab = () => {
           <div className="text-center">
             <button
               onClick={handleFindFlightClick}
-              className="hover:bg-slate-50 hover:text-ahaAmber-2  hover:border-ahaAmber-2 text-sm bg-ahaAmber-3 text-white border-none px-5 py-2 mb-3 mt-1 rounded-full font-bold"
+              className="hover:bg-slate-50 hover:text-ahaAmber-2  hover:border-ahaAmber-2 text-sm bg-ahaAmber-2 text-white border-none px-5 py-2 mb-3 mt-1 rounded-full font-bold"
             >
               Find Experiences
             </button>

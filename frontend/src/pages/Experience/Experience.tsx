@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
-import Layout from '../../layout/Layout';
+import { useEffect } from 'react';
+import LayoutDefault from '../../layout/LayoutDefault';
 
-type Props = {};
-
-const Experience = (props: Props) => {
+const Experience = () => {
     useEffect(() => {
         const hash = window.location.hash;
         if (hash) {
@@ -14,7 +12,7 @@ const Experience = (props: Props) => {
         }
       }, []);
   return (
-    <Layout>
+    <LayoutDefault>
       <div className="experience-page p-6 max-w-[70%] mx-auto">
         {/* Heading */}
         <h1 className="text-4xl font-bold mb-8 text-center text-ahaAmber-2">Experience Our Airline</h1>
@@ -139,7 +137,7 @@ const Experience = (props: Props) => {
           </p>
         </section>
       </div>
-    </Layout>
+    </LayoutDefault>
   );
 };
 

@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import HeaderImage from '../../assets-test/Images/sunset4.jpg';
-import Layout from '../../layout/Layout';
+import { useEffect, useState } from 'react'
 import { IoIosAirplane } from 'react-icons/io';
+import LayoutDefault from '../../layout/LayoutDefault';
 
-type Props = {}
-
-const YourTicket = (props: Props) => {
+const YourTicket = () => {
     const [reservations, setReservations] = useState<any[]>([]);
 
     useEffect(() => {
@@ -19,7 +16,7 @@ const YourTicket = (props: Props) => {
             }).catch((err) => console.error(err));
         }, []);
   return (
-    <Layout headerImage = {HeaderImage}>
+    <LayoutDefault>
         <div className = "ml-[12vw]">
             <div className = "pt-[1rem]">
                 <p className = "text-2xl font-bold text-ahaGreen-0">Your ticket</p>
@@ -102,7 +99,7 @@ const YourTicket = (props: Props) => {
                 })
             })}
         </div>
-    </Layout>
+    </LayoutDefault>
   )
 }
 

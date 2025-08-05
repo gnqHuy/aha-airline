@@ -4,7 +4,7 @@ import "../../index.css";
 import Explore from "./Explore/Explore";
 import Booking from "./Booking/Booking";
 import TravelInfo from "./TravelInfo/TravelInfo";
-import LoginAvatar from '../../assets-test/Images/sunset3.jpg';
+import LoginAvatar from 'https://aha-airline.s3.ap-southeast-2.amazonaws.com/sunset3.jpg';
 import LoginDropdown from "../LoginDropdown/LoginDropdown";
 import { useAuth } from "../../store/hooks/useAuth";
 
@@ -83,7 +83,7 @@ const NavBar: React.FC<Props> = ({ isDarkText = false }) => {
               Explore
             </Link>
             <div
-              className={`absolute top-[3.1rem] text-left left-[120%] z-10 w-[800px] bg-white transform -translate-x-1/2 transition-transform duration-500 ease-in-out ${
+              className={`absolute top-[3.1rem] text-left left-[120%] z-10 w-[800px] bg-white/95 rounded-3xl transform -translate-x-1/2 transition-transform duration-500 ease-in-out ${
                 dropdownState.Explore
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-5 pointer-events-none"
@@ -111,7 +111,7 @@ const NavBar: React.FC<Props> = ({ isDarkText = false }) => {
               Booking
             </Link>
             <div
-              className={`absolute top-[3.1rem] text-left left-[-10%] z-10 w-[800px] bg-white transform -translate-x-1/2 transition-transform duration-500 ease-in-out ${
+              className={`absolute overflow-hidden rounded-3xl top-[3.1rem] text-left left-[-10%] bg-white/95 z-10 w-[800px] transform -translate-x-1/2 transition-transform duration-500 ease-in-out ${
                 dropdownState.Booking
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-5 pointer-events-none"
@@ -139,7 +139,7 @@ const NavBar: React.FC<Props> = ({ isDarkText = false }) => {
               Travel Info
             </Link>
             <div
-              className={`absolute top-[3.1rem] text-left left-[-130%] z-10 w-[800px] bg-white transform -translate-x-1/2 transition-transform duration-500 ease-in-out ${
+              className={`absolute top-[3.1rem] text-left left-[-130%] z-10 w-[800px] bg-white/95 rounded-3xl transform -translate-x-1/2 transition-transform duration-500 ease-in-out ${
                 dropdownState.TravelInfo
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 -translate-y-5 pointer-events-none"
@@ -150,35 +150,38 @@ const NavBar: React.FC<Props> = ({ isDarkText = false }) => {
           </div>
         </div>
 
-       <div className="items-center mx-auto justify-center mt-[30px] pb-[30px]">
-          {user ? (
-            <div className = "rounded-[50%] w-[2.3rem] h-[2.3rem] border-ahaGreen-0 border-solid border-[3px] font-bold" ref = {dropdownRef}>
-              <div onClick = {() => loginDropdown === true ? setLoginDropdown(false) : setLoginDropdown(true)}>
-                <img src = {LoginAvatar} alt = "" className = "rounded-[50%] w-[2.3rem] h-[2.3rem] hover:cursor-pointer"/>
+      <div className="flex justify-center mt-[30px] pb-[30px]">
+        {user ? (
+          <div className="relative inline-block text-left" ref={dropdownRef}>
+            <button
+              className="text-black bg-ahaGreen-9 px-[0.75rem] pt-[0.25rem] pb-[0.4rem] text-center rounded-2xl font-bold hover:text-ahaAmber-2 no-underline"
+              onClick={() => setLoginDropdown((prev) => !prev)}
+            >
+              My Account
+            </button>
+
+            {loginDropdown && (
+              <div className="absolute right-0 mt-2 z-50">
+                <LoginDropdown
+                  username={user.username}
+                  roles={user.roles}
+                  handleLogout={handleLogout}
+                />
               </div>
-              {loginDropdown === true && 
-                <div className = "absolute z-50 right-[0rem] mr-[13rem] mt-[1.5rem] small:mr-[10vw] medium:mr-[10vw] big:mr-[12vw]">
-                  <LoginDropdown 
-                    username = {user.username}
-                    roles = {user.roles}
-                    handleLogout = {handleLogout}
-                  />
-                </div>
-              }
-            </div> 
-          ) : (
-            <>
-              <Link
-                to="/login"
-                className="text-ahaAmber-1 bg-ahaGreen-9 px-[0.75rem] pt-[0.25rem] pb-[0.4rem] text-center rounded-2xl font-bold hover:text-ahaAmber-2 no-underline"
-              >
-                Log in
-              </Link>
-            </>
-          )}
-        </div>
+            )}
+          </div>
+        ) : (
+          <Link
+            to="/auth"
+            className="text-black bg-ahaGreen-9 px-[0.75rem] pt-[0.25rem] pb-[0.4rem] text-center rounded-2xl font-bold hover:text-ahaAmber-2 no-underline"
+          >
+            Log in
+          </Link>
+        )}
+      </div>
+
       </nav>
-       <div className="absolute bottom-0 top-[85px] left-[2.5%] w-[95%] h-[0.5px] bg-gradient-to-r from-transparent via-white to-transparent" />
+       <div className="absolute bottom-0 top-[85px] left-[2.5%] w-[95%] h-[0.8px] bg-gradient-to-r from-transparent via-white to-transparent" />
     </section>
   );
 };

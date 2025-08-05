@@ -1,11 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
-type Props = {};
-
-const Explore: React.FC<Props> = () => {
+const Explore = () => {
   return (
-    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[5vw] medium:grid-cols-3 bg-white small:relative small:grid-cols-3 small:left-[50vw]">
+    <div className="grid grid-cols-3 pl-12 p-4 medium:relative medium:left-[5vw] medium:grid-cols-3 small:relative small:grid-cols-3 small:left-[50vw]">
       {/* Check-In */}
       <div className = "medium:relative medium:left-[20vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
@@ -48,7 +45,7 @@ const Explore: React.FC<Props> = () => {
       <div className = "medium:relative medium:left-[13vw] small:relative small:right-[20vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
-            href="/travel-info/baggageinfo"
+            href="/travel-info/baggage-info"
             className="text-ahaAmber-2 no-underline hover:opacity-80 transition-opacity"
           >
             Baggage Info
@@ -57,7 +54,7 @@ const Explore: React.FC<Props> = () => {
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
             <a
-              href="/travel-info/baggageinfo#carry-on"
+              href="/travel-info/baggage-info#carry-on"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Carry-On Baggage
@@ -65,7 +62,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li className="mb-4">
             <Link
-              to="/travel-info/baggageinfo#excess"
+              to="/travel-info/baggage-info#excess"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Excess Baggage
@@ -73,7 +70,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li>
             <Link
-              to="/travel-info/baggageinfo#special"
+              to="/travel-info/baggage-info#special"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Special Baggage
@@ -86,7 +83,7 @@ const Explore: React.FC<Props> = () => {
       <div className = "medium:relative medium:left-[10vw] small:relative small:right-[40vw]">
         <h2 className="mb-5 text-sm font-semibold uppercase">
           <a
-            href="/travel-info/traveldocument"
+            href="/travel-info/travel-document"
             className="text-ahaAmber-2 no-underline hover:opacity-80 transition-opacity"
           >
             Travel Document
@@ -95,7 +92,7 @@ const Explore: React.FC<Props> = () => {
         <ul className="font-medium text-sm list-none p-0 leading-relaxed">
           <li className="mb-4">
             <Link
-              to="/travel-info/traveldocument#passport"
+              to="/travel-info/travel-document#passport"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Passport Requirements
@@ -103,7 +100,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li className="mb-4">
             <Link
-              to="/travel-info/traveldocument#visa"
+              to="/travel-info/travel-document#visa"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Visa Information
@@ -111,7 +108,7 @@ const Explore: React.FC<Props> = () => {
           </li>
           <li>
             <Link
-              to="/travel-info/traveldocument#health-vaccination"
+              to="/travel-info/travel-document#health-vaccination"
               className="text-black no-underline hover:opacity-80 transition-opacity"
             >
               Health & Vaccination

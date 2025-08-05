@@ -1,5 +1,4 @@
 import React from 'react';
-import AirplaneIcon from '../../../../assets-test/Images/airplaneIcon.png';
 
 interface Props {
   handleSetupDisplaySuggestionTo: () => void;
@@ -37,11 +36,6 @@ const BookingFlightSuggestionTo: React.FC<Props> = ({
               </div>
 
               <div className="flex items-center gap-2 ml-4">
-                <img
-                  src={AirplaneIcon}
-                  alt="Airplane"
-                  className="w-6 h-6"
-                />
                 <div className="bg-[#1A4532] px-2 py-1 rounded">
                   <p className="text-[#ebc94e] text-sm font-semibold">
                     {airport.iata}

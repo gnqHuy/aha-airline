@@ -1,12 +1,9 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaPlane, FaCity, FaPlaneDeparture } from "react-icons/fa";
 import { MdOutlineConnectingAirports } from "react-icons/md";
 import { TbBuildingAirport } from "react-icons/tb";
 
-type Props = {};
-
-const SideBar: React.FC<Props> = () => {
+const SideBar = () => {
   return (
     <nav className="h-full w-50 bg-white shadow-lg flex flex-col">
       <NavLink to={"/"} className="text-3xl font-bold text-ahaAmber-2 p-5 no-underline">

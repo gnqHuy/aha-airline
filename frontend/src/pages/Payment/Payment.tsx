@@ -1,27 +1,24 @@
-import React, { useEffect, useState } from "react";
-import Layout1 from "../../layout/Layout1";
+import LayoutBooking from "../../layout/LayoutBooking";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import ElectronicTicket from "../../components/ElectronicTicket/ElectronicTicket";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
-import Layout from "../../layout/Layout";
+import LayoutDefault from "../../layout/LayoutDefault";
 import { useBookingTicket } from "../../store/hooks/useBookingTicket";
 
-type Props = {};
-
-const Payment: React.FC<Props> = () => {
+const Payment = () => {
   const { responseTicketData, responseTicketData1, flightTickets, roundTrip, flightTicketsRound, createTickets } = useBookingTicket();
   const navigate = useNavigate();
 
   if (!flightTickets || flightTickets.tickets.length === 0) {
     return (
-      <Layout>
+      <LayoutDefault>
         <div className="text-center text-red-500 text-2xl pt-4">
           No flight has been selected, or the flight details are incomplete.
           <br /> Kindly return and choose your flight to proceed.
         </div>
-      </Layout>
+      </LayoutDefault>
     );
   }
 
@@ -69,7 +66,7 @@ const Payment: React.FC<Props> = () => {
   };
 
   return (
-    <Layout1>
+    <LayoutBooking>
       <h1 className="text-2xl font-bold text-center text-gray-800 mb-6 mt-0 pt-4">
         Check Your Ticket's Information
       </h1>
@@ -100,7 +97,7 @@ const Payment: React.FC<Props> = () => {
           Confirm and Print Ticket
         </button>
       </div>
-    </Layout1>
+    </LayoutBooking>
   );
 };
 

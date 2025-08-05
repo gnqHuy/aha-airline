@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import Layout from "../../layout/Layout";
-import citiesData from "../../assets-test/Json/cities.json";
+import LayoutDefault from "../../layout/LayoutDefault";
+import citiesData from "../../assets/Json/cities.json";
 import FlightTable from "../../components/FlightTable/FlightTable";
 import CurrencyExchange from "../../components/CurrencyExchange/CurrencyExchange";
 import GenericCard from "../../components/GenericCard/GenericCard";
@@ -41,7 +41,7 @@ const CityInfo: React.FC = () => {
     location.pathname.replace(nameCity || "", cityName.toLowerCase());
 
   return (
-    <Layout>
+    <LayoutDefault>
       <div className="w-[70%] mx-auto pt-10 pb-16">
         {cityInfo ? (
           <>
@@ -77,7 +77,7 @@ const CityInfo: React.FC = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </LayoutDefault>
   );
 };
 

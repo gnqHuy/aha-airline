@@ -3,11 +3,10 @@ import { AddTickets } from "../../api/ticket";
 import { RootState } from "../store";
 import {
     createTicketsSagaRequest,
-  setFlightTicketsId,
-  setFlightTicketsRoundId,
   setResponseTicketData,
   setResponseTicketData1,
 } from "../slice/bookingSlice";
+
 function* handleCreateTicketsSaga(action: any): any {
   try {
     const { userId } = action.payload;

@@ -19,11 +19,22 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    loginRequest: (state, _action: PayloadAction<{ usernameOrEmail: string; password: string }>) => {
+    loginRequest: (
+      state,
+      _action: PayloadAction<{
+        usernameOrEmail: string;
+        password: string;
+        onSuccess?: () => void;
+        onError?: (errorMsg: string) => void;
+      }>
+    ) => {
       state.loading = true;
       state.error = null;
     },
-    loginSuccess: (state, action: PayloadAction<{ user: UserStore; accessToken: string }>) => {
+    loginSuccess: (
+      state,
+      action: PayloadAction<{ user: UserStore; accessToken: string }>
+    ) => {
       state.user = action.payload.user;
       state.accessToken = action.payload.accessToken;
       state.loading = false;
@@ -32,7 +43,19 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    registerRequest: (state, _action: PayloadAction<any>) => {
+
+    registerRequest: (
+      state,
+      _action: PayloadAction<{
+        username: string;
+        email: string;
+        password: string;
+        firstName: string;
+        lastName: string;
+        onSuccess?: () => void;
+        onError?: (errorMsg: string) => void;
+      }>
+    ) => {
       state.loading = true;
       state.error = null;
     },
@@ -43,6 +66,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+
     logout: (state) => {
       state.user = null;
       state.accessToken = null;

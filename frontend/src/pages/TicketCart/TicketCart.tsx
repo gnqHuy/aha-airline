@@ -1,8 +1,8 @@
 import TicketPreview from '../../components/TicketPreview/TicketPreview';
 import { useNavigate } from 'react-router-dom';
-import Layout1 from '../../layout/Layout1';
+import LayoutBooking from '../../layout/LayoutBooking';
 import { SeatClass } from '../../object/enum/SeatClass';
-import Layout from '../../layout/Layout';
+import LayoutDefault from '../../layout/LayoutDefault';
 import { useBookingTicket } from '../../store/hooks/useBookingTicket';
 
 const TicketCard = () => {
@@ -19,11 +19,11 @@ const TicketCard = () => {
   if (!selectedFlight && !selectedFlightRound) {
     return (
       <div>
-        <Layout>
+        <LayoutDefault>
           <div className="text-center text-red-500 text-2xl pt-4">
             No flight has been selected, or the flight details are incomplete. <br /> Please return to select your flight.
           </div>
-        </Layout>
+        </LayoutDefault>
       </div>
     );
   }
@@ -52,7 +52,7 @@ const TicketCard = () => {
   }
 
   return (
-    <Layout1>
+    <LayoutBooking>
       <div className="text-3xl font-bold text-center text-gray-800 mb-6 pt-6">Your Ticket</div>
       
       {/* Display selected flight and class */}
@@ -84,7 +84,7 @@ const TicketCard = () => {
           Confirm and continue
         </button>
       </div>
-    </Layout1>
+    </LayoutBooking>
   );
 };
 

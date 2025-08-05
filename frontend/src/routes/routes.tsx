@@ -20,8 +20,7 @@ import TicketCard from "../pages/TicketCart/TicketCart";
 import PassengerInfor from "../pages/PassengerInfo/PassengerInfor";
 import Payment from "../pages/Payment/Payment";
 import AboutUs from "../pages/AboutUs/AboutUs";
-import LoginPage from "../pages/LoginPage/LoginPage";
-import Register from "../pages/RegisterPage/Register";
+import LoginPage from "../pages/AuthPage/AuthPage";
 import Admin from "../pages/Admin/Admin";
 import Aircrafts from "../pages/Admin/Aircrafts/Aircrafts";
 import Airports from "../pages/Admin/Airports/Airports";
@@ -61,8 +60,8 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <ScrollLayout><TravelInfo /></ScrollLayout> },
       { path: "check-in", element: <ScrollLayout><TravelInfoCheckIn /></ScrollLayout> },
-      { path: "baggageinfo", element: <ScrollLayout><BaggageInfo /></ScrollLayout> },
-      { path: "traveldocument", element: <ScrollLayout><TravelDocument /></ScrollLayout> },
+      { path: "baggage-info", element: <ScrollLayout><BaggageInfo /></ScrollLayout> },
+      { path: "travel-document", element: <ScrollLayout><TravelDocument /></ScrollLayout> },
     ],
   },
   {
@@ -79,12 +78,8 @@ export const router = createBrowserRouter([
     element: <ScrollLayout><AboutUs /></ScrollLayout>,
   },
   {
-    path: "/login",
+    path: "/auth",
     element: <ScrollLayout><LoginPage /></ScrollLayout>,
-  },
-  {
-    path: "/sign-up",
-    element: <ScrollLayout><Register /></ScrollLayout>,
   },
   {
     path: "/admin",

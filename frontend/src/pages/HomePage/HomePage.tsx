@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { resetFlightData, setRoundTrip } from "../../store/slice/flightSlice";
 import { resetBooking } from "../../store/slice/bookingSlice";
 import { resetPassengers } from "../../store/slice/passengerSlice";
-import LayoutDefault from "../../layout/LayoutDefault";
+import LayoutDefault from "../../layout/LayoutLandingPage";
 import FlightBookingSection from "../../components/FlightBookingSection/FlightBookingSection";
 // In your main layout or App.jsx
 
@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <LayoutDefault>
-        <FlightBookingSection/> 
+        <FlightBookingSection /> 
         <FlightPreview />
       </LayoutDefault>
     </>

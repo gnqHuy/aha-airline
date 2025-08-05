@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Layout from "../../layout/Layout";
-import offersData from "../../assets-test/Json/offers.json";
+import LayoutDefault from "../../layout/LayoutDefault";
+import offersData from "../../assets/Json/offers.json";
 
 const Offer: React.FC = () => {
   const firstColumnOffers = offersData.slice(0, 5);
@@ -17,7 +17,7 @@ const Offer: React.FC = () => {
   }, []);
 
   return (
-    <Layout>
+    <LayoutDefault>
       <div className="w-[70%] mx-auto pt-4">
         <h1 className="text-4xl text-center font-semibold text-ahaAmber-2 mb-6">Offers</h1>
 
@@ -51,7 +51,7 @@ const Offer: React.FC = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </LayoutDefault>
   );
 };
 

@@ -1,11 +1,8 @@
-import React from 'react';
-import Layout from '../../layout/Layout';
+import LayoutDefault from '../../layout/LayoutDefault';
 
-type Props = {}
-
-const AboutUs = (props: Props) => {
+const AboutUs = () => {
   return (
-    <Layout>
+    <LayoutDefault>
       <div className="max-w-screen-lg mx-auto p-6">
         <h1 className="text-4xl font-bold text-center text-ahaAmber-2 mb-8">About Us</h1>
 
@@ -74,7 +71,7 @@ const AboutUs = (props: Props) => {
           </ul>
         </section>
       </div>
-    </Layout>
+    </LayoutDefault>
   );
 };
 

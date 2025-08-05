@@ -5,7 +5,7 @@ import { Airport } from "../../../object/airport";
 import { useAirports } from "../../../store/hooks/useAirports";
 
 const Airports: React.FC = () => {
-  const { airports, loading, error, refetch, setAirports } = useAirports();
+  const { airports, loading, error, setAirports } = useAirports();
 
   const [newAirport, setNewAirport] = useState<Airport>({
     iata: "",

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Layout from "../../layout/Layout";
+import LayoutDefault from "../../layout/LayoutDefault";
 import GenericCard from "../../components/GenericCard/GenericCard";
 
 const getImage = (city: string) =>
@@ -17,7 +17,7 @@ const Destination: React.FC = () => {
   }, []);
 
   return (
-    <Layout>
+    <LayoutDefault>
       <div id="asia" className="pt-4">
         <div className="w-[1016px] mx-[16vw]">
           <p className="text-3xl text-ahaAmber-2 font-bold">Asia</p>
@@ -80,7 +80,7 @@ const Destination: React.FC = () => {
           </div>
         </div>
       </div>
-    </Layout>
+    </LayoutDefault>
   );
 };
 

@@ -40,8 +40,9 @@ const FlightBookingSection = () => {
   };
 
   return (
-    <>
-      <div className="absolute bg-white bg-opacity-50 left-[35%] top-[75%] rounded-3xl mx-auto -translate-y-full overflow-visible backdrop-blur-sm shadow-lg">
+    <div className="flex justify-center min-h-[65vh]">
+      <div className="bg-white/50 h-fit min-w-[55vh] rounded-3xl shadow-lg ">
+        {/* Tabs */}
         <div className="flex justify-center bg-white p-1 mb-3 rounded-full">
           <button className={buttonClass("book")} onClick={() => setActiveTab("book")}>
             Book Flight
@@ -53,11 +54,13 @@ const FlightBookingSection = () => {
             Check-In
           </button>
         </div>
+
+        {/* Nội dung tab */}
         <div className="mx-auto px-5">
           {renderTabContent()}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

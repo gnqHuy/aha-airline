@@ -1,99 +1,138 @@
-import React from 'react'
-import Layout from '../../../layout/Layout'
+import LayoutDefault from '../../../layout/LayoutDefault';
 
-type Props = {}
-
-const TravelDocument = (props: Props) => {
+const TravelDocument = () => {
   return (
-    <Layout>
-        <div className = "relative overflow-x-clip overflow-y-auto mb-20 bottom-[0rem]">
-            <p className="text-3xl text-ahaAmber-2 font-bold relative left-[12vw] top-[3rem] my-0">Travel Document</p>
-            {/* identification documents */}
-            <div className = "relative left-[12vw] top-[3rem] w-[75vw]">
-                <p className = "text-3xl text-ahaGreen-0 font-bold">Identification Documents and Visa</p>
-                <p className = "text-lg relative bottom-[1rem]">Passengers are required to to present forms of identifications documents at check-in.</p>
-                <p className = "text-lg relative bottom-[2rem]">(Pursuant to Appendix VII - Personal information when traveling by air; Identification documents, tickets, boarding passes, issued together with Circular 42/2023/TT-BGTVT dated December 29, 2023 of the Minister of Transport).</p>
-                <p className = "text-2xl font-bold text-ahaGreen-0 relative bottom-[1rem]">1. Passenger travelling on international flights must have the following identification types:</p>
-                <p className = "text-lg relative bottom-[2rem]">- A valid passport, or </p>
-                <p className = "text-lg relative bottom-[3rem]">- A valid travel document, or </p>
-                <p className = "text-lg relative bottom-[4rem]">- Other documents that are valid for entry and exit as prescribed by law such as separate visa, permanent residence card, temporary residence card, citizen’s identity card (if Vietnam and the relevant country sign the treaty or international agreement allowed citizens of a signatory country to use citizenship identification cards instead of using passports in each other’s territories) </p>
-                <p className = "text-lg relative bottom-[5rem]">- Children and infants without a passport: full names, date of birth and portrait picture with stamp have to be available in the travel document of the legal representative (father, mother, adoptive father, adoptive mother or guardian) </p>
+    <LayoutDefault>
+      <div className="overflow-x-clip overflow-y-auto bg-slate-50 pb-20">
+        <div className="w-[75vw] mx-auto mt-10">
+          <h1 className="text-3xl text-ahaAmber-2 font-bold mb-10">Travel Document</h1>
 
-                <p className = "text-2xl font-bold text-ahaGreen-0 relative bottom-[3rem]">2. Passengers under 14 years old (Children/Infants) without a passport or with a parent’s passport when checking in for domestic flights need one of the following identification types:</p>
-                <p className = "text-xl font-bold relative bottom-[3rem]">2.1. Vietnamese nationals</p>
-                <p className = "text-lg relative bottom-[3rem]">– Passport or Travel Document, separate visa, permanent residence card, temporary residence card, identity card, citizen’s identity card;</p>
-                <p className = "text-lg relative bottom-[3rem]">– Identity cards and certificates of the People's Public Security, People's Army; Identity cards and certificates of the People's Public Security are specified in the Government's Decree No. 59/2008/ND-CP of May 8, 2008; Circular No. 13/2008/TT-BCA dated August 29, 2008 of the Ministry of Public Security such as: Identity card of the People's Public Security issued to the People's Public Security officers and non-commissioned officers who are on active service in the public force people's security according to professional regime; Limited-term certificates for non-commissioned officers and soldiers; workers, employees; Temporary recruiting staff who are serving in the People's Public Security force. Identification and certification of the People's Army is specified in Decree No. 130/2008/ND-CP dated December 19, 2008; Decree No. 59/2016/ND-CP dated July 1, 2016 of the Government, Circular No. 218/2016/TT-BQP dated December 27, 2016 of the Ministry of National Defense such as: People's Army officer card; Proof of professional servicemen, workers and defense officers; Cards of non-commissioned officers and soldiers in active service; Reserve officer card; Professional military service cards, non-commissioned officers and reserve soldier. </p>
-                <p className = "text-lg relative bottom-[3rem]">– Nation Assembly deputies card </p>
-                <p className = "text-lg relative bottom-[3rem]">- Communist Party of Vietnam membership card; </p>
-                <p className = "text-lg relative bottom-[3rem]">– Journalist Card issued by the Ministry of Information and Communication is regulated in Circular No. 49/2016/TT-BTTTT date December 26, 2016 of the Ministry of Information and Communications </p>
-                <p className = "text-lg relative bottom-[3rem]">– Car, motorbike driving license issued by Vietnam; Note that IDP license issued by Vietnam is not valid for domestic use according to the provision of Circular No. 29/2015/TT-BGTVT dated July 6, 2015 issued by the Ministry of Transport.  </p>
-                <p className = "text-lg relative bottom-[3rem]">– Aviation Security control card with long-term use  </p>
-                <p className = "text-xl font-bold relative bottom-[3rem]">2.2. Vietnamese passengers aged 14 to 20 days over 14 years old can use the same types of travel documents as passengers under 14 years old.</p>
-                <p className = "text-xl font-bold relative bottom-[3rem]">2.3. Non – Vietnamese nationalities </p>
-                <p className = "text-lg relative bottom-[3rem]">– Passport (with the most recent entry verification stamp) or international travel documents (with the most recent entry verification stamp) and documents related to residence in Vietnam (visa, permanent residence card, temporary residence card, APEC Business Travel Card), except for cases exempted from visa requirements; <br/>– Diplomatic identification card issued by the Ministry of Foreign Affairs to members of diplomatic, consular offices and representative offices of international organizations;  <br/>– Driving license (car, motorbike) of Vietnam. In case of using a foreign driving license, you have to carry an international driving permit (IDP) and a national driving license issued to the passenger in compliance with the provision of Circular No. 29/2015 / TT -BGTVT dated 6/7/2015 by the Ministry of Transport.  <br/>– Aviation Security control card with long-term use <br/>– AHA Airlines Identity card;  <br/>– Level 2 electronic identification account of the passenger <br/>– In case passport loss, a diplomatic note from the diplomatic mission or consulate of the host country bearing the nationality or official letter of the foreign affairs or police office of the locality where the loss of personal identity and Passport with portrait pictures and stamp is required. Diplomatic note is valid within 30 days since the date of confirmation. </p>
+          {/* Identification Documents */}
+          <section id="identification-documents" className="mb-20">
+            <h2 className="text-3xl text-ahaGreen-0 font-bold mb-4">Identification Documents and Visa</h2>
+            <p className="text-lg mb-2">
+              Passengers are required to present forms of identifications documents at check-in.
+            </p>
+            <p className="text-lg mb-6">
+              (Pursuant to Appendix VII - Personal information when traveling by air; Identification documents, tickets, boarding passes, issued together with Circular 42/2023/TT-BGTVT dated December 29, 2023 of the Minister of Transport).
+            </p>
 
-                <p className = "text-2xl font-bold text-ahaGreen-0 relative bottom-[1rem]">3. Passengers under 14 years of age when checking in for domestic flights need one of the following identification types: </p>
-                <p className = "text-lg relative bottom-[1rem]">– Birth Certificate, civil status extract; birth certificate extract (birth information extract); civil status information confirmation document; Birth Certifying Form (for infants under 02 months old without a birth certificate); Level 2 electronic identification account of the passenger; passenger’s personal information in the Level 2 electronic identification account of the accompanying parent or guardian on the same flight. <br/>– Certifying form by a social organization for children under the patronage of that organization. This certifying form shall be valid within 6 months since the date of confirmation.  <br/>– Identity confirmation document certified by the police (the confirmation document must include the following information: certifying authority, certifying person; date of certification; full name, date of birth, gender, permanent residence of the certified person; reason for certification. The confirmation document is valid for 30 days from the date of certification). <br/>– Citizen’s identity card, identity card, passport (separate passport or included in the parent's passport). <br/>– In case a child does not have a separate passport: accept the passport of the legal representative (father, mother, adoptive father, adoptive mother or guardian) of that child containing the following information: child’s name, date of birth and photo. There is no need for a legal representative to accompany the child to check-in. </p>
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-2xl font-bold text-ahaGreen-0">1. International Flights</h3>
+                <ul className="list-disc pl-5 text-lg">
+                  <li>A valid passport</li>
+                  <li>A valid travel document</li>
+                  <li>Other documents valid for entry/exit like visa, residence card, or citizen ID if allowed</li>
+                  <li>Children/infants: must be listed with photo in the passport of their legal representative</li>
+                </ul>
+              </div>
 
-                <p className = "text-2xl font-bold text-ahaGreen-0 relative top-[1rem] my-0">4. Passengers who are criminals, suspects, being relocated, extradited or expelled at processing the flight procedures only need documents issued by the competent authority to prove as the escort; The escort passenger presents the documents specified in section 1 and 2.  </p>
+              <div>
+                <h3 className="text-2xl font-bold text-ahaGreen-0 mt-8">2. Domestic Flights</h3>
+
+                <h4 className="text-xl font-bold mt-4">2.1. Vietnamese Nationals (Under 14 years old)</h4>
+                <ul className="list-disc pl-5 text-lg">
+                  <li>Passport, visa, ID card, residence card</li>
+                  <li>Police/army ID cards</li>
+                  <li>National Assembly or Communist Party membership card</li>
+                  <li>Journalist card, driving license</li>
+                  <li>Airport security ID card</li>
+                </ul>
+
+                <h4 className="text-xl font-bold mt-4">2.2. Vietnamese from 14 to 20 days over 14</h4>
+                <p className="text-lg">Same as above</p>
+
+                <h4 className="text-xl font-bold mt-4">2.3. Foreign Nationals</h4>
+                <ul className="list-disc pl-5 text-lg space-y-2">
+                  <li>Passport with recent entry stamp</li>
+                  <li>Diplomatic card from Ministry of Foreign Affairs</li>
+                  <li>Vietnamese driving license (or international license + national one)</li>
+                  <li>Airport security card</li>
+                  <li>AHA Airlines identity card</li>
+                  <li>Level 2 electronic identification account</li>
+                  <li>
+                    In case of passport loss: diplomatic note or police confirmation with photo and stamp (valid for 30 days)
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-ahaGreen-0 mt-8">3. Domestic Flights for Under 14s</h3>
+                <ul className="list-disc pl-5 text-lg space-y-2">
+                  <li>Birth certificate, civil status extract, Level 2 e-ID</li>
+                  <li>Certifying form from social organization (valid within 6 months)</li>
+                  <li>Police confirmation letter (valid 30 days)</li>
+                  <li>ID card, passport (separate or with parent)</li>
+                  <li>
+                    If included in parent’s passport: must show child’s name, date of birth, and photo (no need for parent to accompany)
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-bold text-ahaGreen-0 mt-8">4. Criminals/Suspects</h3>
+                <p className="text-lg">
+                  Required: document proving escort status issued by competent authority. Escort must present identification in section 1 & 2.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Health Status */}
+          <section id="health">
+            <h2 className="text-3xl text-ahaGreen-0 font-bold mb-6">Health status confirmation requirements</h2>
+
+            {/* Table Header */}
+            <div className="flex bg-ahaAmber-2 font-bold text-center">
+              <div className="w-[15rem] border border-white py-2">Health Condition</div>
+              <div className="w-[15rem] border border-white py-2">You can fly if:</div>
+              <div className="w-[40rem] border border-white py-2">Recommendation</div>
             </div>
 
-            {/* health */}
-            <div className = "left-[12vw] w-[73vw] relative mb-20 top-[5rem]">
-                <p className = "text-3xl text-ahaGreen-0 font-bold ">Health status confirmation requirements</p>
-                <div>
-                    <div className = "flex bg-ahaAmber-2">
-                        <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative">Health Condition</p>
-                        </div>
-                        <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative">You can fly if:</p>
-                        </div>
-                        <div className = "w-[40rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative">Recommendation</p>
-                        </div>
-                    </div>
-
-                    <div className = "flex bg-[#1A4532] text-ahaAmber-2 h-[7rem]">
-                        <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative top-[1rem] small:text-[13px] medium:text-[14px]">Asthma, Bronchitis, and Chest-related Conditions </p>
-                        </div>
-                        <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative top-[1rem] small:text-[13px]">The condition is well-controlled</p>
-                        </div>
-                        <div className = "w-[40rem] border-white border-solid border-x-[1px] border-y-[1px] font-bold">
-                            <p className = "relative left-[0.5rem] bottom-[0.2rem] small:text-[11px] medium:text-[12px]">Carry your usual inhaler.<br/>Seek medical advice if you experience wheezing before flying.<br/>Consult your doctor if you have difficulty breathing even at rest, cannot walk 50 meters, or climb two flights of stairs without experiencing shortness of breath.</p>
-                        </div>
-                    </div>
-
-                    <div className = "flex bg-[#2e8599] text-ahaAmber-2 h-[8rem]">
-                        <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative top-[2.5rem]">Heart Conditions </p>
-                        </div>
-                        <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative top-[0.5rem] small:text-[13px] small:top-[-0.8rem] medium:text-[14px] medium:top-[-0.5rem]">You can climb two flights of stairs without any issues.<br/>High blood pressure is well-controlled.</p>
-                        </div>
-                        <div className = "w-[40rem] border-white border-solid border-x-[1px] border-y-[1px] font-bold">
-                            <p className = "relative left-[0.5rem] bottom-[0.3rem] small:text-[11px] medium:text-[12px]">You have recently experienced a heart attack.<br/>If you frequently experience chest pain (typically characterized by chest discomfort) during flights, you are at twice the risk of experiencing high-altitude chest pain compared to being on the ground. Consult a doctor before flying and ensure you have enough medication to relieve chest pain.</p>
-                        </div>
-                    </div>
-
-                    <div className = "flex bg-[#1A4532] text-ahaAmber-2 h-[10rem]">
-                        <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative top-[3.5rem]">Diabetes Management</p>
-                        </div>
-                        <div className = "w-[15rem] border-white border-solid border-x-[1px] border-y-[1px] text-center font-bold">
-                            <p className = "relative top-[3.5rem] small:top-[2.5rem]">The disease is well controlled.</p>
-                        </div>
-                        <div className = "w-[40rem] border-white border-solid border-x-[1px] border-y-[1px] font-bold">
-                            <p className = "relative left-[0.5rem] bottom-[-0.2rem] small:text-[11px] medium:text-[12px]">Order special meals when booking your ticket.<br/>Take insulin and eat on time.<br/>People with diabetes often struggle to adapt to meal schedules and medication across multiple time zones. It is advisable to maintain your routine like at home throughout your journey and only adjust it to local time when you arrive at your destination.</p>
-                        </div>
-                    </div>
-                </div>
+            {/* Asthma */}
+            <div className="flex bg-[#1A4532] text-ahaAmber-2 text-sm">
+              <div className="w-[15rem] border border-white p-3 font-bold">
+                Asthma, Bronchitis, and Chest-related Conditions
+              </div>
+              <div className="w-[15rem] border border-white p-3">
+                The condition is well-controlled
+              </div>
+              <div className="w-[40rem] border border-white p-3">
+                Carry your usual inhaler. Seek medical advice if wheezing. If breathless at rest, consult a doctor before flying.
+              </div>
             </div>
+
+            {/* Heart */}
+            <div className="flex bg-[#2e8599] text-ahaAmber-2 text-sm">
+              <div className="w-[15rem] border border-white p-3 font-bold">
+                Heart Conditions
+              </div>
+              <div className="w-[15rem] border border-white p-3">
+                Can climb stairs without issue. Blood pressure controlled.
+              </div>
+              <div className="w-[40rem] border border-white p-3">
+                Recently had a heart attack or chest pain during flight? Consult a doctor and bring medications.
+              </div>
+            </div>
+
+            {/* Diabetes */}
+            <div className="flex bg-[#1A4532] text-ahaAmber-2 text-sm">
+              <div className="w-[15rem] border border-white p-3 font-bold">
+                Diabetes Management
+              </div>
+              <div className="w-[15rem] border border-white p-3">
+                Condition is well-controlled.
+              </div>
+              <div className="w-[40rem] border border-white p-3">
+                Order special meals. Maintain insulin and meal routine. Adjust schedule only upon destination arrival.
+              </div>
+            </div>
+          </section>
         </div>
-    </Layout>
-  )
-}
+      </div>
+    </LayoutDefault>
+  );
+};
 
-export default TravelDocument
+export default TravelDocument;

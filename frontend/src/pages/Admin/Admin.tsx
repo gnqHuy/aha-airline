@@ -2,9 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import SideBar from "./SideBar/SideBar";
 
-type Props = {};
-
-const Admin: React.FC<Props> = () => {
+const Admin = () => {
   return (
     <div className="flex h-screen overflow-hidden">
       <SideBar />

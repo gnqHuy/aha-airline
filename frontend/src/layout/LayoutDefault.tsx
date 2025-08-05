@@ -1,33 +1,29 @@
-import React from 'react'
-import NavBar from '../components/NavBar/NavBar'
-import Footer from '../components/Footer/Footer'
-import image1 from "../assets-test/Images/green2-long.jpg";
+// src/layout/Layout.tsx
 
-type Props = {
-    children: React.ReactNode;
-}
+import React from "react";
+import NavBar from "../components/NavBar/NavBar";
+import Footer from "../components/Footer/Footer";
+import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 
-const LayoutDefault: React.FC<Props> = ({ children }) => {
+type LayoutDefaultProps = {
+  children: React.ReactNode;
+};
+
+const LayoutDefault: React.FC<LayoutDefaultProps> = ({ children }) => {
   return (
-    <div
-      style={{
-        backgroundImage: `url(${image1})`,
-        backgroundSize:'cover'
-      }}
-    >
-      <section
-          className="relative w-full h-screen bg-cover"
-        >
-          <NavBar />
-          <div className="text-white text-center font-semibold text-3xl my-20">
-            Hello!  
-          </div>
-      </section>
-      {/* <NavBar /> */}
-      <main className="min-h-screen w-[80%] mx-auto">{children}</main>
-      <Footer isLandingPage={true}/>
-    </div>
-  )
-}
+    <>
+      <NavBar isDarkText={true} />
+      <div className="bg-white">
+        <img src={`https://aha-airline.s3.ap-southeast-2.amazonaws.com/sunset4.jpg`} alt="Header" className="w-full h-[300px] object-cover object-center" />
+        <Breadcrumbs />
+      </div>
 
-export default LayoutDefault
+      <main className="min-h-screen py-4 bg-slate-50">{children}</main>
+
+      <Breadcrumbs />
+      <Footer isLandingPage={false} />
+    </>
+  );
+};
+
+export default LayoutDefault;

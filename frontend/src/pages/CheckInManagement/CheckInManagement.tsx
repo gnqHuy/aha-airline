@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import headerImage from "../../assets-test/Images/sunset4.jpg";
+import { useEffect, useState } from 'react'
+
 import { IoIosAirplane } from "react-icons/io";
-import Layout from '../../layout/Layout';
+import LayoutDefault from '../../layout/LayoutDefault';
 import { CancelTicketByCode, GetByReservationOrTicketCode, UpgradeSeatByCode } from '../../api/ticket';
 import { useFlightContext } from '../../store/context/FlightContext';
 import { SeatClass } from '../../object/enum/SeatClass';
 import { Ticket } from '../../object/ticket';
 import { useSnackbar } from 'notistack';
 
-type Props = {}
-
-const CheckInManagement = (props: Props) => {
+const CheckInManagement = () => {
     const [reservations, setReservations] = useState<Ticket[]>([]);
 
     const [displayOption, setDisplayOption] = useState<boolean>(false);
@@ -73,7 +71,7 @@ const CheckInManagement = (props: Props) => {
         }
     }
   return (
-    <Layout headerImage = {headerImage}>
+    <LayoutDefault>
         <div className = "ml-[12vw]">
             <div className = "pt-[1rem]">
                 <p className = "text-2xl font-bold text-ahaGreen-0">Check-in management</p>
@@ -162,7 +160,7 @@ const CheckInManagement = (props: Props) => {
                 )
             })}
         </div>
-    </Layout>
+    </LayoutDefault>
   )
 }
 

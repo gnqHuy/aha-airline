@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import offersData from "../../../assets-test/Json/offers.json";
+import offersData from "../../../assets/Json/offers.json";
 
 
 const Explore: React.FC = () => {
     const offers = offersData.slice(0, 4);
 
   return (
-    <div className="grid grid-cols-3 pl-8 medium:relative medium:left-[5vw] medium:grid-cols-3 small:relative small:grid-cols-3 small:left-[30vw]">
+    <div className="grid grid-cols-3 pl-12 p-4 medium:relative medium:left-[5vw] medium:grid-cols-3 small:relative small:grid-cols-3 small:left-[30vw]">
       {/* destination */}
       <div className = "medium:left-[5vw] medium:relative">
         <h2 className="mb-5 text-sm font-semibold uppercase">
