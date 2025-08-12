@@ -20,7 +20,7 @@ const LayoutBooking: React.FC<LayoutBookingProps> = ({ children }) => {
   
   return (
     <>
-      <NavBar  isDarkText={true}/>
+      <NavBar isDarkText={true}/>
       <div className="relative">
         <img
           src={'https://aha-airline.s3.ap-southeast-2.amazonaws.com/sunset4.jpg'}
@@ -38,7 +38,9 @@ const LayoutBooking: React.FC<LayoutBookingProps> = ({ children }) => {
             />
           )}
       </div>
-      <main className="min-h-screen bg-slate-50">{children}</main>
+      <main className="min-h-screen bg-slate-50">
+        <div className="w-[70%] mx-auto">{children}</div>
+      </main>
       <Breadcrumbs />
       <Footer isLandingPage={false}/>
     </>

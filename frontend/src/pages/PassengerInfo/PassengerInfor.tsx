@@ -130,7 +130,7 @@ const PassengerInfor = () => {
   return (
     <>
       <LayoutBooking>
-        <div className="text-2xl font-bold text-center text-gray-800 mb-6 pt-6">
+        <div className="text-4xl font-bold text-ahaAmber-2 text-center mb-8 pt-8">
           Enter Your Information
         </div>
         <div className="bg-slate-50">
@@ -161,10 +161,10 @@ const PassengerInfor = () => {
               }
             />
           ))}
-          <div className="w-[70%] mx-auto text-center mt-4 pb-10">
+          <div className="text-center mt-4 pb-10">
             <button
               onClick={handleConfirm}
-              className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md"
+              className="btn-primary"
             >
               Confirm and continue
             </button>

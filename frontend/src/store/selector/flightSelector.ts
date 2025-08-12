@@ -1,3 +1,4 @@
+import { initialState } from "../slice/flightSlice";
 import { RootState } from "../store";
 import { createSelector } from "@reduxjs/toolkit";
 
@@ -16,6 +17,14 @@ export const selectSelectedFlightRoundClass = (state: RootState) => state.flight
 export const selectIsRoundTrip = (state: RootState) => state.flight.roundTrip;
 
 export const selectReturnDate = (state: RootState) => state.flight.returnDate;
+
+export const isFlightTicketSelected = (state: RootState) => {
+  return state.flight.selectedFlight.id !== "";
+};
+
+export const isFlightTicketRoundSelected = (state: RootState) => {
+  return state.flight.selectedFlightRound.id !== "";
+};
 
 export const selectFlightDetails = createSelector(
   [selectSelectedFlight, selectSelectedFlightClass],

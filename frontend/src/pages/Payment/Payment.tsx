@@ -67,7 +67,7 @@ const Payment = () => {
 
   return (
     <LayoutBooking>
-      <h1 className="text-2xl font-bold text-center text-gray-800 mb-6 mt-0 pt-4">
+      <h1 className="text-4xl font-bold text-ahaAmber-2 text-center mb-8 pt-8">
         Check Your Ticket's Information
       </h1>
       <p className="text-center text-xl mb-10">
@@ -92,7 +92,7 @@ const Payment = () => {
       <div className="w-[70%] mx-auto text-center mt-4 pb-10">
         <button
           onClick={handleClickConfirm}
-          className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md"
+          className="btn-primary"
         >
           Confirm and Print Ticket
         </button>

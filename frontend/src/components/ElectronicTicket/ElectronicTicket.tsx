@@ -27,7 +27,7 @@ const ElectronicTicket: React.FC<ElectronicTicketProps> = ({ ticketSummary, flig
   }
 
   return (
-    <div className="w-[70%] mx-auto border border-gray-300 rounded-lg p-6 shadow-sm bg-white my-4">
+    <div className="border border-gray-300 rounded-lg p-6 shadow-sm bg-white my-4">
       <div className="text-3xl font-bold text-ahaAmber-2">AHA AIRLINE</div>
       <div className="flex pl-4 gap-44">
         <div>

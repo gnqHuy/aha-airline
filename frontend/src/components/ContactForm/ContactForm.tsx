@@ -62,7 +62,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ onContactInfoSubmit }) => {
         <div className="w-full text-center">
           <button
             type="submit"
-            className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md"
+            className="btn-primary"
           >
             Submit
           </button>

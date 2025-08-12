@@ -11,7 +11,7 @@ import { useBookingTicket } from "../../store/hooks/useBookingTicket";
 
 const TicketPage: React.FC = () => {
   const { isFlightSelected, flights, flightsRound, roundTrip, selectedFlight, 
-    selectedFlightRound, selectedFlightClass, selectedFlightRoundClass, 
+    selectedFlightRound, selectedFlightClass, selectedFlightRoundClass, isTicketSelected, isRoundTicketSelected,
     setSelectedFlightRound, setSelectedFlightRoundClass, setSelectedFlight, setSelectedFlightClass} = useBookingTicket();
   const navigate = useNavigate();
   const [checkFlight, setCheckFlight] = useState<boolean>(false);
@@ -86,13 +86,13 @@ const TicketPage: React.FC = () => {
 
   return (
     <LayoutBooking>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-transparent">
         <div className="container mx-auto py-6">
-          <h1 className="text-3xl font-bold text-center mb-6 ">
+          <h1 className="text-4xl font-bold text-ahaAmber-2 text-center mt-4 mb-8">
             Available Tickets
           </h1>
           
-          <div className="grid grid-cols-1 gap-6 w-[70%] mx-auto">
+          <div className="grid grid-cols-1 gap-6">
             <h1 className="text-2xl font-bold text-center mb-6">
               Depart
             </h1>
@@ -114,7 +114,7 @@ const TicketPage: React.FC = () => {
           </div>
           
           {(flightsRound.length > 0 && roundTrip) && (
-            <div className="grid grid-cols-1 gap-6 w-[70%] mx-auto">
+            <div className="grid grid-cols-1 gap-6">
               <h1 className="text-2xl font-bold text-center mb-6">
                 Return
               </h1>
@@ -127,13 +127,13 @@ const TicketPage: React.FC = () => {
             </div>
           )}
         </div>
-        {selectedFlight &&
-          <div className="grid grid-cols-1 gap-6 w-[70%] mx-auto mb-10">
+        {isTicketSelected &&
+          <div className="grid grid-cols-1 gap-6 mb-10">
             <h1 className="text-2xl font-bold text-center mb-6">
                 Selected Flight
             </h1>
             <TicketPreview flight={selectedFlight} classType={selectedFlightClass}/>
-            { selectedFlightRound && <TicketPreview flight={selectedFlightRound} classType={selectedFlightRoundClass}/>
+            { isRoundTicketSelected && <TicketPreview flight={selectedFlightRound} classType={selectedFlightRoundClass}/>
             }
           </div>
         }
@@ -143,7 +143,7 @@ const TicketPage: React.FC = () => {
               <div className="flex items-center justify-center p-4">
                 <button
                   onClick={handleConfirmButton} 
-                  className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md">
+                  className="btn-primary">
                   Confirm and continue
                 </button>
               </div>   

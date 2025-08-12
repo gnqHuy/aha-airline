@@ -6,13 +6,12 @@ import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
-
   const handleSwitchForm = () => setIsLogin(!isLogin);
 
   return (
     <div
       className="w-full min-h-screen bg-cover bg-center flex items-center justify-center"
-      style={{ backgroundImage: `https://aha-airline.s3.ap-southeast-2.amazonaws.com/sunset4.jpg` }}
+      style={{ backgroundImage: `url("https://aha-airline.s3.ap-southeast-2.amazonaws.com/sunset4.jpg")`}}
     >
       <div className="w-[90%] max-w-4xl bg-[#FCF9F2] rounded-2xl shadow-md p-6 pb-10 flex flex-col items-end">
         <Link to="/" className="mb-4 self-end">

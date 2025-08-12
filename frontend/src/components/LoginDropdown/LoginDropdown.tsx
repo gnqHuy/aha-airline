@@ -15,19 +15,17 @@ const LoginDropdown: React.FC<Props> = ({ username, roles, handleLogout }) => {
   return (
     <div className="w-[17vw] small:w-[30vw] medium:w-[40vw] bg-[#faf9f7] rounded-md shadow-lg py-4 px-5 space-y-4">
       {/* Header: Avatar + Username */}
-      <div className="flex items-center space-x-4">
-        <div>
-          <p className="text-lg font-bold text-ahaGreen-0">{username}</p>
-          <div className="flex flex-wrap gap-2 mt-1">
-            {roles.map((role, index) => (
-              <span
-                key={index}
-                className="bg-ahaGreen-0 text-white text-xs font-medium px-2 py-0.5 rounded-full"
-              >
-                {role}
-              </span>
-            ))}
-          </div>
+      <div className="flex flex-row items-center space-x-4">
+        <p className="text-lg font-bold text-ahaGreen-0">{username}</p>
+        <div className="flex gap-2">
+          {roles.map((role, index) => (
+            <span
+              key={index}
+              className="bg-ahaGreen-0 text-white text-xs font-medium px-2 py-0.5 rounded-full"
+            >
+              {role}
+            </span>
+          ))}
         </div>
       </div>
 

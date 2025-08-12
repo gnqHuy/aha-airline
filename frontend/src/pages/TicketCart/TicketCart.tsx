@@ -53,33 +53,33 @@ const TicketCard = () => {
 
   return (
     <LayoutBooking>
-      <div className="text-3xl font-bold text-center text-gray-800 mb-6 pt-6">Your Ticket</div>
+      <div className="text-4xl font-bold text-ahaAmber-2 text-center pt-4 mb-8">Your Ticket</div>
       
       {/* Display selected flight and class */}
       {selectedFlight && (
-        <div id="ticket-content" className="w-[70%] mx-auto mb-6">
+        <div id="ticket-content" className="mx-auto mb-6">
           <TicketPreview flight={selectedFlight} classType={selectedFlightClass} />
         </div>
       )}
       
       {/* Display selected round-trip flight and class */}
       {selectedFlightRound && roundTrip && (
-        <div id="ticket-content" className="w-[70%] mx-auto mb-6">
+        <div id="ticket-content" className="mx-auto mb-6">
           <TicketPreview flight={selectedFlightRound} classType={selectedFlightRoundClass} />
         </div>
       )}
 
       {/* Total price section */}
-      <div className="w-[70%] mx-auto text-right">
+      <div className="mx-auto text-right">
         <p className="text-3xl font-semibold">Total Price</p>
         <p className="text-2xl">VND {totalPrice.toLocaleString()}</p>
       </div>
 
       {/* Button to continue */}
-      <div className="w-[70%] mx-auto text-right mt-4 mb-10">
+      <div className="mx-auto text-right mt-4 mb-10">
         <button
           onClick={handleConfirmButton}
-          className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md"
+          className="btn-primary"
         >
           Confirm and continue
         </button>

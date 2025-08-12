@@ -6,7 +6,7 @@ import { FlightPreviewType } from "../../object/flightPreview";
 import { fetchFlightsRequest, setReturnDate, setRoundTrip, setSelectedFlight, setSelectedFlightClass, setSelectedFlightPreview, setSelectedFlightRound, setSelectedFlightRoundClass } from "../slice/flightSlice";
 import { setSearchFlightState } from "../slice/searchFlightStateSlice";
 import { PassengerState, setPassengers } from "../slice/passengerSlice";
-import { selectFlights, selectFlightsRound, selectIsRoundTrip, selectReturnDate, selectSelectedFlight, selectSelectedFlightClass, selectSelectedFlightPreview, selectSelectedFlightRound, selectSelectedFlightRoundClass } from "../selector/flightSelector";
+import { isFlightTicketRoundSelected, isFlightTicketSelected, selectFlights, selectFlightsRound, selectIsRoundTrip, selectReturnDate, selectSelectedFlight, selectSelectedFlightClass, selectSelectedFlightPreview, selectSelectedFlightRound, selectSelectedFlightRoundClass } from "../selector/flightSelector";
 import { selectPassengers } from "../selector/passengerSelector";
 import { addFlightTicket, addFlightTicketRound, createTicketsSagaRequest, setFlightTicketsId, setFlightTicketsRoundId } from "../slice/bookingSlice";
 import { selectFlightTicketsRoundState, selectFlightTicketsState, selectResponseTicketData, selectResponseTicketData1 } from "../selector/bookingSelector";
@@ -27,7 +27,8 @@ export const useBookingTicket = () => {
     const flightTicketsRound = useSelector(selectFlightTicketsRoundState);
     const responseTicketData = useSelector(selectResponseTicketData);
     const responseTicketData1 = useSelector(selectResponseTicketData1);
-
+    const isTicketSelected = useSelector(isFlightTicketSelected);
+    const isRoundTicketSelected = useSelector(isFlightTicketRoundSelected);
 
     const isFlightSelected =
         selectedFlightPreview?.fromAirport?.city?.name &&
@@ -49,7 +50,7 @@ export const useBookingTicket = () => {
     }, [isFlightSelected, selectedFlightPreview]);
     
   return {
-    responseTicketData, responseTicketData1, isFlightSelected, flights, flightsRound, searchFlightState, flightTickets, flightTicketsRound, selectedFlightPreview, roundTrip, returnDate, selectedFlight, selectedFlightRound, selectedFlightClass, selectedFlightRoundClass, selectedPassenger,
+    isTicketSelected, isRoundTicketSelected, responseTicketData, responseTicketData1, isFlightSelected, flights, flightsRound, searchFlightState, flightTickets, flightTicketsRound, selectedFlightPreview, roundTrip, returnDate, selectedFlight, selectedFlightRound, selectedFlightClass, selectedFlightRoundClass, selectedPassenger,
     setSearchFlightState: () => dispatch(setSearchFlightState(!searchFlightState)),
     setSelectedPassengers: (passengers: PassengerState) => dispatch(setPassengers(passengers)),
     setIsRoundTrip: (state: boolean) => dispatch(setRoundTrip(state)),

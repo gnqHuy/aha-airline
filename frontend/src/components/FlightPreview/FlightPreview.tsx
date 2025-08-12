@@ -20,7 +20,7 @@ const FlightPreview = () => {
     toggleDepartureList,
     handleSelectedCity,
     handleSelectedFlight,
-  } = useFlightPreview();
+  } = useFlightPreview();         
 
   const dropdownMenu = isDepartureListOpen && (
     <div

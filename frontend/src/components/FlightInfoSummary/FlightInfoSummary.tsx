@@ -19,7 +19,7 @@ const FlightInfoSummary: React.FC<Props> = ({ selectedFlightPreview, totalPassen
   });
 
   return (
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-lg shadow-md flex items-center justify-between w-[90%] max-w-3xl">
+    <div className="absolute top-1/3 left-1/4 bg-white p-4 rounded-lg shadow-md flex items-center justify-between w-[90%] max-w-3xl">
       <div className="flex-1">
         <div className="flex items-center justify-between">
           <div className="text-left">

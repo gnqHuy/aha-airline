@@ -149,7 +149,7 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
           <div className="flex items-center justify-center p-4">
             <button 
               onClick={() => handleSelectedFlight?.(flight, SeatClass.Business)}
-              className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md">
+              className="btn-primary">
               Choose Class
             </button>
           </div>
@@ -167,7 +167,7 @@ const TicketPreview: React.FC<Props> = ({ flight, classType = SeatClass.None, ha
           <div className="flex items-center justify-center p-4">
             <button
               onClick={() => handleSelectedFlight?.(flight, SeatClass.Economy)} 
-             className="my-auto px-6 py-2 text-ahaAmber-2 text-base cursor-pointer border-ahaAmber-2 font-semibold hover:bg-ahaAmber-2 hover:text-white rounded-md">
+             className="btn-primary">
               Choose Class
             </button>
           </div>

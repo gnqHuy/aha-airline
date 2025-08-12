@@ -11,6 +11,13 @@ body {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+ .btn-primary {
+  @apply px-6 py-2 text-white bg-ahaAmber-2 border border-solid border-ahaAmber-2 font-semibold rounded-2xl cursor-pointer;
+}
+
+.btn-primary:hover {
+  @apply bg-transparent text-ahaAmber-2;
+}
 
 @tailwind base;
 @tailwind components;

@@ -7,6 +7,7 @@ import TravelInfo from "./TravelInfo/TravelInfo";
 import LoginAvatar from 'https://aha-airline.s3.ap-southeast-2.amazonaws.com/sunset3.jpg';
 import LoginDropdown from "../LoginDropdown/LoginDropdown";
 import { useAuth } from "../../store/hooks/useAuth";
+import { enqueueSnackbar } from "notistack";
 
 type Props = {
   isDarkText?: boolean; // optional, mặc định là false (tức trắng)
@@ -50,9 +51,15 @@ const NavBar: React.FC<Props> = ({ isDarkText = false }) => {
   }, [])
 
   // logout
-  const handleLogout = () => {
-    logout();
-  }
+  const handleLogout = async () => {
+    try {
+      await logout();
+      enqueueSnackbar("Log out successfully!", { variant: "success" });
+    } catch (error) {
+      enqueueSnackbar("Log out failed. Please retry!", { variant: "error" });
+    }
+  };
+
 
   return (
     <section className="relative w-full bg-cover bg-center bg-no-repeat pt-[6px]">

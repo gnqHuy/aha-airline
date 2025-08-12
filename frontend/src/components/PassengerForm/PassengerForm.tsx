@@ -96,7 +96,7 @@ const PassengerForm: React.FC<Props> = ({ passengerType, onPassengerChange }) =>
   };
 
   return (
-    <div className="w-[50%] mx-auto p-8 bg-white rounded-lg shadow-lg my-6">
+    <div className="w-[80%] mx-auto p-8 bg-white rounded-lg shadow-lg my-6">
       <h2 className="text-xl font-semibold text-ahaAmber-2 text-center mb-8">
         1 {passengerType.charAt(0).toUpperCase() + passengerType.slice(1)} ({passengerType})
       </h2>

@@ -17,7 +17,7 @@ interface FlightState {
     returnDate: string;
 }
 
-const initialState: FlightState = {
+export const initialState: FlightState = {
     flights: [],
     flightsRound: [],
     selectedFlightPreview: null,
